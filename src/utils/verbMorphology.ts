@@ -31,18 +31,29 @@ function suf(harmony: Harmony, back: string, front: string): string {
   return harmony === 'back' ? back : front
 }
 
+// Vowel absorption: if root ends in the same character as the suffix starts,
+// drop one to avoid triple-vowel clusters (e.g. яба + аад → ябаад, not ябааад).
+function attach(root: string, suffix: string): string {
+  if (suffix.length > 0 && root[root.length - 1] === suffix[0]) {
+    return root + suffix.slice(1)
+  }
+  return root + suffix
+}
+
 export function conjugate(root: string) {
   const h = detectHarmony(root)
-  const v = endsInVowel(root)
   return {
-    inf:     root + suf(h, 'ха',      'хэ'),
-    prs:     root + suf(h, 'на',      'нэ'),
-    pst:     root + suf(h, 'ба',      'бэ'),
-    evidPst: root + suf(h, 'лай',     'лэй'),
-    hab:     root + suf(h, 'даг',     'дэг'),
-    neg:     root + suf(h, 'дагүй',   'дэгүй'),
-    simConv: root + suf(h, 'жа',      'жэ'),
-    seqConv: root + (v ? 'аад' : suf(h, 'аад', 'ооб')),
+    inf:     root + suf(h, 'ха',    'хэ'),
+    prs:     root + suf(h, 'на',    'нэ'),
+    pst:     root + suf(h, 'ба',    'бэ'),
+    evidPst: root + suf(h, 'лай',   'лэй'),
+    hab:     root + suf(h, 'даг',   'дэг'),
+    neg:     root + suf(h, 'дагүй', 'дэгүй'),
+    simConv: root + suf(h, 'жа',    'жэ'),
+    // Sequential converb: -аад (back) / -өөд (front).
+    // Uses vowel absorption so яба+аад → ябаад (not ябааад),
+    // and correctly keeps үлэ+өөд → үлэөөд (э≠ø, no absorption).
+    seqConv: attach(root, suf(h, 'аад', 'өөд')),
   }
 }
 

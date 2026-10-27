@@ -1,14 +1,14 @@
-import { motion } from 'framer-motion'
-import WordOrderDiagram from '../components/WordOrderDiagram'
-import AgglutinationDiagram from '../components/AgglutinationDiagram'
-import { POSTPOSITIONS } from '../data/grammar'
-import { useState } from 'react'
+import { motion } from 'framer-motion';
+import WordOrderDiagram from '../components/WordOrderDiagram';
+import AgglutinationDiagram from '../components/AgglutinationDiagram';
+import { POSTPOSITIONS } from '../data/grammar';
+import { useState } from 'react';
 
-const fade = { hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } }
-type Tab = 'order' | 'postpositions' | 'agglutination'
+const fade = { hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } };
+type Tab = 'order' | 'postpositions' | 'agglutination';
 
 export default function WordOrder() {
-  const [tab, setTab] = useState<Tab>('order')
+  const [tab, setTab] = useState<Tab>('order');
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-10 space-y-8">
@@ -208,5 +208,5 @@ export default function WordOrder() {
         </motion.div>
       )}
     </div>
-  )
+  );
 }

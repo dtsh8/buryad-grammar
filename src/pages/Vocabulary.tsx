@@ -1,18 +1,18 @@
-import { motion } from 'framer-motion'
-import { useState } from 'react'
-import { VOCABULARY, type Lexeme } from '../data/grammar'
+import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { VOCABULARY, type Lexeme } from '../data/grammar';
 
-const fade = { hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } }
+const fade = { hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } };
 
-const CATEGORIES = ['all', 'pronoun', 'numeral', 'noun', 'phrase'] as const
-type Cat = (typeof CATEGORIES)[number]
+const CATEGORIES = ['all', 'pronoun', 'numeral', 'noun', 'phrase'] as const;
+type Cat = (typeof CATEGORIES)[number];
 
 const CAT_COLORS: Record<string, string> = {
   pronoun: 'badge-blue',
   numeral: 'badge-amber',
   noun: 'badge-green',
   phrase: 'badge-red',
-}
+};
 
 function LexemeCard({ l }: { l: Lexeme }) {
   return (
@@ -24,12 +24,12 @@ function LexemeCard({ l }: { l: Lexeme }) {
       <p className="text-xs text-stone-400 font-mono mt-0.5">/{l.ipa}/</p>
       <p className="text-sm text-stone-600 mt-1 italic">{l.english}</p>
     </div>
-  )
+  );
 }
 
 export default function Vocabulary() {
-  const [cat, setCat] = useState<Cat>('all')
-  const [query, setQuery] = useState('')
+  const [cat, setCat] = useState<Cat>('all');
+  const [query, setQuery] = useState('');
 
   const filtered = VOCABULARY.filter(
     l =>
@@ -37,7 +37,7 @@ export default function Vocabulary() {
       (query === '' ||
         l.buryad.toLowerCase().includes(query.toLowerCase()) ||
         l.english.toLowerCase().includes(query.toLowerCase()))
-  )
+  );
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-10 space-y-8">
@@ -156,5 +156,5 @@ export default function Vocabulary() {
         </div>
       )}
     </div>
-  )
+  );
 }

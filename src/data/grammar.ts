@@ -15,21 +15,21 @@ export const LANGUAGE_META = {
     caseMarking: 'Nominative–Accusative (with ergative tendencies)',
     alignment: 'Nominative–Accusative',
   },
-} as const
+} as const;
 
 // ─── Phonology ────────────────────────────────────────────────────────────
 
-export type VowelHarmonyGroup = 'back' | 'front' | 'neutral'
+export type VowelHarmonyGroup = 'back' | 'front' | 'neutral';
 
 export interface Vowel {
-  letter: string
-  long: string
-  ipa: string
-  harmony: VowelHarmonyGroup
-  height: 'high' | 'mid' | 'low'
-  backness: 'front' | 'central' | 'back'
-  rounded: boolean
-  example: { word: string; meaning: string }
+  letter: string;
+  long: string;
+  ipa: string;
+  harmony: VowelHarmonyGroup;
+  height: 'high' | 'mid' | 'low';
+  backness: 'front' | 'central' | 'back';
+  rounded: boolean;
+  example: { word: string; meaning: string };
 }
 
 export const VOWELS: Vowel[] = [
@@ -103,20 +103,20 @@ export const VOWELS: Vowel[] = [
     rounded: false,
     example: { word: 'ном', meaning: 'book (various)' },
   },
-]
+];
 
 export const VOWEL_HARMONY_PAIRS: Array<[string, string]> = [
   ['а', 'э'],
   ['о', 'ө'],
   ['у', 'ү'],
-]
+];
 
 export interface Consonant {
-  letter: string
-  ipa: string
-  place: string
-  manner: string
-  voiced: boolean
+  letter: string;
+  ipa: string;
+  place: string;
+  manner: string;
+  voiced: boolean;
 }
 
 export const CONSONANTS: Consonant[] = [
@@ -138,28 +138,28 @@ export const CONSONANTS: Consonant[] = [
   { letter: 'л', ipa: 'l', place: 'alveolar', manner: 'lateral', voiced: true },
   { letter: 'р', ipa: 'r', place: 'alveolar', manner: 'trill', voiced: true },
   { letter: 'й', ipa: 'j', place: 'palatal', manner: 'approximant', voiced: true },
-]
+];
 
 // ─── Nominal Cases ─────────────────────────────────────────────────────────
 
 export interface CaseSuffix {
-  afterConsonant: string
-  afterVowel?: string
-  frontVariant?: string // front-harmony variant
-  backVariant?: string // back-harmony variant
+  afterConsonant: string;
+  afterVowel?: string;
+  frontVariant?: string; // front-harmony variant
+  backVariant?: string; // back-harmony variant
 }
 
 export interface GrammarCase {
-  id: string
-  buryad: string
-  english: string
-  russian: string
-  semanticRole: string
-  questions: string[]
-  suffix: CaseSuffix
-  examples: Array<{ stem: string; inflected: string; translation: string; note?: string }>
-  colorClass: string
-  analogy: string // comparison to English or Russian
+  id: string;
+  buryad: string;
+  english: string;
+  russian: string;
+  semanticRole: string;
+  questions: string[];
+  suffix: CaseSuffix;
+  examples: Array<{ stem: string; inflected: string; translation: string; note?: string }>;
+  colorClass: string;
+  analogy: string; // comparison to English or Russian
 }
 
 export const CASES: GrammarCase[] = [
@@ -276,22 +276,22 @@ export const CASES: GrammarCase[] = [
     colorClass: 'bg-teal-50 border-teal-200 text-teal-900',
     analogy: 'Like Russian из/от/чем or English "from/than". Unique h- prefix (ejectivized).',
   },
-]
+];
 
 // ─── Verb System ──────────────────────────────────────────────────────────
 
 export interface VerbForm {
-  label: string
-  suffix: string
-  example: { verb: string; form: string; translation: string }
-  note: string
+  label: string;
+  suffix: string;
+  example: { verb: string; form: string; translation: string };
+  note: string;
 }
 
 export const VERB_STEMS = {
   ябаха: { meaning: 'to go', root: 'яба' },
   уншаха: { meaning: 'to read', root: 'унша' },
   байха: { meaning: 'to be', root: 'бай' },
-}
+};
 
 export const VERB_FORMS: VerbForm[] = [
   {
@@ -348,31 +348,31 @@ export const VERB_FORMS: VerbForm[] = [
     example: { verb: 'яба-', form: 'ябабол', translation: 'if (one) goes' },
     note: 'Protasis of conditional sentences (if-clause).',
   },
-]
+];
 
 // ─── Extended Verb Data ───────────────────────────────────────────────────
 
 export interface VerbParadigm {
-  root: string
-  infinitive: string
-  meaning: string
-  harmony: 'back' | 'front'
+  root: string;
+  infinitive: string;
+  meaning: string;
+  harmony: 'back' | 'front';
   forms: {
-    presentFuture: string
-    simplePast: string
-    evidentialPast: string
-    habitual: string
-    imperative: string
-    politeImperative: string
-    infinitive: string
-    negPresentFuture: string
-    negPast: string
-    simultConv: string
-    seqConv: string
-    conditional: string
-    verbalNoun: string
-    participle: string
-  }
+    presentFuture: string;
+    simplePast: string;
+    evidentialPast: string;
+    habitual: string;
+    imperative: string;
+    politeImperative: string;
+    infinitive: string;
+    negPresentFuture: string;
+    negPast: string;
+    simultConv: string;
+    seqConv: string;
+    conditional: string;
+    verbalNoun: string;
+    participle: string;
+  };
 }
 
 export const VERB_PARADIGMS: VerbParadigm[] = [
@@ -464,17 +464,17 @@ export const VERB_PARADIGMS: VerbParadigm[] = [
       participle: 'эдидэг',
     },
   },
-]
+];
 
 export interface VerbDerivation {
-  label: string
-  suffix: string
-  buryad: string
-  meaning: string
-  english: string
-  color: string
-  description: string
-  example: { base: string; derived: string; baseGloss: string; derivedGloss: string }
+  label: string;
+  suffix: string;
+  buryad: string;
+  meaning: string;
+  english: string;
+  color: string;
+  description: string;
+  example: { base: string; derived: string; baseGloss: string; derivedGloss: string };
 }
 
 export const VERB_DERIVATIONS: VerbDerivation[] = [
@@ -554,15 +554,15 @@ export const VERB_DERIVATIONS: VerbDerivation[] = [
       derivedGloss: 'to sing together',
     },
   },
-]
+];
 
 export interface ConverbEntry {
-  label: string
-  suffix: string
-  semantics: string
-  englishParallel: string
-  color: string
-  examples: Array<{ buryad: string; gloss: string; translation: string }>
+  label: string;
+  suffix: string;
+  semantics: string;
+  englishParallel: string;
+  color: string;
+  examples: Array<{ buryad: string; gloss: string; translation: string }>;
 }
 
 export const CONVERBS: ConverbEntry[] = [
@@ -647,17 +647,17 @@ export const CONVERBS: ConverbEntry[] = [
       },
     ],
   },
-]
+];
 
 export interface TenseEntry {
-  label: string
-  buryad: string
-  suffix: { back: string; front: string }
-  timelinePosition: number // -2 past..0 now..+2 future
-  evidentiality: 'direct' | 'indirect' | 'neutral'
-  aspectuality: 'perfective' | 'imperfective' | 'habitual' | 'n/a'
-  examples: Array<{ form: string; translation: string }>
-  note: string
+  label: string;
+  buryad: string;
+  suffix: { back: string; front: string };
+  timelinePosition: number; // -2 past..0 now..+2 future
+  evidentiality: 'direct' | 'indirect' | 'neutral';
+  aspectuality: 'perfective' | 'imperfective' | 'habitual' | 'n/a';
+  examples: Array<{ form: string; translation: string }>;
+  note: string;
 }
 
 export const TENSE_ENTRIES: TenseEntry[] = [
@@ -713,13 +713,13 @@ export const TENSE_ENTRIES: TenseEntry[] = [
     ],
     note: 'Single form covers present and future. Context disambiguates.',
   },
-]
+];
 
 export interface WordOrderExample {
-  buryad: string[]
-  gloss: string[]
-  translation: string
-  highlight: number // index of the verb (always last)
+  buryad: string[];
+  gloss: string[];
+  translation: string;
+  highlight: number; // index of the verb (always last)
 }
 
 export const WORD_ORDER_EXAMPLES: WordOrderExample[] = [
@@ -747,15 +747,15 @@ export const WORD_ORDER_EXAMPLES: WordOrderExample[] = [
     translation: 'The boy gave a flower to his mother.',
     highlight: 3,
   },
-]
+];
 
 // ─── Postpositions ────────────────────────────────────────────────────────
 
 export interface Postposition {
-  buryad: string
-  meaning: string
-  caseRequired: string
-  example: { phrase: string; translation: string }
+  buryad: string;
+  meaning: string;
+  caseRequired: string;
+  example: { phrase: string; translation: string };
 }
 
 export const POSTPOSITIONS: Postposition[] = [
@@ -807,16 +807,16 @@ export const POSTPOSITIONS: Postposition[] = [
     caseRequired: 'Genitive',
     example: { phrase: 'шэрээгэй доро', translation: 'under the table' },
   },
-]
+];
 
 // ─── Comparison with Related Languages ────────────────────────────────────
 
 export interface LangComparison {
-  feature: string
-  buryad: string
-  mongolian: string
-  turkish: string
-  english: string
+  feature: string;
+  buryad: string;
+  mongolian: string;
+  turkish: string;
+  english: string;
 }
 
 export const COMPARISONS: LangComparison[] = [
@@ -864,15 +864,15 @@ export const COMPARISONS: LangComparison[] = [
     turkish: 'Yes',
     english: 'Lexical only',
   },
-]
+];
 
 // ─── Basic Vocabulary ─────────────────────────────────────────────────────
 
 export interface Lexeme {
-  buryad: string
-  ipa: string
-  english: string
-  category: string
+  buryad: string;
+  ipa: string;
+  english: string;
+  category: string;
 }
 
 export const VOCABULARY: Lexeme[] = [
@@ -908,15 +908,15 @@ export const VOCABULARY: Lexeme[] = [
   { buryad: 'баабай', ipa: 'baːbaj', english: 'father', category: 'noun' },
   { buryad: 'хото', ipa: 'xoto', english: 'city', category: 'noun' },
   { buryad: 'газар', ipa: 'ɡazar', english: 'land / ground', category: 'noun' },
-]
+];
 
 // ─── Agglutination Examples ───────────────────────────────────────────────
 
 export interface AgglutinationChain {
-  gloss: string
-  steps: Array<{ form: string; added: string; meaning: string }>
-  final: string
-  translation: string
+  gloss: string;
+  steps: Array<{ form: string; added: string; meaning: string }>;
+  final: string;
+  translation: string;
 }
 
 export const AGGLUTINATION_EXAMPLES: AgglutinationChain[] = [
@@ -942,4 +942,4 @@ export const AGGLUTINATION_EXAMPLES: AgglutinationChain[] = [
     final: 'дуралалсаба',
     translation: 'they loved each other',
   },
-]
+];

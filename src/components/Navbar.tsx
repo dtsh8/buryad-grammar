@@ -1,6 +1,6 @@
-import { NavLink } from 'react-router-dom'
-import { BookOpen, Mic, Grid, Code2, GitBranch, LayoutList, Menu, X } from 'lucide-react'
-import { useState } from 'react'
+import { NavLink } from 'react-router-dom';
+import { BookOpen, Mic, Grid, Code2, GitBranch, LayoutList, Menu, X } from 'lucide-react';
+import { useState } from 'react';
 
 const links = [
   { to: '/', label: 'Overview', icon: BookOpen },
@@ -9,10 +9,10 @@ const links = [
   { to: '/verbs', label: 'Verbs', icon: Code2 },
   { to: '/word-order', label: 'Word Order', icon: GitBranch },
   { to: '/vocabulary', label: 'Vocabulary', icon: LayoutList },
-]
+];
 
 export default function Navbar() {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-stone-200 shadow-sm">
@@ -78,5 +78,5 @@ export default function Navbar() {
         </div>
       )}
     </header>
-  )
+  );
 }

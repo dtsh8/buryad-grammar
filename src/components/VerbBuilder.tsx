@@ -1,5 +1,5 @@
-import { useState, useRef } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useState, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   translateToBuryad,
   extractRoot,
@@ -7,9 +7,9 @@ import {
   deriveAll,
   conjugate,
   type DerivedForm,
-} from '../utils/verbMorphology'
+} from '../utils/verbMorphology';
 
-const fade = { hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0 } }
+const fade = { hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0 } };
 
 // ─── Quick-pick verbs ──────────────────────────────────────────────────────
 
@@ -28,7 +28,7 @@ const QUICK_VERBS = [
   'sleep',
   'teach',
   'help',
-]
+];
 
 // ─── Harmony badge ─────────────────────────────────────────────────────────
 
@@ -37,16 +37,16 @@ function HarmonyBadge({ harmony }: { harmony: 'back' | 'front' }) {
     <span className={`badge ${harmony === 'back' ? 'badge-amber' : 'badge-blue'}`}>
       {harmony === 'back' ? '🔴 Back harmony (а/о/у)' : '🔵 Front harmony (э/ø/ü)'}
     </span>
-  )
+  );
 }
 
 // ─── Base paradigm mini-table ───────────────────────────────────────────────
 
 function BaseParadigm({ root, meaning }: { root: string; meaning: string }) {
-  const forms = conjugate(root)
+  const forms = conjugate(root);
   // Simple past/gerund for English gloss
-  const pastEn = meaning.endsWith('e') ? meaning + 'd' : meaning + 'ed'
-  const ingEn = meaning.endsWith('e') ? meaning.slice(0, -1) + 'ing' : meaning + 'ing'
+  const pastEn = meaning.endsWith('e') ? meaning + 'd' : meaning + 'ed';
+  const ingEn = meaning.endsWith('e') ? meaning.slice(0, -1) + 'ing' : meaning + 'ing';
   const rows: Array<[string, string, string]> = [
     ['Present-Future', forms.prs, `→ ${meaning}s / will ${meaning}`],
     ['Simple Past', forms.pst, `→ ${pastEn} (witnessed)`],
@@ -56,7 +56,7 @@ function BaseParadigm({ root, meaning }: { root: string; meaning: string }) {
     ['Infinitive', forms.inf, `→ to ${meaning}`],
     ['Simult. Converb', forms.simConv, `→ while ${ingEn}`],
     ['Seq. Converb', forms.seqConv, `→ having ${pastEn}`],
-  ]
+  ];
   return (
     <div className="card space-y-3">
       <div className="flex items-center gap-3 flex-wrap">
@@ -80,7 +80,7 @@ function BaseParadigm({ root, meaning }: { root: string; meaning: string }) {
         </table>
       </div>
     </div>
-  )
+  );
 }
 
 // ─── Derivation card ───────────────────────────────────────────────────────
@@ -90,9 +90,9 @@ function DerivCard({
   expanded,
   onToggle,
 }: {
-  d: DerivedForm
-  expanded: boolean
-  onToggle: () => void
+  d: DerivedForm;
+  expanded: boolean;
+  onToggle: () => void;
 }) {
   return (
     <div className={`rounded-2xl border-2 overflow-hidden ${d.color}`}>
@@ -183,47 +183,47 @@ function DerivCard({
         )}
       </AnimatePresence>
     </div>
-  )
+  );
 }
 
 // ─── Main Component ────────────────────────────────────────────────────────
 
-type Status = 'idle' | 'loading' | 'done' | 'error'
+type Status = 'idle' | 'loading' | 'done' | 'error';
 
 export default function VerbBuilder() {
-  const [input, setInput] = useState('')
-  const [status, setStatus] = useState<Status>('idle')
-  const [infinitive, setInfinitive] = useState('')
-  const [root, setRoot] = useState('')
-  const [meaning, setMeaning] = useState('')
-  const [derivations, setDerivations] = useState<DerivedForm[]>([])
-  const [expanded, setExpanded] = useState<string>('Causative')
-  const [errorMsg, setErrorMsg] = useState('')
-  const inputRef = useRef<HTMLInputElement>(null)
+  const [input, setInput] = useState('');
+  const [status, setStatus] = useState<Status>('idle');
+  const [infinitive, setInfinitive] = useState('');
+  const [root, setRoot] = useState('');
+  const [meaning, setMeaning] = useState('');
+  const [derivations, setDerivations] = useState<DerivedForm[]>([]);
+  const [expanded, setExpanded] = useState<string>('Causative');
+  const [errorMsg, setErrorMsg] = useState('');
+  const inputRef = useRef<HTMLInputElement>(null);
 
   async function handleTranslate(verb?: string) {
-    const query = (verb ?? input).trim()
-    if (!query) return
-    if (verb) setInput(verb)
+    const query = (verb ?? input).trim();
+    if (!query) return;
+    if (verb) setInput(verb);
 
-    setStatus('loading')
-    setErrorMsg('')
+    setStatus('loading');
+    setErrorMsg('');
     try {
-      const buryad = await translateToBuryad(query)
-      const r = extractRoot(buryad)
-      const d = deriveAll(r, query.replace(/^to\s+/i, ''))
-      setInfinitive(buryad)
-      setRoot(r)
-      setMeaning(query.replace(/^to\s+/i, ''))
-      setDerivations(d)
-      setStatus('done')
+      const buryad = await translateToBuryad(query);
+      const r = extractRoot(buryad);
+      const d = deriveAll(r, query.replace(/^to\s+/i, ''));
+      setInfinitive(buryad);
+      setRoot(r);
+      setMeaning(query.replace(/^to\s+/i, ''));
+      setDerivations(d);
+      setStatus('done');
     } catch (e) {
-      setErrorMsg(e instanceof Error ? e.message : 'Translation failed — check your connection.')
-      setStatus('error')
+      setErrorMsg(e instanceof Error ? e.message : 'Translation failed — check your connection.');
+      setStatus('error');
     }
   }
 
-  const harmony = root ? detectHarmony(root) : null
+  const harmony = root ? detectHarmony(root) : null;
 
   return (
     <div className="space-y-6">
@@ -361,5 +361,5 @@ export default function VerbBuilder() {
         </AnimatePresence>
       )}
     </div>
-  )
+  );
 }

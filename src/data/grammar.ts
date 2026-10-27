@@ -866,50 +866,6 @@ export const COMPARISONS: LangComparison[] = [
   },
 ];
 
-// ─── Basic Vocabulary ─────────────────────────────────────────────────────
-
-export interface Lexeme {
-  buryad: string;
-  ipa: string;
-  english: string;
-  category: string;
-}
-
-export const VOCABULARY: Lexeme[] = [
-  // Pronouns
-  { buryad: 'би', ipa: 'bi', english: 'I', category: 'pronoun' },
-  { buryad: 'ши', ipa: 'ʃi', english: 'you (sg.)', category: 'pronoun' },
-  { buryad: 'тэрэ', ipa: 'tere', english: 'he/she/it', category: 'pronoun' },
-  { buryad: 'бид', ipa: 'bid', english: 'we', category: 'pronoun' },
-  { buryad: 'та', ipa: 'tʰa', english: 'you (pl./formal)', category: 'pronoun' },
-  { buryad: 'тэдэнэр', ipa: 'tederem', english: 'they', category: 'pronoun' },
-  // Numbers
-  { buryad: 'нэгэн', ipa: 'neɡen', english: 'one', category: 'numeral' },
-  { buryad: 'хоёр', ipa: 'xojor', english: 'two', category: 'numeral' },
-  { buryad: 'гурбан', ipa: 'ɡurban', english: 'three', category: 'numeral' },
-  { buryad: 'дүрбэн', ipa: 'dyrben', english: 'four', category: 'numeral' },
-  { buryad: 'табан', ipa: 'taban', english: 'five', category: 'numeral' },
-  { buryad: 'зургаан', ipa: 'zurɡaːn', english: 'six', category: 'numeral' },
-  { buryad: 'долоон', ipa: 'doloːn', english: 'seven', category: 'numeral' },
-  { buryad: 'найман', ipa: 'najman', english: 'eight', category: 'numeral' },
-  { buryad: 'юhэн', ipa: 'juhen', english: 'nine', category: 'numeral' },
-  { buryad: 'арбан', ipa: 'arban', english: 'ten', category: 'numeral' },
-  // Greetings / common
-  { buryad: 'Сайн байна уу', ipa: 'sajn bajna uː', english: 'Hello (formal)', category: 'phrase' },
-  { buryad: 'Баяртай', ipa: 'bajartaj', english: 'Goodbye', category: 'phrase' },
-  { buryad: 'Баярлаа', ipa: 'bajarlaa', english: 'Thank you', category: 'phrase' },
-  { buryad: 'Тиимэ', ipa: 'tiːme', english: 'Yes', category: 'phrase' },
-  { buryad: 'Үгы', ipa: 'yɡy', english: 'No', category: 'phrase' },
-  // Nouns
-  { buryad: 'гэр', ipa: 'ɡer', english: 'house / home', category: 'noun' },
-  { buryad: 'ном', ipa: 'nom', english: 'book', category: 'noun' },
-  { buryad: 'уhан', ipa: 'uhan', english: 'water', category: 'noun' },
-  { buryad: 'эхэ', ipa: 'exe', english: 'mother', category: 'noun' },
-  { buryad: 'баабай', ipa: 'baːbaj', english: 'father', category: 'noun' },
-  { buryad: 'хото', ipa: 'xoto', english: 'city', category: 'noun' },
-  { buryad: 'газар', ipa: 'ɡazar', english: 'land / ground', category: 'noun' },
-];
-
 // ─── Agglutination Examples ───────────────────────────────────────────────
 
 export interface AgglutinationChain {

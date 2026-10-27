@@ -24,13 +24,46 @@ export function extractRoot(infinitive: string): string {
 }
 
 // ─── Suffix helpers ────────────────────────────────────────────────────────
+// Buryad verbal suffixes are 3-way harmonic based on the last significant vowel:
+//   а-class (а, у roots) → а-variants: -ха -на -ба -лай -даг -жа
+//   о-class (о roots)       → о-variants: -хо -но -бо -лой -дог -жо   (орохо, ороно etc.)
+//   э-class (э, ө, ү roots) → э-variants: -хэ -нэ -бэ -лэй -дэг -жэ
+//
+// Sequential converb is a separate 4-way system (see seqConvSuffix).
 
+// SufClass: which suffix vowel template to use
+type SufClass = 'а' | 'о' | 'э';
+
+// Scan RTL past transparent sounds to find the last significant vowel,
+// then map to a suffix class:
+//   у → а-class (у is back but uses а-variants, confirmed: һуу → һуугаад)
+//   о → о-class (confirmed: оро → ороно, оробо, etc.)
+//   э/ө/ү → э-class
+function getSufClass(root: string): SufClass {
+  for (let i = root.length - 1; i >= 0; i--) {
+    const c = root[i];
+    if (c === 'а' || c === 'у') return 'а'; // back unrounded + high back rounded
+    if (c === 'о') return 'о'; // back rounded mid
+    if (FRONT_VOWELS.test(c)) return 'э'; // any front vowel
+    // и, й, consonants are transparent
+  }
+  return 'а'; // default
+}
+
+// Pick the correct suffix variant for this class.
+function sufC(cls: SufClass, а: string, о: string, э: string): string {
+  if (cls === 'о') return о;
+  if (cls === 'э') return э;
+  return а;
+}
+
+// Keep 2-way suf() for back/front derivational suffix selection in deriveAll.
 function suf(harmony: Harmony, back: string, front: string): string {
   return harmony === 'back' ? back : front;
 }
 
 // Vowel absorption: drop the duplicate leading vowel when root ends in the
-// same character as the suffix starts (яба + аад → ябаад, үлэ + ээд → үлээд).
+// same character as the suffix starts (яба + аад → ябаад, үлэ + ээд → үлээд, оро + оод → ороод).
 function attach(root: string, suffix: string): string {
   if (suffix.length > 0 && root[root.length - 1] === suffix[0]) {
     return root + suffix.slice(1);
@@ -38,10 +71,10 @@ function attach(root: string, suffix: string): string {
   return root + suffix;
 }
 
-// Returns true when epenthetic г must be inserted before the seq. converb suffix.
+// Returns true when epenthetic г must be inserted before the suffix.
 // Two environments (Skribnik 2003):
-//   • Long-vowel root endings (аа оо уу ии ээ өө үү): угаа → угаагаад
-//   • Semivowel й (behaves like a long-vowel coda):   бай  → байгаад
+//   • Long-vowel endings (аа оо уу ии ээ өө үү): угаа → угаагаад
+//   • Semivowel й:                                   бай  → байгаад
 function needsEpentheticG(root: string): boolean {
   if (root.endsWith('й')) return true;
   if (root.length >= 2) {
@@ -52,37 +85,36 @@ function needsEpentheticG(root: string): boolean {
   return false;
 }
 
-// Sequential converb — 3-way vowel harmony (Skribnik 2003: §3.1.2):
-// back (а, о, у) → -аад   ALL back vowels use same suffix (o and u are back!)
-// front unrounded (э) → -ээд
-// front rounded (ө/ү) → -өөд
-// һуу → һуугаад ✓  (y is back → uses -аад, not -оод)
-// и / й / consonants are transparent — scan left past them.
+// Sequential converb — 4-way harmony (the seq.conv suffix is more specific than
+// other suffixes because its vowel directly mirrors the root vowel):
+//   а/у → -аад   ябаад, һуугаад ✓
+//   о    → -оод   ороод ✓  (attachment absorbs duplicate о)
+//   э    → -ээд   үлээд ✓  (attachment absorbs duplicate э)
+//   ө/ү → -өөд
+// и / й / consonants are transparent.
 function seqConvSuffix(root: string): string {
   for (let i = root.length - 1; i >= 0; i--) {
     const c = root[i];
-    if (BACK_VOWELS.test(c)) return 'аад'; // а, о, у → back
-    if (c === 'э') return 'ээд'; // front unrounded
-    if (FRONT_VOWELS.test(c)) return 'өөд'; // front rounded
-    // и / й / consonants — keep scanning
+    if (c === 'а' || c === 'у') return 'аад'; // а / у → аад
+    if (c === 'о') return 'оод'; // о → оод
+    if (c === 'э') return 'ээд'; // э → ээд
+    if (FRONT_VOWELS.test(c)) return 'өөд'; // ө/ү → өөд
   }
-  return 'аад'; // default
+  return 'аад';
 }
 
 export function conjugate(root: string) {
-  const h = detectHarmony(root);
-  const suffix = seqConvSuffix(root);
-  // Long-vowel / й endings need epenthetic г (no absorption — г is a consonant).
-  // Short-vowel endings use attach() for vowel absorption.
-  const seqConv = needsEpentheticG(root) ? root + 'г' + suffix : attach(root, suffix);
+  const cls = getSufClass(root);
+  const seqSuf = seqConvSuffix(root);
+  const seqConv = needsEpentheticG(root) ? root + 'г' + seqSuf : attach(root, seqSuf);
   return {
-    inf: root + suf(h, 'ха', 'хэ'),
-    prs: root + suf(h, 'на', 'нэ'),
-    pst: root + suf(h, 'ба', 'бэ'),
-    evidPst: root + suf(h, 'лай', 'лэй'),
-    hab: root + suf(h, 'даг', 'дэг'),
-    neg: root + suf(h, 'дагүй', 'дэгүй'),
-    simConv: root + suf(h, 'жа', 'жэ'),
+    inf: root + sufC(cls, 'ха', 'хо', 'хэ'),
+    prs: root + sufC(cls, 'на', 'но', 'нэ'),
+    pst: root + sufC(cls, 'ба', 'бо', 'бэ'),
+    evidPst: root + sufC(cls, 'лай', 'лой', 'лэй'),
+    hab: root + sufC(cls, 'даг', 'дог', 'дэг'),
+    neg: root + sufC(cls, 'дагүй', 'догүй', 'дэгүй'),
+    simConv: root + sufC(cls, 'жа', 'жо', 'жэ'),
     seqConv,
   };
 }

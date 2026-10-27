@@ -111,6 +111,7 @@ export interface DerivedForm {
 export function deriveAll(baseRoot: string, baseMeaning: string): DerivedForm[] {
   const h = detectHarmony(baseRoot);
   const v = endsInVowel(baseRoot);
+  const needsG = needsEpentheticG(baseRoot);
 
   const make = (
     label: string,
@@ -133,8 +134,12 @@ export function deriveAll(baseRoot: string, baseMeaning: string): DerivedForm[] 
     ...conjugate(derivRoot),
   });
 
-  const causRoot = baseRoot + suf(h, 'уул', 'үүл');
+  // Causative: vowel-initial suffix уул/үүл — epenthetic г required for
+  // long-vowel/й roots to avoid illegal vowel clusters (угаа+уул → угаагуул).
+  const causRoot = needsG ? baseRoot + 'г' + suf(h, 'уул', 'үүл') : baseRoot + suf(h, 'уул', 'үүл');
+  // Passive: г-initial suffix гда/гдэ already provides the buffer consonant.
   const passRoot = v ? baseRoot + suf(h, 'гда', 'гдэ') : baseRoot + suf(h, 'агда', 'эгдэ');
+  // Reflexive / reciprocal / cooperative: consonant-initial suffixes — no г needed.
   const reflRoot = baseRoot + suf(h, 'да', 'дэ');
   const recipRoot = v ? baseRoot + suf(h, 'лса', 'лсэ') : baseRoot + suf(h, 'алса', 'элсэ');
   const coopRoot = v ? baseRoot + suf(h, 'лда', 'лдэ') : baseRoot + suf(h, 'алда', 'элдэ');

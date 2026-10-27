@@ -2,10 +2,10 @@
 
 > Interactive grammar reference for the **Buryad (Буряат) language** — an agglutinative, SOV, vowel-harmonic Mongolic tongue of Eastern Siberia.
 
-[![CI](https://github.com/YOUR_USERNAME/buryad-grammar/actions/workflows/ci.yml/badge.svg)](https://github.com/YOUR_USERNAME/buryad-grammar/actions/workflows/ci.yml)
-[![Release](https://github.com/YOUR_USERNAME/buryad-grammar/actions/workflows/release.yml/badge.svg)](https://github.com/YOUR_USERNAME/buryad-grammar/actions/workflows/release.yml)
+[![CI](https://github.com/dtsh8/buryad-grammar/actions/workflows/ci.yml/badge.svg)](https://github.com/dtsh8/buryad-grammar/actions/workflows/ci.yml)
+[![Release](https://github.com/dtsh8/buryad-grammar/actions/workflows/release.yml/badge.svg)](https://github.com/dtsh8/buryad-grammar/actions/workflows/release.yml)
 
-**Live demo:** https://YOUR_USERNAME.github.io/buryad-grammar/
+**Live demo:** https://dtsh8.github.io/buryad-grammar/
 
 ## Features
 

@@ -1,5 +1,5 @@
 // ─── Buryad Verb Morphology Engine ────────────────────────────────────────
-// Rules sourced from Poppe (1960) Buriat Grammar + Skribnik & Sesenova (2006)
+// Sources: Skribnik (2003) Buryat · Poppe (1960) Buriat Grammar
 
 export type Harmony = 'back' | 'front'
 
@@ -31,13 +31,32 @@ function suf(harmony: Harmony, back: string, front: string): string {
   return harmony === 'back' ? back : front
 }
 
-// Vowel absorption: if root ends in the same character as the suffix starts,
-// drop one to avoid triple-vowel clusters (e.g. яба + аад → ябаад, not ябааад).
+// Vowel absorption: drop the duplicate leading vowel when root ends in the
+// same character as the suffix starts (яба + аад → ябаад, үлэ + ээд → үлээд).
 function attach(root: string, suffix: string): string {
   if (suffix.length > 0 && root[root.length - 1] === suffix[0]) {
     return root + suffix.slice(1)
   }
   return root + suffix
+}
+
+// Sequential converb has 4 allomorphs — governed by BOTH frontness AND
+// roundedness of the last significant vowel (Skribnik 2003: §3.1.2):
+//   а  (back, unrounded)  → -аад   e.g.  яба  → ябаад
+//   о/у(back, rounded)    → -оод   e.g.  болхо→ болхоод
+//   э  (front, unrounded) → -ээд   e.g.  үлэ  → үлээд  ← reported bug
+//   ø/ü (front, rounded)  → -өөд   e.g.  өгэ  → өгөөд
+// Neutral и is transparent; scan past it to find the controlling vowel.
+function seqConvSuffix(root: string): string {
+  for (let i = root.length - 1; i >= 0; i--) {
+    const c = root[i]
+    if (c === 'а')           return 'аад'
+    if (c === 'о' || c === 'у') return 'оод'
+    if (c === 'э')           return 'ээд'
+    if (c === 'ø' || c === 'ö' || c === 'ö' || c === 'ө' || c === 'ү') return 'өөд'
+    // и / й / consonants are transparent — keep scanning left
+  }
+  return 'аад'  // default
 }
 
 export function conjugate(root: string) {
@@ -50,10 +69,7 @@ export function conjugate(root: string) {
     hab:     root + suf(h, 'даг',   'дэг'),
     neg:     root + suf(h, 'дагүй', 'дэгүй'),
     simConv: root + suf(h, 'жа',    'жэ'),
-    // Sequential converb: -аад (back) / -өөд (front).
-    // Uses vowel absorption so яба+аад → ябаад (not ябааад),
-    // and correctly keeps үлэ+өөд → үлэөөд (э≠ø, no absorption).
-    seqConv: attach(root, suf(h, 'аад', 'өөд')),
+    seqConv: attach(root, seqConvSuffix(root)),
   }
 }
 

@@ -52,19 +52,19 @@ function needsEpentheticG(root: string): boolean {
   return false;
 }
 
-// Sequential converb — 4 vowel-harmonic allomorphs (Skribnik 2003: §3.1.2):
-//   а  back unrounded  → -аад    яба   → ябаад
-//   о/у back rounded   → -оод    болхо → болхоод
-//   э  front unrounded → -ээд    үлэ   → үлээд
-//   ø/ü front rounded  → -өөд    өгэ   → өгөөд
+// Sequential converb — 3-way vowel harmony (Skribnik 2003: §3.1.2):
+// back (а, о, у) → -аад   ALL back vowels use same suffix (o and u are back!)
+// front unrounded (э) → -ээд
+// front rounded (ө/ү) → -өөд
+// һуу → һуугаад ✓  (y is back → uses -аад, not -оод)
 // и / й / consonants are transparent — scan left past them.
 function seqConvSuffix(root: string): string {
   for (let i = root.length - 1; i >= 0; i--) {
     const c = root[i];
-    if (c === 'а') return 'аад';
-    if (c === 'о' || c === 'у') return 'оод';
-    if (c === 'э') return 'ээд';
-    if (c === 'ø' || c === 'ö' || c === 'ö' || c === 'ө' || c === 'ү') return 'өөд';
+    if (BACK_VOWELS.test(c)) return 'аад'; // а, о, у → back
+    if (c === 'э') return 'ээд'; // front unrounded
+    if (FRONT_VOWELS.test(c)) return 'өөд'; // front rounded
+    // и / й / consonants — keep scanning
   }
   return 'аад'; // default
 }

@@ -134,9 +134,20 @@ export function deriveAll(baseRoot: string, baseMeaning: string): DerivedForm[] 
     ...conjugate(derivRoot),
   });
 
-  // Causative: vowel-initial suffix уул/үүл — epenthetic г required for
-  // long-vowel/й roots to avoid illegal vowel clusters (угаа+уул → угаагуул).
-  const causRoot = needsG ? baseRoot + 'г' + suf(h, 'уул', 'үүл') : baseRoot + suf(h, 'уул', 'үүл');
+  // Causative: suffix уул/үүл is vowel-initial.
+  // Rule depends on what the root ends in:
+  //   • short-vowel final (а/о/э/…): drop theme vowel, attach уул/үүл
+  //     яба → яб+уул = ябуул ✓  оро → ор+уул = оруул ✓
+  //   • long-vowel or й final: keep root, insert epenthetic г
+  //     угаа → угаа+г+уул = угаагуул ✓
+  //   • consonant final: attach directly
+  //     хүдэл → хүдэл+үүл = хүдэлүүл ✓
+  const causVoiceSuffix = suf(h, 'уул', 'үүл');
+  const causRoot = needsG
+    ? baseRoot + 'г' + causVoiceSuffix // long vowel / й
+    : v
+      ? baseRoot.slice(0, -1) + causVoiceSuffix // short vowel: drop theme vowel
+      : baseRoot + causVoiceSuffix; // consonant final: direct
   // Passive: г-initial suffix гда/гдэ already provides the buffer consonant.
   const passRoot = v ? baseRoot + suf(h, 'гда', 'гдэ') : baseRoot + suf(h, 'агда', 'эгдэ');
   // Reflexive / reciprocal / cooperative: consonant-initial suffixes — no г needed.
@@ -149,7 +160,8 @@ export function deriveAll(baseRoot: string, baseMeaning: string): DerivedForm[] 
       'Causative',
       'Үйлдүүлэгшэ',
       causRoot,
-      suf(h, '-уул', '-үүл'),
+      // Display suffix reflects the actual transformation applied:
+      needsG ? suf(h, '-гуул', '-гүүл') : v ? suf(h, '-уул', '-үүл') : suf(h, '+уул', '+үүл'),
       `Cause or allow someone else to "${baseMeaning}".`,
       'make / let someone do',
       'bg-amber-50 border-amber-300',

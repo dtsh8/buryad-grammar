@@ -1,14 +1,14 @@
 import { VOWELS, VOWEL_HARMONY_PAIRS } from '../data/grammar'
 
 const HARMONY_COLOR: Record<string, string> = {
-  back:    'bg-amber-100 border-amber-300 text-amber-900',
-  front:   'bg-mongol-100 border-mongol-300 text-mongol-900',
+  back: 'bg-amber-100 border-amber-300 text-amber-900',
+  front: 'bg-mongol-100 border-mongol-300 text-mongol-900',
   neutral: 'bg-stone-100 border-stone-300 text-stone-700',
 }
 
 export default function VowelHarmonyChart() {
-  const back    = VOWELS.filter(v => v.harmony === 'back')
-  const front   = VOWELS.filter(v => v.harmony === 'front')
+  const back = VOWELS.filter(v => v.harmony === 'back')
+  const front = VOWELS.filter(v => v.harmony === 'front')
   const neutral = VOWELS.filter(v => v.harmony === 'neutral')
 
   return (
@@ -61,21 +61,30 @@ export default function VowelHarmonyChart() {
               return (
                 <>
                   {prevGroup !== v.harmony && i > 0 && (
-                    <tr key={`sep-${v.letter}`}><td colSpan={5} className="py-1" /></tr>
+                    <tr key={`sep-${v.letter}`}>
+                      <td colSpan={5} className="py-1" />
+                    </tr>
                   )}
                   <tr key={v.letter} className="border-t border-stone-100">
                     <td className="py-2 pr-4">
                       {prevGroup !== v.harmony || i === 0 ? (
-                        <span className={`badge ${
-                          v.harmony === 'back' ? 'badge-amber' :
-                          v.harmony === 'front' ? 'badge-blue' : ''
-                        } capitalize`}>
+                        <span
+                          className={`badge ${
+                            v.harmony === 'back'
+                              ? 'badge-amber'
+                              : v.harmony === 'front'
+                                ? 'badge-blue'
+                                : ''
+                          } capitalize`}
+                        >
                           {v.harmony}
                         </span>
                       ) : null}
                     </td>
                     <td className="py-2 px-3 text-center">
-                      <span className={`inline-flex w-10 h-10 items-center justify-center rounded-lg border text-xl font-buryat font-bold ${HARMONY_COLOR[v.harmony]}`}>
+                      <span
+                        className={`inline-flex w-10 h-10 items-center justify-center rounded-lg border text-xl font-buryat font-bold ${HARMONY_COLOR[v.harmony]}`}
+                      >
                         {v.letter}
                       </span>
                     </td>
@@ -101,9 +110,11 @@ export default function VowelHarmonyChart() {
       <div className="rounded-xl bg-gradient-to-r from-amber-50 to-mongol-50 border border-stone-200 p-4">
         <p className="text-sm font-semibold text-stone-700 mb-1">📐 The Harmony Rule</p>
         <p className="text-sm text-stone-600">
-          All suffixes in a word must agree in <strong>backness</strong> with the root vowel.
-          If the root contains <span className="text-amber-700 font-buryat">а / о / у</span> → use <em>back</em> suffix variants.
-          If it contains <span className="text-mongol-700 font-buryat">э / ө / ү</span> → use <em>front</em> variants.
+          All suffixes in a word must agree in <strong>backness</strong> with the root vowel. If the
+          root contains <span className="text-amber-700 font-buryat">а / о / у</span> → use{' '}
+          <em>back</em> suffix variants. If it contains{' '}
+          <span className="text-mongol-700 font-buryat">э / ө / ү</span> → use <em>front</em>{' '}
+          variants.
           <span className="text-stone-500"> И is neutral and does not trigger harmony shift.</span>
         </p>
       </div>

@@ -17,22 +17,34 @@ type Tab = 'anatomy' | 'tenses' | 'voice' | 'converbs' | 'conjugator' | 'builder
 // ─── Morpheme segment colors ─────────────────────────────────────────────
 
 const SEG_COLOR: Record<string, string> = {
-  root:       'bg-stone-700 text-white',
+  root: 'bg-stone-700 text-white',
   derivation: 'bg-amber-500 text-white',
-  tense:      'bg-mongol-600 text-white',
-  negation:   'bg-red-600 text-white',
-  aspect:     'bg-green-600 text-white',
+  tense: 'bg-mongol-600 text-white',
+  negation: 'bg-red-600 text-white',
+  aspect: 'bg-green-600 text-white',
 }
 
 // ─── Verb Anatomy ─────────────────────────────────────────────────────────
 
-function MorphemeBlock({ text, label, colorClass }: { text: string; label: string; colorClass: string }) {
+function MorphemeBlock({
+  text,
+  label,
+  colorClass,
+}: {
+  text: string
+  label: string
+  colorClass: string
+}) {
   return (
     <div className="flex flex-col items-center">
-      <div className={`px-3 py-2 rounded-lg font-buryat text-lg font-bold min-w-[50px] text-center ${colorClass}`}>
+      <div
+        className={`px-3 py-2 rounded-lg font-buryat text-lg font-bold min-w-[50px] text-center ${colorClass}`}
+      >
         {text}
       </div>
-      <span className="text-[10px] text-stone-400 mt-1 font-mono uppercase tracking-wide">{label}</span>
+      <span className="text-[10px] text-stone-400 mt-1 font-mono uppercase tracking-wide">
+        {label}
+      </span>
     </div>
   )
 }
@@ -90,7 +102,9 @@ function VerbAnatomy() {
         <div className="space-y-5">
           {examples.map(ex => (
             <div key={ex.label} className="space-y-2">
-              <p className="text-xs font-semibold text-stone-400 uppercase tracking-wide">{ex.label}</p>
+              <p className="text-xs font-semibold text-stone-400 uppercase tracking-wide">
+                {ex.label}
+              </p>
               <div className="flex items-end gap-1 flex-wrap">
                 {ex.segments.map((seg, i) => (
                   <div key={i} className="flex items-end gap-1">
@@ -100,7 +114,9 @@ function VerbAnatomy() {
                     )}
                   </div>
                 ))}
-                <span className="text-stone-400 ml-2 mb-3 text-sm">→ <span className="font-buryat text-stone-700 font-medium">{ex.translation}</span></span>
+                <span className="text-stone-400 ml-2 mb-3 text-sm">
+                  → <span className="font-buryat text-stone-700 font-medium">{ex.translation}</span>
+                </span>
               </div>
             </div>
           ))}
@@ -109,8 +125,16 @@ function VerbAnatomy() {
 
       {/* Legend */}
       <div className="flex flex-wrap gap-2">
-        {Object.entries({ ROOT: SEG_COLOR.root, 'DERIVATION': SEG_COLOR.derivation, 'TENSE/MOOD': SEG_COLOR.tense, 'ASPECT': SEG_COLOR.aspect, 'NEGATION': SEG_COLOR.negation }).map(([label, cls]) => (
-          <span key={label} className={`badge px-2 py-1 text-xs ${cls}`}>{label}</span>
+        {Object.entries({
+          ROOT: SEG_COLOR.root,
+          DERIVATION: SEG_COLOR.derivation,
+          'TENSE/MOOD': SEG_COLOR.tense,
+          ASPECT: SEG_COLOR.aspect,
+          NEGATION: SEG_COLOR.negation,
+        }).map(([label, cls]) => (
+          <span key={label} className={`badge px-2 py-1 text-xs ${cls}`}>
+            {label}
+          </span>
         ))}
       </div>
 
@@ -118,7 +142,7 @@ function VerbAnatomy() {
       <div className="rounded-xl bg-amber-50 border border-amber-200 p-4 text-sm">
         <p className="font-semibold text-amber-800 mb-1">🔊 Every suffix is vowel-harmonic</p>
         <p className="text-amber-700">
-          Back-vowel roots (а/о/у) take <span className="font-buryat">-на / -ба / -жа</span> etc.; 
+          Back-vowel roots (а/о/у) take <span className="font-buryat">-на / -ба / -жа</span> etc.;
           front-vowel roots (э/ø/ü) take <span className="font-buryat">-нэ / -бэ / -жэ</span>.
         </p>
       </div>
@@ -129,12 +153,14 @@ function VerbAnatomy() {
 // ─── Tense Timeline ────────────────────────────────────────────────────────
 
 const EVID_COLOR: Record<string, string> = {
-  direct:   'bg-green-100 border-green-400 text-green-900',
+  direct: 'bg-green-100 border-green-400 text-green-900',
   indirect: 'bg-amber-100 border-amber-400 text-amber-900',
-  neutral:  'bg-stone-100 border-stone-300 text-stone-700',
+  neutral: 'bg-stone-100 border-stone-300 text-stone-700',
 }
 const EVID_LABEL: Record<string, string> = {
-  direct: '👁️ Direct', indirect: '📢 Indirect', neutral: '⚪ Neutral',
+  direct: '👁️ Direct',
+  indirect: '📢 Indirect',
+  neutral: '⚪ Neutral',
 }
 
 function TenseTimeline() {
@@ -151,7 +177,9 @@ function TenseTimeline() {
           <div className="absolute top-5 left-0 right-0 h-0.5 bg-stone-200" />
           <div className="flex justify-between">
             {(['PAST', 'NOW', 'FUTURE'] as const).map(l => (
-              <span key={l} className="text-xs text-stone-400 font-semibold">{l}</span>
+              <span key={l} className="text-xs text-stone-400 font-semibold">
+                {l}
+              </span>
             ))}
           </div>
           <div className="flex justify-around mt-2">
@@ -161,11 +189,21 @@ function TenseTimeline() {
                 onClick={() => setSelected(i)}
                 className={`flex flex-col items-center gap-1 group`}
               >
-                <div className={`w-4 h-4 rounded-full border-2 transition-all ${
-                  selected === i ? 'scale-150 ' + (te.evidentiality === 'direct' ? 'bg-green-500 border-green-600' : te.evidentiality === 'indirect' ? 'bg-amber-500 border-amber-600' : 'bg-mongol-500 border-mongol-600')
-                  : 'bg-white border-stone-300 group-hover:border-stone-400'
-                }`} />
-                <span className={`text-xs font-medium transition-colors ${selected === i ? 'text-stone-800' : 'text-stone-400 group-hover:text-stone-600'}`}>
+                <div
+                  className={`w-4 h-4 rounded-full border-2 transition-all ${
+                    selected === i
+                      ? 'scale-150 ' +
+                        (te.evidentiality === 'direct'
+                          ? 'bg-green-500 border-green-600'
+                          : te.evidentiality === 'indirect'
+                            ? 'bg-amber-500 border-amber-600'
+                            : 'bg-mongol-500 border-mongol-600')
+                      : 'bg-white border-stone-300 group-hover:border-stone-400'
+                  }`}
+                />
+                <span
+                  className={`text-xs font-medium transition-colors ${selected === i ? 'text-stone-800' : 'text-stone-400 group-hover:text-stone-600'}`}
+                >
                   {te.suffix.back}
                 </span>
               </button>
@@ -177,7 +215,10 @@ function TenseTimeline() {
         <AnimatePresence mode="wait">
           <motion.div
             key={selected}
-            variants={fade} initial="hidden" animate="show" transition={{ duration: 0.2 }}
+            variants={fade}
+            initial="hidden"
+            animate="show"
+            transition={{ duration: 0.2 }}
             className={`rounded-xl border-2 p-5 space-y-3 ${EVID_COLOR[t.evidentiality]}`}
           >
             <div className="flex items-start justify-between gap-3 flex-wrap">
@@ -186,8 +227,12 @@ function TenseTimeline() {
                 <p className="text-sm font-buryat text-stone-500">{t.buryad}</p>
               </div>
               <div className="flex gap-2">
-                <span className={`badge ${EVID_COLOR[t.evidentiality]}`}>{EVID_LABEL[t.evidentiality]}</span>
-                <span className="badge bg-stone-100 border-stone-300 text-stone-700 capitalize">{t.aspectuality}</span>
+                <span className={`badge ${EVID_COLOR[t.evidentiality]}`}>
+                  {EVID_LABEL[t.evidentiality]}
+                </span>
+                <span className="badge bg-stone-100 border-stone-300 text-stone-700 capitalize">
+                  {t.aspectuality}
+                </span>
               </div>
             </div>
             <div className="grid sm:grid-cols-2 gap-2">
@@ -204,7 +249,9 @@ function TenseTimeline() {
             <div className="space-y-1">
               {t.examples.map(ex => (
                 <div key={ex.form} className="flex gap-3 items-baseline">
-                  <span className="font-buryat text-xl text-stone-800 font-semibold">{ex.form}</span>
+                  <span className="font-buryat text-xl text-stone-800 font-semibold">
+                    {ex.form}
+                  </span>
                   <span className="text-sm text-stone-600 italic">'{ex.translation}'</span>
                 </div>
               ))}
@@ -216,44 +263,55 @@ function TenseTimeline() {
 
       {/* Evidentiality deep-dive */}
       <div className="card space-y-4">
-        <h2 className="text-lg font-semibold text-stone-800">Evidentiality — Grammaticalized Epistemics</h2>
+        <h2 className="text-lg font-semibold text-stone-800">
+          Evidentiality — Grammaticalized Epistemics
+        </h2>
         <p className="text-sm text-stone-500">
-          Buryad grammatically encodes <em>how the speaker knows</em> what they are saying.
-          This is obligatory — every past-tense statement commits to an evidential source.
+          Buryad grammatically encodes <em>how the speaker knows</em> what they are saying. This is
+          obligatory — every past-tense statement commits to an evidential source.
         </p>
         <div className="grid md:grid-cols-2 gap-4">
           <div className="rounded-xl bg-green-50 border border-green-200 p-4 space-y-3">
             <div className="flex items-center gap-2">
               <span className="text-2xl">👁️</span>
               <div>
-                <p className="font-semibold text-green-800">Direct Evidence <span className="font-mono text-sm">-ба</span></p>
+                <p className="font-semibold text-green-800">
+                  Direct Evidence <span className="font-mono text-sm">-ба</span>
+                </p>
                 <p className="text-xs text-green-600">Speaker personally witnessed the event</p>
               </div>
             </div>
             <div className="bg-white rounded-lg p-3 space-y-1">
               <p className="font-buryat text-xl">Тэрэ ябаба.</p>
               <p className="text-xs text-stone-400 font-mono">he go-PST.DIR</p>
-              <p className="text-sm italic text-stone-600">"He went." <span className="text-green-600">(I saw it)</span></p>
+              <p className="text-sm italic text-stone-600">
+                "He went." <span className="text-green-600">(I saw it)</span>
+              </p>
             </div>
           </div>
           <div className="rounded-xl bg-amber-50 border border-amber-200 p-4 space-y-3">
             <div className="flex items-center gap-2">
               <span className="text-2xl">📢</span>
               <div>
-                <p className="font-semibold text-amber-800">Indirect Evidence <span className="font-mono text-sm">-лай</span></p>
+                <p className="font-semibold text-amber-800">
+                  Indirect Evidence <span className="font-mono text-sm">-лай</span>
+                </p>
                 <p className="text-xs text-amber-600">Speaker infers or reports hearsay</p>
               </div>
             </div>
             <div className="bg-white rounded-lg p-3 space-y-1">
               <p className="font-buryat text-xl">Тэрэ ябалай.</p>
               <p className="text-xs text-stone-400 font-mono">he go-PST.INDIR</p>
-              <p className="text-sm italic text-stone-600">"He (apparently) went." <span className="text-amber-600">(I infer / heard)</span></p>
+              <p className="text-sm italic text-stone-600">
+                "He (apparently) went." <span className="text-amber-600">(I infer / heard)</span>
+              </p>
             </div>
           </div>
         </div>
         <div className="rounded-xl bg-stone-50 border border-stone-200 p-3 text-sm text-stone-500">
-          📌 English has NO grammatical equivalent — only lexical hedges like "apparently", "I heard that", "it seems". 
-          In Buryad, the choice is <strong>obligatory every time</strong> you use a past tense.
+          📌 English has NO grammatical equivalent — only lexical hedges like "apparently", "I heard
+          that", "it seems". In Buryad, the choice is <strong>obligatory every time</strong> you use
+          a past tense.
         </div>
       </div>
 
@@ -272,10 +330,15 @@ function TenseTimeline() {
             </thead>
             <tbody>
               {[
-                { pos: 'ябана',   neg: 'ябадагүй',  pat: 'HAB + -гүй', tr: 'does not go' },
-                { pos: 'ябаба',   neg: 'ябаагүй',   pat: 'root-aa + -гүй', tr: 'did not go' },
-                { pos: 'ябаха',   neg: 'ябахагүй',  pat: 'INF + -гүй', tr: 'will not go' },
-                { pos: 'яба!',    neg: 'ябажа болохогүй', pat: 'SIMCONV + болохогүй', tr: 'must not go' },
+                { pos: 'ябана', neg: 'ябадагүй', pat: 'HAB + -гүй', tr: 'does not go' },
+                { pos: 'ябаба', neg: 'ябаагүй', pat: 'root-aa + -гүй', tr: 'did not go' },
+                { pos: 'ябаха', neg: 'ябахагүй', pat: 'INF + -гүй', tr: 'will not go' },
+                {
+                  pos: 'яба!',
+                  neg: 'ябажа болохогүй',
+                  pat: 'SIMCONV + болохогүй',
+                  tr: 'must not go',
+                },
               ].map(row => (
                 <tr key={row.pos} className="border-b border-stone-100">
                   <td className="py-2.5 pr-4 font-buryat text-stone-700">{row.pos}</td>
@@ -288,8 +351,9 @@ function TenseTimeline() {
           </table>
         </div>
         <p className="text-xs text-stone-400">
-          The negator <span className="font-buryat font-bold text-red-700">-гүй</span> is a suffix that
-          attaches to the habitual stem for present negation, or directly to the verbal noun for past/future.
+          The negator <span className="font-buryat font-bold text-red-700">-гүй</span> is a suffix
+          that attaches to the habitual stem for present negation, or directly to the verbal noun
+          for past/future.
         </p>
       </div>
     </div>
@@ -304,8 +368,8 @@ function VoiceDerivation() {
       <div className="card space-y-4">
         <h2 className="text-lg font-semibold text-stone-800">Verb Derivation — Voice & Valency</h2>
         <p className="text-sm text-stone-500">
-          Buryad has a rich system of derivational suffixes that modify the verb's argument structure
-          (how many participants it takes and their roles).
+          Buryad has a rich system of derivational suffixes that modify the verb's argument
+          structure (how many participants it takes and their roles).
         </p>
       </div>
       {VERB_DERIVATIONS.map(d => (
@@ -314,7 +378,9 @@ function VoiceDerivation() {
             <div className="flex-1">
               <div className="flex items-center gap-2">
                 <h3 className="text-lg font-bold text-stone-900">{d.label}</h3>
-                <code className="text-sm bg-white/60 px-2 py-0.5 rounded font-mono">{d.suffix}</code>
+                <code className="text-sm bg-white/60 px-2 py-0.5 rounded font-mono">
+                  {d.suffix}
+                </code>
               </div>
               <p className="text-sm font-buryat text-stone-500">{d.buryad}</p>
               <p className="text-sm text-stone-600 mt-1">{d.description}</p>
@@ -334,7 +400,9 @@ function VoiceDerivation() {
             </div>
             <div className="flex flex-col items-center">
               <span className="text-2xl text-stone-400">→</span>
-              <code className="text-xs text-stone-400 font-mono">{d.suffix.split('/')[0].trim()}</code>
+              <code className="text-xs text-stone-400 font-mono">
+                {d.suffix.split('/')[0].trim()}
+              </code>
             </div>
             <div className="bg-white rounded-xl px-4 py-3 text-center border-2 border-current min-w-[130px]">
               <p className="text-xs mb-0.5 opacity-60">Derived</p>
@@ -348,13 +416,15 @@ function VoiceDerivation() {
       {/* Stacking note */}
       <div className="card space-y-3">
         <h3 className="font-semibold text-stone-800">Derivations Stack</h3>
-        <p className="text-sm text-stone-500">Multiple derivational suffixes can be applied in sequence:</p>
+        <p className="text-sm text-stone-500">
+          Multiple derivational suffixes can be applied in sequence:
+        </p>
         <div className="flex flex-wrap items-center gap-2 bg-stone-50 rounded-xl p-4">
           {[
-            { text: 'яба',    label: 'ROOT: go',         cls: SEG_COLOR.root },
-            { text: '-уул',   label: 'CAUS: make go',    cls: SEG_COLOR.derivation },
-            { text: '-гда',   label: 'PASS: be made to', cls: SEG_COLOR.aspect },
-            { text: '-на',    label: 'TENSE',            cls: SEG_COLOR.tense },
+            { text: 'яба', label: 'ROOT: go', cls: SEG_COLOR.root },
+            { text: '-уул', label: 'CAUS: make go', cls: SEG_COLOR.derivation },
+            { text: '-гда', label: 'PASS: be made to', cls: SEG_COLOR.aspect },
+            { text: '-на', label: 'TENSE', cls: SEG_COLOR.tense },
           ].map((seg, i, arr) => (
             <div key={i} className="flex items-end gap-2">
               <MorphemeBlock text={seg.text} label={seg.label} colorClass={seg.cls} />
@@ -379,20 +449,38 @@ function ConverbSection() {
   return (
     <div className="space-y-4">
       <div className="card space-y-3">
-        <h2 className="text-lg font-semibold text-stone-800">Converbs — Non-Finite Clause Linkers</h2>
+        <h2 className="text-lg font-semibold text-stone-800">
+          Converbs — Non-Finite Clause Linkers
+        </h2>
         <p className="text-sm text-stone-500">
-          Converbs are verb forms that link subordinate clauses to a main clause.
-          They carry most of the verbal content; only the final verb is finite.
-          This allows long chains of actions to be expressed without repeating subjects.
+          Converbs are verb forms that link subordinate clauses to a main clause. They carry most of
+          the verbal content; only the final verb is finite. This allows long chains of actions to
+          be expressed without repeating subjects.
         </p>
         {/* Chain diagram */}
         <div className="bg-stone-50 rounded-xl p-4 overflow-x-auto">
           <div className="flex items-center gap-2 min-w-max text-sm">
             {[
-              { text: 'Босоод', label: 'rise-SEQ', cls: 'bg-amber-100 border-amber-300 text-amber-900' },
-              { text: 'угаагаад', label: 'wash-SEQ', cls: 'bg-amber-100 border-amber-300 text-amber-900' },
-              { text: 'эдеэжэ', label: 'eat-SIM', cls: 'bg-mongol-100 border-mongol-300 text-mongol-900' },
-              { text: 'ябаба', label: 'go-PST ← FINITE', cls: 'bg-stone-700 text-white border-stone-700' },
+              {
+                text: 'Босоод',
+                label: 'rise-SEQ',
+                cls: 'bg-amber-100 border-amber-300 text-amber-900',
+              },
+              {
+                text: 'угаагаад',
+                label: 'wash-SEQ',
+                cls: 'bg-amber-100 border-amber-300 text-amber-900',
+              },
+              {
+                text: 'эдеэжэ',
+                label: 'eat-SIM',
+                cls: 'bg-mongol-100 border-mongol-300 text-mongol-900',
+              },
+              {
+                text: 'ябаба',
+                label: 'go-PST ← FINITE',
+                cls: 'bg-stone-700 text-white border-stone-700',
+              },
             ].map((s, i, arr) => (
               <div key={i} className="flex items-center gap-2">
                 <div className={`border-2 rounded-lg px-3 py-2 text-center ${s.cls}`}>
@@ -403,7 +491,9 @@ function ConverbSection() {
               </div>
             ))}
           </div>
-          <p className="text-xs text-stone-400 mt-2 italic">"Having got up, having washed, eating — (he) went."</p>
+          <p className="text-xs text-stone-400 mt-2 italic">
+            "Having got up, having washed, eating — (he) went."
+          </p>
         </div>
       </div>
 
@@ -417,9 +507,15 @@ function ConverbSection() {
             >
               <div className="flex items-center gap-3">
                 <span className="font-semibold text-stone-800">{cv.label}</span>
-                <code className="text-xs bg-white/60 px-2 py-0.5 rounded font-mono">{cv.suffix}</code>
+                <code className="text-xs bg-white/60 px-2 py-0.5 rounded font-mono">
+                  {cv.suffix}
+                </code>
               </div>
-              <span className={`text-stone-400 transition-transform ${open === cv.label ? 'rotate-180' : ''}`}>▾</span>
+              <span
+                className={`text-stone-400 transition-transform ${open === cv.label ? 'rotate-180' : ''}`}
+              >
+                ▾
+              </span>
             </button>
             <AnimatePresence>
               {open === cv.label && (
@@ -432,7 +528,9 @@ function ConverbSection() {
                 >
                   <div className="px-5 pb-4 space-y-3 border-t border-stone-200/50">
                     <p className="text-sm text-stone-600 mt-3">{cv.semantics}</p>
-                    <p className="text-xs text-stone-400"><span className="font-semibold">English parallel:</span> {cv.englishParallel}</p>
+                    <p className="text-xs text-stone-400">
+                      <span className="font-semibold">English parallel:</span> {cv.englishParallel}
+                    </p>
                     {cv.examples.map(ex => (
                       <div key={ex.buryad} className="bg-white rounded-xl p-3 space-y-1">
                         <p className="font-buryat text-base text-stone-800">{ex.buryad}</p>
@@ -453,21 +551,31 @@ function ConverbSection() {
 
 // ─── Interactive Conjugator ───────────────────────────────────────────────
 
-const FORM_ROWS: Array<{ key: keyof VerbParadigm['forms']; label: string; category: string; color: string }> = [
-  { key: 'presentFuture',    label: 'Present-Future',      category: 'Finite',    color: 'text-mongol-700' },
-  { key: 'simplePast',       label: 'Simple Past (direct)', category: 'Finite',   color: 'text-green-700'  },
-  { key: 'evidentialPast',   label: 'Evid. Past (indirect)',category: 'Finite',   color: 'text-amber-700'  },
-  { key: 'habitual',         label: 'Habitual',             category: 'Finite',   color: 'text-stone-700'  },
-  { key: 'imperative',       label: 'Imperative',           category: 'Mood',     color: 'text-red-700'    },
-  { key: 'politeImperative', label: 'Polite Imperative',    category: 'Mood',     color: 'text-red-500'    },
-  { key: 'infinitive',       label: 'Infinitive',           category: 'Non-fin.', color: 'text-purple-700' },
-  { key: 'negPresentFuture', label: 'Neg. Present',         category: 'Negation', color: 'text-red-700'    },
-  { key: 'negPast',          label: 'Neg. Past',            category: 'Negation', color: 'text-red-700'    },
-  { key: 'simultConv',       label: 'Simultaneous Conv.',   category: 'Converb',  color: 'text-mongol-700' },
-  { key: 'seqConv',          label: 'Sequential Conv.',     category: 'Converb',  color: 'text-amber-700'  },
-  { key: 'conditional',      label: 'Conditional',          category: 'Converb',  color: 'text-green-700'  },
-  { key: 'verbalNoun',       label: 'Verbal Noun',          category: 'Nominal',  color: 'text-stone-700'  },
-  { key: 'participle',       label: 'Participle',           category: 'Nominal',  color: 'text-stone-700'  },
+const FORM_ROWS: Array<{
+  key: keyof VerbParadigm['forms']
+  label: string
+  category: string
+  color: string
+}> = [
+  { key: 'presentFuture', label: 'Present-Future', category: 'Finite', color: 'text-mongol-700' },
+  { key: 'simplePast', label: 'Simple Past (direct)', category: 'Finite', color: 'text-green-700' },
+  {
+    key: 'evidentialPast',
+    label: 'Evid. Past (indirect)',
+    category: 'Finite',
+    color: 'text-amber-700',
+  },
+  { key: 'habitual', label: 'Habitual', category: 'Finite', color: 'text-stone-700' },
+  { key: 'imperative', label: 'Imperative', category: 'Mood', color: 'text-red-700' },
+  { key: 'politeImperative', label: 'Polite Imperative', category: 'Mood', color: 'text-red-500' },
+  { key: 'infinitive', label: 'Infinitive', category: 'Non-fin.', color: 'text-purple-700' },
+  { key: 'negPresentFuture', label: 'Neg. Present', category: 'Negation', color: 'text-red-700' },
+  { key: 'negPast', label: 'Neg. Past', category: 'Negation', color: 'text-red-700' },
+  { key: 'simultConv', label: 'Simultaneous Conv.', category: 'Converb', color: 'text-mongol-700' },
+  { key: 'seqConv', label: 'Sequential Conv.', category: 'Converb', color: 'text-amber-700' },
+  { key: 'conditional', label: 'Conditional', category: 'Converb', color: 'text-green-700' },
+  { key: 'verbalNoun', label: 'Verbal Noun', category: 'Nominal', color: 'text-stone-700' },
+  { key: 'participle', label: 'Participle', category: 'Nominal', color: 'text-stone-700' },
 ]
 
 function Conjugator() {
@@ -508,7 +616,9 @@ function Conjugator() {
               key={cat}
               onClick={() => setFilter(cat)}
               className={`px-3 py-1 rounded-full text-xs font-medium transition-colors ${
-                filter === cat ? 'bg-buryat-100 text-buryat-800' : 'bg-stone-100 text-stone-500 hover:bg-stone-200'
+                filter === cat
+                  ? 'bg-buryat-100 text-buryat-800'
+                  : 'bg-stone-100 text-stone-500 hover:bg-stone-200'
               }`}
             >
               {cat}
@@ -520,14 +630,21 @@ function Conjugator() {
         <AnimatePresence mode="wait">
           <motion.div
             key={vp.infinitive + filter}
-            variants={fade} initial="hidden" animate="show" transition={{ duration: 0.2 }}
+            variants={fade}
+            initial="hidden"
+            animate="show"
+            transition={{ duration: 0.2 }}
           >
             <div className="flex items-center gap-3 mb-4 p-3 bg-stone-50 rounded-xl">
               <div>
-                <span className="font-buryat text-2xl font-bold text-stone-800">{vp.infinitive}</span>
+                <span className="font-buryat text-2xl font-bold text-stone-800">
+                  {vp.infinitive}
+                </span>
                 <span className="text-stone-400 ml-2 italic">'{vp.meaning}'</span>
               </div>
-              <span className={`badge ${vp.harmony === 'back' ? 'badge-amber' : 'badge-blue'} ml-auto`}>
+              <span
+                className={`badge ${vp.harmony === 'back' ? 'badge-amber' : 'badge-blue'} ml-auto`}
+              >
                 {vp.harmony} harmony
               </span>
             </div>
@@ -544,7 +661,9 @@ function Conjugator() {
                   <tr key={row.key} className="border-b border-stone-100 hover:bg-stone-50">
                     <td className="py-2.5 pr-4 text-stone-600 font-medium">{row.label}</td>
                     <td className="py-2.5 pr-4">
-                      <span className="badge bg-stone-100 border-stone-200 text-stone-600 text-xs">{row.category}</span>
+                      <span className="badge bg-stone-100 border-stone-200 text-stone-600 text-xs">
+                        {row.category}
+                      </span>
                     </td>
                     <td className={`py-2.5 font-buryat text-xl font-semibold ${row.color}`}>
                       {vp.forms[row.key]}
@@ -563,10 +682,15 @@ function Conjugator() {
           Form Count by Category
         </h3>
         <ResponsiveContainer width="100%" height={160}>
-          <BarChart data={categories.filter(c => c !== 'All').map(cat => ({
-            cat,
-            count: FORM_ROWS.filter(r => r.category === cat).length,
-          }))} margin={{ left: -20 }}>
+          <BarChart
+            data={categories
+              .filter(c => c !== 'All')
+              .map(cat => ({
+                cat,
+                count: FORM_ROWS.filter(r => r.category === cat).length,
+              }))}
+            margin={{ left: -20 }}
+          >
             <XAxis dataKey="cat" tick={{ fontSize: 11 }} />
             <YAxis allowDecimals={false} tick={{ fontSize: 11 }} />
             <Tooltip />
@@ -581,12 +705,12 @@ function Conjugator() {
 // ─── Main Page ─────────────────────────────────────────────────────────────
 
 const TABS: Array<{ id: Tab; label: string; icon: string }> = [
-  { id: 'anatomy',    label: 'Verb Anatomy',  icon: '🧬' },
-  { id: 'tenses',     label: 'Tenses',        icon: '⏱️' },
-  { id: 'voice',      label: 'Voice & Voice', icon: '🔄' },
-  { id: 'converbs',   label: 'Converbs',      icon: '🔗' },
-  { id: 'conjugator', label: 'Conjugator',    icon: '⚡' },
-  { id: 'builder',    label: 'Verb Builder',  icon: '🔤' },
+  { id: 'anatomy', label: 'Verb Anatomy', icon: '🧬' },
+  { id: 'tenses', label: 'Tenses', icon: '⏱️' },
+  { id: 'voice', label: 'Voice & Voice', icon: '🔄' },
+  { id: 'converbs', label: 'Converbs', icon: '🔗' },
+  { id: 'conjugator', label: 'Conjugator', icon: '⚡' },
+  { id: 'builder', label: 'Verb Builder', icon: '🔤' },
 ]
 
 export default function Verbs() {
@@ -597,7 +721,8 @@ export default function Verbs() {
       <motion.div variants={fade} initial="hidden" animate="show" transition={{ duration: 0.4 }}>
         <h1 className="text-3xl font-bold text-stone-900">Verb System</h1>
         <p className="text-stone-500 mt-1">
-          Morpheme anatomy, tense–evidentiality, voice derivation, converbs, and interactive conjugation.
+          Morpheme anatomy, tense–evidentiality, voice derivation, converbs, and interactive
+          conjugation.
         </p>
       </motion.div>
 
@@ -611,7 +736,8 @@ export default function Verbs() {
               tab === id ? 'tab-active' : 'tab-inactive'
             }`}
           >
-            <span>{icon}</span>{label}
+            <span>{icon}</span>
+            {label}
           </button>
         ))}
       </div>
@@ -619,14 +745,17 @@ export default function Verbs() {
       <AnimatePresence mode="wait">
         <motion.div
           key={tab}
-          variants={fade} initial="hidden" animate="show" transition={{ duration: 0.25 }}
+          variants={fade}
+          initial="hidden"
+          animate="show"
+          transition={{ duration: 0.25 }}
         >
-          {tab === 'anatomy'    && <VerbAnatomy />}
-          {tab === 'tenses'     && <TenseTimeline />}
-          {tab === 'voice'      && <VoiceDerivation />}
-          {tab === 'converbs'   && <ConverbSection />}
+          {tab === 'anatomy' && <VerbAnatomy />}
+          {tab === 'tenses' && <TenseTimeline />}
+          {tab === 'voice' && <VoiceDerivation />}
+          {tab === 'converbs' && <ConverbSection />}
           {tab === 'conjugator' && <Conjugator />}
-          {tab === 'builder'    && <VerbBuilder />}
+          {tab === 'builder' && <VerbBuilder />}
         </motion.div>
       </AnimatePresence>
     </div>

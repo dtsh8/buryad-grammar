@@ -24,7 +24,9 @@ export default function AgglutinationDiagram() {
                         )}
                       </div>
                       {si < chain.steps.length - 1 && (
-                        <div className="absolute -right-3 top-1/2 -translate-y-1/2 text-stone-300 text-lg z-10">→</div>
+                        <div className="absolute -right-3 top-1/2 -translate-y-1/2 text-stone-300 text-lg z-10">
+                          →
+                        </div>
                       )}
                     </div>
                     <p className="text-xs text-stone-400 mt-2 text-center max-w-[120px] leading-tight">
@@ -47,7 +49,8 @@ export default function AgglutinationDiagram() {
       <div className="rounded-xl bg-blue-50 border border-blue-200 p-4">
         <p className="text-sm font-semibold text-blue-800 mb-1">🧩 Agglutination Principle</p>
         <p className="text-sm text-blue-700">
-          Each morpheme carries exactly <strong>one</strong> grammatical meaning. They stack linearly:
+          Each morpheme carries exactly <strong>one</strong> grammatical meaning. They stack
+          linearly:
           <code className="mx-1 bg-blue-100 px-1 rounded">ROOT + PLURAL + CASE + …</code>
           No fusion or irregular forms — Buryad is highly regular in its morphology.
         </p>

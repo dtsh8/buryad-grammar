@@ -1,0 +1,126 @@
+{
+  "feature": "deriv_passive",
+  "pattern": "Passive voice — Suffix -гда/-гдэ (be done to)",
+  "examples": [
+    {
+      "sentence": "Түрэлнүүдэй үүдэн нээгдэнэ: түрэл гаралнуудтаяа найрлахагүй.",
+      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(гда|гдэ)(на|нэ|ба|бэ|лай)"
+    },
+    {
+      "sentence": "Хэрэмэй үүдэн нээгдэнэ: гэрэй һуури татахагүй, гэр байра заһабарилхагүй, зөөлгэхэгүй.",
+      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(гда|гдэ)(на|нэ|ба|бэ|лай)"
+    },
+    {
+      "sentence": "Үхэлэй үүдэн нээгдэнэ: хүүр залахагүй.",
+      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(гда|гдэ)(на|нэ|ба|бэ|лай)"
+    },
+    {
+      "sentence": "Ниитын үүдэн нээгдэнэ: суглаа зарлахагүй, шухала уулзалга эмхидхэхэгүй.",
+      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(гда|гдэ)(на|нэ|ба|бэ|лай)"
+    },
+    {
+      "sentence": "Айлшанай үүдэн нээгдэнэ: айлшадые урихагүй.",
+      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(гда|гдэ)(на|нэ|ба|бэ|лай)"
+    },
+    {
+      "sentence": "Наймаанай үүдэн нээгдэнэ: олзын хэрэг эрхилхэгүй.",
+      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(гда|гдэ)(на|нэ|ба|бэ|лай)"
+    },
+    {
+      "sentence": "Суглуулбариин нэрэ уншаад байхада, нютагтаяа тааршагүй холбоо, эхэ газарай шэдитэ хүсэ шадал, уг гарбалай нангин утаан эли тодоор харагдана.",
+      "source": "https://burunen.ru/bur/news/society/147842-buryaadayngaa-nere-rge-en-budasheryn-basagan/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(гда|гдэ)(на|нэ|ба|бэ|лай)"
+    },
+    {
+      "sentence": "Замда гарахые, эд бараа, адуу мал худалдажа абахые, найрлахые, гэр байра барихые, бэриин үйлэ бүтээхые тэбшэхэ. «Ниитын» үүдэн нээгдэнэ: суглаа зарлахагүй, шухала уулзалга эмхидхэхэгүй.",
+      "source": "https://burunen.ru/bur/news/society/147839-zurkhay-oktyabriin-21-garagay-4-buryaad-mongol-liteer-10/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(гда|гдэ)(на|нэ|ба|бэ|лай)"
+    },
+    {
+      "sentence": "Бэриин үйлэнүүдые бүтээхые, эд бараа, адуу мал худалдан абахые, худалдахые, найрлахые тэбшэхэ. «Үхэлэй» үүдэн нээгдэнэ: наһа барагшын хэрэг үйлэдэхэгүй.",
+      "source": "https://burunen.ru/bur/news/society/147743-buryaad-mongol-zurkhay-oktyabriin-19-oktyabriin-25-bolotor/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(гда|гдэ)(на|нэ|ба|бэ|лай)"
+    },
+    {
+      "sentence": "Бэриин үйлэнүүдые бүтээхые, эд бараа, адуу мал худалдахые, худалдан абахые тэбшэхэ. «Үхэлэй» үүдэн нээгдэнэ: наһа барагшын хэрэг үйлэдэхэгүй.",
+      "source": "https://burunen.ru/bur/news/society/147743-buryaad-mongol-zurkhay-oktyabriin-19-oktyabriin-25-bolotor/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(гда|гдэ)(на|нэ|ба|бэ|лай)"
+    },
+    {
+      "sentence": "Дэгэл хубсаһа эсхэхэдэ, ханаха, төөнэхэдэ, эд бараа, адуу мал һургахада, худалдажа абахада, худалдахада, аралжаа наймаанда муу. «Айлшанай» үүдэн нээгдэнэ: айлшадые гэртээ урихагүй.",
+      "source": "https://burunen.ru/bur/news/society/147743-buryaad-mongol-zurkhay-oktyabriin-19-oktyabriin-25-bolotor/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(гда|гдэ)(на|нэ|ба|бэ|лай)"
+    },
+    {
+      "sentence": "Замда гарахые, дэгэл хубсаһа эсхэхые, эд бараа, адуу мал худалдан абахые, худалдахые, аралжаа наймаа хэхые тэбшэхэ. «Наймаанай» үүдэн нээгдэнэ: олзын хэрэг эрхилхэгүй.",
+      "source": "https://burunen.ru/bur/news/society/147743-buryaad-mongol-zurkhay-oktyabriin-19-oktyabriin-25-bolotor/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(гда|гдэ)(на|нэ|ба|бэ|лай)"
+    },
+    {
+      "sentence": "Хубсаһа эсхэхые, хурим түрэ наадахые, эд бараа, адуу мал худалдан абахые, худалдахые, аралжаа наймаа ябуулхые тэбшэхэ. «Хүбүүнэй» үүдэн нээгдэнэ: хүүгэдэй шухала үйлэ бүтээхэгүй, түрэһэн үдэрыень тэмдэглэхэгүй, гэрһээ холо эльгээхэгүй.",
+      "source": "https://burunen.ru/bur/news/society/147743-buryaad-mongol-zurkhay-oktyabriin-19-oktyabriin-25-bolotor/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(гда|гдэ)(на|нэ|ба|бэ|лай)"
+    },
+    {
+      "sentence": "Түүхын эрдэмэй доктор, БГСХА-гай таһагые даагша Любовь Алексеевна Зайцевагай хүтэлбэри доро хүнгэн бэшэ ажал эхиеэ абаа һэн.- Һайхан ном болоо гээд һанагдана.",
+      "source": "https://burunen.ru/bur/news/society/147745-suuta-rektorye-dursaa/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(гда|гдэ)(на|нэ|ба|бэ|лай)"
+    },
+    {
+      "sentence": "Бултанай ашаар ээлжээтэ мүрысөөн үнгэргэгдэбэ.",
+      "source": "https://burunen.ru/bur/news/society/147745-suuta-rektorye-dursaa/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(гда|гдэ)(на|нэ|ба|бэ|лай)"
+    },
+    {
+      "sentence": "Джи гэһэн маягаар мүнөө ажалнай бүтээгдэнэ.",
+      "source": "https://burunen.ru/bur/news/society/147711-seber-sedkheltey-na-atayshuul/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(гда|гдэ)(на|нэ|ба|бэ|лай)"
+    },
+    {
+      "sentence": "Нюулгын хушалтын дель гэжэ нэрэтэй бэлдэгдэһэн ооһорто сеть дээрэ спанбонд гэһэн бүд гүрэгдэнэ.",
+      "source": "https://burunen.ru/bur/news/society/147711-seber-sedkheltey-na-atayshuul/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(гда|гдэ)(на|нэ|ба|бэ|лай)"
+    },
+    {
+      "sentence": "Эдэ бүгэдэ хэрэгсэлнүүд Московско можоһоо асаруулагдана.",
+      "source": "https://burunen.ru/bur/news/society/147711-seber-sedkheltey-na-atayshuul/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(гда|гдэ)(на|нэ|ба|бэ|лай)"
+    },
+    {
+      "sentence": "Энэ хэрэгтэ өөрыншье мүнгэн гаргашалагдана.",
+      "source": "https://burunen.ru/bur/news/society/147711-seber-sedkheltey-na-atayshuul/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(гда|гдэ)(на|нэ|ба|бэ|лай)"
+    },
+    {
+      "sentence": "Улаан-Үдэ хотын захиргаантай харилсаһанай удаа волонтёрнуудта автобус, трамвайгаар ябадаг билет тараагдана.",
+      "source": "https://burunen.ru/bur/news/society/147711-seber-sedkheltey-na-atayshuul/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(гда|гдэ)(на|нэ|ба|бэ|лай)"
+    }
+  ]
+}

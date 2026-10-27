@@ -1,0 +1,186 @@
+{
+  "feature": "case_dative",
+  "pattern": "Dative-Locative case — Suffix -да/-дэ/-до/-та/-тэ/-то",
+  "examples": [
+    {
+      "sentence": "Абида бурханай дүйсэн үдэр. -да замда гарахада, албанай болон гэр бүлынгөө хэрэгүүдые шиидхэхэдэ, шэнэ гэр, байшан бодхооходо, газар хахалхада, таряа ногоо тарихада, эд бараа, адуу мал худалдан абахада, худалдахада, мал гаргахада, үһэ нооһыень хайшалхада һайн.",
+      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(дэ|да|до|тэ|та|то)\\s"
+    },
+    {
+      "sentence": "Энэ үдэр харгыда гарахада, урда зүг руу муу, бэшэ зүг руу гэмгүй.",
+      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(дэ|да|до|тэ|та|то)\\s"
+    },
+    {
+      "sentence": "Амгалан тайбанай, баялигай, малгайн, гуталай, хубсаһанай хэшэг даллага абахада; гахай, хонин, туулай жэлтэй хүнүүдтэ хии мориёо хиидхэхэдэ, һайн үдэр.",
+      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(дэ|да|до|тэ|та|то)\\s"
+    },
+    {
+      "sentence": "Нохой жэлтэндэ һанаһанаа бүтээхэдэ урагшатай, хонин жэлтэнэй буянай гараг.",
+      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(дэ|да|до|тэ|та|то)\\s"
+    },
+    {
+      "sentence": "Үһэеэ абхуулхада – үлзытэй, гэбэшье һүнэһэн толгойдо оршоно.",
+      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(дэ|да|до|тэ|та|то)\\s"
+    },
+    {
+      "sentence": "Тэрсүүд ябаһан үдэр харгыда гарахые, нүүхые болон бэриин үйлэнүүдые бүтээхые, хүдөө гаргахые тэбшэхэ. -да анда нүхэр, багша, шаби болоходо, дэгэл хубсаһа эсхэхэдэ, газар малтахада, хахалхада, таряа ногоо тарихада, аралжаа наймаа ябуулхада, адуу малай нооһо хайшалхада, хүнгэлхэдэ һайн.",
+      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(дэ|да|до|тэ|та|то)\\s"
+    },
+    {
+      "sentence": "Барилгын ажал хэхэгүй, агнахагүй, заргалдахагүй, замда гарахагүй.",
+      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(дэ|да|до|тэ|та|то)\\s"
+    },
+    {
+      "sentence": "Энэ үдэр харгыда гарахада муу, илангаяа баруун зүг руу.",
+      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(дэ|да|до|тэ|та|то)\\s"
+    },
+    {
+      "sentence": "Амгалан тайбанай, баялигай хэшэг даллага абахада; хулгана, луу, бишэн жэлтэй хүнүүдтэ хии мориёо хиидхэхэдэ, һайн үдэр.",
+      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(дэ|да|до|тэ|та|то)\\s"
+    },
+    {
+      "sentence": "Тахяа, бишэн жэлтэндэ муу үдэр, һэргэг ябаха хэрэгтэй.",
+      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(дэ|да|до|тэ|та|то)\\s"
+    },
+    {
+      "sentence": "Үһэеэ абхуулхада – үбшэндэ.",
+      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(дэ|да|до|тэ|та|то)\\s"
+    },
+    {
+      "sentence": "Октябриин , гарагай , буряад-монгол литээр   таһарба. -да гал тахихада, пеэшэн табихада, айраг тараг бүрихэдэ, адуу малай нооһыень хайшалхада, хүнг элхэдэ, газар хахалхада, таряа ногоо тарихада һайн.",
+      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(дэ|да|до|тэ|та|то)\\s"
+    },
+    {
+      "sentence": "Замда гарахые, тушаалда томилхые, гэр барихые, дэгэл хубсаһа эсхэхые, эд бараа, адуу мал худалдан абахые, худалдахые, наһа барагшын хэрэгүүдые бүтээхые тэбшэхэ.",
+      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(дэ|да|до|тэ|та|то)\\s"
+    },
+    {
+      "sentence": "Энэ үдэр харгыда гарахада муу, илангаяа зүүн зүг руу.",
+      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(дэ|да|до|тэ|та|то)\\s"
+    },
+    {
+      "sentence": "Амгалан тайбанай, мориной хэшэг даллага абахада; бар, морин, нохой жэлтэй хүнүүдтэ хии мориёо хиидхэхэдэ һайн.",
+      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(дэ|да|до|тэ|та|то)\\s"
+    },
+    {
+      "sentence": "Үһэеэ абхуулхада – гарза гараха.",
+      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(дэ|да|до|тэ|та|то)\\s"
+    },
+    {
+      "sentence": "Октябриин , гарагай , буряад-монгол литээр . -дэ харгыда ябахада, шэнэ гэр бодхооходо, газар хахалхада, таряа ногоо тарихада һайн.",
+      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(дэ|да|до|тэ|та|то)\\s"
+    },
+    {
+      "sentence": "Адуу малай нооһыень хайшалхые, эд бараа, адуу мал худалдахые, худалдан абахые, тушаалда дэбжүүлхые, найрлахые, бэриин, наһа барагшын үйлэнүүдые бүтээхые тэбшэхэ.",
+      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(дэ|да|до|тэ|та|то)\\s"
+    },
+    {
+      "sentence": "Энэ үдэр харгыда гарахада, зүүн зүг руу муу, бэшэ тээшэ зүглэхэдэ һайн.",
+      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(дэ|да|до|тэ|та|то)\\s"
+    },
+    {
+      "sentence": "Амгалан тайбанай, хүүгэдэй хэшэг даллага абахада һайн.",
+      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(дэ|да|до|тэ|та|то)\\s"
+    },
+    {
+      "sentence": "Тахяа, үхэр, могой жэлтэй хүнүүдтэ хии мориёо хиидхэхэдэ һайн.",
+      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(дэ|да|до|тэ|та|то)\\s"
+    },
+    {
+      "sentence": "Бар, туулай жэлтэнэй урагшатай үдэр, харин тахяа, бишэн жэлтэнэй буян үйлэдэхэдэ һайн.",
+      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(дэ|да|до|тэ|та|то)\\s"
+    },
+    {
+      "sentence": "Үһэеэ абхуулхада – Бурхан багшын һургаал дэлгэрхэ.",
+      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(дэ|да|до|тэ|та|то)\\s"
+    },
+    {
+      "sentence": "Октябриин , гарагай , буряад-монгол литээр . -до эд бараа, адуу мал худалдажа абахада, худалдахада, дэгэл хубсаһа эсхэхэдэ, газар хахалхада, таряа ногоо тарихада, адуу малай үһэ нооһыень хайшалхада һайн.",
+      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(дэ|да|до|тэ|та|то)\\s"
+    },
+    {
+      "sentence": "Бэр иин үйлэ бүтээхые, замда ябахые, тушаалда дэбжүүлхые, найрлахые, гэр байрын барилгые тэбшэхэ.",
+      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(дэ|да|до|тэ|та|то)\\s"
+    },
+    {
+      "sentence": "Энэ үдэр морин үхэхэ, эмээл хухарха ушарһаа харгыда гарахада муу, илангаяа зүүн зүг руу.",
+      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(дэ|да|до|тэ|та|то)\\s"
+    },
+    {
+      "sentence": "Амгалан тайбанай, хониной хэшэг даллага абахада һайн.",
+      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(дэ|да|до|тэ|та|то)\\s"
+    },
+    {
+      "sentence": "Үһэеэ абхуулхада – үлэсхэлэндэ, ангалгада.",
+      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(дэ|да|до|тэ|та|то)\\s"
+    },
+    {
+      "sentence": "Октябриин , гарагай , буряад-монгол литээр . -дэ эд бараа, адуу мал худалдан абахада, худалдахада, газар таряанай хэрэгүүдтэ, замда ябахада һайн.",
+      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(дэ|да|до|тэ|та|то)\\s"
+    },
+    {
+      "sentence": "Бэриин хэрэгүүдые бүтээхэдэ, тушаалда томилходо, дэгэл хубсаһа эсхэхэдэ, адуу малай үһэ н ооһо хайшалхада муу.",
+      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(дэ|да|до|тэ|та|то)\\s"
+    }
+  ]
+}

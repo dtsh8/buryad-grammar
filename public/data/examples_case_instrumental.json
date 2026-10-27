@@ -1,0 +1,186 @@
+{
+  "feature": "case_instrumental",
+  "pattern": "Instrumental case — Suffix -аар/-ээр/-оор",
+  "examples": [
+    {
+      "sentence": "Октябриин , гарагай , буряад-монгол литээр .",
+      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(аар|ээр|оор|гаар|гээр|гоор)\\s"
+    },
+    {
+      "sentence": "Нүүхые, дэгэл хубсаһа эсхэхые, адуу мал хүнгэлхые, урьһаар, займаар абахые, бусаахые, наһа барагшын, бэриин үйлэнүүдые бүтээхые тэбшэхэ.",
+      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(аар|ээр|оор|гаар|гээр|гоор)\\s"
+    },
+    {
+      "sentence": "Октябриин , гарагай , буряад-монгол литээр   таһарба. -да гал тахихада, пеэшэн табихада, айраг тараг бүрихэдэ, адуу малай нооһыень хайшалхада, хүнг элхэдэ, газар хахалхада, таряа ногоо тарихада һайн.",
+      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(аар|ээр|оор|гаар|гээр|гоор)\\s"
+    },
+    {
+      "sentence": "Октябриин , гарагай , буряад-монгол литээр . -дэ харгыда ябахада, шэнэ гэр бодхооходо, газар хахалхада, таряа ногоо тарихада һайн.",
+      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(аар|ээр|оор|гаар|гээр|гоор)\\s"
+    },
+    {
+      "sentence": "Октябриин , гарагай , буряад-монгол литээр . -до эд бараа, адуу мал худалдажа абахада, худалдахада, дэгэл хубсаһа эсхэхэдэ, газар хахалхада, таряа ногоо тарихада, адуу малай үһэ нооһыень хайшалхада һайн.",
+      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(аар|ээр|оор|гаар|гээр|гоор)\\s"
+    },
+    {
+      "sentence": "Октябриин , гарагай , буряад-монгол литээр . -дэ эд бараа, адуу мал худалдан абахада, худалдахада, газар таряанай хэрэгүүдтэ, замда ябахада һайн.",
+      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(аар|ээр|оор|гаар|гээр|гоор)\\s"
+    },
+    {
+      "sentence": "Ноябриин , гарагай , буряад-монгол литээр . -то эрдэм номдо, зурхайда, урлалда һурахада, пеэшэн табихада, мал номгоруулхада, уналгада һургахада, тэргэ шаргада оруулхада, эд бараа, адуу мал худалдан абахада, газар хахалхада, таряа ногоо тарихада, малай нооһо хайшалхада, мал гаргахада һайн.",
+      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(аар|ээр|оор|гаар|гээр|гоор)\\s"
+    },
+    {
+      "sentence": "Хитад хэлэнэй эрхим багша    Баяр Шойдоков — буряад эстрадын домог    Буряадайнгаа нэрэ үргэһэн Будашэрын басаган    Зурхай - октябриин , гарагай , буряад-монгол литээр     Түрэһэн һайхан тоонтодоо    Буряад-монгол зурхай октябриин -һөө октябриин  болотор    Суута ректорые дурсаа    «Урагшаа, минии поезд!..»",
+      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(аар|ээр|оор|гаар|гээр|гоор)\\s"
+    },
+    {
+      "sentence": "Аламжа Мэргэн Арюун Гоохон хоёр гэһэн номинацида  фото: Гэр бүлын архивһаа гэрэл зураг Үнгэржэ байгаа  оной ноябрь һарада Захааминай аймагта түрэһэн гараһан Цыренов Цырен Цыренович Вера Бадмаевна хоёрой гэр бүлэ болоһоор  жэл үнгэрбэ.",
+      "source": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(аар|ээр|оор|гаар|гээр|гоор)\\s"
+    },
+    {
+      "sentence": "Гэр бүлэдөө Софья эгэшэтэй, Анатолий дүүтэй.  ондо Хамниин дунда һургуули дүүргэжэ, совхоздоо хоёр жэлэй туршада механизатораар хүдэлөө.",
+      "source": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(аар|ээр|оор|гаар|гээр|гоор)\\s"
+    },
+    {
+      "sentence": "Буряадай хүдөө ажахын институт дүүргээд, Сельхозтехникэ нэгэдэлэй харьяата эмхидэ  жэлэй туршада инженерээр, прорабаар хүдэлөө.",
+      "source": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(аар|ээр|оор|гаар|гээр|гоор)\\s"
+    },
+    {
+      "sentence": "Иигэжэ Знамя труда гэһэн аймагай сониндо сурбалжалагшаар, таһагые даагшаар, редакторай орлогшоор хүдэлөө.",
+      "source": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(аар|ээр|оор|гаар|гээр|гоор)\\s"
+    },
+    {
+      "sentence": "Энээнэй удаа Хамниин совхозой профсоюзна комитедэй түрүүлэгшээр, хоёрдохи отделениин эрхилэгшээр ажаллаа.",
+      "source": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(аар|ээр|оор|гаар|гээр|гоор)\\s"
+    },
+    {
+      "sentence": "Шэнэ барилганууд бодоо, совхозоймнай соло суу дэлгэрээ, ходо түрүүшүүлэй зэргэдэ ябаабди, - гэжэ Цырен Цыренович тэрэ габшагай үеые дулааханаар дурсан хөөрэжэ байгаа һэн.",
+      "source": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(аар|ээр|оор|гаар|гээр|гоор)\\s"
+    },
+    {
+      "sentence": "Залуу ударидагша тэрэ үедэ шударгы шадабаритайгаар бэеэ харуулаа.",
+      "source": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(аар|ээр|оор|гаар|гээр|гоор)\\s"
+    },
+    {
+      "sentence": "Зонтой харилсаа һайтай, үгэеэ ойлгуулхадаа бэрхэ Цырен Цыренович дүрбэн жэлэй туршада амжалтатай һайнаар директорээр хүдэлөө.",
+      "source": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(аар|ээр|оор|гаар|гээр|гоор)\\s"
+    },
+    {
+      "sentence": "Цыреновтэ Захааминай аймагай захиргаанда таһагые даагшаар хүдэлхыень дурадхаһан байна.",
+      "source": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(аар|ээр|оор|гаар|гээр|гоор)\\s"
+    },
+    {
+      "sentence": "Иигэжэ дэбжүүлэгдэһэнэй удаа дам саашаа захиргаанай хэрэгүүдые эрхилэгшээр хүдэлһэн юм.  ондо Захааминай Агропромкомбинадай директорээр томилогдожо,  жэл соо хүдэлөө.",
+      "source": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(аар|ээр|оор|гаар|гээр|гоор)\\s"
+    },
+    {
+      "sentence": "Үнэ сэн ехэтэй мазут түлишын орондо түлеэгээр түлигдэхэ  багахан котёл табигдаа бэлэй.  ондо олзотой ажал эрхилэгдээ.",
+      "source": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(аар|ээр|оор|гаар|гээр|гоор)\\s"
+    },
+    {
+      "sentence": "Комбинадынь мүнөөшье болотор хүдэлжэл байһаар.  онһоо Цырен Цыренович Закаменск хотын захиргаанай гулваагай орлогшоор  жэлдэ ажаллаа.",
+      "source": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(аар|ээр|оор|гаар|гээр|гоор)\\s"
+    },
+    {
+      "sentence": "Эгээл энэ сагта Цырен Цыренович унтаха нойргүй, одоол бүхы хүсэеэ элсүүлжэ, зориг ехэтэйгээр ажаллаһан.",
+      "source": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(аар|ээр|оор|гаар|гээр|гоор)\\s"
+    },
+    {
+      "sentence": "Зоной байдал һайжаруулхада, буряад ёһоор хэлэбэл, ёһотойл буян гээшэл даа.",
+      "source": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(аар|ээр|оор|гаар|гээр|гоор)\\s"
+    },
+    {
+      "sentence": "Вера Бадмаевна энэ үүргэеэ үнэн сэхээр бэелүүлжэ шадаа гээд мүнөө үедэ тэмдэглэмээр лэ даа.",
+      "source": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(аар|ээр|оор|гаар|гээр|гоор)\\s"
+    },
+    {
+      "sentence": "Сельхозтехникэдэ бухгалтераар, «Госстрахта», Хамниин сельподо, совхоздо экономистаар хүдэлөө, Үлэгшэндэ хубиин хэрэг эрхилэгшэ ябаа.",
+      "source": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(аар|ээр|оор|гаар|гээр|гоор)\\s"
+    },
+    {
+      "sentence": "Аймагай финансын таһагай ахамад бухгалтер, республикын казначействын Захааминай таһагай даргаар ажаллаа.",
+      "source": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(аар|ээр|оор|гаар|гээр|гоор)\\s"
+    },
+    {
+      "sentence": "Буряад хубсаһаяа үмдөөд, булган малгайгаа һэгсэрүүлээд, одоошье илгармаар юм олон сооһоо.",
+      "source": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(аар|ээр|оор|гаар|гээр|гоор)\\s"
+    },
+    {
+      "sentence": "Сэбэрхэн һайхан шарайтай, һэргэг дорюун харасатай арадай аман зохёол гүйсэдхэгшэд альга ташалганда хүртэхэдөө, урма баяраар сээжэ зүрхэниинь халидаг ёһотой.",
+      "source": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(аар|ээр|оор|гаар|гээр|гоор)\\s"
+    },
+    {
+      "sentence": "Ниигэм     Хитад хэлэнэй эрхим багша «Эмгэн буурал эжы» гэһэн номинацида  фото: Гэр бүлын архивһаа гэрэл зурагууд Буряад арадаа бүхы дэлхэйгээр суурхуулдаг зон олон гээшэ ааб даа.",
+      "source": "https://burunen.ru/bur/news/society/147851-khitad-kheleney-erkhim-bagsha/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(аар|ээр|оор|гаар|гээр|гоор)\\s"
+    },
+    {
+      "sentence": "Дайшалхы габьяагай түлөө, Ленинградые хамгаалһанай түлөө гэһэн медальнуудта красноармеец Буда Холходоев эрэлхэг зоригтойгоор дайсантай тэмсэһэндээ хүртэһэн байха юм.",
+      "source": "https://burunen.ru/bur/news/society/147851-khitad-kheleney-erkhim-bagsha/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(аар|ээр|оор|гаар|гээр|гоор)\\s"
+    },
+    {
+      "sentence": "Оршуулалгын болон эрдэм шэнжэлэлгын ехэ ажал ябуулха үедөө Хитад ороной ёһо заншалнуудые ба түүхэ шэнжэлэлгээр олон материалнуудые бэшэһэн алдар солотой Екатерина Будаевна багшын хүдэлмэридэ ажаллахаар орожо, хоёр жэлэй туршада ДВГУ-гай Зүүн хүгэй институдта оюутадай лингвист-хитад хэлэнэй багша, мүн сэрэгшэдэй оршуулагша болоһон юм.",
+      "source": "https://burunen.ru/bur/news/society/147851-khitad-kheleney-erkhim-bagsha/",
+      "date": "",
+      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(аар|ээр|оор|гаар|гээр|гоор)\\s"
+    }
+  ]
+}

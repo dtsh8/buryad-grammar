@@ -284,7 +284,316 @@ export const VERB_FORMS: VerbForm[] = [
   },
 ]
 
-// ─── Word Order ───────────────────────────────────────────────────────────
+// ─── Extended Verb Data ───────────────────────────────────────────────────
+
+export interface VerbParadigm {
+  root: string
+  infinitive: string
+  meaning: string
+  harmony: 'back' | 'front'
+  forms: {
+    presentFuture: string
+    simplePast: string
+    evidentialPast: string
+    habitual: string
+    imperative: string
+    politeImperative: string
+    infinitive: string
+    negPresentFuture: string
+    negPast: string
+    simultConv: string
+    seqConv: string
+    conditional: string
+    verbalNoun: string
+    participle: string
+  }
+}
+
+export const VERB_PARADIGMS: VerbParadigm[] = [
+  {
+    root: 'яба',
+    infinitive: 'ябаха',
+    meaning: 'to go',
+    harmony: 'back',
+    forms: {
+      presentFuture:    'ябана',
+      simplePast:       'ябаба',
+      evidentialPast:   'ябалай',
+      habitual:         'ябадаг',
+      imperative:       'яба!',
+      politeImperative: 'ябагты',
+      infinitive:       'ябаха',
+      negPresentFuture: 'ябадагүй',
+      negPast:          'ябаагүй',
+      simultConv:       'ябажа',
+      seqConv:          'ябаад',
+      conditional:      'ябабол',
+      verbalNoun:       'ябадал',
+      participle:       'ябадаг',
+    },
+  },
+  {
+    root: 'унша',
+    infinitive: 'уншаха',
+    meaning: 'to read',
+    harmony: 'back',
+    forms: {
+      presentFuture:    'уншана',
+      simplePast:       'уншаба',
+      evidentialPast:   'уншалай',
+      habitual:         'уншадаг',
+      imperative:       'унша!',
+      politeImperative: 'уншагты',
+      infinitive:       'уншаха',
+      negPresentFuture: 'уншадагүй',
+      negPast:          'уншаагүй',
+      simultConv:       'уншажа',
+      seqConv:          'уншаад',
+      conditional:      'уншабол',
+      verbalNoun:       'уншалга',
+      participle:       'уншадаг',
+    },
+  },
+  {
+    root: 'бай',
+    infinitive: 'байха',
+    meaning: 'to be / to exist',
+    harmony: 'back',
+    forms: {
+      presentFuture:    'байна',
+      simplePast:       'байба',
+      evidentialPast:   'байлай',
+      habitual:         'байдаг',
+      imperative:       'бай!',
+      politeImperative: 'байгты',
+      infinitive:       'байха',
+      negPresentFuture: 'байдагүй',
+      negPast:          'байгаагүй',
+      simultConv:       'байжа',
+      seqConv:          'байгаад',
+      conditional:      'байбол',
+      verbalNoun:       'байдал',
+      participle:       'байдаг',
+    },
+  },
+  {
+    root: 'эдэ',
+    infinitive: 'эдеэхэ',
+    meaning: 'to eat',
+    harmony: 'front',
+    forms: {
+      presentFuture:    'эдеэнэ',
+      simplePast:       'эдеэбэ',
+      evidentialPast:   'эдеэлэй',
+      habitual:         'эдидэг',
+      imperative:       'эдэ!',
+      politeImperative: 'эдэгты',
+      infinitive:       'эдеэхэ',
+      negPresentFuture: 'эдидэгүй',
+      negPast:          'эдеэгүй',
+      simultConv:       'эдижэ',
+      seqConv:          'эдеэд',
+      conditional:      'эдеэбэл',
+      verbalNoun:       'эдилгэ',
+      participle:       'эдидэг',
+    },
+  },
+]
+
+export interface VerbDerivation {
+  label: string
+  suffix: string
+  buryad: string
+  meaning: string
+  english: string
+  color: string
+  description: string
+  example: { base: string; derived: string; baseGloss: string; derivedGloss: string }
+}
+
+export const VERB_DERIVATIONS: VerbDerivation[] = [
+  {
+    label: 'Causative',
+    suffix: '-уул/-үүл / -га/-гэ',
+    buryad: 'Үйлдүүлэгшэ',
+    meaning: 'Cause someone to do X',
+    english: 'make/let someone do',
+    color: 'bg-amber-50 border-amber-300 text-amber-900',
+    description: 'The causative suffix adds an argument — the causer. From "go" → "make go/send".',
+    example: { base: 'ябаха', derived: 'ябуулха', baseGloss: 'to go', derivedGloss: 'to send / make go' },
+  },
+  {
+    label: 'Passive',
+    suffix: '-гда/-гдэ',
+    buryad: 'Эдлүүлэгшэ',
+    meaning: 'Action done to subject',
+    english: 'be done (to)',
+    color: 'bg-mongol-50 border-mongol-300 text-mongol-900',
+    description: 'The passive suffix demotes the agent; the patient becomes the subject.',
+    example: { base: 'уншаха', derived: 'уншагдаха', baseGloss: 'to read', derivedGloss: 'to be read' },
+  },
+  {
+    label: 'Reflexive',
+    suffix: '-да/-дэ',
+    buryad: 'Бэеэ үйлдэхэ',
+    meaning: 'Action directed at self',
+    english: 'do to oneself',
+    color: 'bg-green-50 border-green-300 text-green-900',
+    description: 'The reflexive marks that the subject acts on itself.',
+    example: { base: 'угааха', derived: 'угаадаха', baseGloss: 'to wash (sth)', derivedGloss: 'to wash oneself' },
+  },
+  {
+    label: 'Reciprocal',
+    suffix: '-лса/-лсэ',
+    buryad: 'Хэлсэлэй',
+    meaning: 'Mutual / each other',
+    english: 'do to each other',
+    color: 'bg-purple-50 border-purple-300 text-purple-900',
+    description: 'The reciprocal marks mutual action between two or more participants.',
+    example: { base: 'дурлаха', derived: 'дурлалсаха', baseGloss: 'to love', derivedGloss: 'to love each other' },
+  },
+  {
+    label: 'Cooperative',
+    suffix: '-лда/-лдэ',
+    buryad: 'Хамтаршалай',
+    meaning: 'Joint action',
+    english: 'do together',
+    color: 'bg-pink-50 border-pink-300 text-pink-900',
+    description: 'Several agents perform the same action jointly (not necessarily directed at each other).',
+    example: { base: 'дуулаха', derived: 'дуулалдаха', baseGloss: 'to sing', derivedGloss: 'to sing together' },
+  },
+]
+
+export interface ConverbEntry {
+  label: string
+  suffix: string
+  semantics: string
+  englishParallel: string
+  color: string
+  examples: Array<{ buryad: string; gloss: string; translation: string }>
+}
+
+export const CONVERBS: ConverbEntry[] = [
+  {
+    label: 'Simultaneous',
+    suffix: '-жа / -жэ / -жо',
+    semantics: 'Background action running at the same time as the main verb.',
+    englishParallel: 'English "-ing" (while doing)',
+    color: 'bg-mongol-50 border-mongol-200',
+    examples: [
+      { buryad: 'Тэрэ дуулажа ябана.', gloss: 'he sing-SIM go-PRS', translation: 'He is going while singing.' },
+      { buryad: 'Би ябажа уншана.', gloss: 'I go-SIM read-PRS', translation: 'I read while walking.' },
+    ],
+  },
+  {
+    label: 'Sequential (Anterior)',
+    suffix: '-аад / -ооб / -ааб',
+    semantics: 'Action fully completed before the main verb begins.',
+    englishParallel: 'English "having done / after doing"',
+    color: 'bg-amber-50 border-amber-200',
+    examples: [
+      { buryad: 'Эдеэд ябаба.', gloss: 'eat-SEQ go-PST', translation: 'Having eaten, he left.' },
+      { buryad: 'Уншаад амарна.', gloss: 'read-SEQ rest-PRS', translation: 'After reading, (she) rests.' },
+    ],
+  },
+  {
+    label: 'Conditional',
+    suffix: '-бол / -баа',
+    semantics: 'Marks the if-clause; the other clause is the consequence.',
+    englishParallel: 'English "if…"',
+    color: 'bg-green-50 border-green-200',
+    examples: [
+      { buryad: 'Бороо ороболь бидэ гэртэ байха.', gloss: 'rain fall-COND we home stay-INF', translation: 'If it rains, we will stay home.' },
+      { buryad: 'Ябабол хэлэгты.', gloss: 'go-COND say-IMP.POL', translation: 'If you go, please tell (me).' },
+    ],
+  },
+  {
+    label: 'Concessive',
+    suffix: '-шье / -шьегүй',
+    semantics: 'Concedes a premise while asserting the main clause anyway.',
+    englishParallel: 'English "even though / although"',
+    color: 'bg-red-50 border-red-200',
+    examples: [
+      { buryad: 'Ябашьегүй үзэгдэнэ.', gloss: 'go-CONC-NEG see-PRS', translation: 'Even not going, (it) is visible.' },
+    ],
+  },
+  {
+    label: 'Purposive',
+    suffix: '-ха гэжэ / -ха гэhэн',
+    semantics: 'Marks intention or purpose.',
+    englishParallel: 'English "in order to / intending to"',
+    color: 'bg-purple-50 border-purple-200',
+    examples: [
+      { buryad: 'Ном уншаха гэжэ ерэбэ.', gloss: 'book read-INF say-CONV come-PST', translation: 'He came (intending) to read a book.' },
+    ],
+  },
+]
+
+export interface TenseEntry {
+  label: string
+  buryad: string
+  suffix: { back: string; front: string }
+  timelinePosition: number   // -2 past..0 now..+2 future
+  evidentiality: 'direct' | 'indirect' | 'neutral'
+  aspectuality: 'perfective' | 'imperfective' | 'habitual' | 'n/a'
+  examples: Array<{ form: string; translation: string }>
+  note: string
+}
+
+export const TENSE_ENTRIES: TenseEntry[] = [
+  {
+    label: 'Simple Past',
+    buryad: 'Үнгэрhэн сагай хэлбэри',
+    suffix: { back: '-ба', front: '-бэ' },
+    timelinePosition: -2,
+    evidentiality: 'direct',
+    aspectuality: 'perfective',
+    examples: [
+      { form: 'ябаба', translation: '(he/she/I) went — speaker witnessed it' },
+      { form: 'уншаба', translation: '(he/she/I) read — speaker witnessed it' },
+    ],
+    note: 'Speaker directly witnessed the past event.',
+  },
+  {
+    label: 'Evidential Past',
+    buryad: 'Мэдэгдэhэн сагай хэлбэри',
+    suffix: { back: '-лай', front: '-лэй' },
+    timelinePosition: -2,
+    evidentiality: 'indirect',
+    aspectuality: 'perfective',
+    examples: [
+      { form: 'ябалай', translation: '(he/she) apparently went — speaker infers/heard' },
+      { form: 'уншалай', translation: '(he/she) apparently read — reported' },
+    ],
+    note: 'Speaker infers from evidence or reports hearsay. NOT used for first-person events.',
+  },
+  {
+    label: 'Habitual / Progressive',
+    buryad: 'Заншалай хэлбэри',
+    suffix: { back: '-даг', front: '-дэг' },
+    timelinePosition: 0,
+    evidentiality: 'neutral',
+    aspectuality: 'habitual',
+    examples: [
+      { form: 'ябадаг', translation: '(he/she) habitually goes / used to go' },
+      { form: 'уншадаг', translation: '(he/she) habitually reads' },
+    ],
+    note: 'Recurring or characteristic action. Also forms the base for negation.',
+  },
+  {
+    label: 'Present-Future',
+    buryad: 'Одоо / Ерээдүй сагай хэлбэри',
+    suffix: { back: '-на', front: '-нэ' },
+    timelinePosition: 1,
+    evidentiality: 'neutral',
+    aspectuality: 'imperfective',
+    examples: [
+      { form: 'ябана', translation: '(he/she/I) go(es) / will go' },
+      { form: 'уншана', translation: '(he/she/I) read(s) / will read' },
+    ],
+    note: 'Single form covers present and future. Context disambiguates.',
+  },
+]
 
 export interface WordOrderExample {
   buryad: string[]

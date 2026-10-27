@@ -1,10 +1,10 @@
-import { motion } from 'framer-motion'
-import { NavLink } from 'react-router-dom'
-import { LANGUAGE_META } from '../data/grammar'
-import ComparisonTable, { TypologyRadar } from '../components/ComparisonTable'
-import { Globe2, Users, BookMarked, Mic2 } from 'lucide-react'
+import { motion } from 'framer-motion';
+import { NavLink } from 'react-router-dom';
+import { LANGUAGE_META } from '../data/grammar';
+import ComparisonTable, { TypologyRadar } from '../components/ComparisonTable';
+import { Globe2, Users, BookMarked, Mic2 } from 'lucide-react';
 
-const fade = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }
+const fade = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } };
 
 const navCards = [
   {
@@ -17,7 +17,7 @@ const navCards = [
   { to: '/verbs', emoji: '⚡', title: 'Verbs', desc: 'Tense, converbs, evidentiality' },
   { to: '/word-order', emoji: '🔀', title: 'Word Order', desc: 'SOV, postpositions, modifiers' },
   { to: '/vocabulary', emoji: '📖', title: 'Vocabulary', desc: 'Core words, phrases and numerals' },
-]
+];
 
 export default function Home() {
   return (
@@ -145,5 +145,5 @@ export default function Home() {
         <TypologyRadar />
       </motion.section>
     </div>
-  )
+  );
 }

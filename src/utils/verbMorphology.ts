@@ -1,41 +1,41 @@
 // ─── Buryad Verb Morphology Engine ────────────────────────────────────────
 // Sources: Skribnik (2003) Buryat · Poppe (1960) Buriat Grammar
 
-export type Harmony = 'back' | 'front'
+export type Harmony = 'back' | 'front';
 
-const BACK_VOWELS = /[аоу]/
-const FRONT_VOWELS = /[эөү]/
+const BACK_VOWELS = /[аоу]/;
+const FRONT_VOWELS = /[эөү]/;
 
 export function detectHarmony(root: string): Harmony {
   for (let i = root.length - 1; i >= 0; i--) {
-    if (BACK_VOWELS.test(root[i])) return 'back'
-    if (FRONT_VOWELS.test(root[i])) return 'front'
+    if (BACK_VOWELS.test(root[i])) return 'back';
+    if (FRONT_VOWELS.test(root[i])) return 'front';
   }
-  return 'back'
+  return 'back';
 }
 
 export function endsInVowel(root: string): boolean {
-  return /[аоуэөүи]$/.test(root)
+  return /[аоуэөүи]$/.test(root);
 }
 
 // Strip infinitive suffix -ха / -хэ / -хо to get root
 export function extractRoot(infinitive: string): string {
-  return infinitive.replace(/[;،.。\s]+$/, '').replace(/хо$|ха$|хэ$/, '')
+  return infinitive.replace(/[;،.。\s]+$/, '').replace(/хо$|ха$|хэ$/, '');
 }
 
 // ─── Suffix helpers ────────────────────────────────────────────────────────
 
 function suf(harmony: Harmony, back: string, front: string): string {
-  return harmony === 'back' ? back : front
+  return harmony === 'back' ? back : front;
 }
 
 // Vowel absorption: drop the duplicate leading vowel when root ends in the
 // same character as the suffix starts (яба + аад → ябаад, үлэ + ээд → үлээд).
 function attach(root: string, suffix: string): string {
   if (suffix.length > 0 && root[root.length - 1] === suffix[0]) {
-    return root + suffix.slice(1)
+    return root + suffix.slice(1);
   }
-  return root + suffix
+  return root + suffix;
 }
 
 // Sequential converb has 4 allomorphs — governed by BOTH frontness AND
@@ -47,18 +47,18 @@ function attach(root: string, suffix: string): string {
 // Neutral и is transparent; scan past it to find the controlling vowel.
 function seqConvSuffix(root: string): string {
   for (let i = root.length - 1; i >= 0; i--) {
-    const c = root[i]
-    if (c === 'а') return 'аад'
-    if (c === 'о' || c === 'у') return 'оод'
-    if (c === 'э') return 'ээд'
-    if (c === 'ø' || c === 'ö' || c === 'ö' || c === 'ө' || c === 'ү') return 'өөд'
+    const c = root[i];
+    if (c === 'а') return 'аад';
+    if (c === 'о' || c === 'у') return 'оод';
+    if (c === 'э') return 'ээд';
+    if (c === 'ø' || c === 'ö' || c === 'ö' || c === 'ө' || c === 'ү') return 'өөд';
     // и / й / consonants are transparent — keep scanning left
   }
-  return 'аад' // default
+  return 'аад'; // default
 }
 
 export function conjugate(root: string) {
-  const h = detectHarmony(root)
+  const h = detectHarmony(root);
   return {
     inf: root + suf(h, 'ха', 'хэ'),
     prs: root + suf(h, 'на', 'нэ'),
@@ -68,33 +68,33 @@ export function conjugate(root: string) {
     neg: root + suf(h, 'дагүй', 'дэгүй'),
     simConv: root + suf(h, 'жа', 'жэ'),
     seqConv: attach(root, seqConvSuffix(root)),
-  }
+  };
 }
 
 // ─── Derivation rules ──────────────────────────────────────────────────────
 
 export interface DerivedForm {
-  label: string
-  buryad: string
-  suffix: string
-  description: string
-  englishRole: string
-  root: string
-  inf: string
-  prs: string
-  pst: string
-  evidPst: string
-  hab: string
-  neg: string
-  simConv: string
-  seqConv: string
-  exampleSentence: { buryad: string; gloss: string; translation: string }
-  color: string
+  label: string;
+  buryad: string;
+  suffix: string;
+  description: string;
+  englishRole: string;
+  root: string;
+  inf: string;
+  prs: string;
+  pst: string;
+  evidPst: string;
+  hab: string;
+  neg: string;
+  simConv: string;
+  seqConv: string;
+  exampleSentence: { buryad: string; gloss: string; translation: string };
+  color: string;
 }
 
 export function deriveAll(baseRoot: string, baseMeaning: string): DerivedForm[] {
-  const h = detectHarmony(baseRoot)
-  const v = endsInVowel(baseRoot)
+  const h = detectHarmony(baseRoot);
+  const v = endsInVowel(baseRoot);
 
   const make = (
     label: string,
@@ -115,13 +115,13 @@ export function deriveAll(baseRoot: string, baseMeaning: string): DerivedForm[] 
     color,
     exampleSentence: sentence,
     ...conjugate(derivRoot),
-  })
+  });
 
-  const causRoot = baseRoot + suf(h, 'уул', 'үүл')
-  const passRoot = v ? baseRoot + suf(h, 'гда', 'гдэ') : baseRoot + suf(h, 'агда', 'эгдэ')
-  const reflRoot = baseRoot + suf(h, 'да', 'дэ')
-  const recipRoot = v ? baseRoot + suf(h, 'лса', 'лсэ') : baseRoot + suf(h, 'алса', 'элсэ')
-  const coopRoot = v ? baseRoot + suf(h, 'лда', 'лдэ') : baseRoot + suf(h, 'алда', 'элдэ')
+  const causRoot = baseRoot + suf(h, 'уул', 'үүл');
+  const passRoot = v ? baseRoot + suf(h, 'гда', 'гдэ') : baseRoot + suf(h, 'агда', 'эгдэ');
+  const reflRoot = baseRoot + suf(h, 'да', 'дэ');
+  const recipRoot = v ? baseRoot + suf(h, 'лса', 'лсэ') : baseRoot + suf(h, 'алса', 'элсэ');
+  const coopRoot = v ? baseRoot + suf(h, 'лда', 'лдэ') : baseRoot + suf(h, 'алда', 'элдэ');
 
   return [
     make(
@@ -194,22 +194,22 @@ export function deriveAll(baseRoot: string, baseMeaning: string): DerivedForm[] 
         translation: `We ${baseMeaning} together.`,
       }
     ),
-  ]
+  ];
 }
 
 // ─── Translation via Google Translate unofficial API (bxr = Buryat Russia) ─
 
 export async function translateToBuryad(englishInput: string): Promise<string> {
   // Always use "to [verb]" form — forces Google Translate to return the infinitive
-  const cleaned = englishInput.trim().replace(/^to\s+/i, '')
-  const query = `to ${cleaned}`
+  const cleaned = englishInput.trim().replace(/^to\s+/i, '');
+  const query = `to ${cleaned}`;
   const url =
     `https://translate.googleapis.com/translate_a/single?client=gtx` +
-    `&sl=en&tl=bxr&dt=t&q=${encodeURIComponent(query)}`
-  const resp = await fetch(url)
-  if (!resp.ok) throw new Error(`HTTP ${resp.status}`)
+    `&sl=en&tl=bxr&dt=t&q=${encodeURIComponent(query)}`;
+  const resp = await fetch(url);
+  if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
   // Shape: [[["translated text", "source text", ...], ...], null, "en", ...]
-  const data = (await resp.json()) as [[[string, ...unknown[]], ...unknown[]], ...unknown[]]
-  const raw = data[0][0][0]
-  return raw.replace(/[;،.。\s]+$/, '').trim()
+  const data = (await resp.json()) as [[[string, ...unknown[]], ...unknown[]], ...unknown[]];
+  const raw = data[0][0][0];
+  return raw.replace(/[;،.。\s]+$/, '').trim();
 }

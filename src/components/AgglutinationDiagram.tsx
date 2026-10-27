@@ -1,4 +1,4 @@
-import { AGGLUTINATION_EXAMPLES } from '../data/grammar'
+import { AGGLUTINATION_EXAMPLES } from '../data/grammar';
 
 export default function AgglutinationDiagram() {
   return (
@@ -56,5 +56,5 @@ export default function AgglutinationDiagram() {
         </p>
       </div>
     </div>
-  )
+  );
 }

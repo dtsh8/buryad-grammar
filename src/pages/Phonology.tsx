@@ -1,10 +1,10 @@
-import { motion } from 'framer-motion'
-import { useState } from 'react'
-import { CONSONANTS } from '../data/grammar'
-import VowelHarmonyChart from '../components/VowelHarmonyChart'
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from 'recharts'
+import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { CONSONANTS } from '../data/grammar';
+import VowelHarmonyChart from '../components/VowelHarmonyChart';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from 'recharts';
 
-const fade = { hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0 } }
+const fade = { hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0 } };
 
 const PLACE_COLORS: Record<string, string> = {
   bilabial: '#c8851a',
@@ -13,19 +13,19 @@ const PLACE_COLORS: Record<string, string> = {
   postalveolar: '#9333ea',
   palatal: '#db2777',
   glottal: '#6b7280',
-}
+};
 
 const placeCounts = Object.entries(
   CONSONANTS.reduce<Record<string, number>>((acc, c) => {
-    acc[c.place] = (acc[c.place] || 0) + 1
-    return acc
+    acc[c.place] = (acc[c.place] || 0) + 1;
+    return acc;
   }, {})
-).map(([place, count]) => ({ place, count }))
+).map(([place, count]) => ({ place, count }));
 
-type Tab = 'harmony' | 'consonants' | 'structure'
+type Tab = 'harmony' | 'consonants' | 'structure';
 
 export default function Phonology() {
-  const [tab, setTab] = useState<Tab>('harmony')
+  const [tab, setTab] = useState<Tab>('harmony');
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-10 space-y-8">
@@ -273,5 +273,5 @@ export default function Phonology() {
         </motion.div>
       )}
     </div>
-  )
+  );
 }

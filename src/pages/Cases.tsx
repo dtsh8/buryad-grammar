@@ -1,17 +1,17 @@
-import { motion, AnimatePresence } from 'framer-motion'
-import { useState } from 'react'
-import { CASES, type GrammarCase } from '../data/grammar'
+import { motion, AnimatePresence } from 'framer-motion';
+import { useState } from 'react';
+import { CASES, type GrammarCase } from '../data/grammar';
 
-const fade = { hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } }
+const fade = { hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } };
 
 function CaseCard({
   c,
   onClick,
   active,
 }: {
-  c: GrammarCase
-  onClick: () => void
-  active: boolean
+  c: GrammarCase;
+  onClick: () => void;
+  active: boolean;
 }) {
   return (
     <button
@@ -29,7 +29,7 @@ function CaseCard({
       </div>
       <p className="text-xs text-stone-500 mt-2">{c.semanticRole}</p>
     </button>
-  )
+  );
 }
 
 function CaseDetail({ c }: { c: GrammarCase }) {
@@ -110,12 +110,12 @@ function CaseDetail({ c }: { c: GrammarCase }) {
         {c.analogy}
       </div>
     </motion.div>
-  )
+  );
 }
 
 // ─── Declension paradigm table ─────────────────────────────────────────────
 
-const PARADIGM_NOUN = { root: 'гэр', meaning: 'house', harmony: 'front (э)' }
+const PARADIGM_NOUN = { root: 'гэр', meaning: 'house', harmony: 'front (э)' };
 const PARADIGM_FORMS: Array<{ case_: string; form: string }> = [
   { case_: 'Nominative', form: 'гэр' },
   { case_: 'Genitive', form: 'гэрэй' },
@@ -124,11 +124,11 @@ const PARADIGM_FORMS: Array<{ case_: string; form: string }> = [
   { case_: 'Instrumental', form: 'гэрээр' },
   { case_: 'Comitative', form: 'гэртэй' },
   { case_: 'Ablative', form: 'гэрhэй' },
-]
+];
 
 export default function Cases() {
-  const [selected, setSelected] = useState<string>(CASES[0].id)
-  const activeCase = CASES.find(c => c.id === selected) ?? CASES[0]
+  const [selected, setSelected] = useState<string>(CASES[0].id);
+  const activeCase = CASES.find(c => c.id === selected) ?? CASES[0];
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-10 space-y-10">
@@ -201,5 +201,5 @@ export default function Cases() {
         </span>
       </div>
     </div>
-  )
+  );
 }

@@ -5,18 +5,18 @@ import {
   Radar,
   ResponsiveContainer,
   Tooltip,
-} from 'recharts'
-import { COMPARISONS } from '../data/grammar'
+} from 'recharts';
+import { COMPARISONS } from '../data/grammar';
 
-const LANGUAGES = ['buryad', 'mongolian', 'turkish', 'english'] as const
-type Lang = (typeof LANGUAGES)[number]
+const LANGUAGES = ['buryad', 'mongolian', 'turkish', 'english'] as const;
+type Lang = (typeof LANGUAGES)[number];
 
 const LANG_META: Record<Lang, { label: string; color: string; stroke: string }> = {
   buryad: { label: 'Buryad', color: 'rgba(200,133,26,0.25)', stroke: '#c8851a' },
   mongolian: { label: 'Mongolian', color: 'rgba(14,136,234,0.18)', stroke: '#0e88ea' },
   turkish: { label: 'Turkish', color: 'rgba(34,197,94,0.18)', stroke: '#16a34a' },
   english: { label: 'English', color: 'rgba(239,68,68,0.15)', stroke: '#dc2626' },
-}
+};
 
 export default function ComparisonTable() {
   return (
@@ -78,7 +78,7 @@ export default function ComparisonTable() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 // ─── Radar chart showing structural similarity ─────────────────────────────
@@ -90,7 +90,7 @@ const SIMILARITY_DATA = [
   { axis: 'Postpositions', buryad: 5, mongolian: 5, turkish: 5, english: 0 },
   { axis: 'Evidentiality', buryad: 5, mongolian: 4, turkish: 3, english: 0 },
   { axis: 'Agglutination', buryad: 5, mongolian: 5, turkish: 5, english: 1 },
-]
+];
 
 export function TypologyRadar() {
   return (
@@ -127,5 +127,5 @@ export function TypologyRadar() {
         ))}
       </div>
     </div>
-  )
+  );
 }

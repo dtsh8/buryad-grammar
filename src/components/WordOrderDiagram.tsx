@@ -1,14 +1,14 @@
-import { WORD_ORDER_EXAMPLES } from '../data/grammar'
+import { WORD_ORDER_EXAMPLES } from '../data/grammar';
 
 const SLOT_COLORS = [
   'bg-mongol-100 border-mongol-300 text-mongol-900',
   'bg-amber-100 border-amber-300 text-amber-900',
   'bg-green-100 border-green-300 text-green-900',
   'bg-buryat-100 border-buryat-300 text-buryat-900',
-]
+];
 
-const SLOT_LABELS = ['S', 'O', 'O₂/Adv', 'V']
-const EN_ORDER = ['S', 'V', 'O']
+const SLOT_LABELS = ['S', 'O', 'O₂/Adv', 'V'];
+const EN_ORDER = ['S', 'V', 'O'];
 
 export default function WordOrderDiagram() {
   return (
@@ -131,5 +131,5 @@ export default function WordOrderDiagram() {
         ))}
       </div>
     </div>
-  )
+  );
 }

@@ -1,15 +1,15 @@
-import { VOWELS, VOWEL_HARMONY_PAIRS } from '../data/grammar'
+import { VOWELS, VOWEL_HARMONY_PAIRS } from '../data/grammar';
 
 const HARMONY_COLOR: Record<string, string> = {
   back: 'bg-amber-100 border-amber-300 text-amber-900',
   front: 'bg-mongol-100 border-mongol-300 text-mongol-900',
   neutral: 'bg-stone-100 border-stone-300 text-stone-700',
-}
+};
 
 export default function VowelHarmonyChart() {
-  const back = VOWELS.filter(v => v.harmony === 'back')
-  const front = VOWELS.filter(v => v.harmony === 'front')
-  const neutral = VOWELS.filter(v => v.harmony === 'neutral')
+  const back = VOWELS.filter(v => v.harmony === 'back');
+  const front = VOWELS.filter(v => v.harmony === 'front');
+  const neutral = VOWELS.filter(v => v.harmony === 'neutral');
 
   return (
     <div className="space-y-6">
@@ -57,7 +57,7 @@ export default function VowelHarmonyChart() {
           </thead>
           <tbody>
             {[...back, ...front, ...neutral].map((v, i, arr) => {
-              const prevGroup = i > 0 ? arr[i - 1].harmony : null
+              const prevGroup = i > 0 ? arr[i - 1].harmony : null;
               return (
                 <>
                   {prevGroup !== v.harmony && i > 0 && (
@@ -100,7 +100,7 @@ export default function VowelHarmonyChart() {
                     </td>
                   </tr>
                 </>
-              )
+              );
             })}
           </tbody>
         </table>
@@ -119,5 +119,5 @@ export default function VowelHarmonyChart() {
         </p>
       </div>
     </div>
-  )
+  );
 }

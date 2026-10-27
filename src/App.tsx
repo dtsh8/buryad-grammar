@@ -1,11 +1,11 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Navbar from './components/Navbar'
-import Home from './pages/Home'
-import Phonology from './pages/Phonology'
-import Cases from './pages/Cases'
-import Verbs from './pages/Verbs'
-import WordOrder from './pages/WordOrder'
-import Vocabulary from './pages/Vocabulary'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Home from './pages/Home';
+import Phonology from './pages/Phonology';
+import Cases from './pages/Cases';
+import Verbs from './pages/Verbs';
+import WordOrder from './pages/WordOrder';
+import Vocabulary from './pages/Vocabulary';
 
 export default function App() {
   return (
@@ -22,5 +22,5 @@ export default function App() {
         </Routes>
       </main>
     </BrowserRouter>
-  )
+  );
 }

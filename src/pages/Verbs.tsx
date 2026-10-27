@@ -1,18 +1,18 @@
-import { motion, AnimatePresence } from 'framer-motion'
-import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion';
+import { useState } from 'react';
 import {
   VERB_PARADIGMS,
   VERB_DERIVATIONS,
   CONVERBS,
   TENSE_ENTRIES,
   type VerbParadigm,
-} from '../data/grammar'
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts'
-import VerbBuilder from '../components/VerbBuilder'
+} from '../data/grammar';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
+import VerbBuilder from '../components/VerbBuilder';
 
-const fade = { hidden: { opacity: 0, y: 14 }, show: { opacity: 1, y: 0 } }
+const fade = { hidden: { opacity: 0, y: 14 }, show: { opacity: 1, y: 0 } };
 
-type Tab = 'anatomy' | 'tenses' | 'voice' | 'converbs' | 'conjugator' | 'builder'
+type Tab = 'anatomy' | 'tenses' | 'voice' | 'converbs' | 'conjugator' | 'builder';
 
 // ─── Morpheme segment colors ─────────────────────────────────────────────
 
@@ -22,7 +22,7 @@ const SEG_COLOR: Record<string, string> = {
   tense: 'bg-mongol-600 text-white',
   negation: 'bg-red-600 text-white',
   aspect: 'bg-green-600 text-white',
-}
+};
 
 // ─── Verb Anatomy ─────────────────────────────────────────────────────────
 
@@ -31,9 +31,9 @@ function MorphemeBlock({
   label,
   colorClass,
 }: {
-  text: string
-  label: string
-  colorClass: string
+  text: string;
+  label: string;
+  colorClass: string;
 }) {
   return (
     <div className="flex flex-col items-center">
@@ -46,7 +46,7 @@ function MorphemeBlock({
         {label}
       </span>
     </div>
-  )
+  );
 }
 
 function VerbAnatomy() {
@@ -87,7 +87,7 @@ function VerbAnatomy() {
       ],
       translation: 'ябуулагдана — is made to go',
     },
-  ]
+  ];
 
   return (
     <div className="space-y-6">
@@ -147,7 +147,7 @@ function VerbAnatomy() {
         </p>
       </div>
     </div>
-  )
+  );
 }
 
 // ─── Tense Timeline ────────────────────────────────────────────────────────
@@ -156,16 +156,16 @@ const EVID_COLOR: Record<string, string> = {
   direct: 'bg-green-100 border-green-400 text-green-900',
   indirect: 'bg-amber-100 border-amber-400 text-amber-900',
   neutral: 'bg-stone-100 border-stone-300 text-stone-700',
-}
+};
 const EVID_LABEL: Record<string, string> = {
   direct: '👁️ Direct',
   indirect: '📢 Indirect',
   neutral: '⚪ Neutral',
-}
+};
 
 function TenseTimeline() {
-  const [selected, setSelected] = useState<number>(3)
-  const t = TENSE_ENTRIES[selected]
+  const [selected, setSelected] = useState<number>(3);
+  const t = TENSE_ENTRIES[selected];
 
   return (
     <div className="space-y-6">
@@ -357,7 +357,7 @@ function TenseTimeline() {
         </p>
       </div>
     </div>
-  )
+  );
 }
 
 // ─── Voice & Derivation ───────────────────────────────────────────────────
@@ -438,13 +438,13 @@ function VoiceDerivation() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 // ─── Converbs ────────────────────────────────────────────────────────────
 
 function ConverbSection() {
-  const [open, setOpen] = useState<string>(CONVERBS[0].label)
+  const [open, setOpen] = useState<string>(CONVERBS[0].label);
 
   return (
     <div className="space-y-4">
@@ -546,16 +546,16 @@ function ConverbSection() {
         ))}
       </div>
     </div>
-  )
+  );
 }
 
 // ─── Interactive Conjugator ───────────────────────────────────────────────
 
 const FORM_ROWS: Array<{
-  key: keyof VerbParadigm['forms']
-  label: string
-  category: string
-  color: string
+  key: keyof VerbParadigm['forms'];
+  label: string;
+  category: string;
+  color: string;
 }> = [
   { key: 'presentFuture', label: 'Present-Future', category: 'Finite', color: 'text-mongol-700' },
   { key: 'simplePast', label: 'Simple Past (direct)', category: 'Finite', color: 'text-green-700' },
@@ -576,15 +576,15 @@ const FORM_ROWS: Array<{
   { key: 'conditional', label: 'Conditional', category: 'Converb', color: 'text-green-700' },
   { key: 'verbalNoun', label: 'Verbal Noun', category: 'Nominal', color: 'text-stone-700' },
   { key: 'participle', label: 'Participle', category: 'Nominal', color: 'text-stone-700' },
-]
+];
 
 function Conjugator() {
-  const [verbIdx, setVerbIdx] = useState(0)
-  const [filter, setFilter] = useState<string>('All')
-  const vp = VERB_PARADIGMS[verbIdx]
+  const [verbIdx, setVerbIdx] = useState(0);
+  const [filter, setFilter] = useState<string>('All');
+  const vp = VERB_PARADIGMS[verbIdx];
 
-  const categories = ['All', ...Array.from(new Set(FORM_ROWS.map(r => r.category)))]
-  const rows = FORM_ROWS.filter(r => filter === 'All' || r.category === filter)
+  const categories = ['All', ...Array.from(new Set(FORM_ROWS.map(r => r.category)))];
+  const rows = FORM_ROWS.filter(r => filter === 'All' || r.category === filter);
 
   return (
     <div className="space-y-6">
@@ -699,7 +699,7 @@ function Conjugator() {
         </ResponsiveContainer>
       </div>
     </div>
-  )
+  );
 }
 
 // ─── Main Page ─────────────────────────────────────────────────────────────
@@ -711,10 +711,10 @@ const TABS: Array<{ id: Tab; label: string; icon: string }> = [
   { id: 'converbs', label: 'Converbs', icon: '🔗' },
   { id: 'conjugator', label: 'Conjugator', icon: '⚡' },
   { id: 'builder', label: 'Verb Builder', icon: '🔤' },
-]
+];
 
 export default function Verbs() {
-  const [tab, setTab] = useState<Tab>('anatomy')
+  const [tab, setTab] = useState<Tab>('anatomy');
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-10 space-y-8">
@@ -759,5 +759,5 @@ export default function Verbs() {
         </motion.div>
       </AnimatePresence>
     </div>
-  )
+  );
 }

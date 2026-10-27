@@ -1,186 +1,158 @@
 {
   "feature": "case_comitative",
-  "pattern": "Comitative case — Suffix -тай/-тэй/-той",
+  "label": "Comitative case",
+  "description": "Suffix -тай/-тэй/-той (with/having)",
+  "count": 30,
   "examples": [
     {
-      "sentence": "Амгалан тайбанай, баялигай, малгайн, гуталай, хубсаһанай хэшэг даллага абахада; гахай, хонин, туулай жэлтэй хүнүүдтэ хии мориёо хиидхэхэдэ, һайн үдэр.",
-      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
-      "date": "",
-      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(тай|тэй|той)\\s"
+      "sentence": "Москва ба Санкт-Петербург хотонуудта намтай хамта ураан нүхэдни мүнөө булта «нүүдэлшэд» болонхойнууд.",
+      "source": "https://burunen.ru/bur/news/culture/147503-n-delshe-nayruulagsha/",
+      "date": ""
     },
     {
-      "sentence": "Амгалан тайбанай, баялигай хэшэг даллага абахада; хулгана, луу, бишэн жэлтэй хүнүүдтэ хии мориёо хиидхэхэдэ, һайн үдэр.",
-      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
-      "date": "",
-      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(тай|тэй|той)\\s"
+      "sentence": "Уран Тэнгэриин мүшэдһөө одото заяатай гэртэхинэй үхибүүдынь нялха нарайһаа эжынгээ һүмбээтэй, үлгын дуунтай хамта уран урлалай, аялга хүгжэмэй үзэсхэлэнтэ мэдэрэлнүүдые зүрхэ сэдьхэлдээ нэбтэрүүлһэн гэжэ эли.",
+      "source": "https://burunen.ru/bur/news/society/147679-sedkheley-ayalgyn-dolgindo/",
+      "date": ""
+    },
+    {
+      "sentence": "Би ковидой пандемиин үе болотор жэл бүхэндэ Энэдхэгээр аяншалдаг заншалтай байгааб.",
+      "source": "https://burunen.ru/bur/news/society/147306-zayaanayn-zamay-ayanshalganuud/",
+      "date": ""
+    },
+    {
+      "sentence": "Розалия Доржиевна Муруева ганса мэргэжэлтэ багша бэшэ, харин эдэбхитэй эрхэтэн юм.",
+      "source": "https://burunen.ru/bur/news/society/146907-t-rel-nyutagayngaa-ereed-yn-t-l-kharyuusalga/",
+      "date": ""
+    },
+    {
+      "sentence": "Тэдэнэй этигэлээр, баабгай хүнэй хэлэ ойлгодог, хүнүүдтэй нэгэ уг гарбалтай.",
+      "source": "https://burunen.ru/bur/news/society/147096-lger-domogto-taygyn-ezen/",
+      "date": ""
     },
     {
       "sentence": "Морин, могой жэлтэнэй урагшатай үдэр; хулгана, гахай жэлтэнэй буян үйлэдэхэ гараг.",
-      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
-      "date": "",
-      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(тай|тэй|той)\\s"
+      "source": "https://burunen.ru/bur/news/society/147454-buryaad-mongol-zurkhay-oktyabriin-5-aa-oktyabriin-11-bolotor/",
+      "date": ""
+    },
+    {
+      "sentence": "Эржена Бимбаевна хорёод жэлдэ Эдуард нүхэртэеэ өөрын хэрэг эрхилжэ, хүнгэн бэшэ хүдөө ажахыда амжалтатай айн хүдэлнэ гээшэ.",
+      "source": "https://burunen.ru/bur/news/society/147777-t-re-en-aykhan-toontodoo/",
+      "date": ""
     },
     {
       "sentence": "Амгалан тайбанай, мориной хэшэг даллага абахада; бар, морин, нохой жэлтэй хүнүүдтэ хии мориёо хиидхэхэдэ һайн.",
-      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
-      "date": "",
-      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(тай|тэй|той)\\s"
+      "source": "https://burunen.ru/bur/news/society/147154-buryaad-mongol-zurkhay-sentyabriin-28-aa-oktyabriin-4-bolotor/",
+      "date": ""
     },
     {
-      "sentence": "Тахяа, үхэр, могой жэлтэй хүнүүдтэ хии мориёо хиидхэхэдэ һайн.",
-      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
-      "date": "",
-      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(тай|тэй|той)\\s"
+      "sentence": "Хоёр жэлһээ үлүү эндэхи ветеранууд сеть гүрэжэ, ехэ дадалтай болоһон байна. - Харагдаа үзэгдөөгүй юумэ бүтээжэ эхилээбди.",
+      "source": "https://burunen.ru/bur/news/society/147711-seber-sedkheltey-na-atayshuul/",
+      "date": ""
     },
     {
-      "sentence": "Бар, туулай жэлтэнэй урагшатай үдэр, харин тахяа, бишэн жэлтэнэй буян үйлэдэхэдэ һайн.",
-      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
-      "date": "",
-      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(тай|тэй|той)\\s"
+      "sentence": "Залитай уулзалганууд    Дарима Линховоин «Алтан Багай» эзэдые элирүүлэлсэбэ    Эдир урашуул элирнэ     Информационное агентство «Буряад нэн» видтльтв  гитции И Эл Ф- выдн кмндзм .. г.",
+      "source": "https://burunen.ru/bur/news/culture/147097--eten-b-lgemey-m-ndel-r-50-zheley-oye-ugtuulan/",
+      "date": ""
     },
     {
-      "sentence": "Бар, морин, нохой жэлтэй хүнүүдтэ хии мориёо хиидхэхэдэ һайн.",
-      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
-      "date": "",
-      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(тай|тэй|той)\\s"
+      "sentence": "Нэгэ һургуулида удаан хүдэлһэниинь тэрэнэй мэргэжэлдээ дуратай, харюусалгатай, һургуулидаа болон һурагшадтаа гүнзэгы дуратай байһые гэршэлнэ.",
+      "source": "https://burunen.ru/bur/news/society/146907-t-rel-nyutagayngaa-ereed-yn-t-l-kharyuusalga/",
+      "date": ""
     },
     {
-      "sentence": "Үхэр жэлтэнэй урагшатай гараг; бар, туулай жэлтэнэй буян үйлэдэхэ үдэр.",
-      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
-      "date": "",
-      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(тай|тэй|той)\\s"
+      "sentence": "Тоглолтын хоёрдохи отделенидэ режиссёрой һанаһаар, ойн баяраа угтаһан бэлиг талаантай зүжэгшэн зохёохы ажалайнь үшөө нэгэ шэглэлтэй – Саян ба Эржена Жамбаловтанай репертуарһаа дуунууд зэдэлхэ, нүхэдэйнь амаршалганууд дамжуулагдаха – Буряадай бусад театрнуудта хүдэлдэг зүжэгшэдһөө болон һурагшадһаань, тэрэ тоодо «Урагшаа» бүлгэмһөө.",
+      "source": "https://burunen.ru/bur/news/culture/146911-oyn-bayaray-z-zheg-dey-marafon/",
+      "date": ""
     },
     {
-      "sentence": "Эдэ хоёрнай жэнхэни буряад сэдьхэлтэй, сомор даруу абари зантай юм.",
-      "source": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
-      "date": "",
-      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(тай|тэй|той)\\s"
+      "sentence": "Сэтэр бүтээл амитадые аршалан абарһанай ашаар хүнһөө гэнтын үхэл зайсуулжа, зурхайгаар муу үдэр сагай хойшолонгуудые заһажа, наһа утадхадаг хүсэтэй үйлэ бүтээл юм.",
+      "source": "https://burunen.ru/bur/news/society/147096-lger-domogto-taygyn-ezen/",
+      "date": ""
     },
     {
-      "sentence": "Цырен Цыренов  ондо Нурта нютагта түрэһэн, хожомоо Бүргэ руу буужа, хоёрдохи нютагтай болоо.",
-      "source": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
-      "date": "",
-      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(тай|тэй|той)\\s"
+      "sentence": "Удаан саг соо тухашараабди гэбэшье, олоной хүсэн урагшатай байжа, тэрэ бодолнай мүнөө энэ зэргэ болоод, ном боложо бүтөөд байна ха юм даа.",
+      "source": "https://burunen.ru/bur/news/society/147744-uragshaa-minii-poezd-/",
+      "date": ""
     },
     {
-      "sentence": "Саашанхи замынь энэл нэрэтэй солотой Хамниин совхозтой холбоотой.",
-      "source": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
-      "date": "",
-      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(тай|тэй|той)\\s"
+      "sentence": "Эдэбхи ехэтэй багша тамирааршье һонирхожо, өөрын туйлалтануудтай юм.  ондо үнгэргэгдэһэн аймагай пенсионернүүдэй -дэхи спартакиадада үндэр шадабарияа харуулжа, шатар, даам наадалгаар - хоёрдохи һуури, шэрээгэй теннисээр гурбадахи һуури эзэлээ.",
+      "source": "https://burunen.ru/bur/news/society/146907-t-rel-nyutagayngaa-ereed-yn-t-l-kharyuusalga/",
+      "date": ""
     },
     {
-      "sentence": "Ямаршье тушаалда ябаа һаа, шэнэ, һонин аргануудые хэрэглэхые оролдодог хүндэтэй хүтэлбэрилэгшэ ябаа. - Тэрэ үедэ совхоздомнай аргагүй бэрхэ директор Владимир Будажапович Соктоев хүдэлһэн.",
-      "source": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
-      "date": "",
-      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(тай|тэй|той)\\s"
+      "sentence": "Тэрэ аймшагтай дайн тухай гэршэнүүд улам үсөөн боложо байна гэжэ ойлгон абажа, Доодо-Ивалга нютагай эдэбхитэдтэй хамта баримта бэшэгүүдые, түүхын мэдээсэлнүүдые суглуулха нангин зорилго өөр дээрээ абаба.",
+      "source": "https://burunen.ru/bur/news/society/147730-nyutagaymnay-khaluun-z-rkhetey-ekhener/",
+      "date": ""
     },
     {
-      "sentence": "Зонтой харилсаа һайтай, үгэеэ ойлгуулхадаа бэрхэ Цырен Цыренович дүрбэн жэлэй туршада амжалтатай һайнаар директорээр хүдэлөө.",
-      "source": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
-      "date": "",
-      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(тай|тэй|той)\\s"
+      "sentence": "Дэмбэрэлтэ хэрэг Мэдэнэ ха юмбибди даа, - хүтэлбэрилжэ шадаха ноёрхуу хүнүүд, мүн лэ урагшаа һанаатай, урма зоригтой хүнтэй зэргэлжэ, эб хамта дуратай хэрэгээ бүтээхэ, амжалта туйлан ябаха гэһэн зоной ударидагшад, хүтэлбэрилэгшэд байдаг.",
+      "source": "https://burunen.ru/bur/news/society/147705-ugayngaa-zanshal-sakhigsha/",
+      "date": ""
     },
     {
-      "sentence": "Тэрэ үедэ ажахы хоёр отделенитэй,  гаран ажалшантай байгаа. - Хэһэн, бүтээһэн юумэн яһала байгаа.",
-      "source": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
-      "date": "",
-      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(тай|тэй|той)\\s"
+      "sentence": "Дорохи улааниинь галай, бэеын элшэ хүсэнэй һүлдэ гээшэ, дундахи харань үрэжэлтэй хүрьһэтэ газар, үлгэн дэлхэймнай болоно.",
+      "source": "https://burunen.ru/bur/news/culture/140990-ekhe-khelemnay-elge-z-r-khyemnay-dulaasuulna/",
+      "date": ""
     },
     {
-      "sentence": "Үнэ сэн ехэтэй мазут түлишын орондо түлеэгээр түлигдэхэ  багахан котёл табигдаа бэлэй.  ондо олзотой ажал эрхилэгдээ.",
-      "source": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
-      "date": "",
-      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(тай|тэй|той)\\s"
+      "sentence": "Эдэ жэлнүүд соо Дулма Доржиевна Буряадай гүрэнэй багшанарай дээдэ ургуули заочноор дүүргээд, түүхын багшын дипломтой болоо эн.  оной сентябрь соо түүхын багшаар хүдэлжэ эхилбэ.  ондо Совет гүрэнэй Коммунис партиин гэшүүн болоо.  оноо хойшо түүхын, географиин багшаар хүдэлһэн байна.",
+      "source": "https://burunen.ru/bur/news/society/147731-bagshyn-rgen-khargyda/",
+      "date": ""
     },
     {
-      "sentence": "Иимэ ажалнууд предприятида ёһотой тулга боложо үгэһэн юм.",
-      "source": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
-      "date": "",
-      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(тай|тэй|той)\\s"
+      "sentence": "Алдартабагшын оролдолгоор аймагай бүхы һургуулинууд тус түсэлдэ хабаадажа, багшанар Буряадай гүрэнэй университедэй болон Оросой Эрдэмэй академиин Сибириин таһагай Буряадай эрдэмэй түбэй эрдэмтэдтэй хамта хүдөө гаража, шэнжэлгэнүүдые хэһэн байна.",
+      "source": "https://burunen.ru/bur/news/society/146907-t-rel-nyutagayngaa-ereed-yn-t-l-kharyuusalga/",
+      "date": ""
     },
     {
-      "sentence": "Түбэгтэй хүндэхэн жэлнүүд байгаа.",
-      "source": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
-      "date": "",
-      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(тай|тэй|той)\\s"
+      "sentence": "Розалия Доржиевна олониитын ажал ябуулхаһаа гадна, можо нютагай политическэ ажабайдалда эдэбхитэй хабаадагша байһан юм. «Ниитэ нэгэн Росси» намай гэшүүн хадаа Тарбагатайн аймагайшье, бүхы уласайшье ниитын-политическэ ажабайдалай хүгжэлтэдэ хубитаяа оруулһанайнгаа түлөө нэгэнтэ бэшэ баярай бэшэгүүдтэ хүртэһэн байна.",
+      "source": "https://burunen.ru/bur/news/society/146907-t-rel-nyutagayngaa-ereed-yn-t-l-kharyuusalga/",
+      "date": ""
     },
     {
-      "sentence": "Цыренов «Буряад Уласай үмэнэ габьяатай байһанай түлөө» медаляар шагнагдаһан байха юм.",
-      "source": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
-      "date": "",
-      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(тай|тэй|той)\\s"
+      "sentence": "Тус орондо аргагүй урин зохид, арюун һайхан абари зантай улад зон ажаһуудаг.",
+      "source": "https://burunen.ru/bur/news/society/147306-zayaanayn-zamay-ayanshalganuud/",
+      "date": ""
     },
     {
-      "sentence": "Энэ эбтэй бэхи, олондо жэшээ боломо бүлэмнай бэрхэ хүбүүн басаган хоёртой, хоюулаа гүрэнэй ажалда.  зээнэртэй болоһон үнэр баян бүлэ.",
-      "source": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
-      "date": "",
-      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(тай|тэй|той)\\s"
+      "sentence": "Ниигэм     Багшын үргэн харгыда «Эмгэн буурал эжы» гэһэн номинацида  фото: Гэр бүлын архивһаа гэрэл зураг Яруунын аймагай тахилтай, мүргэлтэй Баян хаанай хормойдо, Бага Ярууна нуурай хойто эрьедэ загааша, малша зоноороо суурхадаг байан Тулдуун нютаг оршодог.",
+      "source": "https://burunen.ru/bur/news/society/147731-bagshyn-rgen-khargyda/",
+      "date": ""
     },
     {
-      "sentence": "Сэбэрхэн һайхан шарайтай, һэргэг дорюун харасатай арадай аман зохёол гүйсэдхэгшэд альга ташалганда хүртэхэдөө, урма баяраар сээжэ зүрхэниинь халидаг ёһотой.",
-      "source": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
-      "date": "",
-      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(тай|тэй|той)\\s"
+      "sentence": "Теэд эгээл сэдьхэл хүдэлгэмэнь гэхэдэ, тэрэ Санкт-Петербург, Москва хотонуудаар госпитальнуудта эмшэлүүлжэ байһан шархатаһан сэрэгшэдтэ ошожо, Эхэ һайхан оронойтнай холо ойрыншье эжынэр, энэрхы сэдьхэлтэй эхэнэр бүхэн таанартаа бүхы хайраараа хандажа, туһалхые оролдонол даа гэжэ энэрхы сэдьхэлээрээ эльгэлэн байдаг.",
+      "source": "https://burunen.ru/bur/news/society/147705-ugayngaa-zanshal-sakhigsha/",
+      "date": ""
     },
     {
-      "sentence": "Эдэбхитэй эдэ хоёр нүхэднай бишыхан хөөрхэн зээнэрээ хүмүүжүүлгэдэ халуун сэдьхэлэй хандалгатай юм.",
-      "source": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
-      "date": "",
-      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(тай|тэй|той)\\s"
+      "sentence": "Улаан-Үдэ хотын захиргаантай харилсаһанай удаа волонтёрнуудта автобус, трамвайгаар ябадаг билет тараагдана.",
+      "source": "https://burunen.ru/bur/news/society/147711-seber-sedkheltey-na-atayshuul/",
+      "date": ""
     },
     {
-      "sentence": "Иигэжэ сүлөө забдагүй, олондо ашатай үдэрнүүд һубарин үнгэрнэ.",
-      "source": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
-      "date": "",
-      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(тай|тэй|той)\\s"
+      "sentence": "Би ерээдүйн  жэлэй хугасаа соо ургуулида орохо үхибүүдэйнгээ список хээд, тэрэнээ баринхай Прокопий Яковлевичтай Проектнэ институт, Хүдөө ажахын яаманда орожо, Амгалантадаа дунда ургуули барюулхын ехэ ажал ябуулаабди.",
+      "source": "https://burunen.ru/bur/news/society/147693-urin-nalgay-bagshamnay/",
+      "date": ""
     },
     {
-      "sentence": "Цырма эжынгээ үгэһэн Екатерина гэжэ ород нэрэтэй байбашье, харин паспортаараа Санжай-Ханда гэжэ түбэднэрэтэй, оршуулбал, бурханай нэрэтэй эсэгынгээ гэрэл сасаһан санаартанай гэгээн ухаатай басаган, тиимэһээ басаганиинь эсэгэдээл адли удхатай нэрэтэй байна.",
-      "source": "https://burunen.ru/bur/news/society/147851-khitad-kheleney-erkhim-bagsha/",
-      "date": "",
-      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(тай|тэй|той)\\s"
+      "sentence": "Тэрэ сага мүнөө хүрэтэр Цыцык Батомункуевна зурагай ба технологиин багшаар хүдэлнэ. Һургагшын ажал зохёохы замтайнь таһаршагүй нягта холбоотой юм.  онһоо тэрэ эстетическэ талаар хүмүүжүүлгын багшанарай нэгэдэл хүтэлбэрилдэг, һурагшадынь элдэб хэмжээнэй олимпиадануудта, эрдэмэй ба бодото ажалай конференцинүүдтэ илажа баярлуулдаг.",
+      "source": "https://burunen.ru/bur/news/society/147679-sedkheley-ayalgyn-dolgindo/",
+      "date": ""
     },
     {
-      "sentence": "Дайшалхы габьяагай түлөө, Ленинградые хамгаалһанай түлөө гэһэн медальнуудта красноармеец Буда Холходоев эрэлхэг зоригтойгоор дайсантай тэмсэһэндээ хүртэһэн байха юм.",
-      "source": "https://burunen.ru/bur/news/society/147851-khitad-kheleney-erkhim-bagsha/",
-      "date": "",
-      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(тай|тэй|той)\\s"
+      "sentence": "Алишье талаһаа абьяас бэлигтэй гэжэ бүри багаһаа хэлүүлһэн Сергей Аюшеев  ондо Буряад Уласайнгаа соёл-гэгээрэлэй училищиин, харин  ондо ВСГАКИ-гай заочноор хатарай факультет дүүргэжэ, тэрэл жэлдээ Байгал ансамбльдаа орожо, олон үндэһэтэ арадуудай хатарнуудые гүйсэдхэхэ золтой байгаа.",
+      "source": "https://burunen.ru/bur/news/society/147699-khatar-na-anayn-khargy/",
+      "date": ""
     },
     {
-      "sentence": "Оршуулалгын болон эрдэм шэнжэлэлгын ехэ ажал ябуулха үедөө Хитад ороной ёһо заншалнуудые ба түүхэ шэнжэлэлгээр олон материалнуудые бэшэһэн алдар солотой Екатерина Будаевна багшын хүдэлмэридэ ажаллахаар орожо, хоёр жэлэй туршада ДВГУ-гай Зүүн хүгэй институдта оюутадай лингвист-хитад хэлэнэй багша, мүн сэрэгшэдэй оршуулагша болоһон юм.",
-      "source": "https://burunen.ru/bur/news/society/147851-khitad-kheleney-erkhim-bagsha/",
-      "date": "",
-      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(тай|тэй|той)\\s"
+      "sentence": "Амгалан тайбанай, баялигай, малгайн, гуталай, хубсаһанай хэшэг даллага абахада; гахай, хонин, туулай жэлтэй хүнүүдтэ хии мориёо хиидхэхэдэ, һайн үдэр.",
+      "source": "https://burunen.ru/bur/news/society/147154-buryaad-mongol-zurkhay-sentyabriin-28-aa-oktyabriin-4-bolotor/",
+      "date": ""
     },
     {
-      "sentence": "Тиин тэдэ оюутад дээдэ һургуули дүүргэһэн хоёр диплом, онсолбол, Оросой болон Хитадай эрдэм һуралсалай дипломуудые, мүн хитад хэлэ мэдэхэ тухай  нэрэтэй сертификат үгэхэдэнь, тэдэнь Оростошье, мүн Хитадташье хүдэлхэ аргатай болоно бшуу.",
-      "source": "https://burunen.ru/bur/news/society/147851-khitad-kheleney-erkhim-bagsha/",
-      "date": "",
-      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(тай|тэй|той)\\s"
-    },
-    {
-      "sentence": "Бэлигтэй багшын зааһан оюутад түрэл дээдэ һургуулида хүдэлхөөр бусаа.",
-      "source": "https://burunen.ru/bur/news/society/147851-khitad-kheleney-erkhim-bagsha/",
-      "date": "",
-      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(тай|тэй|той)\\s"
-    },
-    {
-      "sentence": "Тэдэнэй дунда Алексей Архипов, Ксения Бычкова Дальрыбтузай Уласхоорондын институдта амжалтатай ажаллана.",
-      "source": "https://burunen.ru/bur/news/society/147851-khitad-kheleney-erkhim-bagsha/",
-      "date": "",
-      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(тай|тэй|той)\\s"
-    },
-    {
-      "sentence": "Үндэр наһатай, эмгэн эжы болоһон, Үбэр Байгалай хизаараа, тоонто нютагаа суурхуулһан, бэрхэ багша ябаһан Екатерина Будаевнада үреэлэй дээжэ хүргэнэбди: Үдэр бүхэндэ үреэлэй һайханиие шагнажа, Үглөө бүхэндэ наранай һайханиие хаража, Ута наһатай, удаан жаргалтай, Ашанараа тойруулан хүхижэ, Амгалан тэнюун, золтой ажаһуухатнай болтогой!",
-      "source": "https://burunen.ru/bur/news/society/147851-khitad-kheleney-erkhim-bagsha/",
-      "date": "",
-      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(тай|тэй|той)\\s"
-    },
-    {
-      "sentence": "Шүлэгэй уран үгые торгон хүгжэмтэй тааруулхадаа, тэрэ суута уран зохёолшодтой нягта харилсаа холбоотой хүдэлдэг.",
-      "source": "https://burunen.ru/bur/news/society/147843-bayar-shoydokov-buryaad-estradyn-domog/",
-      "date": "",
-      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+(тай|тэй|той)\\s"
+      "sentence": "Африкын Зимбабве гэһэн гүрэндэ байрлаһан гэртэхиндээ айлшаар ошоходоо, тэндэхи зоной байдалтай гүнзэгыгөөр танилсаһан юм.",
+      "source": "https://burunen.ru/bur/news/society/147306-zayaanayn-zamay-ayanshalganuud/",
+      "date": ""
     }
   ]
 }

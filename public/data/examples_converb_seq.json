@@ -1,0 +1,158 @@
+{
+  "feature": "converb_seq",
+  "label": "Sequential converb",
+  "description": "Suffix -аад/-оод/-ээд (having done)",
+  "count": 30,
+  "examples": [
+    {
+      "sentence": "Мүнөө үедэ тэрэ спортын мастер болоод ябаха байгаа.",
+      "source": "https://burunen.ru/bur/news/society/147745-suuta-rektorye-dursaa/",
+      "date": ""
+    },
+    {
+      "sentence": "Хожомынь энэмнай айхабтар хэрэгтэй байгаа, оюутан болоод ябахадаа сэгнээн байнаб.",
+      "source": "https://burunen.ru/bur/news/society/147693-urin-nalgay-bagshamnay/",
+      "date": ""
+    },
+    {
+      "sentence": "Иигэжэ ургуулияа аймагтаа, Буряадтаа нилээд суурхуулан юм. «Бал у Терпсихоры», «Наранай туяа», «Сагаан ара», «Гэсэриада» гэхэ мэтэ мүрысөөнүүдэй илагшад, лауреадууд оло дахин болоон.",
+      "source": "https://burunen.ru/bur/news/society/147842-buryaadayngaa-nere-rge-en-budasheryn-basagan/",
+      "date": ""
+    },
+    {
+      "sentence": "Хүдөө ажахыда нилээд ехэ дүршэлтэй Даржа Цыремпилович Цыбикжаповтай хүдэлхэ хубитай байгааб. Һая хүдэлхэеэ ерэһэн намда нилээдгүй ехээр туһа хүргэһэн, дүй дүршэлөө гамгүй хубаалдаһан юм.",
+      "source": "https://burunen.ru/bur/news/society/147680-d-rben-tegshe-beligtey-/",
+      "date": ""
+    },
+    {
+      "sentence": "Дайнай, дайнай һүүлээрхи тэрэ хатуу жэлнүүдтэ наһатай хүгшэндэ хоёр хүбүүдые үргэжэ табиха гээшэ ямар хүшэр байгааб гэжэ ойлгосотой. «Хүйтэн халууниие үзэгдөөл даа», - гэжэ ахатан ажабайдалаа дурсадаг.",
+      "source": "https://burunen.ru/bur/news/society/147716-kh-rkh-dey-kh-ndetey-taabay/",
+      "date": ""
+    },
+    {
+      "sentence": "Тиихэдэ бүлгэмэй  жэлэй зам харуулан баримтата кино дүүргэхэ шатадаа ороод байна.",
+      "source": "https://burunen.ru/bur/news/society/147843-bayar-shoydokov-buryaad-estradyn-domog/",
+      "date": ""
+    },
+    {
+      "sentence": "Буряадтамнай һайн зантай, урагшаа һанаатай хүнүүд олон юм гэжэ эндэ хүдэлхэ үедөө мэдэрээ. - Бүхы хүн зон өөрын ажалтайшье һаа, иишээ хэдэн часай хугасаада ерээд, оёлсоод ошоно.",
+      "source": "https://burunen.ru/bur/news/society/147711-seber-sedkheltey-na-atayshuul/",
+      "date": ""
+    },
+    {
+      "sentence": "Тиигээд лэ -дахияа сагаалһан хүндэтэ «тула загаһанда шарбуулһан хүрин-хара хүрхүүд» таабай наһаараа уншажа ябаһан «Буряад үнэнөө» мүнөөшье: «Арайл оройтожо, хоёр хоноһон хойно «Үнэмнай» ерэдэг юм даа», - гээд лэ, анхаралтайгаар уншаһаар, буряад арадайнгаа, Буряад оронойнгоо ажабайдалаар һонирхоһон зандаа.",
+      "source": "https://burunen.ru/bur/news/society/147716-kh-rkh-dey-kh-ndetey-taabay/",
+      "date": ""
+    },
+    {
+      "sentence": "Роза Тумэнбаировнагай хэлэһээр, мүнөө урдань үшөө ондоо гүрэн руу ошожо ажаллаха боломжо гараад байна.",
+      "source": "https://burunen.ru/bur/news/society/147306-zayaanayn-zamay-ayanshalganuud/",
+      "date": ""
+    },
+    {
+      "sentence": "Иимэ үргэн дэлисэтэйгээр бүхэроссиин хэмжээнэй конкурс яагаад болодог бэ гэжэ Буряадта һайнаар мэдэдэг.",
+      "source": "https://burunen.ru/bur/news/society/146892-t-meney-t-r-de/",
+      "date": ""
+    },
+    {
+      "sentence": "Манай ангиин мүн лэ оюун бэлигтэй басаган Цындыма Раднажапова бултанай зүгһөө уран шүлэг Цыцыгтээ зорюулжа бэшээд баярлуулһан байна.",
+      "source": "https://burunen.ru/bur/news/society/147679-sedkheley-ayalgyn-dolgindo/",
+      "date": ""
+    },
+    {
+      "sentence": "Тойроод олон заимканууд баригданхай.",
+      "source": "https://burunen.ru/bur/news/society/147771-ezhel-khoyer-z-rkhen/",
+      "date": ""
+    },
+    {
+      "sentence": "Нохойн эзэнтэй хөөрэлдөөд ошоо һэм.",
+      "source": "https://burunen.ru/bur/news/society/146898-buryaadta-azhabaydalaa-zokhyeoye/",
+      "date": ""
+    },
+    {
+      "sentence": "Манай багша гээд лэ аймаг бүхэндэ угтагша бэлэй.",
+      "source": "https://burunen.ru/bur/news/society/147745-suuta-rektorye-dursaa/",
+      "date": ""
+    },
+    {
+      "sentence": "Жараад жэл соо арад зондоо үнэн сэхэ алба хэжэ, бүхы шадалаа түрэл нютагайнгаа хүгжэлтэдэ зорюулһан Вячеслав Васильевич Хингеловые «Сагаан үбгэн» гэжэ номинацида дэбжүүлнэб.",
+      "source": "https://burunen.ru/bur/news/society/147680-d-rben-tegshe-beligtey-/",
+      "date": ""
+    },
+    {
+      "sentence": "Эдэ бүгэдые дээрэээ харахада, аяга соо дүүрэсэ сагаан эдеэ хээд, альгаа дэлгээд угтажа байандал харагдаха.",
+      "source": "https://burunen.ru/bur/news/society/147771-ezhel-khoyer-z-rkhen/",
+      "date": ""
+    },
+    {
+      "sentence": "Ойн хүнүүд – эвенкнүүд гү, али аймшагтай арьяатан гү?» - гэжэ байгаад хашхаралдадаг эн ха.",
+      "source": "https://burunen.ru/bur/news/society/147096-lger-domogto-taygyn-ezen/",
+      "date": ""
+    },
+    {
+      "sentence": "Леонид Потаповай дурадхалаар - онуудта Буряад Уласай Толгойлогшын ба Засагай газарай захиргаанай хүтэлбэрилэгшын тушаалда томилогдоод ажаллажа эхилээ.",
+      "source": "https://burunen.ru/bur/news/society/147680-d-rben-tegshe-beligtey-/",
+      "date": ""
+    },
+    {
+      "sentence": "Василий Санжиевич хэнэйдэ түрөө, үдөө юм, хаана, хэнтэй һураа юм гээд лэ, намтарынь балшар багаһаань үгтөө гэжэ ойлгосотой.",
+      "source": "https://burunen.ru/bur/news/society/147744-uragshaa-minii-poezd-/",
+      "date": ""
+    },
+    {
+      "sentence": "Хараад үзыт даа: Бадма-сэсэг һая байгуулагдаһаншье һаа, аялгата дуунуудаазэдэлүүлжэ, үндэһэн үнгэтэ хубсаһаяа, ёһо заншалаа харуулжа, хатар наадаараа Хитадай Үбэр Монголой Хүлэн Буйрта нүүдэл арадуудай нааданда гэрэлтээ.",
+      "source": "https://burunen.ru/bur/news/society/147705-ugayngaa-zanshal-sakhigsha/",
+      "date": ""
+    },
+    {
+      "sentence": "Түүхын эрдэмэй доктор, БГСХА-гай таһагые даагша Любовь Алексеевна Зайцевагай хүтэлбэри доро хүнгэн бэшэ ажал эхиеэ абаа һэн.- Һайхан ном болоо гээд һанагдана.",
+      "source": "https://burunen.ru/bur/news/society/147745-suuta-rektorye-dursaa/",
+      "date": ""
+    },
+    {
+      "sentence": "Тэндэ баабгай Гэгээрэлэй замда орогшодые аршалан хамгаалагша асари ехэ хүсэтэй һахюуһан гээд шүтэгдэдэг юм.",
+      "source": "https://burunen.ru/bur/news/society/147096-lger-domogto-taygyn-ezen/",
+      "date": ""
+    },
+    {
+      "sentence": "Удаань жэлэй хугасаада тэдэ зүб харгыгаар шэглэхэ бэзэ гээд найдагдана.",
+      "source": "https://burunen.ru/bur/news/society/146898-buryaadta-azhabaydalaa-zokhyeoye/",
+      "date": ""
+    },
+    {
+      "sentence": "Тиимэһээ соёлой һалбариин, уран дарханай мэргэжэлнүүд хэрэгтэй болонхой гээд һанагдана.",
+      "source": "https://burunen.ru/bur/news/society/146898-buryaadta-azhabaydalaa-zokhyeoye/",
+      "date": ""
+    },
+    {
+      "sentence": "Дүтэхэнэ байрлаһан сэрэгэй частьнуудта ошожо, ударидагшадтайнь хэлсээ баталжа, туһа эриһэн байгааб. -гаад хонидыемнай томо сэрэгэй «Амфиби» машинада тээжэ, Үдэ голой нүгөө эрьедэ зөөжэ гаргаа һэн», - гээд, Вячеслав Васильевич намтар түүхэеэ тобшохоноор хөөрэжэ үгэбэ.",
+      "source": "https://burunen.ru/bur/news/society/147680-d-rben-tegshe-beligtey-/",
+      "date": ""
+    },
+    {
+      "sentence": "Унжагай Юрэ бусын урасхал соо Урдажа ябаһан бишье Баһал өөрын хуулитайб, - гээд лэ, ханхинаса уншаад эхилшэхэл даа.",
+      "source": "https://burunen.ru/bur/news/society/147744-uragshaa-minii-poezd-/",
+      "date": ""
+    },
+    {
+      "sentence": "Тэрэ нойрсоһон байдалда үхэлэй ороноор аяншалаад бусахадаа, һүнэһэн бэеэрээ шэнээр түрэдэг гэһэн үгэтэй.",
+      "source": "https://burunen.ru/bur/news/society/147096-lger-domogto-taygyn-ezen/",
+      "date": ""
+    },
+    {
+      "sentence": "Теэд тэрэ нэрыень шангаар хэлэхэнь огто хорюултай һэн тулада медведь ведающий мёд, Косолапый, Бурый, Михайло Потапыч гээд нэрлэгдэдэг байһан.",
+      "source": "https://burunen.ru/bur/news/society/147096-lger-domogto-taygyn-ezen/",
+      "date": ""
+    },
+    {
+      "sentence": "Зэмэлхэ сагтань зэмэлээд, магтаха сагтань магтаад, эрхэлүүлээд, эсэгэ мэтэ хандаад байдаг бэлэй. Һургуулияа дүүргэжэ, аттестат абаад, үүрэй толониие багшатаяа ямархан гоёор Майтаан нугада угтаа һэмбибди.",
+      "source": "https://burunen.ru/bur/news/society/147744-uragshaa-minii-poezd-/",
+      "date": ""
+    },
+    {
+      "sentence": "Хожомынь «Погружение в предметы» гээн туршалгаар нэгэ үдэр соо нэгэл предмедээр зургаан хэшээл үнгэргэдэг болоод байгаа.",
+      "source": "https://burunen.ru/bur/news/society/147731-bagshyn-rgen-khargyda/",
+      "date": ""
+    }
+  ]
+}

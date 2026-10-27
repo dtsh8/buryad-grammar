@@ -8,10 +8,11 @@ import {
   type VerbParadigm,
 } from '../data/grammar'
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts'
+import VerbBuilder from '../components/VerbBuilder'
 
 const fade = { hidden: { opacity: 0, y: 14 }, show: { opacity: 1, y: 0 } }
 
-type Tab = 'anatomy' | 'tenses' | 'voice' | 'converbs' | 'conjugator'
+type Tab = 'anatomy' | 'tenses' | 'voice' | 'converbs' | 'conjugator' | 'builder'
 
 // ─── Morpheme segment colors ─────────────────────────────────────────────
 
@@ -585,6 +586,7 @@ const TABS: Array<{ id: Tab; label: string; icon: string }> = [
   { id: 'voice',      label: 'Voice & Voice', icon: '🔄' },
   { id: 'converbs',   label: 'Converbs',      icon: '🔗' },
   { id: 'conjugator', label: 'Conjugator',    icon: '⚡' },
+  { id: 'builder',    label: 'Verb Builder',  icon: '🔤' },
 ]
 
 export default function Verbs() {
@@ -624,6 +626,7 @@ export default function Verbs() {
           {tab === 'voice'      && <VoiceDerivation />}
           {tab === 'converbs'   && <ConverbSection />}
           {tab === 'conjugator' && <Conjugator />}
+          {tab === 'builder'    && <VerbBuilder />}
         </motion.div>
       </AnimatePresence>
     </div>

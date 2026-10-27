@@ -13,10 +13,10 @@ export default function App() {
       <Navbar />
       <main>
         <Routes>
-          <Route path="/"           element={<Home />} />
-          <Route path="/phonology"  element={<Phonology />} />
-          <Route path="/cases"      element={<Cases />} />
-          <Route path="/verbs"      element={<Verbs />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/phonology" element={<Phonology />} />
+          <Route path="/cases" element={<Cases />} />
+          <Route path="/verbs" element={<Verbs />} />
           <Route path="/word-order" element={<WordOrder />} />
           <Route path="/vocabulary" element={<Vocabulary />} />
         </Routes>

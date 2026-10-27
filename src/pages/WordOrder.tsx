@@ -21,10 +21,20 @@ export default function WordOrder() {
 
       {/* Tabs */}
       <div className="border-b border-stone-200 flex gap-6">
-        {([['order','Word Order'],['postpositions','Postpositions'],['agglutination','Agglutination']] as [Tab,string][]).map(([id,label]) => (
-          <button key={id} onClick={() => setTab(id)}
-            className={`pb-3 text-sm font-medium transition-colors ${tab===id?'tab-active':'tab-inactive'}`}
-          >{label}</button>
+        {(
+          [
+            ['order', 'Word Order'],
+            ['postpositions', 'Postpositions'],
+            ['agglutination', 'Agglutination'],
+          ] as [Tab, string][]
+        ).map(([id, label]) => (
+          <button
+            key={id}
+            onClick={() => setTab(id)}
+            className={`pb-3 text-sm font-medium transition-colors ${tab === id ? 'tab-active' : 'tab-inactive'}`}
+          >
+            {label}
+          </button>
         ))}
       </div>
 
@@ -39,15 +49,22 @@ export default function WordOrder() {
           <div className="card space-y-4">
             <h2 className="text-lg font-semibold text-stone-800">Pre-Nominal Modifiers</h2>
             <p className="text-sm text-stone-500">
-              In Buryad, all noun modifiers (adjectives, genitives, relative clauses) come <strong>before</strong> the noun — the opposite of languages like French or Spanish.
+              In Buryad, all noun modifiers (adjectives, genitives, relative clauses) come{' '}
+              <strong>before</strong> the noun — the opposite of languages like French or Spanish.
             </p>
             <div className="grid sm:grid-cols-2 gap-4">
               <div className="bg-stone-50 rounded-xl p-4 space-y-2">
-                <p className="text-xs font-semibold text-stone-400 uppercase tracking-wide">Buryad</p>
+                <p className="text-xs font-semibold text-stone-400 uppercase tracking-wide">
+                  Buryad
+                </p>
                 <div className="flex items-baseline gap-1 flex-wrap">
-                  <span className="bg-mongol-100 border border-mongol-200 rounded-lg px-2 py-1 font-buryat text-mongol-800">томо</span>
+                  <span className="bg-mongol-100 border border-mongol-200 rounded-lg px-2 py-1 font-buryat text-mongol-800">
+                    томо
+                  </span>
                   <span className="text-stone-400 text-sm">+</span>
-                  <span className="bg-amber-100 border border-amber-200 rounded-lg px-2 py-1 font-buryat text-amber-800">гэр</span>
+                  <span className="bg-amber-100 border border-amber-200 rounded-lg px-2 py-1 font-buryat text-amber-800">
+                    гэр
+                  </span>
                 </div>
                 <div className="flex gap-2 text-xs text-stone-400">
                   <span>big</span>
@@ -56,32 +73,50 @@ export default function WordOrder() {
                 <p className="text-sm italic text-stone-600">'big house'</p>
               </div>
               <div className="bg-stone-50 rounded-xl p-4 space-y-2">
-                <p className="text-xs font-semibold text-stone-400 uppercase tracking-wide">English</p>
+                <p className="text-xs font-semibold text-stone-400 uppercase tracking-wide">
+                  English
+                </p>
                 <div className="flex items-baseline gap-1 flex-wrap">
-                  <span className="bg-mongol-100 border border-mongol-200 rounded-lg px-2 py-1 text-mongol-800">big</span>
+                  <span className="bg-mongol-100 border border-mongol-200 rounded-lg px-2 py-1 text-mongol-800">
+                    big
+                  </span>
                   <span className="text-stone-400 text-sm">+</span>
-                  <span className="bg-amber-100 border border-amber-200 rounded-lg px-2 py-1 text-amber-800">house</span>
+                  <span className="bg-amber-100 border border-amber-200 rounded-lg px-2 py-1 text-amber-800">
+                    house
+                  </span>
                 </div>
                 <div className="flex gap-2 text-xs text-stone-400">
                   <span>big</span>
                   <span>house</span>
                 </div>
-                <p className="text-sm italic text-stone-600">'big house' ← same order here, but relative clauses differ!</p>
+                <p className="text-sm italic text-stone-600">
+                  'big house' ← same order here, but relative clauses differ!
+                </p>
               </div>
             </div>
 
             {/* Relative clause comparison */}
             <div className="rounded-xl bg-red-50 border border-red-200 p-4 space-y-3">
-              <p className="text-sm font-semibold text-red-800">🔄 Relative clauses: key difference</p>
+              <p className="text-sm font-semibold text-red-800">
+                🔄 Relative clauses: key difference
+              </p>
               <div className="grid sm:grid-cols-2 gap-3 text-sm">
                 <div>
-                  <p className="text-xs text-stone-400 font-semibold uppercase mb-1">English (post-nominal)</p>
-                  <p className="italic text-stone-700">"the man <u>who reads books</u>"</p>
+                  <p className="text-xs text-stone-400 font-semibold uppercase mb-1">
+                    English (post-nominal)
+                  </p>
+                  <p className="italic text-stone-700">
+                    "the man <u>who reads books</u>"
+                  </p>
                   <p className="text-xs text-stone-400 mt-0.5">→ relative clause AFTER noun</p>
                 </div>
                 <div>
-                  <p className="text-xs text-stone-400 font-semibold uppercase mb-1">Buryad (pre-nominal)</p>
-                  <p className="font-buryat text-buryat-700">"<u>ном уншадаг</u> хүн"</p>
+                  <p className="text-xs text-stone-400 font-semibold uppercase mb-1">
+                    Buryad (pre-nominal)
+                  </p>
+                  <p className="font-buryat text-buryat-700">
+                    "<u>ном уншадаг</u> хүн"
+                  </p>
                   <p className="text-xs text-stone-400 font-mono mt-0.5">book read-PTCP man</p>
                   <p className="text-xs text-stone-400">→ relative clause BEFORE noun</p>
                 </div>
@@ -96,20 +131,33 @@ export default function WordOrder() {
           <div className="card space-y-4">
             <h2 className="text-lg font-semibold text-stone-800">Postpositions vs. Prepositions</h2>
             <p className="text-sm text-stone-500">
-              English uses <em>pre</em>positions (before NP); Buryad uses <em>post</em>positions (after NP).
+              English uses <em>pre</em>positions (before NP); Buryad uses <em>post</em>positions
+              (after NP).
             </p>
             <div className="grid sm:grid-cols-2 gap-4">
               <div className="bg-red-50 border border-red-200 rounded-xl p-4 text-sm space-y-2">
                 <p className="font-semibold text-red-800">English (PRE-position)</p>
-                <p className="text-red-700"><strong>about</strong> Buryatia</p>
-                <p className="text-red-700"><strong>inside</strong> the city</p>
-                <p className="text-red-700"><strong>beside</strong> the house</p>
+                <p className="text-red-700">
+                  <strong>about</strong> Buryatia
+                </p>
+                <p className="text-red-700">
+                  <strong>inside</strong> the city
+                </p>
+                <p className="text-red-700">
+                  <strong>beside</strong> the house
+                </p>
               </div>
               <div className="bg-green-50 border border-green-200 rounded-xl p-4 text-sm space-y-2">
                 <p className="font-semibold text-green-800">Buryad (POST-position)</p>
-                <p className="font-buryat text-green-700">Буряадай <strong>тухай</strong></p>
-                <p className="font-buryat text-green-700">хотын <strong>дотор</strong></p>
-                <p className="font-buryat text-green-700">гэрэй <strong>хажуугаар</strong></p>
+                <p className="font-buryat text-green-700">
+                  Буряадай <strong>тухай</strong>
+                </p>
+                <p className="font-buryat text-green-700">
+                  хотын <strong>дотор</strong>
+                </p>
+                <p className="font-buryat text-green-700">
+                  гэрэй <strong>хажуугаар</strong>
+                </p>
               </div>
             </div>
           </div>
@@ -120,16 +168,22 @@ export default function WordOrder() {
               <thead>
                 <tr className="border-b-2 border-stone-200">
                   {['Postposition', 'Meaning', 'Case required', 'Example'].map(h => (
-                    <th key={h} className="text-left py-2 pr-4 text-stone-400 font-normal">{h}</th>
+                    <th key={h} className="text-left py-2 pr-4 text-stone-400 font-normal">
+                      {h}
+                    </th>
                   ))}
                 </tr>
               </thead>
               <tbody>
                 {POSTPOSITIONS.map(p => (
                   <tr key={p.buryad} className="border-b border-stone-100 hover:bg-stone-50">
-                    <td className="py-2.5 pr-4 font-buryat text-buryat-700 font-semibold text-base">{p.buryad}</td>
+                    <td className="py-2.5 pr-4 font-buryat text-buryat-700 font-semibold text-base">
+                      {p.buryad}
+                    </td>
                     <td className="py-2.5 pr-4 text-stone-600">{p.meaning}</td>
-                    <td className="py-2.5 pr-4"><span className="badge badge-amber">{p.caseRequired}</span></td>
+                    <td className="py-2.5 pr-4">
+                      <span className="badge badge-amber">{p.caseRequired}</span>
+                    </td>
                     <td className="py-2.5">
                       <span className="font-buryat text-stone-700">{p.example.phrase}</span>
                       <span className="text-stone-400 text-xs ml-2">'{p.example.translation}'</span>

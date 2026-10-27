@@ -5,13 +5,13 @@ import { VOCABULARY, type Lexeme } from '../data/grammar'
 const fade = { hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } }
 
 const CATEGORIES = ['all', 'pronoun', 'numeral', 'noun', 'phrase'] as const
-type Cat = typeof CATEGORIES[number]
+type Cat = (typeof CATEGORIES)[number]
 
 const CAT_COLORS: Record<string, string> = {
   pronoun: 'badge-blue',
   numeral: 'badge-amber',
-  noun:    'badge-green',
-  phrase:  'badge-red',
+  noun: 'badge-green',
+  phrase: 'badge-red',
 }
 
 function LexemeCard({ l }: { l: Lexeme }) {
@@ -31,11 +31,12 @@ export default function Vocabulary() {
   const [cat, setCat] = useState<Cat>('all')
   const [query, setQuery] = useState('')
 
-  const filtered = VOCABULARY.filter(l =>
-    (cat === 'all' || l.category === cat) &&
-    (query === '' ||
-      l.buryad.toLowerCase().includes(query.toLowerCase()) ||
-      l.english.toLowerCase().includes(query.toLowerCase()))
+  const filtered = VOCABULARY.filter(
+    l =>
+      (cat === 'all' || l.category === cat) &&
+      (query === '' ||
+        l.buryad.toLowerCase().includes(query.toLowerCase()) ||
+        l.english.toLowerCase().includes(query.toLowerCase()))
   )
 
   return (
@@ -60,7 +61,9 @@ export default function Vocabulary() {
               key={c}
               onClick={() => setCat(c)}
               className={`px-3 py-1 rounded-full text-xs font-medium transition-colors capitalize ${
-                cat === c ? 'bg-buryat-100 text-buryat-800' : 'bg-stone-100 text-stone-500 hover:bg-stone-200'
+                cat === c
+                  ? 'bg-buryat-100 text-buryat-800'
+                  : 'bg-stone-100 text-stone-500 hover:bg-stone-200'
               }`}
             >
               {c}
@@ -71,9 +74,13 @@ export default function Vocabulary() {
 
       {/* Grid */}
       <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
-        {filtered.map(l => <LexemeCard key={l.buryad} l={l} />)}
+        {filtered.map(l => (
+          <LexemeCard key={l.buryad} l={l} />
+        ))}
         {filtered.length === 0 && (
-          <p className="text-stone-400 text-sm col-span-3 py-8 text-center">No words match your search.</p>
+          <p className="text-stone-400 text-sm col-span-3 py-8 text-center">
+            No words match your search.
+          </p>
         )}
       </div>
 
@@ -81,7 +88,9 @@ export default function Vocabulary() {
       {(cat === 'all' || cat === 'numeral') && query === '' && (
         <div className="card space-y-3">
           <h2 className="text-lg font-semibold text-stone-800">Numeral System</h2>
-          <p className="text-sm text-stone-500">Buryad uses a decimal system. Numbers compound predictably:</p>
+          <p className="text-sm text-stone-500">
+            Buryad uses a decimal system. Numbers compound predictably:
+          </p>
           <div className="overflow-x-auto">
             <table className="text-sm w-full">
               <thead>
@@ -93,11 +102,19 @@ export default function Vocabulary() {
               </thead>
               <tbody>
                 {[
-                  [1,'нэгэн','neɡen'], [2,'хоёр','xojor'], [3,'гурбан','ɡurban'],
-                  [4,'дүрбэн','dyrben'],[5,'табан','taban'],[6,'зургаан','zurɡaːn'],
-                  [7,'долоон','doloːn'],[8,'найман','najman'],[9,'юhэн','juhen'],
-                  [10,'арбан','arban'],[20,'хорин','xorin'],[100,'зуун','zuːn'],
-                  [1000,'мянган','mjaŋɡan'],
+                  [1, 'нэгэн', 'neɡen'],
+                  [2, 'хоёр', 'xojor'],
+                  [3, 'гурбан', 'ɡurban'],
+                  [4, 'дүрбэн', 'dyrben'],
+                  [5, 'табан', 'taban'],
+                  [6, 'зургаан', 'zurɡaːn'],
+                  [7, 'долоон', 'doloːn'],
+                  [8, 'найман', 'najman'],
+                  [9, 'юhэн', 'juhen'],
+                  [10, 'арбан', 'arban'],
+                  [20, 'хорин', 'xorin'],
+                  [100, 'зуун', 'zuːn'],
+                  [1000, 'мянган', 'mjaŋɡan'],
                 ].map(([n, bur, ipa]) => (
                   <tr key={n} className="border-b border-stone-100">
                     <td className="py-2 pr-4 text-stone-600 font-mono">{n}</td>
@@ -109,7 +126,8 @@ export default function Vocabulary() {
             </table>
           </div>
           <p className="text-xs text-stone-400">
-            Compounds: 11 = арбан нэгэн (ten-one), 21 = хорин нэгэн (twenty-one), 23 = хорин гурбан (twenty-three)
+            Compounds: 11 = арбан нэгэн (ten-one), 21 = хорин нэгэн (twenty-one), 23 = хорин гурбан
+            (twenty-three)
           </p>
         </div>
       )}

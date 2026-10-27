@@ -3,10 +3,10 @@ import { BookOpen, Mic, Grid, Code2, GitBranch, LayoutList, Menu, X } from 'luci
 import { useState } from 'react'
 
 const links = [
-  { to: '/',           label: 'Overview',   icon: BookOpen  },
-  { to: '/phonology',  label: 'Phonology',  icon: Mic       },
-  { to: '/cases',      label: 'Cases',      icon: Grid      },
-  { to: '/verbs',      label: 'Verbs',      icon: Code2     },
+  { to: '/', label: 'Overview', icon: BookOpen },
+  { to: '/phonology', label: 'Phonology', icon: Mic },
+  { to: '/cases', label: 'Cases', icon: Grid },
+  { to: '/verbs', label: 'Verbs', icon: Code2 },
   { to: '/word-order', label: 'Word Order', icon: GitBranch },
   { to: '/vocabulary', label: 'Vocabulary', icon: LayoutList },
 ]

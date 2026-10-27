@@ -25,3 +25,9 @@ dist-ssr
 
 # OS
 Thumbs.db
+
+# Playwright MCP session artifacts
+.playwright-mcp/
+
+# TypeScript incremental build info
+*.tsbuildinfo

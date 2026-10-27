@@ -4,7 +4,15 @@ import { CASES, type GrammarCase } from '../data/grammar'
 
 const fade = { hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } }
 
-function CaseCard({ c, onClick, active }: { c: GrammarCase; onClick: () => void; active: boolean }) {
+function CaseCard({
+  c,
+  onClick,
+  active,
+}: {
+  c: GrammarCase
+  onClick: () => void
+  active: boolean
+}) {
   return (
     <button
       onClick={onClick}
@@ -28,7 +36,10 @@ function CaseDetail({ c }: { c: GrammarCase }) {
   return (
     <motion.div
       key={c.id}
-      variants={fade} initial="hidden" animate="show" transition={{ duration: 0.3 }}
+      variants={fade}
+      initial="hidden"
+      animate="show"
+      transition={{ duration: 0.3 }}
       className={`rounded-2xl border-2 p-6 space-y-5 ${c.colorClass}`}
     >
       <div className="flex items-start gap-4">
@@ -39,24 +50,34 @@ function CaseDetail({ c }: { c: GrammarCase }) {
         </div>
         <div className="text-right">
           <p className="text-xs text-stone-400 mb-0.5">Suffix</p>
-          <code className="text-xl font-bold font-mono text-stone-700">{c.suffix.afterConsonant}</code>
-          {c.suffix.afterVowel && <p className="text-xs text-stone-400 mt-1">after vowel: {c.suffix.afterVowel}</p>}
+          <code className="text-xl font-bold font-mono text-stone-700">
+            {c.suffix.afterConsonant}
+          </code>
+          {c.suffix.afterVowel && (
+            <p className="text-xs text-stone-400 mt-1">after vowel: {c.suffix.afterVowel}</p>
+          )}
         </div>
       </div>
 
       {/* Questions */}
       <div>
-        <p className="text-xs font-semibold uppercase tracking-wide text-stone-500 mb-1">Question words</p>
+        <p className="text-xs font-semibold uppercase tracking-wide text-stone-500 mb-1">
+          Question words
+        </p>
         <div className="flex flex-wrap gap-2">
           {c.questions.map(q => (
-            <span key={q} className="badge-blue badge text-xs">{q}</span>
+            <span key={q} className="badge-blue badge text-xs">
+              {q}
+            </span>
           ))}
         </div>
       </div>
 
       {/* Examples */}
       <div>
-        <p className="text-xs font-semibold uppercase tracking-wide text-stone-500 mb-2">Examples</p>
+        <p className="text-xs font-semibold uppercase tracking-wide text-stone-500 mb-2">
+          Examples
+        </p>
         <div className="overflow-x-auto">
           <table className="text-sm w-full">
             <thead>
@@ -71,7 +92,9 @@ function CaseDetail({ c }: { c: GrammarCase }) {
               {c.examples.map((ex, i) => (
                 <tr key={i} className="border-b border-stone-200/30">
                   <td className="py-2 pr-4 font-buryat text-stone-600">{ex.stem}</td>
-                  <td className="py-2 pr-4 font-buryat font-bold text-stone-900 text-base">{ex.inflected}</td>
+                  <td className="py-2 pr-4 font-buryat font-bold text-stone-900 text-base">
+                    {ex.inflected}
+                  </td>
                   <td className="py-2 pr-4 text-stone-600 italic">'{ex.translation}'</td>
                   <td className="py-2 text-xs text-stone-400">{ex.note ?? ''}</td>
                 </tr>
@@ -83,7 +106,8 @@ function CaseDetail({ c }: { c: GrammarCase }) {
 
       {/* Analogy */}
       <div className="bg-white/60 rounded-xl p-3 text-sm text-stone-600">
-        <span className="font-semibold">💡 Analogy: </span>{c.analogy}
+        <span className="font-semibold">💡 Analogy: </span>
+        {c.analogy}
       </div>
     </motion.div>
   )
@@ -93,25 +117,26 @@ function CaseDetail({ c }: { c: GrammarCase }) {
 
 const PARADIGM_NOUN = { root: 'гэр', meaning: 'house', harmony: 'front (э)' }
 const PARADIGM_FORMS: Array<{ case_: string; form: string }> = [
-  { case_: 'Nominative',        form: 'гэр' },
-  { case_: 'Genitive',          form: 'гэрэй' },
-  { case_: 'Dative-Locative',   form: 'гэртэ' },
-  { case_: 'Accusative',        form: 'гэрые' },
-  { case_: 'Instrumental',      form: 'гэрээр' },
-  { case_: 'Comitative',        form: 'гэртэй' },
-  { case_: 'Ablative',          form: 'гэрhэй' },
+  { case_: 'Nominative', form: 'гэр' },
+  { case_: 'Genitive', form: 'гэрэй' },
+  { case_: 'Dative-Locative', form: 'гэртэ' },
+  { case_: 'Accusative', form: 'гэрые' },
+  { case_: 'Instrumental', form: 'гэрээр' },
+  { case_: 'Comitative', form: 'гэртэй' },
+  { case_: 'Ablative', form: 'гэрhэй' },
 ]
 
 export default function Cases() {
   const [selected, setSelected] = useState<string>(CASES[0].id)
-  const activeCase = CASES.find(c => c.id === selected)!
+  const activeCase = CASES.find(c => c.id === selected) ?? CASES[0]
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-10 space-y-10">
       <motion.div variants={fade} initial="hidden" animate="show" transition={{ duration: 0.4 }}>
         <h1 className="text-3xl font-bold text-stone-900">Nominal Case System</h1>
         <p className="text-stone-500 mt-1">
-          Buryad has <strong>7 cases</strong> — suffixes on the noun that replace prepositions and encode grammatical role.
+          Buryad has <strong>7 cases</strong> — suffixes on the noun that replace prepositions and
+          encode grammatical role.
         </p>
       </motion.div>
 
@@ -131,7 +156,9 @@ export default function Cases() {
       <div className="card space-y-4">
         <h2 className="text-lg font-semibold text-stone-800">
           Full Paradigm: <span className="font-buryat text-buryat-700">гэр</span>
-          <span className="text-stone-400 font-normal text-base ml-2">({PARADIGM_NOUN.meaning}, {PARADIGM_NOUN.harmony})</span>
+          <span className="text-stone-400 font-normal text-base ml-2">
+            ({PARADIGM_NOUN.meaning}, {PARADIGM_NOUN.harmony})
+          </span>
         </h2>
         <div className="overflow-x-auto">
           <table className="text-sm w-full">
@@ -155,7 +182,9 @@ export default function Cases() {
                   <td className="py-2.5 pr-4 text-stone-400 font-mono text-xs">{i + 1}</td>
                   <td className="py-2.5 pr-4 font-medium text-stone-700">{row.case_}</td>
                   <td className="py-2.5 pr-4 font-buryat text-stone-500">{CASES[i]?.buryad}</td>
-                  <td className="py-2.5 font-buryat text-lg text-buryat-700 font-semibold">{row.form}</td>
+                  <td className="py-2.5 font-buryat text-lg text-buryat-700 font-semibold">
+                    {row.form}
+                  </td>
                 </tr>
               ))}
             </tbody>

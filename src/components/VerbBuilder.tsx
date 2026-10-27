@@ -14,8 +14,20 @@ const fade = { hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0 } }
 // ─── Quick-pick verbs ──────────────────────────────────────────────────────
 
 const QUICK_VERBS = [
-  'go', 'eat', 'read', 'write', 'love', 'speak', 'run',
-  'work', 'know', 'sing', 'dance', 'sleep', 'teach', 'help',
+  'go',
+  'eat',
+  'read',
+  'write',
+  'love',
+  'speak',
+  'run',
+  'work',
+  'know',
+  'sing',
+  'dance',
+  'sleep',
+  'teach',
+  'help',
 ]
 
 // ─── Harmony badge ─────────────────────────────────────────────────────────
@@ -34,16 +46,16 @@ function BaseParadigm({ root, meaning }: { root: string; meaning: string }) {
   const forms = conjugate(root)
   // Simple past/gerund for English gloss
   const pastEn = meaning.endsWith('e') ? meaning + 'd' : meaning + 'ed'
-  const ingEn  = meaning.endsWith('e') ? meaning.slice(0, -1) + 'ing' : meaning + 'ing'
+  const ingEn = meaning.endsWith('e') ? meaning.slice(0, -1) + 'ing' : meaning + 'ing'
   const rows: Array<[string, string, string]> = [
-    ['Present-Future',    forms.prs,     `→ ${meaning}s / will ${meaning}`],
-    ['Simple Past',       forms.pst,     `→ ${pastEn} (witnessed)`],
-    ['Evidential Past',   forms.evidPst, `→ apparently ${pastEn}`],
-    ['Habitual',          forms.hab,     `→ ${meaning}s (habitually)`],
-    ['Negative',          forms.neg,     `→ does not ${meaning}`],
-    ['Infinitive',        forms.inf,     `→ to ${meaning}`],
-    ['Simult. Converb',   forms.simConv, `→ while ${ingEn}`],
-    ['Seq. Converb',      forms.seqConv, `→ having ${pastEn}`],
+    ['Present-Future', forms.prs, `→ ${meaning}s / will ${meaning}`],
+    ['Simple Past', forms.pst, `→ ${pastEn} (witnessed)`],
+    ['Evidential Past', forms.evidPst, `→ apparently ${pastEn}`],
+    ['Habitual', forms.hab, `→ ${meaning}s (habitually)`],
+    ['Negative', forms.neg, `→ does not ${meaning}`],
+    ['Infinitive', forms.inf, `→ to ${meaning}`],
+    ['Simult. Converb', forms.simConv, `→ while ${ingEn}`],
+    ['Seq. Converb', forms.seqConv, `→ having ${pastEn}`],
   ]
   return (
     <div className="card space-y-3">
@@ -58,7 +70,9 @@ function BaseParadigm({ root, meaning }: { root: string; meaning: string }) {
             {rows.map(([label, form, en]) => (
               <tr key={label} className="border-b border-stone-100">
                 <td className="py-1.5 pr-4 text-stone-500 w-44">{label}</td>
-                <td className="py-1.5 pr-4 font-buryat text-lg font-semibold text-stone-800">{form}</td>
+                <td className="py-1.5 pr-4 font-buryat text-lg font-semibold text-stone-800">
+                  {form}
+                </td>
                 <td className="py-1.5 text-xs text-stone-400 italic">{en}</td>
               </tr>
             ))}
@@ -71,7 +85,11 @@ function BaseParadigm({ root, meaning }: { root: string; meaning: string }) {
 
 // ─── Derivation card ───────────────────────────────────────────────────────
 
-function DerivCard({ d, expanded, onToggle }: {
+function DerivCard({
+  d,
+  expanded,
+  onToggle,
+}: {
   d: DerivedForm
   expanded: boolean
   onToggle: () => void
@@ -90,7 +108,11 @@ function DerivCard({ d, expanded, onToggle }: {
         </div>
         <div className="flex items-center gap-3 shrink-0 ml-2">
           <span className="text-xs text-stone-500 italic hidden sm:block">{d.englishRole}</span>
-          <span className={`text-stone-400 transition-transform text-lg ${expanded ? 'rotate-180' : ''}`}>▾</span>
+          <span
+            className={`text-stone-400 transition-transform text-lg ${expanded ? 'rotate-180' : ''}`}
+          >
+            ▾
+          </span>
         </div>
       </button>
 
@@ -135,12 +157,14 @@ function DerivCard({ d, expanded, onToggle }: {
 
               {/* Mini conjugation */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                {([
-                  ['INF',  d.inf],
-                  ['PRS',  d.prs],
-                  ['PST',  d.pst],
-                  ['NEG',  d.neg],
-                ] as [string, string][]).map(([lbl, frm]) => (
+                {(
+                  [
+                    ['INF', d.inf],
+                    ['PRS', d.prs],
+                    ['PST', d.pst],
+                    ['NEG', d.neg],
+                  ] as [string, string][]
+                ).map(([lbl, frm]) => (
                   <div key={lbl} className="bg-white/70 rounded-lg p-2 text-center">
                     <p className="text-[10px] text-stone-400 font-mono uppercase">{lbl}</p>
                     <p className="font-buryat text-base font-bold text-stone-800">{frm}</p>
@@ -167,14 +191,14 @@ function DerivCard({ d, expanded, onToggle }: {
 type Status = 'idle' | 'loading' | 'done' | 'error'
 
 export default function VerbBuilder() {
-  const [input, setInput]           = useState('')
-  const [status, setStatus]         = useState<Status>('idle')
+  const [input, setInput] = useState('')
+  const [status, setStatus] = useState<Status>('idle')
   const [infinitive, setInfinitive] = useState('')
-  const [root, setRoot]             = useState('')
-  const [meaning, setMeaning]       = useState('')
+  const [root, setRoot] = useState('')
+  const [meaning, setMeaning] = useState('')
   const [derivations, setDerivations] = useState<DerivedForm[]>([])
-  const [expanded, setExpanded]     = useState<string>('Causative')
-  const [errorMsg, setErrorMsg]     = useState('')
+  const [expanded, setExpanded] = useState<string>('Causative')
+  const [errorMsg, setErrorMsg] = useState('')
   const inputRef = useRef<HTMLInputElement>(null)
 
   async function handleTranslate(verb?: string) {
@@ -208,8 +232,9 @@ export default function VerbBuilder() {
         <h2 className="text-lg font-semibold text-stone-800">Verb Builder</h2>
         <p className="text-sm text-stone-500">
           Enter any English verb. It will be translated to Буряад using the Google Translate
-          <span className="font-mono text-xs ml-1 bg-stone-100 px-1 rounded">bxr</span> (Buryat Russia)
-          API, then the root is extracted and all five voice derivations are applied automatically.
+          <span className="font-mono text-xs ml-1 bg-stone-100 px-1 rounded">bxr</span> (Buryat
+          Russia) API, then the root is extracted and all five voice derivations are applied
+          automatically.
         </p>
 
         {/* Search box */}
@@ -268,7 +293,10 @@ export default function VerbBuilder() {
         <AnimatePresence mode="wait">
           <motion.div
             key={infinitive}
-            variants={fade} initial="hidden" animate="show" transition={{ duration: 0.3 }}
+            variants={fade}
+            initial="hidden"
+            animate="show"
+            transition={{ duration: 0.3 }}
             className="space-y-6"
           >
             {/* Translation result header */}
@@ -294,7 +322,9 @@ export default function VerbBuilder() {
               {/* Morpheme highlight */}
               <div className="flex items-center gap-1.5 text-sm flex-wrap">
                 <span className="text-stone-400">Structure:</span>
-                <span className="bg-stone-600 text-white px-2 py-0.5 rounded font-buryat">{root}</span>
+                <span className="bg-stone-600 text-white px-2 py-0.5 rounded font-buryat">
+                  {root}
+                </span>
                 <span className="text-stone-500">+</span>
                 <span className="bg-buryat-500 text-white px-2 py-0.5 rounded font-mono">
                   {harmony === 'back' ? '-ха' : '-хэ'}
@@ -323,9 +353,9 @@ export default function VerbBuilder() {
 
             {/* Attribution */}
             <p className="text-xs text-stone-400 text-center">
-              Translation via Google Translate (bxr — Buryat Russia).
-              Morphology rules: Poppe (1960) · Skribnik &amp; Sesenova (2006).
-              Results are approximate — always verify with a native speaker.
+              Translation via Google Translate (bxr — Buryat Russia). Morphology rules: Poppe (1960)
+              · Skribnik &amp; Sesenova (2006). Results are approximate — always verify with a
+              native speaker.
             </p>
           </motion.div>
         </AnimatePresence>

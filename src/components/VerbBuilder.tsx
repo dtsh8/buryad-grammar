@@ -1,13 +1,14 @@
-import { useState, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useRef, useState } from 'react';
 import {
-  translateToBuryad,
-  extractRoot,
-  detectHarmony,
-  deriveAll,
   conjugate,
+  deriveAll,
+  detectHarmony,
+  extractRoot,
+  translateToBuryad,
   type DerivedForm,
 } from '../utils/verbMorphology';
+import { englishForms } from '../utils/englishForms';
 
 const fade = { hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0 } };
 
@@ -44,18 +45,16 @@ function HarmonyBadge({ harmony }: { harmony: 'back' | 'front' }) {
 
 function BaseParadigm({ root, meaning }: { root: string; meaning: string }) {
   const forms = conjugate(root);
-  // Simple past/gerund for English gloss
-  const pastEn = meaning.endsWith('e') ? meaning + 'd' : meaning + 'ed';
-  const ingEn = meaning.endsWith('e') ? meaning.slice(0, -1) + 'ing' : meaning + 'ing';
+  const ef = englishForms(meaning);
   const rows: Array<[string, string, string]> = [
     ['Present-Future', forms.prs, `→ ${meaning}s / will ${meaning}`],
-    ['Simple Past', forms.pst, `→ ${pastEn} (witnessed)`],
-    ['Evidential Past', forms.evidPst, `→ apparently ${pastEn}`],
+    ['Simple Past', forms.pst, `→ ${ef.past} (witnessed)`],
+    ['Evidential Past', forms.evidPst, `→ apparently ${ef.past}`],
     ['Habitual', forms.hab, `→ ${meaning}s (habitually)`],
     ['Negative', forms.neg, `→ does not ${meaning}`],
     ['Infinitive', forms.inf, `→ to ${meaning}`],
-    ['Simult. Converb', forms.simConv, `→ while ${ingEn}`],
-    ['Seq. Converb', forms.seqConv, `→ having ${pastEn}`],
+    ['Simult. Converb', forms.simConv, `→ while ${ef.gerund}`],
+    ['Seq. Converb', forms.seqConv, `→ having ${ef.pastPart}`],
   ];
   return (
     <div className="card space-y-3">

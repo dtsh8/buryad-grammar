@@ -38,13 +38,26 @@ function attach(root: string, suffix: string): string {
   return root + suffix;
 }
 
-// Sequential converb has 4 allomorphs — governed by BOTH frontness AND
-// roundedness of the last significant vowel (Skribnik 2003: §3.1.2):
-//   а  (back, unrounded)  → -аад   e.g.  яба  → ябаад
-//   о/у(back, rounded)    → -оод   e.g.  болхо→ болхоод
-//   э  (front, unrounded) → -ээд   e.g.  үлэ  → үлээд  ← reported bug
-//   ø/ü (front, rounded)  → -өөд   e.g.  өгэ  → өгөөд
-// Neutral и is transparent; scan past it to find the controlling vowel.
+// Returns true when epenthetic г must be inserted before the seq. converb suffix.
+// Two environments (Skribnik 2003):
+//   • Long-vowel root endings (аа оо уу ии ээ өө үү): угаа → угаагаад
+//   • Semivowel й (behaves like a long-vowel coda):   бай  → байгаад
+function needsEpentheticG(root: string): boolean {
+  if (root.endsWith('й')) return true;
+  if (root.length >= 2) {
+    const last = root[root.length - 1];
+    const prev = root[root.length - 2];
+    if (last === prev && /[аоуэөүи]/.test(last)) return true;
+  }
+  return false;
+}
+
+// Sequential converb — 4 vowel-harmonic allomorphs (Skribnik 2003: §3.1.2):
+//   а  back unrounded  → -аад    яба   → ябаад
+//   о/у back rounded   → -оод    болхо → болхоод
+//   э  front unrounded → -ээд    үлэ   → үлээд
+//   ø/ü front rounded  → -өөд    өгэ   → өгөөд
+// и / й / consonants are transparent — scan left past them.
 function seqConvSuffix(root: string): string {
   for (let i = root.length - 1; i >= 0; i--) {
     const c = root[i];
@@ -52,13 +65,16 @@ function seqConvSuffix(root: string): string {
     if (c === 'о' || c === 'у') return 'оод';
     if (c === 'э') return 'ээд';
     if (c === 'ø' || c === 'ö' || c === 'ö' || c === 'ө' || c === 'ү') return 'өөд';
-    // и / й / consonants are transparent — keep scanning left
   }
   return 'аад'; // default
 }
 
 export function conjugate(root: string) {
   const h = detectHarmony(root);
+  const suffix = seqConvSuffix(root);
+  // Long-vowel / й endings need epenthetic г (no absorption — г is a consonant).
+  // Short-vowel endings use attach() for vowel absorption.
+  const seqConv = needsEpentheticG(root) ? root + 'г' + suffix : attach(root, suffix);
   return {
     inf: root + suf(h, 'ха', 'хэ'),
     prs: root + suf(h, 'на', 'нэ'),
@@ -67,7 +83,7 @@ export function conjugate(root: string) {
     hab: root + suf(h, 'даг', 'дэг'),
     neg: root + suf(h, 'дагүй', 'дэгүй'),
     simConv: root + suf(h, 'жа', 'жэ'),
-    seqConv: attach(root, seqConvSuffix(root)),
+    seqConv,
   };
 }
 

@@ -1,156 +1,158 @@
 {
   "feature": "verb_negation",
-  "pattern": "Negation — Suffix -гүй",
+  "label": "Negation",
+  "description": "Suffix -гүй (negative verb form)",
+  "count": 30,
   "examples": [
     {
-      "sentence": "Түрэлнүүдэй үүдэн нээгдэнэ: түрэл гаралнуудтаяа найрлахагүй.",
-      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
-      "date": "",
-      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+гүй"
+      "sentence": "Ангуушадай табиан урьха хабхаан руу модо шулуу шэдэжэ аюулгүй болгоод, тэндэ табяатай мяхыень абажа эдижэрхидэг.",
+      "source": "https://burunen.ru/bur/news/society/147096-lger-domogto-taygyn-ezen/",
+      "date": ""
     },
     {
-      "sentence": "Энэ үдэр харгыда гарахада, урда зүг руу муу, бэшэ зүг руу гэмгүй.",
-      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
-      "date": "",
-      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+гүй"
+      "sentence": "Сүлөөгүй харюусалгатай ажалһаа амаржа, өөрынгөө дотор сэдьхэлэй Би гээшэтэеэ ниилэн холбогдожо, амарлингы тэнюунээр сэнгэдэг бэлэй.",
+      "source": "https://burunen.ru/bur/news/society/147306-zayaanayn-zamay-ayanshalganuud/",
+      "date": ""
     },
     {
-      "sentence": "Барилгын ажал хэхэгүй, агнахагүй, заргалдахагүй, замда гарахагүй.",
-      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
-      "date": "",
-      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+гүй"
+      "sentence": "Ниигэм     Үльгэр домогто тайгын эзэн - онуудта Орос гүрэн дотор хүрин баабгайнууд айхабтар олоороо хүнэй байрын газарнууд руу орожо, хаа-хаанагүй һүрөөтэй байдал тогтонхой.",
+      "source": "https://burunen.ru/bur/news/society/147096-lger-domogto-taygyn-ezen/",
+      "date": ""
     },
     {
-      "sentence": "Хэрэмэй үүдэн нээгдэнэ: гэрэй һуури татахагүй, гэр байра заһабарилхагүй, зөөлгэхэгүй.",
-      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
-      "date": "",
-      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+гүй"
-    },
-    {
-      "sentence": "Үхэлэй үүдэн нээгдэнэ: хүүр залахагүй.",
-      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
-      "date": "",
-      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+гүй"
-    },
-    {
-      "sentence": "Ниитын үүдэн нээгдэнэ: суглаа зарлахагүй, шухала уулзалга эмхидхэхэгүй.",
-      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
-      "date": "",
-      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+гүй"
-    },
-    {
-      "sentence": "Айлшанай үүдэн нээгдэнэ: айлшадые урихагүй.",
-      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
-      "date": "",
-      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+гүй"
+      "sentence": "Илангаяа абдар болон бэлмэрнүүдые урлахадаа, ехэ бэрхэ һэн, уһанай дуһалшье дуһахагүйгөөр бүтээхэ.",
+      "source": "https://burunen.ru/bur/news/society/147716-kh-rkh-dey-kh-ndetey-taabay/",
+      "date": ""
     },
     {
       "sentence": "Хулгана, гахай жэлтэндэ урагшагүй үдэр, һэргэг байха хэрэгтэй.",
-      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
-      "date": "",
-      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+гүй"
+      "source": "https://burunen.ru/bur/news/society/147454-buryaad-mongol-zurkhay-oktyabriin-5-aa-oktyabriin-11-bolotor/",
+      "date": ""
     },
     {
-      "sentence": "Наймаанай үүдэн нээгдэнэ: олзын хэрэг эрхилхэгүй.",
-      "source": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
-      "date": "",
-      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+гүй"
+      "sentence": "Хандамаанарай дүйсэн үдэр.-да гал тахихада, замда гарахада, хубсаһа хунар эсхэхэдэ, шэнэ гэр барихада, газар хахалхада, таряа ногоо тарихада, малай нооһо хиргахада, мал гаргахада, эд бараа, адуу мал худалдажа абахада, аралжаа наймаа хэхэдэ, наһа барагшын хэрэгүүдые бүтээхэдэ һайн. «Түрэлнүүдэй» үүдэн нээгдэнэ: түрэл гаралнуудтаяа найрлахагүй.",
+      "source": "https://burunen.ru/bur/news/society/147454-buryaad-mongol-zurkhay-oktyabriin-5-aa-oktyabriin-11-bolotor/",
+      "date": ""
     },
     {
-      "sentence": "Уданшьегүй намтарайнь шэглэлдэ һонин хуудаһан нээгдэһэн юм.",
-      "source": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
-      "date": "",
-      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+гүй"
+      "sentence": "Адуу малай үһэ нооһыень хайшалхые, эд бараа, адуу мал худалдажа абахые, дэгэл хубсаһа эсхэхые тэбшэхэ. «Бэриин» үүдэн нээгдэнэ: хурим түрэ наадахагүй.",
+      "source": "https://burunen.ru/bur/news/society/147594-buryaad-mongol-zurkhay-oktyabriin-12-oo-oktyabriin-18-bolotor/",
+      "date": ""
     },
     {
-      "sentence": "Ямаршье тушаалда ябаа һаа, шэнэ, һонин аргануудые хэрэглэхые оролдодог хүндэтэй хүтэлбэрилэгшэ ябаа. - Тэрэ үедэ совхоздомнай аргагүй бэрхэ директор Владимир Будажапович Соктоев хүдэлһэн.",
-      "source": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
-      "date": "",
-      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+гүй"
+      "sentence": "Энэ үдэр харгыда гарахада, баруун зүг руу муу, бэшэ тээшэ гэмгүй.",
+      "source": "https://burunen.ru/bur/news/society/147454-buryaad-mongol-zurkhay-oktyabriin-5-aa-oktyabriin-11-bolotor/",
+      "date": ""
     },
     {
-      "sentence": "Нэгэтэ янгинама үбэлэй үедэ коммунальна ажахыда авари боложо, гэрнүүд халуун уһагүй хохидоо.",
-      "source": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
-      "date": "",
-      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+гүй"
+      "sentence": "Энэмнай тон ехэ удхатай: физикын багшанарые «физики-лирики» гэжэ дэмы хэлэдэггүй.",
+      "source": "https://burunen.ru/bur/news/society/147744-uragshaa-minii-poezd-/",
+      "date": ""
     },
     {
-      "sentence": "Эгээл энэ сагта Цырен Цыренович унтаха нойргүй, одоол бүхы хүсэеэ элсүүлжэ, зориг ехэтэйгээр ажаллаһан.",
-      "source": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
-      "date": "",
-      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+гүй"
+      "sentence": "Тиихэдээ энэ ном багшын, хүмүүжүүлэгшын амар бэшэ мэргэжэлые шэлэһэн хүнүүдтэ туһатай байхань дамжаггүй.",
+      "source": "https://burunen.ru/bur/news/society/147744-uragshaa-minii-poezd-/",
+      "date": ""
     },
     {
-      "sentence": "Аза хүсэл, Хонгоодорой соло гэһэн фольклорно бүлгэмүүдтэ арбаад жэлдэ таһалгаряагүй ябана, дуу, хатараараа зоноо баясуулна.",
-      "source": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
-      "date": "",
-      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+гүй"
+      "sentence": "Ниитын үүдэн нээгдэнэ: суглаа зарлахагүй, шухала уулзалгада муу.",
+      "source": "https://burunen.ru/bur/news/society/146909-buryaad-mongol-zurkhay-sentyabriin-21-ee-27-bolotor/",
+      "date": ""
     },
     {
-      "sentence": "Иигэжэ сүлөө забдагүй, олондо ашатай үдэрнүүд һубарин үнгэрнэ.",
-      "source": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
-      "date": "",
-      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+гүй"
+      "sentence": "Тиимэээ эдэ бүгэдые бэелүүлхэ аргатай шэнэ ондоо анаа бодолтой, шэнэ үеын найруулагшад Буряад орондо мүнөө аргагүй хэрэгтэй. «Буряадай Станиславский» мүндэлхэ болтогой! – гэжэ Олег Юмов онсо тэмдэглэнэ.  ондо Олег Юмов Вильям Шекспирэй «Макбет» гэжэ зүжэгөөр «Максар.",
+      "source": "https://burunen.ru/bur/news/culture/147503-n-delshe-nayruulagsha/",
+      "date": ""
     },
     {
-      "sentence": "Гэбэшье олоной сэдьхэлдэ һайхан мэдэрэлэй үрэһэ тарижа, буурашагүй буян хэжэ ябаһандань дүтынгөө эдэ нүхэдтэ дүүрэн һайхан баяраа мэдүүлэе.",
-      "source": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
-      "date": "",
-      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+гүй"
+      "sentence": "Танигдаагүй газарта ошожо, хуби заяагаа элгэхэеэ айдаггүй.",
+      "source": "https://burunen.ru/bur/news/culture/147503-n-delshe-nayruulagsha/",
+      "date": ""
     },
     {
-      "sentence": "Түрэл нютагтаа хүсэ шадалаа зорюулхагүй аа, хүдөөдэ соёл урлалые хэн үндылгэхэб даа?» - гээн сэдьхэлээр Баяр Нимаевич ниислэл томо хотонууд руу тэгүүлээгүй.",
-      "source": "https://burunen.ru/bur/news/society/147843-bayar-shoydokov-buryaad-estradyn-domog/",
-      "date": "",
-      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+гүй"
+      "sentence": "Хүбүүнэй үүдэн нээгдэнэ: хүүгэдэй шухала хэрэг бүтээхэгүй, үһыень абахагүй, гэрһээ холо эльгээхэгүй.",
+      "source": "https://burunen.ru/bur/news/society/147154-buryaad-mongol-zurkhay-sentyabriin-28-aa-oktyabriin-4-bolotor/",
+      "date": ""
     },
     {
-      "sentence": "Мүн лэ дуунай амин үлдэ яажа зэдэлхэб гэжэ үдэр үнигүй студи соогоо нягтаар мүлидэг ажалынь - аранжировщигой зохёохы хүгжэм болоно. «Үетэн» студи -аа дээшэ аудиоальбом болон олон тоото видеоклипүүдые бэлдэжэ гаргаан юм.",
-      "source": "https://burunen.ru/bur/news/society/147843-bayar-shoydokov-buryaad-estradyn-domog/",
-      "date": "",
-      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+гүй"
+      "sentence": "Хэдышье хатуу сагай байгаашье һаа, гэдэһээ үлдэжэ ябаагүйбди.",
+      "source": "https://burunen.ru/bur/news/society/147680-d-rben-tegshe-beligtey-/",
+      "date": ""
     },
     {
-      "sentence": "Энэ болбол сагай ошоходо, сэгнэшэгүй баялиг, Хэжэнгэ нютагай нюур шарай, амиды түүхэ болон үлэхэ бүтээл мүн.",
-      "source": "https://burunen.ru/bur/news/society/147843-bayar-shoydokov-buryaad-estradyn-domog/",
-      "date": "",
-      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+гүй"
+      "sentence": "Тэрэ сагта малшадай үхибүүд багааа бороор үндыхын хажуугаар, «бээлэйн» зэргэээ ажалда хамалсажа, юумын дүршэл олодог, удхыень ойлгодог, ухаансар үбэлгэнөөр ехэ болодог байаниинь гайхалгүй.",
+      "source": "https://burunen.ru/bur/news/society/147771-ezhel-khoyer-z-rkhen/",
+      "date": ""
     },
     {
-      "sentence": "Баяр Нимаевичай сэсэн ухаан, бурханһаа заяатай хоморой бэлиг, дуундаа үнэншэ халуун сэдьхэлынь «Үетэн» хамталигые бүхэли  жэлэй туршада унтаршагүй эршэтэйгээр үргэжэ, хахад зуун жэлэй алтан дабаан дээрэ нэрэ түрэтэйгөөр гаргажа шадаа. «Үетэн» бүлгэм мүнөөшье зохёохы замдаа дүүрэн хүсэтэй, залуу сэдьхэлтэй урагшаа тэгүүлнэ.",
-      "source": "https://burunen.ru/bur/news/society/147843-bayar-shoydokov-buryaad-estradyn-domog/",
-      "date": "",
-      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+гүй"
+      "sentence": "Тэрэ талаар манай уласай гүрэн түрын арадуудта һайн жэшээ боломоор гэжэ тоосоогүй.",
+      "source": "https://burunen.ru/bur/news/society/147306-zayaanayn-zamay-ayanshalganuud/",
+      "date": ""
     },
     {
-      "sentence": "Нина Будаширеевнагай наанайнь хани нүхэр Цыренбал Жамсаранович багшын ажалай ветеран, гэртээ уудаггүй, баал ажалтай хүн.",
-      "source": "https://burunen.ru/bur/news/society/147842-buryaadayngaa-nere-rge-en-budasheryn-basagan/",
-      "date": "",
-      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+гүй"
+      "sentence": "Аймагай толгойлогшын ажал бага байдаггүй.",
+      "source": "https://burunen.ru/bur/news/society/147680-d-rben-tegshe-beligtey-/",
+      "date": ""
     },
     {
-      "sentence": "Суглуулбариин нэрэ уншаад байхада, нютагтаяа тааршагүй холбоо, эхэ газарай шэдитэ хүсэ шадал, уг гарбалай нангин утаан эли тодоор харагдана.",
-      "source": "https://burunen.ru/bur/news/society/147842-buryaadayngaa-nere-rge-en-budasheryn-basagan/",
-      "date": "",
-      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+гүй"
+      "sentence": "Үнинэй харалсаагүй нүхэд уулзан хүхилдэжэ, гүн сэдьхэлэйнгээ оёор Цыцыгээ амаршалан, суг хамта дуугаа зорюулжа дуулахадаа, сэдьхэлнай доһолоо, балшар наһан һанагдаа.",
+      "source": "https://burunen.ru/bur/news/society/147679-sedkheley-ayalgyn-dolgindo/",
+      "date": ""
     },
     {
-      "sentence": "Буряад арадай соёл болбосоролоор онирходог ондоошье яатан ябаха эрхэтэй. ри бэедээ элинсэг угайнгаа хэлэ бэшэг, түүхэ домог дамжуулха, буряад нэрыень мэдүүлхэ гээшэмнай сэгнэшэгүй гэртэхинэйшье, багшыншье буян.",
-      "source": "https://burunen.ru/bur/news/society/147842-buryaadayngaa-nere-rge-en-budasheryn-basagan/",
-      "date": "",
-      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+гүй"
+      "sentence": "Газаахи туаледэй нүхэ руу нэгэ хүлөөрөө унаһанаа мартадаггүйб.",
+      "source": "https://burunen.ru/bur/news/society/147306-zayaanayn-zamay-ayanshalganuud/",
+      "date": ""
     },
     {
-      "sentence": "Замда гарахые, эд бараа, адуу мал худалдажа абахые, найрлахые, гэр байра барихые, бэриин үйлэ бүтээхые тэбшэхэ. «Ниитын» үүдэн нээгдэнэ: суглаа зарлахагүй, шухала уулзалга эмхидхэхэгүй.",
-      "source": "https://burunen.ru/bur/news/society/147839-zurkhay-oktyabriin-21-garagay-4-buryaad-mongol-liteer-10/",
-      "date": "",
-      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+гүй"
+      "sentence": "Энэ үдэр харгыда гарахада, зүүн зүг руу муу, бэшэ тээшэ зүглэхэдэ гэмгүй.",
+      "source": "https://burunen.ru/bur/news/society/147594-buryaad-mongol-zurkhay-oktyabriin-12-oo-oktyabriin-18-bolotor/",
+      "date": ""
     },
     {
-      "sentence": "Данзановтанай аша хүбүүн Эдик угаа уанда хаяагүй, хүгшэн аба эжыгээ дууряагаа гээшэ.",
-      "source": "https://burunen.ru/bur/news/society/147777-t-re-en-aykhan-toontodoo/",
-      "date": "",
-      "matchedPattern": "[а-яёА-ЯЁүҮӨөһҼ]+гүй"
+      "sentence": "Дүй дүршэлтэй, бэрхэ эмшэн  гаран жэлэй хугасаа соо хэды олон зониие аргалжа, үдэр үни унтангүй ябаа гээшэб!",
+      "source": "https://burunen.ru/bur/news/society/147771-ezhel-khoyer-z-rkhen/",
+      "date": ""
+    },
+    {
+      "sentence": "Тэндэ болоһон элдэб янзын уршагта энеэдэтэй ушарнуудшье мартагдадаггүй.",
+      "source": "https://burunen.ru/bur/news/society/147306-zayaanayn-zamay-ayanshalganuud/",
+      "date": ""
+    },
+    {
+      "sentence": "Хотын транспорт ябадаггүй газарнуудта үмсын автобусуудай эзэдтэй харилсажа, баһа миинтээр ябаха арга олгогдоно.",
+      "source": "https://burunen.ru/bur/news/society/147711-seber-sedkheltey-na-atayshuul/",
+      "date": ""
+    },
+    {
+      "sentence": "Бэриин үйлэ бүтээхые, шэнэ гэр барихые, уһанай далан, хаалта бодхохые, адуу малай үһэ нооһыень хайшалхые, дэгэл хубсаһа эсхэхые, эд бараа, адуу мал худалдажа абахые, худалдахые тэбшэхэ. «Бэриин» үүдэн нээгдэнэ: бэриин хэрэг үйлэдэхэгүй.",
+      "source": "https://burunen.ru/bur/news/society/147454-buryaad-mongol-zurkhay-oktyabriin-5-aa-oktyabriin-11-bolotor/",
+      "date": ""
+    },
+    {
+      "sentence": "Бэлиг шадабарияа бэедээ нюугаад ябангүй, хүн зоноо, айл аймагаа баясуулжа, уяруулжа шадаха бэлигтэй дууша хүнүүдшье Соёл нютагтамнай олон даа!",
+      "source": "https://burunen.ru/bur/news/society/147771-ezhel-khoyer-z-rkhen/",
+      "date": ""
+    },
+    {
+      "sentence": "Баабгай гэжэ сэхэ нэрлэдэггүй һэн гэдэг, юундэб гэхэдэ, тайгын эзэн урдань хүн байан тула хүнэй хэлэ ойлгодог гэжэ манай элинсэгүүд этигэдэг байһан.",
+      "source": "https://burunen.ru/bur/news/society/147096-lger-domogto-taygyn-ezen/",
+      "date": ""
+    },
+    {
+      "sentence": "Мүн лэ: «Үлүүдэ нэгэшье шулуу хүдэлгэхэгүйе оролдообди.",
+      "source": "https://burunen.ru/bur/news/society/147710-chingis-khaanay-nderlig/",
+      "date": ""
+    },
+    {
+      "sentence": "Ажабайдалай хэдышье хатуу, шэрүүн байгаашье һаа, манай хүгшэн эжынэр хэдышье гасалан, шахардуу байдал үзөөшье һаа, зүрхэндөө дураяа, һайхан сэдьхэлээ алданагүй. - Олон үеын хүнүүдтэ хүгшэн эжынэр гээшэ бидэниие хүмүүжүүлһэн, аша зээнэртээ мээхэй, энхэргэн хүнүүд.",
+      "source": "https://burunen.ru/bur/news/culture/146911-oyn-bayaray-z-zheg-dey-marafon/",
+      "date": ""
+    },
+    {
+      "sentence": "Түрэлхидөөр харилсаха, хэшээлнүүдые үндэр дээдэ шатада үнгэргэхые шалгаха, классаа гадуур хүдэлмэридэ анхаралаа табиха ажал барагдашагүй ааб даа.",
+      "source": "https://burunen.ru/bur/news/society/147731-bagshyn-rgen-khargyda/",
+      "date": ""
     }
   ]
 }

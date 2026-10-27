@@ -1,6 +1,8 @@
 // ─── Buryad Verb Morphology Engine ────────────────────────────────────────
 // Sources: Skribnik (2003) Buryat · Poppe (1960) Buriat Grammar
 
+import { englishForms } from './englishForms.ts';
+
 export type Harmony = 'back' | 'front';
 
 const BACK_VOWELS = /[аоу]/;
@@ -187,12 +189,14 @@ export function deriveAll(baseRoot: string, baseMeaning: string): DerivedForm[] 
   const recipRoot = v ? baseRoot + suf(h, 'лса', 'лсэ') : baseRoot + suf(h, 'алса', 'элсэ');
   const coopRoot = v ? baseRoot + suf(h, 'лда', 'лдэ') : baseRoot + suf(h, 'алда', 'элдэ');
 
+  // Pre-compute correct English forms once — shared across all 5 example sentences
+  const ef = englishForms(baseMeaning);
+
   return [
     make(
       'Causative',
       'Үйлдүүлэгшэ',
       causRoot,
-      // Display suffix reflects the actual transformation applied:
       needsG ? suf(h, '-гуул', '-гүүл') : v ? suf(h, '-уул', '-үүл') : suf(h, '+уул', '+үүл'),
       `Cause or allow someone else to "${baseMeaning}".`,
       'make / let someone do',
@@ -214,7 +218,8 @@ export function deriveAll(baseRoot: string, baseMeaning: string): DerivedForm[] 
       {
         buryad: `Энэ ${conjugate(passRoot).prs}.`,
         gloss: `this ${passRoot}-PRS`,
-        translation: `This is (being) ${baseMeaning}ed.`,
+        // Use past participle, not naive base+ed
+        translation: `This is (being) ${ef.pastPart}.`,
       }
     ),
     make(

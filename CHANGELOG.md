@@ -1,3 +1,9 @@
+## [1.7.0](https://github.com/dtsh8/buryad-grammar/compare/v1.6.0...v1.7.0) (2026-10-28)
+
+### ✨ New Features
+
+* **corpus:** "found in the corpus" badges for generated forms ([d68927c](https://github.com/dtsh8/buryad-grammar/commit/d68927cae76b89ddde0a4fc356d945ccf320d233))
+
 ## [1.6.0](https://github.com/dtsh8/buryad-grammar/compare/v1.5.0...v1.6.0) (2026-10-28)
 
 ### ✨ New Features

@@ -1,3 +1,9 @@
+## [1.3.0](https://github.com/dtsh8/buryad-grammar/compare/v1.2.2...v1.3.0) (2026-10-28)
+
+### ✨ New Features
+
+* **ui:** linkable, accessible tabs and an app-wide accessibility pass ([a614904](https://github.com/dtsh8/buryad-grammar/commit/a61490406399ed8b5999e23576514d2642bf19da))
+
 ## [1.2.2](https://github.com/dtsh8/buryad-grammar/compare/v1.2.1...v1.2.2) (2026-10-28)
 
 ### 🐛 Bug Fixes

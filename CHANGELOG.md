@@ -1,3 +1,9 @@
+## [1.2.1](https://github.com/dtsh8/buryad-grammar/compare/v1.2.0...v1.2.1) (2026-10-28)
+
+### 🐛 Bug Fixes
+
+* **corpus:** remove burunen.ru content; link to the Buryat National Corpus ([96d2e0f](https://github.com/dtsh8/buryad-grammar/commit/96d2e0fa19c772ba44ad1a30ebee644deae3ccc7))
+
 ## [1.2.0](https://github.com/dtsh8/buryad-grammar/compare/v1.1.1...v1.2.0) (2026-10-28)
 
 ### ✨ New Features

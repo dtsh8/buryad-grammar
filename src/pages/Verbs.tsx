@@ -10,6 +10,7 @@ import {
 } from '../data/grammar';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import VerbBuilder from '../components/VerbBuilder';
+import CorpusExamples from '../components/CorpusExamples';
 
 const fade = { hidden: { opacity: 0, y: 14 }, show: { opacity: 1, y: 0 } };
 
@@ -256,6 +257,7 @@ function TenseTimeline() {
               ))}
             </div>
             <p className="text-sm text-stone-600 bg-white/50 rounded-lg p-2">{t.note}</p>
+            {t.corpusFeature && <CorpusExamples feature={t.corpusFeature} />}
           </motion.div>
         </AnimatePresence>
       </div>
@@ -450,6 +452,7 @@ function VoiceDerivation() {
               <p className="text-xs italic opacity-70">{d.example.derivedGloss}</p>
             </div>
           </div>
+          {d.corpusFeature && <CorpusExamples feature={d.corpusFeature} />}
         </div>
       ))}
 
@@ -578,6 +581,7 @@ function ConverbSection() {
                         <p className="text-sm italic text-stone-600">'{ex.translation}'</p>
                       </div>
                     ))}
+                    {cv.corpusFeature && <CorpusExamples feature={cv.corpusFeature} />}
                   </div>
                 </motion.div>
               )}

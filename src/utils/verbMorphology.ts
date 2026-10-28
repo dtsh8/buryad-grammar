@@ -109,10 +109,12 @@ export function conjugate(root: string) {
   const cls = getSufClass(root);
   const seqSuf = seqConvSuffix(root);
   const seqConv = needsEpentheticG(root) ? root + 'г' + seqSuf : attach(root, seqSuf);
-  // Peer imperative (same-age, requesting register): suffix -г
+  // Jussive / permissive mood: suffix -г
+  // Expresses "Let him/her/you do X" (Пусть…) — 2nd or 3rd person.
+  // Гэртээ байг! = "Let him stay home!" / "Just stay home!" (context-dependent)
   // Vowel-final and й-final roots: root + г  (яба→ябаг, бай→байг, оро→орог)
   // Consonant-final roots: root + аг/эг      (хүдэл→хүдэлэг)
-  const peerImp =
+  const jussive =
     endsInVowel(root) || root.endsWith('й')
       ? root + 'г'
       : root + suf(detectHarmony(root), 'аг', 'эг');
@@ -126,7 +128,7 @@ export function conjugate(root: string) {
     neg: root + sufC(cls, 'дагүй', 'догүй', 'дэгүй'),
     simConv: root + sufC(cls, 'жа', 'жо', 'жэ'),
     seqConv,
-    peerImp,
+    jussive,
   };
 }
 
@@ -147,7 +149,7 @@ export interface DerivedForm {
   neg: string;
   simConv: string;
   seqConv: string;
-  peerImp: string;
+  jussive: string;
   exampleSentence: { buryad: string; gloss: string; translation: string };
   color: string;
 }

@@ -568,14 +568,14 @@ const FORM_ROWS: Array<{
   { key: 'habitual', label: 'Habitual', category: 'Finite', color: 'text-stone-700' },
   { key: 'imperative', label: 'Imperative (direct)', category: 'Mood', color: 'text-red-700' },
   {
-    key: 'peerImperative',
-    label: 'Imperative (peer, -г)',
+    key: 'jussive',
+    label: 'Jussive / Permissive (-г)',
     category: 'Mood',
-    color: 'text-red-600',
+    color: 'text-orange-600',
   },
   {
     key: 'politeImperative',
-    label: 'Imperative (formal, -гты)',
+    label: 'Formal imperative (-гты)',
     category: 'Mood',
     color: 'text-red-400',
   },

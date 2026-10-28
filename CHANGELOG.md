@@ -1,3 +1,9 @@
+## [1.4.2](https://github.com/dtsh8/buryad-grammar/compare/v1.4.1...v1.4.2) (2026-10-28)
+
+### 🐛 Bug Fixes
+
+* **verbs:** flag unverified voice names; label Verb Builder voices as built by rule ([f1639e6](https://github.com/dtsh8/buryad-grammar/commit/f1639e63ddd592813161e8bd9ffdd2fe96b04e19))
+
 ## [1.4.1](https://github.com/dtsh8/buryad-grammar/compare/v1.4.0...v1.4.1) (2026-10-28)
 
 ### 🐛 Bug Fixes

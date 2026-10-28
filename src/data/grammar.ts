@@ -344,8 +344,8 @@ export const VERB_FORMS: VerbForm[] = [
   },
   {
     label: 'Conditional',
-    suffix: '-баа/-бол',
-    example: { verb: 'яба-', form: 'ябабол', translation: 'if (one) goes' },
+    suffix: '-бал/-бол/-бэл',
+    example: { verb: 'яба-', form: 'ябабал', translation: 'if (one) goes' },
     note: 'Protasis of conditional sentences (if-clause).',
   },
 ];
@@ -393,7 +393,7 @@ export const VERB_PARADIGMS: VerbParadigm[] = [
       negPast: 'ябаагүй',
       simultConv: 'ябажа',
       seqConv: 'ябаад',
-      conditional: 'ябабол',
+      conditional: 'ябабал',
       verbalNoun: 'ябадал',
       participle: 'ябадаг',
     },
@@ -602,7 +602,7 @@ export const CONVERBS: ConverbEntry[] = [
   },
   {
     label: 'Conditional',
-    suffix: '-бол / -баа',
+    suffix: '-бал / -бол / -бэл',
     semantics: 'Marks the if-clause; the other clause is the consequence.',
     englishParallel: 'English "if…"',
     color: 'bg-green-50 border-green-200',
@@ -613,7 +613,7 @@ export const CONVERBS: ConverbEntry[] = [
         translation: 'If it rains, we will stay home.',
       },
       {
-        buryad: 'Ябабол хэлэгты.',
+        buryad: 'Ябабал хэлэгты.',
         gloss: 'go-COND say-IMP.POL',
         translation: 'If you go, please tell (me).',
       },

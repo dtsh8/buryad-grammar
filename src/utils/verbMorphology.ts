@@ -18,9 +18,17 @@ function vowelOf(c: string): string | null {
   return IOTATED[c] ?? null;
 }
 
+// The vowel at position i for harmony purposes. The sequence юу (from и-stem + үү/уу, as in
+// эдюул-, барюул-) is spelled the same in front and back words, so it is transparent:
+// эдюулхэ, барюулха (Buryat National Corpus).
+function harmonyVowelAt(root: string, i: number): string | null {
+  if (root[i] === 'ю' || (root[i] === 'у' && root[i - 1] === 'ю')) return null;
+  return vowelOf(root[i]);
+}
+
 export function detectHarmony(root: string): Harmony {
   for (let i = root.length - 1; i >= 0; i--) {
-    const v = vowelOf(root[i]) ?? '';
+    const v = harmonyVowelAt(root, i) ?? '';
     if (BACK_VOWELS.test(v)) return 'back';
     if (FRONT_VOWELS.test(v)) return 'front';
   }
@@ -54,7 +62,7 @@ type SufClass = 'а' | 'о' | 'э';
 //   э/ө/ү → э-class
 function getSufClass(root: string): SufClass {
   for (let i = root.length - 1; i >= 0; i--) {
-    const c = vowelOf(root[i]);
+    const c = harmonyVowelAt(root, i);
     if (c === 'а' || c === 'у') return 'а'; // back unrounded + high back rounded
     if (c === 'о') return 'о'; // back rounded mid
     if (c && FRONT_VOWELS.test(c)) return 'э'; // any front vowel
@@ -122,8 +130,9 @@ function longVowelClass(root: string): LongVowel {
   // except a following я/е, which starts a new syllable (й + vowel).
   const nuclei: Array<{ v: string; long: boolean }> = [];
   let prev: string | null = null; // vowel of the previous letter, null after a consonant
-  for (const ch of root) {
-    const v = vowelOf(ch);
+  for (let i = 0; i < root.length; i++) {
+    const ch = root[i];
+    const v = harmonyVowelAt(root, i);
     if (v !== null && v === prev && ch !== 'я' && ch !== 'е') {
       nuclei[nuclei.length - 1].long = true;
     } else if (v !== null) {
@@ -220,6 +229,15 @@ export function conjugate(root: string): Conjugation {
 // rule, so only the cited stems are listed (corpus: абтаа, үгтэнэ, олдоно).
 const PASSIVE_STEMS: Record<string, string> = { аба: 'абта', үгэ: 'үгтэ', оло: 'олдо' };
 
+// Causatives that don't use -уул/-үүл (Buryat National Corpus): гаргаха 284, болгохо 300,
+// зогсоохо 14, бодхоохо 29; the regular forms гаруулха, болуулха, зогсуулха, бодуулха are 0.
+const CAUSATIVE_STEMS: Record<string, string> = {
+  гара: 'гарга',
+  боло: 'болго',
+  зогсо: 'зогсоо',
+  бодо: 'бодхоо',
+};
+
 // ─── Derivation rules ──────────────────────────────────────────────────────
 
 export interface DerivedForm extends Conjugation {
@@ -236,7 +254,8 @@ export interface DerivedForm extends Conjugation {
 export function deriveAll(baseRoot: string, baseMeaning: string): DerivedForm[] {
   const h = detectHarmony(baseRoot);
   const cls = getSufClass(baseRoot);
-  const v = endsInVowel(baseRoot);
+  // й behaves like a vowel before consonant-initial suffixes (гүй → гүйлдэхэ, BNC 29).
+  const v = endsInVowel(baseRoot) || baseRoot.endsWith('й');
   const needsG = needsEpentheticG(baseRoot);
 
   const make = (
@@ -260,20 +279,27 @@ export function deriveAll(baseRoot: string, baseMeaning: string): DerivedForm[] 
     ...conjugate(derivRoot),
   });
 
-  // Causative: suffix уул/үүл is vowel-initial.
-  // Rule depends on what the root ends in:
-  //   • short-vowel final (а/о/э/…): drop theme vowel, attach уул/үүл
-  //     яба → яб+уул = ябуул ✓  оро → ор+уул = оруул ✓
-  //   • long-vowel or й final: keep root, insert epenthetic г
-  //     угаа → угаа+г+уул = угаагуул ✓
-  //   • consonant final: attach directly
-  //     хүдэл → хүдэл+үүл = хүдэлүүл ✓
+  // Causative (Buryat National Corpus counts in brackets):
+  //   • listed stems take -га/-го/-оо (CAUSATIVE_STEMS: гарга-, болго-, зогсоо-, бодхоо-)
+  //   • short и: и + үүл → юул         эди → эдюул (33), бари → барюул (43)
+  //   • long vowel or й: -лга/-лго/-лгэ  һуу → һуулга (38), уу → уулга (16),
+  //                                      угаа → угаалга (3), бай → байлга (68), гүй → гүйлгэ (14)
+  //   • other short vowel: drop it + уул/үүл   яба → ябуул (241), оро → оруул (204)
+  //   • consonant final: + уул/үүл            хүдэл → хүдэлүүл
   const causVoiceSuffix = suf(h, 'уул', 'үүл');
-  const causRoot = needsG
-    ? baseRoot + 'г' + causVoiceSuffix // long vowel / й
-    : v
-      ? baseRoot.slice(0, -1) + causVoiceSuffix // short vowel: drop theme vowel
-      : baseRoot + causVoiceSuffix; // consonant final: direct
+  const causRoot =
+    CAUSATIVE_STEMS[baseRoot] ??
+    (endsInShortI(baseRoot)
+      ? baseRoot.slice(0, -1) + 'юул'
+      : needsG
+        ? baseRoot + sufC(cls, 'лга', 'лго', 'лгэ')
+        : endsInVowel(baseRoot)
+          ? baseRoot.slice(0, -1) + causVoiceSuffix
+          : baseRoot + causVoiceSuffix);
+  // Shown suffix: what follows the part shared with the base root (гара → гар|га).
+  let shared = 0;
+  while (shared < baseRoot.length && causRoot[shared] === baseRoot[shared]) shared++;
+  const causSuffix = (shared === baseRoot.length ? '+' : '-') + causRoot.slice(shared);
   // The remaining suffixes have short non-high vowels, so they follow the
   // same 3-way а/о/э class as inflection (оро → орогдо, not *орогда).
   // Passive: г-initial suffix гда/гдэ already provides the buffer consonant;
@@ -298,7 +324,7 @@ export function deriveAll(baseRoot: string, baseMeaning: string): DerivedForm[] 
       'Causative',
       'Үйлдүүлэгшэ',
       causRoot,
-      needsG ? suf(h, '-гуул', '-гүүл') : v ? suf(h, '-уул', '-үүл') : suf(h, '+уул', '+үүл'),
+      causSuffix,
       `Cause or allow someone else to "${baseMeaning}".`,
       'make / let someone do',
       'bg-amber-50 border-amber-300',

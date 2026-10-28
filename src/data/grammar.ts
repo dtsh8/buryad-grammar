@@ -227,7 +227,7 @@ export const CASES: GrammarCase[] = [
     english: 'Accusative',
     russian: 'Винительный',
     semanticRole: 'Direct object (definite)',
-    questions: ['Хэниие? (Whom?)', 'Юуниие? (What?)'],
+    questions: ['Хэниие? (Whom?)', 'Юуе? (What?)'],
     // Textbook pp. 33–34. A "stable" н stays (хүн → хүниие); an "unstable" one drops
     // (модон → модые). Which nouns have which н is lexical.
     suffix: {
@@ -264,11 +264,11 @@ export const CASES: GrammarCase[] = [
     english: 'Instrumental',
     russian: 'Орудный',
     semanticRole: 'Means / instrument / path',
-    questions: ['Юугаар? (With/by what?)', 'Яагаад? (How?)'],
+    questions: ['Юугээр? (With/by what?)', 'Яагаад? (How?)'],
     suffix: { afterConsonant: '-аар/-ээр/-оор', afterVowel: '-гаар/-гээр/-гоор' },
     examples: [
       { stem: 'гар', inflected: 'гараар', translation: 'by hand' },
-      { stem: 'галта тэрэгэ', inflected: 'галта тэрэгээр', translation: 'by train' },
+      { stem: 'галта тэргэ', inflected: 'галта тэргээр', translation: 'by train' },
       { stem: 'зам', inflected: 'замаар', translation: 'along the road' },
     ],
     colorClass: 'bg-orange-50 border-orange-200 text-orange-900',
@@ -542,12 +542,13 @@ export interface VerbDerivation {
 export const VERB_DERIVATIONS: VerbDerivation[] = [
   {
     label: 'Causative',
-    suffix: '-уул/-үүл / -га/-гэ',
+    suffix: '-уул/-үүл · -лга/-лгэ · -га/-го',
     buryad: 'Үйлдүүлэгшэ',
     meaning: 'Cause someone to do X',
     english: 'make/let someone do',
     color: 'bg-amber-50 border-amber-300 text-amber-900',
-    description: 'The causative suffix adds an argument — the causer. From "go" → "make go/send".',
+    description:
+      'The causative suffix adds an argument — the causer: ябаха "go" → ябуулха "send". Most stems take -уул/-үүл; stems ending in a long vowel or й take -лга/-лгэ (һууха → һуулгаха "seat", байха → байлгаха "keep"); и-stems give -юул (эдихэ → эдюулхэ "feed"); some verbs have their own form (гараха → гаргаха "take out", болохо → болгохо "make").',
     example: {
       base: 'ябаха',
       derived: 'ябуулха',

@@ -86,7 +86,7 @@ export default function Phonology() {
                       root: 'газар',
                       harmony: 'back (а)',
                       dat: 'газарта',
-                      ins: 'газаараар',
+                      ins: 'газараар',
                       tr: 'land',
                     },
                     { root: 'ном', harmony: 'back (о)', dat: 'номдо', ins: 'номоор', tr: 'book' },

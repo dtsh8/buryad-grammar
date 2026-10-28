@@ -67,6 +67,42 @@ Passive variants (p. 84): -гда after vowels (*тари → таригдаха
 has *хара → харагдаха* and *бари → баригдаха*, so the -да/-та stems are listed one by one in the
 engine instead of following a general rule.
 
+### Full check against the Buryat National Corpus (2026-10-28)
+
+Every Buryad word form in the app (450 forms in `src/` and `public/data/vocabulary.json`) and
+every form the Verb Builder generates for the vocabulary verbs (464) was looked up.
+
+Fixed, with BNC counts (wrong form → right form):
+
+| Where | Was | Now | Evidence |
+| ----- | --- | --- | -------- |
+| Vocabulary | *бид* "we" (Khalkha) | *бидэ* | 0 vs 2,127 |
+| Vocabulary | *муур* "cat" (Khalkha) | *миисгэй* | 0 vs 52 |
+| Vocabulary | *өрөө* "room" (Khalkha) | *таһалга* | 0 vs 356 |
+| Vocabulary | *шальһин* "wind" | *һалхин* | 0 vs 341 |
+| Vocabulary | *сонсохо* "hear/listen" (Khalkha) | *шагнаха* "listen" | 0 vs 115 (*дуулаха* "hear" 209 is already "sing") |
+| Phrases | *Уучлаарай* "sorry" (Khalkha) | *Хүлисэгты* | 0 vs 258 |
+| Phrases | *Таны нэрэн хэн бэ?*, *Минии нэрэн…* | *Танай нэрэ…*, *Минии нэрэ…* | *таны* 0, *танай* 1,440; *нэрэн* 2 ("lighting"), *нэрэ* 1,114 |
+| Phrases | *Би ойлгохогүйб* | *Би ойлгоногүйб* | 1 vs 116 |
+| Cases | *галта тэрэгэ(эр)* "train" | *галта тэргэ(эр)* | 1 vs 511 / 67 |
+| Cases | *Юугаар?* "with what?" | *Юугээр?* | 0 vs 121 |
+| Cases | *Юуниие?* "what (acc.)?" | *Юуе?* (textbook p. 33) | 2 vs 2 |
+| Phonology | *газаараар* (typo) | *газараар* | 0 vs 184 |
+| Verbs | *Босоод* "having got up" (Khalkha) | *Бодоод* | 0 vs 827 |
+| Engine | causative always -уул; -гуул after long vowels | -лга/-лгэ after long vowels and й, -юул for и-stems, listed stems | *һуулгаха* 38, *байлгаха* 68, *гүйлгэхэ* 14, *эдюулхэ* 33, *барюулха* 43, *гаргаха* 284, *болгохо* 300; *һуугуулха, гаруулха* 0 |
+| Engine | й-stems got a vowel before -гда/-лда/-лса (*гүйэлдэхэ*) | attached directly | *гүйлдэхэ* 29 |
+
+Confirmed as they were: *Сайн байна* (greeting, attested), *Баярлаа* (69; *баярлалаа* 0), *хэлыт*
+(70), *хариха* (41) with *харяад* (10).
+
+Not found but kept, because another source has them: *таиралсажа*, *шанаае* (textbook),
+*шагнагданхай*, *хэлэдэгбди* (news). Not found and **unverified**: the voice names
+*Үйлдүүлэгшэ, Эдлүүлэгшэ, Хэлсэлэй, Хамтаршалай* (C2).
+
+The Verb Builder applies every voice to every verb, so it also builds reciprocals, cooperatives
+and passives that no text uses (*унтагдаха* "be slept", *уншалдаха*). The suffixes are right;
+whether such a verb exists is lexical.
+
 **Still open for the native speaker:** whether the past forms differ in evidentiality (A1);
 what the literary -лай past (*Тогоошо ябалай*) means and whether anyone says it (A1);
 the Buryad names of the voices (C2); IPA of у/ү/ө and ж (C4, C5); speaker numbers (C7); the

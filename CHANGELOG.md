@@ -1,3 +1,9 @@
+## [1.8.2](https://github.com/dtsh8/buryad-grammar/compare/v1.8.1...v1.8.2) (2026-10-28)
+
+### 🐛 Bug Fixes
+
+* **layout:** keep the footer at the bottom of the screen on short pages ([b8c7649](https://github.com/dtsh8/buryad-grammar/commit/b8c7649d9b6c8dca14279b34ce529b1c8cead79b))
+
 ## [1.8.1](https://github.com/dtsh8/buryad-grammar/compare/v1.8.0...v1.8.1) (2026-10-28)
 
 ### 🐛 Bug Fixes

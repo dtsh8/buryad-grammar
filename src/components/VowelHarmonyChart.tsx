@@ -1,6 +1,8 @@
 import { Fragment } from 'react';
 import { VOWELS, VOWEL_HARMONY_PAIRS } from '../data/grammar';
 import SayButton from './SayButton';
+import Tooltip from './Tooltip';
+import { HARMONY_TIP } from '../data/harmonyTerms';
 
 const HARMONY_COLOR: Record<string, string> = {
   back: 'bg-amber-100 border-amber-300 text-amber-900',
@@ -25,21 +27,36 @@ export default function VowelHarmonyChart() {
             <div key={b} className="flex items-center gap-2">
               <div className="flex flex-col items-center">
                 <span className="text-3xl font-buryat text-amber-700">{b}</span>
-                <span className="text-xs text-stone-500">back</span>
+                <Tooltip
+                  text={HARMONY_TIP.back}
+                  className="text-xs text-stone-500 underline decoration-dotted underline-offset-2"
+                >
+                  back
+                </Tooltip>
               </div>
               <div className="flex flex-col items-center text-stone-500">
                 <span className="text-lg">⇄</span>
               </div>
               <div className="flex flex-col items-center">
                 <span className="text-3xl font-buryat text-mongol-700">{f}</span>
-                <span className="text-xs text-stone-500">front</span>
+                <Tooltip
+                  text={HARMONY_TIP.front}
+                  className="text-xs text-stone-500 underline decoration-dotted underline-offset-2"
+                >
+                  front
+                </Tooltip>
               </div>
             </div>
           ))}
           <div className="flex items-center gap-2">
             <div className="flex flex-col items-center">
               <span className="text-3xl font-buryat text-stone-600">и</span>
-              <span className="text-xs text-stone-500">neutral</span>
+              <Tooltip
+                text={HARMONY_TIP.neutral}
+                className="text-xs text-stone-500 underline decoration-dotted underline-offset-2"
+              >
+                neutral
+              </Tooltip>
             </div>
           </div>
         </div>

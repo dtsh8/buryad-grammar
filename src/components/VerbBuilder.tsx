@@ -14,6 +14,7 @@ import { useVocabulary } from '../hooks/useVocabulary';
 import AttestBadge from './AttestBadge';
 import Suffixed from './Suffixed';
 import Tooltip from './Tooltip';
+import { HARMONY_TIP } from '../data/harmonyTerms';
 import type { Lexeme } from '../data/vocabulary.types';
 
 const fade = { hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0 } };
@@ -78,9 +79,12 @@ async function resolveVerb(query: string, lexicon: Lexeme[]): Promise<Resolved> 
 
 function HarmonyBadge({ harmony }: { harmony: 'back' | 'front' }) {
   return (
-    <span className={`badge ${harmony === 'back' ? 'badge-amber' : 'badge-blue'}`}>
+    <Tooltip
+      text={HARMONY_TIP[harmony]}
+      className={`badge ${harmony === 'back' ? 'badge-amber' : 'badge-blue'}`}
+    >
       {harmony === 'back' ? 'Back harmony (а/о/у)' : 'Front harmony (э/ө/ү)'}
-    </span>
+    </Tooltip>
   );
 }
 

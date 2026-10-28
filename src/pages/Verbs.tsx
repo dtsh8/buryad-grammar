@@ -11,6 +11,7 @@ import {
 import VerbBuilder from '../components/VerbBuilder';
 import CorpusLink from '../components/CorpusLink';
 import Tooltip from '../components/Tooltip';
+import { HARMONY_TIP } from '../data/harmonyTerms';
 import SayButton from '../components/SayButton';
 import Tabs from '../components/Tabs';
 import { tabPanelProps, useTab, type TabDef } from '../hooks/useTab';
@@ -721,10 +722,13 @@ function Conjugator() {
                 </span>
                 <span className="text-stone-500 ml-2 italic">'{vp.meaning}'</span>
               </div>
-              <span
-                className={`badge ${vp.harmony === 'back' ? 'badge-amber' : 'badge-blue'} ml-auto`}
-              >
-                {vp.harmony} harmony
+              <span className="ml-auto">
+                <Tooltip
+                  text={HARMONY_TIP[vp.harmony]}
+                  className={`badge ${vp.harmony === 'back' ? 'badge-amber' : 'badge-blue'}`}
+                >
+                  {vp.harmony} harmony
+                </Tooltip>
               </span>
             </div>
             <div className="overflow-x-auto">

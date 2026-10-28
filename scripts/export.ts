@@ -42,7 +42,7 @@ const FEATURE_META: Record<string, { label: string; description: string }> = {
   case_dative:       { label: 'Dative-Locative case',   description: 'Suffix -да/-дэ/-до (location/direction)' },
   case_instrumental: { label: 'Instrumental case',      description: 'Suffix -аар/-ээр/-оор (means/path)' },
   case_comitative:   { label: 'Comitative case',        description: 'Suffix -тай/-тэй/-той (with/having)' },
-  case_ablative:     { label: 'Ablative case',          description: 'Suffix -hаа/-hэй/-hоо (from/than)' },
+  case_ablative:     { label: 'Ablative case',          description: 'Suffix -һаа/-һээ/-һоо/-һөө (from/than)' },
   verb_simple_past:  { label: 'Simple Past',            description: 'Suffix -ба/-бэ/-бо (direct evidence)' },
   verb_evidential:   { label: 'Evidential Past',        description: 'Suffix -лай/-лэй/-лой (inference/hearsay)' },
   verb_habitual:     { label: 'Habitual aspect',        description: 'Suffix -даг/-дэг/-дог (recurring action)' },
@@ -56,7 +56,7 @@ const FEATURE_META: Record<string, { label: string; description: string }> = {
 // ─── Stop-words excluded from vocabulary export ───────────────────────────
 // Very frequent grammatical particles that carry no standalone lexical value.
 const STOP_WORDS = new Set([
-  'гэжэ', 'гэhэн', 'болон', 'байна', 'байгаа', 'байха', 'юм', 'тиигэжэ',
+  'гэжэ', 'гэһэн', 'болон', 'байна', 'байгаа', 'байха', 'юм', 'тиигэжэ',
   'тиин', 'үшөө', 'бас', 'мүн', 'энэ', 'тэрэ', 'эдэ', 'тэдэ',
   'манай', 'таанай', 'хэн', 'юун', 'яагаад', 'тиимэ', 'үгы',
 ]);

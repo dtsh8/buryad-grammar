@@ -52,21 +52,21 @@ const RESET = process.argv.includes('--reset');
 // Buryad has no production-grade NLP library.  Regex over the 3-5 character
 // suffixes is 95%+ accurate for the forms that appear in a news corpus.
 
-const C = '[а-яёА-ЯЁ\u04AF\u04AE\u04E8\u04E9\u04BB\u04BC]+'; // Cyrillic + Buryad chars
+const C = '[а-яёА-ЯЁ\u04AF\u04AE\u04E8\u04E9\u04BB\u04BA]+'; // Cyrillic + Buryad chars
 
 const FEATURES: Array<{ id: string; label: string; patterns: RegExp[] }> = [
   { id: 'case_genitive',     label: 'Genitive case',               patterns: [new RegExp(`${C}(ай|эй|ой)\\s+${C}`), new RegExp(`${C}(ын|ийн)\\s+${C}`)] },
   { id: 'case_dative',       label: 'Dative-Locative case',        patterns: [new RegExp(`${C}(дэ|да|до|тэ|та|то)\\s`)] },
   { id: 'case_instrumental', label: 'Instrumental case',           patterns: [new RegExp(`${C}(аар|ээр|оор|гаар|гээр|гоор)\\s`)] },
   { id: 'case_comitative',   label: 'Comitative case',             patterns: [new RegExp(`${C}(тай|тэй|той)\\s`)] },
-  { id: 'case_ablative',     label: 'Ablative case',               patterns: [new RegExp(`${C}(\u04BBаа|\u04BBоо|\u04BBэй|\u04BBээ)`)] },
-  { id: 'verb_simple_past',  label: 'Simple Past',                 patterns: [new RegExp(`${C}(баа|бэ|бо)\\s`)] },
+  { id: 'case_ablative',     label: 'Ablative case',               patterns: [new RegExp(`${C}(\u04BBаа|\u04BBоо|\u04BBээ|\u04BBөө)`)] },
+  { id: 'verb_simple_past',  label: 'Simple Past',                 patterns: [new RegExp(`${C}(ба|бэ|бо)\\s`)] },
   { id: 'verb_evidential',   label: 'Evidential Past',             patterns: [new RegExp(`${C}(лай|лэй|лой)\\s`)] },
   { id: 'verb_habitual',     label: 'Habitual aspect',             patterns: [new RegExp(`${C}(даг|дэг|дог)\\s`)] },
   { id: 'verb_negation',     label: 'Negation (-гүй)',             patterns: [new RegExp(`${C}г\u04AF\u0439`)] },
   { id: 'converb_simult',    label: 'Simultaneous converb',        patterns: [new RegExp(`${C}(жа|жэ|жо)\\s+${C}`)] },
   { id: 'converb_seq',       label: 'Sequential converb',          patterns: [new RegExp(`${C}(аад|оод|ааб|ооб|ээд|\u04E9\u04E9д)\\s+${C}`)] },
-  { id: 'deriv_causative',   label: 'Causative voice',             patterns: [new RegExp(`${C}(уул|\u04AF\u04AFL)(ха|хэ|на|нэ|ба|бэ)`)] },
+  { id: 'deriv_causative',   label: 'Causative voice',             patterns: [new RegExp(`${C}(уул|\u04AF\u04AFл)(ха|хэ|на|нэ|ба|бэ)`)] },
   { id: 'deriv_passive',     label: 'Passive voice',               patterns: [new RegExp(`${C}(гда|гдэ)(на|нэ|ба|бэ|лай)`)] },
 ];
 
@@ -76,7 +76,7 @@ const FEATURES: Array<{ id: string; label: string; patterns: RegExp[] }> = [
 
 function splitSentences(text: string): string[] {
   return text
-    .split(/(?<=[.!?»])\s+(?=[А-ЯЁҮӨHА-Я\u04BB\u04BC\u04AE\u04B0])/)
+    .split(/(?<=[.!?»])\s+(?=[А-ЯЁ\u04AE\u04E8\u04BA])/)
     .map(s => s.trim())
     .filter(s =>
       s.length >= 25 &&
@@ -89,7 +89,7 @@ function splitSentences(text: string): string[] {
 // Returns lowercase Buryad words ≥3 characters.
 
 function tokenize(text: string): string[] {
-  return (text.match(/[а-яёА-ЯЁ\u04AF\u04AE\u04E8\u04E9\u04BB\u04BC]+/gu) ?? [])
+  return (text.match(/[а-яёА-ЯЁ\u04AF\u04AE\u04E8\u04E9\u04BB\u04BA]+/gu) ?? [])
     .map(w => w.toLowerCase())
     .filter(w => w.length >= 3);
 }

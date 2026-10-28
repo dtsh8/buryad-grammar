@@ -61,7 +61,7 @@ export const VOWELS: Vowel[] = [
     height: 'high',
     backness: 'back',
     rounded: true,
-    example: { word: 'уhан', meaning: 'water' },
+    example: { word: 'уһан', meaning: 'water' },
   },
   {
     letter: 'э',
@@ -131,7 +131,7 @@ export const CONSONANTS: Consonant[] = [
   { letter: 'ж', ipa: 'dʒ', place: 'postalveolar', manner: 'affricate', voiced: true },
   { letter: 'ш', ipa: 'ʃ', place: 'postalveolar', manner: 'fricative', voiced: false },
   { letter: 'х', ipa: 'x', place: 'velar', manner: 'fricative', voiced: false },
-  { letter: 'h', ipa: 'h', place: 'glottal', manner: 'fricative', voiced: false },
+  { letter: 'һ', ipa: 'h', place: 'glottal', manner: 'fricative', voiced: false },
   { letter: 'м', ipa: 'm', place: 'bilabial', manner: 'nasal', voiced: true },
   { letter: 'н', ipa: 'n', place: 'alveolar', manner: 'nasal', voiced: true },
   { letter: 'нг', ipa: 'ŋ', place: 'velar', manner: 'nasal', voiced: true },
@@ -202,9 +202,9 @@ export const CASES: GrammarCase[] = [
     russian: 'Дательно-местный',
     semanticRole: 'Direction / location / recipient',
     questions: ['Хэндэ? (To whom?)', 'Хаана? (Where?)'],
-    suffix: { afterConsonant: '-да/-дэ/-до', afterVowel: '-та/-тэ/-то' },
+    suffix: { afterConsonant: '-да/-дэ/-до · -та/-тэ/-то', afterVowel: '-да/-дэ/-до' },
     examples: [
-      { stem: 'гэр', inflected: 'гэртэ', translation: 'in/to the house' },
+      { stem: 'гэр', inflected: 'гэртэ', translation: 'in/to the house', note: '-тэ after р' },
       { stem: 'Улаан-Үдэ', inflected: 'Улаан-Үдэдэ', translation: 'in Ulan-Ude' },
       { stem: 'аха', inflected: 'ахада', translation: 'to (my) brother' },
     ],
@@ -266,15 +266,16 @@ export const CASES: GrammarCase[] = [
     english: 'Ablative',
     russian: 'Исходный',
     semanticRole: 'Origin / separation / comparison',
-    questions: ['Хэнhээ? (From whom?)', 'Хаанаhаа? (From where?)'],
-    suffix: { afterConsonant: '-hаа/-hэй/-hоо', afterVowel: '-hаа/-hэй/-hоо' },
+    questions: ['Хэнһээ? (From whom?)', 'Хаанаһаа? (From where?)'],
+    suffix: { afterConsonant: '-һаа/-һээ/-һоо/-һөө', afterVowel: '-һаа/-һээ/-һоо/-һөө' },
     examples: [
-      { stem: 'гэр', inflected: 'гэрhэй', translation: 'from the house' },
-      { stem: 'Москва', inflected: 'Москваhаа', translation: 'from Moscow' },
-      { stem: 'аха', inflected: 'ахаhаа', translation: 'from (my) brother; than my brother' },
+      { stem: 'гэр', inflected: 'гэрһээ', translation: 'from the house' },
+      { stem: 'Москва', inflected: 'Москваһаа', translation: 'from Moscow' },
+      { stem: 'аха', inflected: 'ахаһаа', translation: 'from (my) brother; than my brother' },
     ],
     colorClass: 'bg-teal-50 border-teal-200 text-teal-900',
-    analogy: 'Like Russian из/от/чем or English "from/than". Unique h- prefix (ejectivized).',
+    analogy:
+      'Like Russian из/от/чем or English "from/than". The suffix-initial һ is a glottal fricative from older *s (cf. Mongolian -аас).',
   },
 ];
 
@@ -342,7 +343,7 @@ export const VERB_FORMS: VerbForm[] = [
   },
   {
     label: 'Sequential Converb',
-    suffix: '-аад/-ооб/-ааб',
+    suffix: '-аад/-ээд/-оод/-өөд',
     example: { verb: 'яба-', form: 'ябаад', translation: 'having gone (then…)' },
     note: 'Prior completed action, then main clause follows.',
   },
@@ -451,7 +452,7 @@ export const VERB_PARADIGMS: VerbParadigm[] = [
     },
   },
   {
-    root: 'эдэ',
+    root: 'эдеэ',
     infinitive: 'эдеэхэ',
     meaning: 'to eat',
     harmony: 'front',
@@ -460,9 +461,9 @@ export const VERB_PARADIGMS: VerbParadigm[] = [
       simplePast: 'эдеэбэ',
       evidentialPast: 'эдеэлэй',
       habitual: 'эдидэг',
-      imperative: 'эдэ!',
-      jussive: 'эдэг!',
-      politeImperative: 'эдэгты',
+      imperative: 'эдеэ!',
+      jussive: 'эдеэг!',
+      politeImperative: 'эдеэгты',
       infinitive: 'эдеэхэ',
       negPresentFuture: 'эдидэгүй',
       negPast: 'эдеэгүй',
@@ -596,7 +597,7 @@ export const CONVERBS: ConverbEntry[] = [
   },
   {
     label: 'Sequential (Anterior)',
-    suffix: '-аад / -ооб / -ааб',
+    suffix: '-аад / -ээд / -оод / -өөд',
     semantics: 'Action fully completed before the main verb begins.',
     englishParallel: 'English "having done / after doing"',
     color: 'bg-amber-50 border-amber-200',
@@ -644,7 +645,7 @@ export const CONVERBS: ConverbEntry[] = [
   },
   {
     label: 'Purposive',
-    suffix: '-ха гэжэ / -ха гэhэн',
+    suffix: '-ха гэжэ / -ха гэһэн',
     semantics: 'Marks intention or purpose.',
     englishParallel: 'English "in order to / intending to"',
     color: 'bg-purple-50 border-purple-200',
@@ -672,7 +673,7 @@ export interface TenseEntry {
 export const TENSE_ENTRIES: TenseEntry[] = [
   {
     label: 'Simple Past',
-    buryad: 'Үнгэрhэн сагай хэлбэри',
+    buryad: 'Үнгэрһэн сагай хэлбэри',
     suffix: { back: '-ба', front: '-бэ' },
     timelinePosition: -2,
     evidentiality: 'direct',
@@ -685,7 +686,7 @@ export const TENSE_ENTRIES: TenseEntry[] = [
   },
   {
     label: 'Evidential Past',
-    buryad: 'Мэдэгдэhэн сагай хэлбэри',
+    buryad: 'Мэдэгдэһэн сагай хэлбэри',
     suffix: { back: '-лай', front: '-лэй' },
     timelinePosition: -2,
     evidentiality: 'indirect',
@@ -847,7 +848,7 @@ export const COMPARISONS: LangComparison[] = [
   { feature: 'Grammatical gender', buryad: 'No', mongolian: 'No', turkish: 'No', english: 'No' },
   {
     feature: 'Verb agreement',
-    buryad: 'None (SOV)',
+    buryad: 'Person/number (predicative suffixes: ябанаб, ябанаш)',
     mongolian: 'None',
     turkish: 'Person/number',
     english: 'Person/number',
@@ -890,10 +891,9 @@ export const AGGLUTINATION_EXAMPLES: AgglutinationChain[] = [
     steps: [
       { form: 'гэр', added: '∅', meaning: 'house (root)' },
       { form: 'гэр-нүүд', added: '-нүүд', meaning: 'houses (plural)' },
-      { form: 'гэрнүүдэй', added: '-эй', meaning: "houses'" },
-      { form: 'гэрнүүдhэй', added: '-hэй', meaning: 'from the houses' },
+      { form: 'гэрнүүдһээ', added: '-һээ', meaning: 'from the houses (ablative)' },
     ],
-    final: 'гэрнүүдhэй',
+    final: 'гэрнүүдһээ',
     translation: 'from the houses',
   },
   {

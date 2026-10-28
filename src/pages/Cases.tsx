@@ -123,7 +123,7 @@ const PARADIGM_FORMS: Array<{ case_: string; form: string }> = [
   { case_: 'Accusative', form: 'гэрые' },
   { case_: 'Instrumental', form: 'гэрээр' },
   { case_: 'Comitative', form: 'гэртэй' },
-  { case_: 'Ablative', form: 'гэрhэй' },
+  { case_: 'Ablative', form: 'гэрһээ' },
 ];
 
 export default function Cases() {

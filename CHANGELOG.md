@@ -1,3 +1,9 @@
+## [1.4.0](https://github.com/dtsh8/buryad-grammar/compare/v1.3.0...v1.4.0) (2026-10-28)
+
+### ✨ New Features
+
+* **audio:** play buttons for native-speaker pronunciation clips ([cdbf391](https://github.com/dtsh8/buryad-grammar/commit/cdbf391175d7b5fd85b70dcf57d8c6ce9b3bfa25))
+
 ## [1.3.0](https://github.com/dtsh8/buryad-grammar/compare/v1.2.2...v1.3.0) (2026-10-28)
 
 ### ✨ New Features

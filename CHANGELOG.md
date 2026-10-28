@@ -1,3 +1,9 @@
+## [1.4.1](https://github.com/dtsh8/buryad-grammar/compare/v1.4.0...v1.4.1) (2026-10-28)
+
+### 🐛 Bug Fixes
+
+* **content:** correct Buryad forms after a full Buryat National Corpus check ([c1bff6a](https://github.com/dtsh8/buryad-grammar/commit/c1bff6a08ee65a2da8d3f407881d89f262b05735))
+
 ## [1.4.0](https://github.com/dtsh8/buryad-grammar/compare/v1.3.0...v1.4.0) (2026-10-28)
 
 ### ✨ New Features

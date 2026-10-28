@@ -1,3 +1,9 @@
+## [1.8.0](https://github.com/dtsh8/buryad-grammar/compare/v1.7.0...v1.8.0) (2026-10-28)
+
+### ✨ New Features
+
+* **mobile:** bottom tab bar, Today panel, phone layouts for cases, practice and verbs ([2fe50d8](https://github.com/dtsh8/buryad-grammar/commit/2fe50d86f521f8f9aff40125a406cdabbe15d230))
+
 ## [1.7.0](https://github.com/dtsh8/buryad-grammar/compare/v1.6.0...v1.7.0) (2026-10-28)
 
 ### ✨ New Features

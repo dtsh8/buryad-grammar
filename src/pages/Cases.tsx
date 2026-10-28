@@ -5,6 +5,43 @@ import CorpusLink from '../components/CorpusLink';
 
 const fade = { hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } };
 
+// Suffix strings list rules separated by " · ", each a form plus an optional condition:
+// "-да after л, м, н · -та after other consonants" → [{form: "-да", when: "after л, м, н"}, …]
+function suffixRules(s: string): Array<{ form: string; when: string }> {
+  return s.split(' · ').map(rule => {
+    const [form, ...rest] = rule.trim().split(' ');
+    return { form, when: rest.join(' ') };
+  });
+}
+
+// Just the forms, for the compact case card: "-да / -та".
+function suffixForms(s: string): string {
+  return [...new Set(suffixRules(s).map(r => r.form))].join(' / ');
+}
+
+function SuffixRow({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3">
+      <span className="text-xs text-stone-500 sm:w-36 shrink-0">{label}</span>
+      <div className="flex flex-wrap gap-1.5 min-w-0">
+        {value === '—' ? (
+          <span className="text-sm text-stone-500 italic">no suffix</span>
+        ) : (
+          suffixRules(value).map(r => (
+            <span
+              key={r.form + r.when}
+              className="inline-flex flex-wrap items-baseline gap-1 bg-white/70 border border-stone-200 rounded-lg px-2 py-1 text-sm max-w-full"
+            >
+              <code className="font-buryat font-bold text-stone-800">{r.form}</code>
+              {r.when && <span className="text-stone-500 text-xs">{r.when}</span>}
+            </span>
+          ))
+        )}
+      </div>
+    </div>
+  );
+}
+
 function CaseCard({
   c,
   onClick,
@@ -21,13 +58,11 @@ function CaseCard({
         active ? c.colorClass + ' shadow-md' : 'bg-white border-stone-200 hover:border-stone-300'
       }`}
     >
-      <div className="flex items-start justify-between gap-2">
-        <div>
-          <p className="font-semibold text-stone-800">{c.english}</p>
-          <p className="text-sm font-buryat text-stone-500">{c.buryad}</p>
-        </div>
-        <span className="text-lg font-mono text-stone-400 shrink-0">{c.suffix.afterConsonant}</span>
-      </div>
+      <p className="font-semibold text-stone-800">{c.english}</p>
+      <p className="text-sm font-buryat text-stone-500">{c.buryad}</p>
+      <p className="mt-1 font-buryat text-sm text-stone-400 break-words">
+        {c.suffix.afterConsonant === '—' ? 'no suffix' : suffixForms(c.suffix.afterConsonant)}
+      </p>
       <p className="text-xs text-stone-500 mt-2">{c.semanticRole}</p>
     </button>
   );
@@ -43,21 +78,23 @@ function CaseDetail({ c }: { c: GrammarCase }) {
       transition={{ duration: 0.3 }}
       className={`rounded-2xl border-2 p-6 space-y-5 ${c.colorClass}`}
     >
-      <div className="flex items-start gap-4">
-        <div className="flex-1">
-          <h2 className="text-2xl font-bold text-stone-900">{c.english}</h2>
-          <p className="font-buryat text-lg text-stone-600">{c.buryad}</p>
-          <p className="text-sm text-stone-500">{c.russian}</p>
-        </div>
-        <div className="text-right">
-          <p className="text-xs text-stone-400 mb-0.5">Suffix</p>
-          <code className="text-xl font-bold font-mono text-stone-700">
-            {c.suffix.afterConsonant}
-          </code>
-          {c.suffix.afterVowel && (
-            <p className="text-xs text-stone-400 mt-1">after vowel: {c.suffix.afterVowel}</p>
-          )}
-        </div>
+      <div>
+        <h2 className="text-2xl font-bold text-stone-900">{c.english}</h2>
+        <p className="font-buryat text-lg text-stone-600">{c.buryad}</p>
+        <p className="text-sm text-stone-500">{c.russian}</p>
+      </div>
+
+      {/* Suffix rules */}
+      <div className="space-y-2">
+        <p className="text-xs font-semibold uppercase tracking-wide text-stone-500">Suffix</p>
+        {!c.suffix.afterVowel || c.suffix.afterVowel === c.suffix.afterConsonant ? (
+          <SuffixRow label="After any stem" value={c.suffix.afterConsonant} />
+        ) : (
+          <>
+            <SuffixRow label="After a consonant" value={c.suffix.afterConsonant} />
+            <SuffixRow label="After a vowel" value={c.suffix.afterVowel} />
+          </>
+        )}
       </div>
 
       {/* Questions */}

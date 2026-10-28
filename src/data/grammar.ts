@@ -734,7 +734,15 @@ export interface TenseEntry {
   label: string;
   buryad: string;
   suffix: { back: string; front: string };
-  timelinePosition: number; // -2 past..0 now..+2 future
+  // Where the form sits on the Tense System timeline (-3 long ago … 0 now … +2 future):
+  //   point     one event (-ба)               span      a stretch of time (-на: now → future)
+  //   repeated  recurring events (-даг)       reachesNow: the result or relevance lasts until now
+  timeline: {
+    kind: 'point' | 'span' | 'repeated';
+    from: number;
+    to?: number;
+    reachesNow?: boolean;
+  };
   aspectuality: 'perfective' | 'imperfective' | 'habitual' | 'n/a';
   examples: Array<{ form: string; translation: string }>;
   note: string;
@@ -748,11 +756,24 @@ export interface TenseEntry {
 // -һан PC.PST, -нхай PC.RES; the textbook (p. 67) counts -аа, -нхай, -һан as past participles.
 export const TENSE_ENTRIES: TenseEntry[] = [
   {
+    label: 'Resultative',
+    corpusQuery: '*нхай',
+    buryad: '—',
+    suffix: { back: '-нхай', front: '-нхэй / -нхой' },
+    timeline: { kind: 'point', from: -2.6, reachesNow: true },
+    aspectuality: 'perfective',
+    examples: [
+      { form: 'ерэнхэй', translation: '(he/she) came long ago' },
+      { form: 'болонхой', translation: 'has become' },
+    ],
+    note: 'An action finished well before now whose result still holds (textbook p. 67). Common in news text: болонхой, шагнагданхай "has been awarded".',
+  },
+  {
     label: 'Simple Past',
     corpusQuery: '*ба',
     buryad: 'Үнгэрһэн сагай хэлбэри',
     suffix: { back: '-ба', front: '-бэ' },
-    timelinePosition: -2,
+    timeline: { kind: 'point', from: -1.8 },
     aspectuality: 'perfective',
     examples: [
       { form: 'ябаба', translation: '(he/she/I) went' },
@@ -765,7 +786,7 @@ export const TENSE_ENTRIES: TenseEntry[] = [
     corpusQuery: '*һан',
     buryad: '—',
     suffix: { back: '-һан', front: '-һэн' },
-    timelinePosition: -2,
+    timeline: { kind: 'point', from: -1.5 },
     aspectuality: 'perfective',
     examples: [
       { form: 'ябаһан', translation: '(he/she) went; who went' },
@@ -778,7 +799,7 @@ export const TENSE_ENTRIES: TenseEntry[] = [
     corpusQuery: '*аа',
     buryad: '—',
     suffix: { back: '-аа', front: '-ээ / -өө' },
-    timelinePosition: -1,
+    timeline: { kind: 'point', from: -0.9, reachesNow: true },
     aspectuality: 'perfective',
     examples: [
       { form: 'ябаа', translation: '(he/she) went / has gone' },
@@ -787,24 +808,24 @@ export const TENSE_ENTRIES: TenseEntry[] = [
     note: 'Grammatically a participle used as a finite past: a past event relevant now. The most frequent past in the news corpus. Takes person endings (ябааб "I went", ябаабди "we went") and negates as ябаагүй.',
   },
   {
-    label: 'Resultative',
-    corpusQuery: '*нхай',
+    label: 'Progressive',
+    corpusQuery: '*жа',
     buryad: '—',
-    suffix: { back: '-нхай', front: '-нхэй / -нхой' },
-    timelinePosition: -2,
-    aspectuality: 'perfective',
+    suffix: { back: '-жа байна', front: '-жэ байна' },
+    timeline: { kind: 'point', from: 0 },
+    aspectuality: 'imperfective',
     examples: [
-      { form: 'ерэнхэй', translation: '(he/she) came long ago' },
-      { form: 'болонхой', translation: 'has become' },
+      { form: 'уншажа байна', translation: '(he/she) is reading right now' },
+      { form: 'хүдэлжэ байна', translation: '(he/she) is working right now' },
     ],
-    note: 'An action finished well before now whose result still holds (textbook p. 67). Common in news text: болонхой, шагнагданхай "has been awarded".',
+    note: 'Not a suffix but a phrase: the simultaneous converb -жа/-жэ/-жо plus байна "is". It is how Buryad says "right now, in progress": Дамба номоо уншажа байна "Damba is reading his book" (textbook p. 88). The present-future -на alone can also mean "now", but leaves it open.',
   },
   {
     label: 'Habitual',
     corpusQuery: '*даг',
     buryad: 'Заншалай хэлбэри',
     suffix: { back: '-даг', front: '-дэг' },
-    timelinePosition: 0,
+    timeline: { kind: 'repeated', from: -2.2, to: 1.6 },
     aspectuality: 'habitual',
     examples: [
       { form: 'ябадаг', translation: '(he/she) habitually goes / used to go' },
@@ -817,13 +838,13 @@ export const TENSE_ENTRIES: TenseEntry[] = [
     corpusQuery: '*на',
     buryad: 'Одоо / Ерээдүй сагай хэлбэри',
     suffix: { back: '-на', front: '-нэ' },
-    timelinePosition: 1,
+    timeline: { kind: 'span', from: 0, to: 2 },
     aspectuality: 'imperfective',
     examples: [
       { form: 'ябана', translation: '(he/she/I) go(es) / will go' },
       { form: 'уншана', translation: '(he/she/I) read(s) / will read' },
     ],
-    note: 'Single form covers present and future. Context disambiguates.',
+    note: 'One form for present and future: ябана "goes, is going, will go". Context decides; for "right now, in progress" Buryad adds байна: ябажа байна.',
   },
 ];
 

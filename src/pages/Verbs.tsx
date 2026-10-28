@@ -10,6 +10,7 @@ import {
 } from '../data/grammar';
 import VerbBuilder from '../components/VerbBuilder';
 import CorpusLink from '../components/CorpusLink';
+import TenseLanes from '../components/TenseLanes';
 import Tooltip from '../components/Tooltip';
 import { HARMONY_TIP } from '../data/harmonyTerms';
 import SayButton from '../components/SayButton';
@@ -184,42 +185,17 @@ function TenseTimeline() {
       <div className="card space-y-5">
         <h2 className="text-lg font-semibold text-stone-800">Tense System</h2>
 
-        {/* Timeline bar */}
-        <div className="relative pt-2 pb-6">
-          <div className="absolute top-5 left-0 right-0 h-0.5 bg-stone-200" />
-          <div className="flex justify-between">
-            {(['PAST', 'NOW', 'FUTURE'] as const).map(l => (
-              <span key={l} className="text-xs text-stone-500 font-semibold">
-                {l}
-              </span>
-            ))}
-          </div>
-          <div className="flex justify-around mt-2">
-            {TENSE_ENTRIES.map((te, i) => (
-              <button
-                key={te.label}
-                onClick={() => setSelected(i)}
-                aria-pressed={selected === i}
-                title={te.label}
-                aria-label={`${te.label} (${te.suffix.back})`}
-                className="flex flex-col items-center gap-1 group"
-              >
-                <div
-                  className={`w-4 h-4 rounded-full border-2 transition-all ${
-                    selected === i
-                      ? 'scale-150 bg-mongol-500 border-mongol-600'
-                      : 'bg-white border-stone-300 group-hover:border-stone-400'
-                  }`}
-                />
-                <span
-                  className={`text-xs font-medium transition-colors ${selected === i ? 'text-stone-800' : 'text-stone-500 group-hover:text-stone-600'}`}
-                >
-                  {te.suffix.back}
-                </span>
-              </button>
-            ))}
-          </div>
-        </div>
+        <p className="text-sm text-stone-500">
+          Buryad has no suffix that means only “now”: <span className="font-buryat">-на</span>{' '}
+          covers now and the future, and “right now, in progress” is the phrase{' '}
+          <span className="font-buryat">-жа байна</span>. Pick a row for details.
+        </p>
+
+        {/* Timeline: one row per tense, placed in time */}
+        <TenseLanes tenses={TENSE_ENTRIES} selected={selected} onSelect={setSelected} />
+        <p className="text-xs text-stone-500">
+          ● one event · ●— result or relevance lasting until now · ••• a habit · ▬ a stretch of time
+        </p>
 
         {/* Selected tense detail */}
         <AnimatePresence mode="wait">
@@ -249,7 +225,7 @@ function TenseTimeline() {
               ].map(row => (
                 <div key={row.label} className="bg-white/60 rounded-lg p-2">
                   <p className="text-xs text-stone-500">{row.label}</p>
-                  <p className="font-mono font-bold text-stone-800">{row.val}</p>
+                  <p className="font-buryat font-bold text-stone-800">{row.val}</p>
                 </div>
               ))}
             </div>

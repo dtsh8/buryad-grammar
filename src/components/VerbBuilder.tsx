@@ -12,6 +12,7 @@ import { englishForms } from '../utils/englishForms';
 import { findVerb, isBuryad, isInfinitive, primarySense } from '../utils/verbLexicon';
 import { useVocabulary } from '../hooks/useVocabulary';
 import AttestBadge from './AttestBadge';
+import Suffixed from './Suffixed';
 import type { Lexeme } from '../data/vocabulary.types';
 
 const fade = { hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0 } };
@@ -112,11 +113,19 @@ function BaseParadigm({ root, meaning }: { root: string; meaning: string }) {
           <tbody>
             {rows.map(([label, form, en]) => (
               <tr key={label} className="border-b border-stone-100">
-                <td className="py-1.5 pr-4 text-stone-500 w-44">{label}</td>
-                <td className="py-1.5 pr-4 font-buryat text-lg font-semibold text-stone-800">
-                  {form} <AttestBadge form={form} />
+                <td className="py-1.5 pr-3 sm:pr-4 text-stone-500 w-28 sm:w-44 align-top">
+                  {label}
+                  {/* Phones: the gloss sits under the label instead of in its own column */}
+                  {meaning && (
+                    <span className="sm:hidden block text-xs italic text-stone-400">{en}</span>
+                  )}
                 </td>
-                <td className="py-1.5 text-xs text-stone-500 italic">{meaning && en}</td>
+                <td className="py-1.5 pr-4 text-lg font-semibold text-stone-800">
+                  <Suffixed base={root} form={form} /> <AttestBadge form={form} />
+                </td>
+                <td className="hidden sm:table-cell py-1.5 text-xs text-stone-500 italic">
+                  {meaning && en}
+                </td>
               </tr>
             ))}
           </tbody>
@@ -291,12 +300,22 @@ export default function VerbBuilder() {
       {/* Input area */}
       <div className="card space-y-4">
         <h2 className="text-lg font-semibold text-stone-800">Verb Builder</h2>
-        <p className="text-sm text-stone-500">
+        {/* On phones the explanation folds away so the search box comes first. */}
+        <p className="hidden sm:block text-sm text-stone-500">
           Type an English verb or a Buryad infinitive. Verbs in the app’s vocabulary are used as
           they are. Anything else is sent to Google Translate, whose Buryad is often wrong, so those
           results are marked as unverified. The full paradigm and the four voice derivations are
           then built by rule.
         </p>
+        <details className="sm:hidden text-sm text-stone-500">
+          <summary className="cursor-pointer select-none text-buryat-700">How it works</summary>
+          <p className="mt-2">
+            Type an English verb or a Buryad infinitive. Verbs in the app’s vocabulary are used as
+            they are. Anything else is sent to Google Translate, whose Buryad is often wrong, so
+            those results are marked as unverified. The full paradigm and the four voice derivations
+            are then built by rule.
+          </p>
+        </details>
 
         {/* Search box */}
         <div className="flex gap-2">

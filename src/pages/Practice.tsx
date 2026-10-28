@@ -1,8 +1,10 @@
-import { useMemo, useRef, useState, type FormEvent } from 'react';
+import { useEffect, useMemo, useRef, useState, type FormEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { Check, X, ArrowRight, Lightbulb } from 'lucide-react';
 import SayButton from '../components/SayButton';
 import AttestBadge from '../components/AttestBadge';
+import Suffixed from '../components/Suffixed';
+import { saveLastPractice } from '../utils/lastPractice';
 import Tabs from '../components/Tabs';
 import { tabPanelProps, useTab, type TabDef } from '../hooks/useTab';
 import { useVocabulary } from '../hooks/useVocabulary';
@@ -152,9 +154,9 @@ function AnswerForm({
           autoCapitalize="off"
           spellCheck={false}
           placeholder="Type the form…"
-          className="flex-1 min-w-0 rounded-xl border border-stone-300 bg-white px-4 py-2.5 font-buryat text-lg read-only:bg-stone-50"
+          className="flex-1 min-w-0 rounded-xl border-2 sm:border border-stone-300 bg-white px-4 py-3 sm:py-2.5 font-buryat text-2xl sm:text-lg read-only:bg-stone-50"
         />
-        <div className="flex gap-2">
+        <div className="grid grid-cols-3 sm:flex gap-2">
           {SPECIAL_LETTERS.map(l => (
             <button
               key={l}
@@ -162,25 +164,25 @@ function AnswerForm({
               onClick={() => insert(l)}
               disabled={answered}
               aria-label={`Insert ${l}`}
-              className="w-11 rounded-xl border border-stone-300 bg-white font-buryat text-lg hover:bg-stone-100 disabled:opacity-40"
+              className="min-h-12 sm:min-h-0 sm:w-11 rounded-xl border border-stone-300 bg-white font-buryat text-2xl sm:text-lg hover:bg-stone-100 disabled:opacity-40"
             >
               {l}
             </button>
           ))}
-          <button
-            ref={next}
-            type="submit"
-            className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 rounded-xl bg-buryat-600 px-4 py-2.5 font-medium text-white hover:bg-buryat-700"
-          >
-            {answered ? (
-              <>
-                Next <ArrowRight size={16} aria-hidden="true" />
-              </>
-            ) : (
-              'Check'
-            )}
-          </button>
         </div>
+        <button
+          ref={next}
+          type="submit"
+          className="w-full sm:w-auto min-h-[54px] sm:min-h-0 inline-flex items-center justify-center gap-1.5 rounded-2xl sm:rounded-xl bg-buryat-600 px-4 py-2.5 text-lg sm:text-base font-semibold sm:font-medium text-white hover:bg-buryat-700"
+        >
+          {answered ? (
+            <>
+              Next <ArrowRight size={16} aria-hidden="true" />
+            </>
+          ) : (
+            'Check'
+          )}
+        </button>
       </div>
     </form>
   );
@@ -372,10 +374,18 @@ function CaseDrill({ items }: { items: CaseItem[] }) {
         <div className="space-y-2">
           {q.kind === 'produce' && <VerdictBanner verdict={verdict} answer={item.form} />}
           <p className="text-sm text-stone-600">
-            <span lang="bua" className="font-buryat font-semibold">
-              {item.form}
-            </span>{' '}
-            = {item.caseName}, “{item.translation}”.{item.generated && ' Built by rule.'} Suffix:{' '}
+            <Suffixed base={item.stem} form={item.form} className="font-semibold" /> ={' '}
+            {item.caseName}, “{item.translation}”.{item.generated && ' Built by rule.'}
+            {item.nStem === 'unstable' && !item.form.startsWith(item.stem) && (
+              <>
+                {' '}
+                <span lang="bua" className="font-buryat">
+                  {item.stem}
+                </span>{' '}
+                drops its <span className="font-buryat">н</span> in this case.
+              </>
+            )}{' '}
+            Suffix:{' '}
             <span lang="bua" className="font-buryat">
               {item.rule}
             </span>
@@ -394,6 +404,8 @@ function CaseDrill({ items }: { items: CaseItem[] }) {
 
 export default function Practice() {
   const [tab, setTab] = useTab(TABS);
+  // Remembered for the Continue card on the Today page
+  useEffect(() => saveLastPractice(tab), [tab]);
   const { data, loading, error } = useVocabulary();
   const verbs = drillVerbs(data);
   // Curated examples plus every vocabulary noun once the vocabulary has loaded.

@@ -4,12 +4,15 @@ import { LANGUAGE_META } from '../data/grammar';
 import ComparisonTable, { TypologyRadar } from '../components/ComparisonTable';
 import { Globe2, Users, BookMarked, Mic2, ArrowRight } from 'lucide-react';
 import { SECTIONS } from '../sections';
+import TodayPanel from '../components/TodayPanel';
 
 const fade = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } };
 
 export default function Home() {
   return (
-    <div className="max-w-6xl mx-auto px-4 py-10 space-y-14">
+    <div className="max-w-6xl mx-auto px-4 py-6 sm:py-10 space-y-14">
+      <TodayPanel />
+
       {/* Hero */}
       <motion.section
         variants={fade}

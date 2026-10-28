@@ -186,9 +186,9 @@ function TenseTimeline() {
         <h2 className="text-lg font-semibold text-stone-800">Tense System</h2>
 
         <p className="text-sm text-stone-500">
-          Buryad has no suffix that means only “now”: <span className="font-buryat">-на</span>{' '}
-          covers now and the future, and “right now, in progress” is the phrase{' '}
-          <span className="font-buryat">-жа байна</span>. The future alone is{' '}
+          The present is <span className="font-buryat">-на</span> (
+          <span className="font-buryat">ябана</span> “goes, is going”); “right now, in progress” is
+          the phrase <span className="font-buryat">-жа байна</span>. The future is{' '}
           <span className="font-buryat">-ха</span> (<span className="font-buryat">ябахаб</span> “I
           will go”). Pick a row for details.
         </p>
@@ -608,7 +608,7 @@ const FORM_ROWS: Array<{
   category: string;
   color: string;
 }> = [
-  { key: 'presentFuture', label: 'Present-Future', category: 'Finite', color: 'text-mongol-700' },
+  { key: 'presentFuture', label: 'Present', category: 'Finite', color: 'text-mongol-700' },
   { key: 'simplePast', label: 'Simple Past (-ба)', category: 'Finite', color: 'text-green-700' },
   { key: 'perfect', label: 'Perfect (-аа)', category: 'Finite', color: 'text-green-700' },
   {

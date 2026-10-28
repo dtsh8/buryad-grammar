@@ -340,10 +340,10 @@ export const VERB_FORMS: VerbForm[] = [
     note: 'Citation form; with auxiliary verbs; and, ending a sentence, the future tense: ябахаб "I will go" (see Tenses).',
   },
   {
-    label: 'Present-Future',
+    label: 'Present',
     suffix: '-на/-нэ/-но',
-    example: { verb: 'яба-', form: 'ябана', translation: '(I/he/she) go(es) / will go' },
-    note: 'Single form for present and future — context disambiguates.',
+    example: { verb: 'яба-', form: 'ябана', translation: '(I/he/she) go(es), is going' },
+    note: 'Present tense (textbook p. 28). The future is the -ха form: ябахаб "I will go".',
   },
   {
     label: 'Simple Past',
@@ -808,7 +808,7 @@ export const TENSE_ENTRIES: TenseEntry[] = [
     note: 'Grammatically a participle used as a finite past: a past event relevant now. The most frequent past in the news corpus. Takes person endings (ябааб "I went", ябаабди "we went") and negates as ябаагүй.',
   },
   {
-    label: 'Progressive',
+    label: 'Present Continuous',
     corpusQuery: '*жа',
     buryad: '—',
     suffix: { back: '-жа байна', front: '-жэ байна' },
@@ -818,7 +818,7 @@ export const TENSE_ENTRIES: TenseEntry[] = [
       { form: 'уншажа байна', translation: '(he/she) is reading right now' },
       { form: 'хүдэлжэ байна', translation: '(he/she) is working right now' },
     ],
-    note: 'Not a suffix but a phrase: the simultaneous converb -жа/-жэ/-жо plus байна "is". It is how Buryad says "right now, in progress": Дамба номоо уншажа байна "Damba is reading his book" (textbook p. 88). The present-future -на alone can also mean "now", but leaves it open.',
+    note: 'Not a suffix but a phrase: the simultaneous converb -жа/-жэ/-жо plus байна "is". It is how Buryad says "right now, in progress": Дамба номоо уншажа байна "Damba is reading his book" (textbook p. 88). Plain -на also covers "is going"; -жа байна makes "in progress" explicit. With a past auxiliary it is a past progressive: уншажа байба "was reading".',
   },
   {
     label: 'Habitual',
@@ -834,17 +834,17 @@ export const TENSE_ENTRIES: TenseEntry[] = [
     note: 'Recurring or characteristic action; negated as ябадаггүй. The progressive is a separate construction: -жа байна (хүдэлжэ байна "is working").',
   },
   {
-    label: 'Present-Future',
+    label: 'Present',
     corpusQuery: '*на',
-    buryad: 'Одоо / Ерээдүй сагай хэлбэри',
+    buryad: 'Одоо сагай хэлбэри',
     suffix: { back: '-на', front: '-нэ' },
-    timeline: { kind: 'span', from: 0, to: 2 },
+    timeline: { kind: 'span', from: -0.5, to: 0.5 },
     aspectuality: 'imperfective',
     examples: [
-      { form: 'ябана', translation: '(he/she/I) go(es) / will go' },
-      { form: 'уншана', translation: '(he/she/I) read(s) / will read' },
+      { form: 'ябана', translation: '(he/she) goes, is going' },
+      { form: 'уншанаб', translation: 'I read, I am reading' },
     ],
-    note: 'One form for present and future: ябана "goes, is going, will go". Context decides; for "right now, in progress" Buryad adds байна: ябажа байна.',
+    note: 'The present: морин ябана "the horse is going", бэшэнэб "I write" (textbook p. 28). In the Buryat National Corpus, actions after үглөөдэр "tomorrow" or хожом "later" take -ха (Үглөөдэр … гарахаб "Tomorrow I’ll go"); -на there is the speaker’s present state (һананаб "I think", найданаб "I hope"). To stress "in progress" Buryad adds байна: ябажа байна.',
   },
   {
     label: 'Future',

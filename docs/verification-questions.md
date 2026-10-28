@@ -114,6 +114,24 @@ because it takes person endings: 1sg *-хаб/-хэб/-хоб* 6,901 tokens (*е
 мартахагүйб». The app now has a Future tense, a Future column in the person table and a Future
 option in the conjugation drill.
 
+### -на is the present, not a present-future (2026-10-28)
+
+The textbook calls -на "Настоящее время" (p. 28: *морин ябана* "конь идёт", *бэшэнэб* "я
+пишу"). The app called it "Present-Future"; the corpus does not support that. Two-word BNC
+searches (time word, then a 1sg verb within 3–4 words):
+
+| Time word             | + *-наб*    | + *-хаб* |
+| --------------------- | ----------- | -------- |
+| *үглөөдэр* "tomorrow" | 5 sentences | 20       |
+| *хожом* "later"       | 6           | 11       |
+| *мүнөө* "now"         | 202         | 104      |
+
+The *-наб* hits after "tomorrow" and "later" are the speaker's present state (*һананаб* "I
+think", *найданаб* "I hope", *бэлдэжэ байнаб* "I am preparing"); the planned action itself is
+*-ха* (*Үглөөдэр Хойто-Ага гарахаб*). With *мүнөө* the *-хаб* hits are mostly modal ("what will
+come of it"). The app now calls -на "Present" and -жа байна "Present Continuous"; the latter
+also has a past, *-жа байба* "was …-ing" (1,367 sentences).
+
 ### Declension engine (2026-10-28)
 
 `src/utils/nounMorphology.ts` builds the six oblique cases from the textbook rules (pp. 31,
@@ -159,7 +177,9 @@ for each.
 5. *эди-* "eat" is a regular и-stem: *эдихэ, эдинэ, эдидэг, эдижэ, эдеэ, эдеэд*. The engine
    rule also gives *баряад, табяад, болёод*.
 6. Dative and accusative rules as in B5 and B6; case names as in C1.
-7. "Habitual / Progressive" relabelled "Habitual"; the progressive is *-жа байна*.
+7. "Habitual / Progressive" relabelled "Habitual"; the progressive (Present Continuous) is
+   *-жа байна*.
+   "Present-Future" -на relabelled "Present"; the future is -ха.
 8. Reflexive voice removed; passive -да/-та for *аба-, үгэ-, оло-*.
 9. Concessive: -ААшье һаа shown first, -башье as the bookish variant.
 

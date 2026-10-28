@@ -94,7 +94,7 @@ function BaseParadigm({ root, meaning }: { root: string; meaning: string }) {
   const forms = conjugate(root);
   const ef = englishForms(meaning || 'do');
   const rows: Array<[string, string, string]> = [
-    ['Present-Future', forms.prs, `→ ${ef.thirdPerson} / will ${meaning}`],
+    ['Present', forms.prs, `→ ${ef.thirdPerson}`],
     ['Perfect', forms.perf, `→ ${ef.past} / has ${ef.pastPart}`],
     ['Past Participle', forms.pstPtcp, `→ (who) ${ef.past}`],
     ['Simple Past', forms.pst, `→ ${ef.past}`],

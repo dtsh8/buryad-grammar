@@ -59,7 +59,7 @@ export interface ConjugationTense {
 
 // The finite forms that take person endings (Verbs page, "Person" tab).
 export const CONJUGATION_TENSES: ConjugationTense[] = [
-  { id: 'prs', label: 'Present-Future' },
+  { id: 'prs', label: 'Present' },
   { id: 'pst', label: 'Simple Past' },
   { id: 'perf', label: 'Perfect' },
   { id: 'inf', label: 'Future' }, // ябаха + ending: ябахаб 'I will go'

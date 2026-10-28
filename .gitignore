@@ -29,6 +29,10 @@ Thumbs.db
 # Playwright MCP session artifacts
 .playwright-mcp/
 
+# AI tool session directories
+.qwen/
+.copilot/
+
 # TypeScript incremental build info
 *.tsbuildinfo
 

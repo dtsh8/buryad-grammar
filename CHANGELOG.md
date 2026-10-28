@@ -1,3 +1,9 @@
+## [1.11.0](https://github.com/dtsh8/buryad-grammar/compare/v1.10.0...v1.11.0) (2026-10-28)
+
+### ✨ New Features
+
+* **phonology:** б ~[β] between vowels in back-vowel words ([633b232](https://github.com/dtsh8/buryad-grammar/commit/633b232e36b4b5bc84d08113e1930e3ed2e43dd1))
+
 ## [1.10.0](https://github.com/dtsh8/buryad-grammar/compare/v1.9.0...v1.10.0) (2026-10-28)
 
 ### ✨ New Features

@@ -1,3 +1,11 @@
+## [1.9.0](https://github.com/dtsh8/buryad-grammar/compare/v1.8.3...v1.9.0) (2026-10-28)
+
+### ✨ New Features
+
+* **ui:** add твердорядные / мягкорядные to the back/front tooltips ([c404637](https://github.com/dtsh8/buryad-grammar/commit/c4046378a8a6b4ce1c4e8b081d5eea37c8986639))
+* **ui:** tooltips explaining back, front and neutral vowels ([53f2948](https://github.com/dtsh8/buryad-grammar/commit/53f29481a65afa4e461f5fb9ca868affc77346d7))
+* **ui:** tooltips for the corpus, built-by-rule and unverified badges ([2eb7356](https://github.com/dtsh8/buryad-grammar/commit/2eb7356eefcc973c4e1c19c32fd3f9874222daeb))
+
 ## [1.8.3](https://github.com/dtsh8/buryad-grammar/compare/v1.8.2...v1.8.3) (2026-10-28)
 
 ### 🐛 Bug Fixes

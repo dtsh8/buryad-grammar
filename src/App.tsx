@@ -8,6 +8,7 @@ import Cases from './pages/Cases';
 import Verbs from './pages/Verbs';
 import WordOrder from './pages/WordOrder';
 import Vocabulary from './pages/Vocabulary';
+import Practice from './pages/Practice';
 import NotFound from './pages/NotFound';
 
 export default function App() {
@@ -24,6 +25,7 @@ export default function App() {
             <Route path="/verbs" element={<Verbs />} />
             <Route path="/word-order" element={<WordOrder />} />
             <Route path="/vocabulary" element={<Vocabulary />} />
+            <Route path="/practice" element={<Practice />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>

@@ -133,8 +133,8 @@ const GOLD: Array<{ root: string; note: string; forms: Partial<ReturnType<typeof
   },
   {
     root: 'таби',
-    note: 'и-stem (corpus табяад, табяа)',
-    forms: { seqConv: 'табяад', perf: 'табяа' },
+    note: 'и-stem (corpus табяа "put"; табяад in the corpus is the numeral "about fifty")',
+    forms: { perf: 'табяа' },
   },
   {
     root: 'боли',
@@ -168,13 +168,14 @@ describe('conjugate — gold forms', () => {
     expect(conjugate('хүдэл').jussive).toBe('хүдэлэг');
   });
 
-  it('resultative -нхай (textbook ерэнхэй, ошонхой; corpus болонхой, гаранхай, бэшэнхэй)', () => {
+  it('resultative -нхай (textbook ерэнхэй, ошонхой; corpus болонхой, гаранхай, бэшэнхэй, байнхай)', () => {
     expect(conjugate('ерэ').res).toBe('ерэнхэй');
     expect(conjugate('ошо').res).toBe('ошонхой');
     expect(conjugate('бол').res).toBe('болонхой');
     expect(conjugate('гара').res).toBe('гаранхай');
     expect(conjugate('бэшэ').res).toBe('бэшэнхэй');
     expect(conjugate('бари').res).toBe('баринхай');
+    expect(conjugate('бай').res).toBe('байнхай');
   });
 
   it('never produces three vowels in a row', () => {

@@ -192,9 +192,10 @@ export function conjugate(root: string): Conjugation {
   const perf = attachLong(root, '');
 
   // Resultative participle -нхай "has (long since) done" (textbook p. 67: ерэнхэй, ошонхой).
-  // Consonant-final roots insert the class vowel, as in the jussive (corpus: болонхой).
+  // Consonant-final roots insert the class vowel, as in the jussive (corpus: болонхой);
+  // й-final roots attach directly (corpus: байнхай).
   const resSuffix = sufC(cls, 'нхай', 'нхой', 'нхэй');
-  const res = endsInVowel(root) ? root + resSuffix : root + cls + resSuffix;
+  const res = endsInVowel(root) || root.endsWith('й') ? root + resSuffix : root + cls + resSuffix;
 
   return {
     inf: root + sufC(cls, 'ха', 'хо', 'хэ'),

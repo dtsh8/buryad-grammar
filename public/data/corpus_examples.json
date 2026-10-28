@@ -1,0 +1,1510 @@
+{
+  "source": "Буряад үнэн (burunen.ru)",
+  "generatedAt": "2026-10-28T11:16:52.135Z",
+  "articles": 201,
+  "sentences": 9350,
+  "words": 143154,
+  "features": {
+    "case_genitive": {
+      "label": "Genitive case",
+      "description": "-ын / -иин after vowels",
+      "total": 3372,
+      "examples": [
+        {
+          "sentence": "Ниигэм 25 oct 2026 201 Буряад-монгол зурхай октябриин 26-һаа ноябриин 1 болотор фото: Анна Огороднигой гэрэл зураг.",
+          "url": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+          "title": "Буряад-монгол зурхай октябриин 26-һаа ноябриин 1 болотор",
+          "match": "октябриин"
+        },
+        {
+          "sentence": "Октябриин 26, гарагай 2, буряад-монгол литээр 15.",
+          "url": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+          "title": "Буряад-монгол зурхай октябриин 26-һаа ноябриин 1 болотор",
+          "match": "Октябриин"
+        },
+        {
+          "sentence": "Нүүхые, дэгэл хубсаһа эсхэхые, адуу мал хүнгэлхые, урьһаар, займаар абахые, бусаахые, наһа барагшын, бэриин үйлэнүүдые бүтээхые тэбшэхэ.",
+          "url": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+          "title": "Буряад-монгол зурхай октябриин 26-һаа ноябриин 1 болотор",
+          "match": "барагшын"
+        },
+        {
+          "sentence": "Минии һанахада, энэ гэр бүлэ совет үеын һургаалтай, түүхэтэ 90-ээд онуудай эгээл хүндэ сагта түрэл аймагтаа харюусалгата тушаалнуудта хүдэлжэ, наһанай ехэ һургуули гараһан.",
+          "url": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+          "title": "Гүрэнэй ажалдашье, гүн бэлигэй далайдашье...",
+          "match": "үеын"
+        },
+        {
+          "sentence": "Гэр бүлэдөө Софья эгэшэтэй, Анатолий дүүтэй. 1973 ондо Хамниин дунда һургуули дүүргэжэ, совхоздоо хоёр жэлэй туршада механизатораар хүдэлөө.",
+          "url": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+          "title": "Гүрэнэй ажалдашье, гүн бэлигэй далайдашье...",
+          "match": "Хамниин"
+        },
+        {
+          "sentence": "Саашанхи замынь энэл нэрэтэй солотой Хамниин совхозтой холбоотой.",
+          "url": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+          "title": "Гүрэнэй ажалдашье, гүн бэлигэй далайдашье...",
+          "match": "Хамниин"
+        },
+        {
+          "sentence": "Энэ хадаа Красносельско-Ропшинска операциин үедэ управлениин буудагша байһан Буда Циндинович эдэ шагналнуудта хүртөө бэлэй.",
+          "url": "https://burunen.ru/bur/news/society/147851-khitad-kheleney-erkhim-bagsha/",
+          "title": "Хитад хэлэнэй эрхим багша",
+          "match": "операциин"
+        },
+        {
+          "sentence": "Холходоев дайнда алдалан унаа: Выборгын муниципальна район, Выборг хото, 4 километр, 84-дэхи участок, 33-дахи хүүр, Ленинградска шоссе.",
+          "url": "https://burunen.ru/bur/news/society/147851-khitad-kheleney-erkhim-bagsha/",
+          "title": "Хитад хэлэнэй эрхим багша",
+          "match": "Выборгын"
+        },
+        {
+          "sentence": "Хүреэлэлгын Ленинградай дурасхаалай ном соо тэрэнэй нэрэ оронхой юм.",
+          "url": "https://burunen.ru/bur/news/society/147851-khitad-kheleney-erkhim-bagsha/",
+          "title": "Хитад хэлэнэй эрхим багша",
+          "match": "Хүреэлэлгын"
+        },
+        {
+          "sentence": "Студиин нэгэ онсо гайхамшаг бүтээл гэбэл — Хэжэнгын аймагай бүхы нютаг тосхонуудта зорюулһан тусхай дуунууд болон уран видеоклипүүд бэлдэгдээ.",
+          "url": "https://burunen.ru/bur/news/society/147843-bayar-shoydokov-buryaad-estradyn-domog/",
+          "title": "Баяр Шойдоков — буряад эстрадын домог",
+          "match": "Студиин"
+        },
+        {
+          "sentence": "Шойдоковой); «Эрхим дуун» номинацида II шатын лауреадай диплом— «Нүхэдни», 2023 он (үгэнь - Г.",
+          "url": "https://burunen.ru/bur/news/society/147843-bayar-shoydokov-buryaad-estradyn-domog/",
+          "title": "Баяр Шойдоков — буряад эстрадын домог",
+          "match": "шатын"
+        },
+        {
+          "sentence": "Эдэ шагналнууд — буряад дуунда зорюулагдаһан олон жэлэй аглаг ажалай багахан лэ хубиин гэршэ юм.",
+          "url": "https://burunen.ru/bur/news/society/147843-bayar-shoydokov-buryaad-estradyn-domog/",
+          "title": "Баяр Шойдоков — буряад эстрадын домог",
+          "match": "хубиин"
+        }
+      ]
+    },
+    "case_dative": {
+      "label": "Dative-locative case",
+      "description": "-да / -та after a consonant",
+      "total": 3847,
+      "examples": [
+        {
+          "sentence": "Амгалан тайбанай, баялигай, малгайн, гуталай, хубсаһанай хэшэг даллага абахада; гахай, хонин, туулай жэлтэй хүнүүдтэ хии мориёо хиидхэхэдэ, һайн үдэр.",
+          "url": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+          "title": "Буряад-монгол зурхай октябриин 26-һаа ноябриин 1 болотор",
+          "match": "хүнүүдтэ"
+        },
+        {
+          "sentence": "Нохой жэлтэндэ һанаһанаа бүтээхэдэ урагшатай, хонин жэлтэнэй буянай гараг.",
+          "url": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+          "title": "Буряад-монгол зурхай октябриин 26-һаа ноябриин 1 болотор",
+          "match": "жэлтэндэ"
+        },
+        {
+          "sentence": "Барилгын ажал хэхэгүй, агнахагүй, заргалдахагүй, замда гарахагүй.",
+          "url": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+          "title": "Буряад-монгол зурхай октябриин 26-һаа ноябриин 1 болотор",
+          "match": "замда"
+        },
+        {
+          "sentence": "Минии һанахада, энэ гэр бүлэ совет үеын һургаалтай, түүхэтэ 90-ээд онуудай эгээл хүндэ сагта түрэл аймагтаа харюусалгата тушаалнуудта хүдэлжэ, наһанай ехэ һургуули гараһан.",
+          "url": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+          "title": "Гүрэнэй ажалдашье, гүн бэлигэй далайдашье...",
+          "match": "хүндэ"
+        },
+        {
+          "sentence": "Цырен Цыренов 1956 ондо Нурта нютагта түрэһэн, хожомоо Бүргэ руу буужа, хоёрдохи нютагтай болоо.",
+          "url": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+          "title": "Гүрэнэй ажалдашье, гүн бэлигэй далайдашье...",
+          "match": "Нурта"
+        },
+        {
+          "sentence": "Уданшьегүй намтарайнь шэглэлдэ һонин хуудаһан нээгдэһэн юм.",
+          "url": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+          "title": "Гүрэнэй ажалдашье, гүн бэлигэй далайдашье...",
+          "match": "шэглэлдэ"
+        },
+        {
+          "sentence": "Екатерина Будаевна Үбэр Байгалай хизаарта, Угдаан нютагта түрэһэн юм.",
+          "url": "https://burunen.ru/bur/news/society/147851-khitad-kheleney-erkhim-bagsha/",
+          "title": "Хитад хэлэнэй эрхим багша",
+          "match": "хизаарта"
+        },
+        {
+          "sentence": "Дайшалхы габьяагай түлөө, Ленинградые хамгаалһанай түлөө гэһэн медальнуудта красноармеец Буда Холходоев эрэлхэг зоригтойгоор дайсантай тэмсэһэндээ хүртэһэн байха юм.",
+          "url": "https://burunen.ru/bur/news/society/147851-khitad-kheleney-erkhim-bagsha/",
+          "title": "Хитад хэлэнэй эрхим багша",
+          "match": "медальнуудта"
+        },
+        {
+          "sentence": "Энэ хадаа Красносельско-Ропшинска операциин үедэ управлениин буудагша байһан Буда Циндинович эдэ шагналнуудта хүртөө бэлэй.",
+          "url": "https://burunen.ru/bur/news/society/147851-khitad-kheleney-erkhim-bagsha/",
+          "title": "Хитад хэлэнэй эрхим багша",
+          "match": "шагналнуудта"
+        },
+        {
+          "sentence": "Хэжэнгэдээ үлэжэ, арадай бэлигтэниие нээхэ, эхэ хэлэеэ хүгжөөхэ хэрэгтэ бэеэ зорюулһан түүхэтэй.",
+          "url": "https://burunen.ru/bur/news/society/147843-bayar-shoydokov-buryaad-estradyn-domog/",
+          "title": "Баяр Шойдоков — буряад эстрадын домог",
+          "match": "хэрэгтэ"
+        },
+        {
+          "sentence": "Студиин нэгэ онсо гайхамшаг бүтээл гэбэл — Хэжэнгын аймагай бүхы нютаг тосхонуудта зорюулһан тусхай дуунууд болон уран видеоклипүүд бэлдэгдээ.",
+          "url": "https://burunen.ru/bur/news/society/147843-bayar-shoydokov-buryaad-estradyn-domog/",
+          "title": "Баяр Шойдоков — буряад эстрадын домог",
+          "match": "тосхонуудта"
+        },
+        {
+          "sentence": "Арад зондо хүгжэмэй дали бэлэглэгшэ Баяр Нимаевич «Зүрхэнэй дуун» ба «Алтан хараасгай» гэһэн хоёр томо түсэлые зохёон байгуулһан.",
+          "url": "https://burunen.ru/bur/news/society/147843-bayar-shoydokov-buryaad-estradyn-domog/",
+          "title": "Баяр Шойдоков — буряад эстрадын домог",
+          "match": "зондо"
+        }
+      ]
+    },
+    "case_accusative": {
+      "label": "Accusative case",
+      "description": "-ые / -иие / -гые",
+      "total": 2060,
+      "examples": [
+        {
+          "sentence": "Нүүхые, дэгэл хубсаһа эсхэхые, адуу мал хүнгэлхые, урьһаар, займаар абахые, бусаахые, наһа барагшын, бэриин үйлэнүүдые бүтээхые тэбшэхэ.",
+          "url": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+          "title": "Буряад-монгол зурхай октябриин 26-һаа ноябриин 1 болотор",
+          "match": "Нүүхые"
+        },
+        {
+          "sentence": "Замда гарахые, тушаалда томилхые, гэр барихые, дэгэл хубсаһа эсхэхые, эд бараа, адуу мал худалдан абахые, худалдахые, наһа барагшын хэрэгүүдые бүтээхые тэбшэхэ.",
+          "url": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+          "title": "Буряад-монгол зурхай октябриин 26-һаа ноябриин 1 болотор",
+          "match": "гарахые"
+        },
+        {
+          "sentence": "Морин, могой жэлтэн һэргэг байхые оролдог.",
+          "url": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+          "title": "Буряад-монгол зурхай октябриин 26-һаа ноябриин 1 болотор",
+          "match": "байхые"
+        },
+        {
+          "sentence": "Иигэжэ Знамя труда гэһэн аймагай сониндо сурбалжалагшаар, таһагые даагшаар, редакторай орлогшоор хүдэлөө.",
+          "url": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+          "title": "Гүрэнэй ажалдашье, гүн бэлигэй далайдашье...",
+          "match": "таһагые"
+        },
+        {
+          "sentence": "Минии үетэн, залуу мэргэжэлтэдые олон юумэндэ һургаһан.",
+          "url": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+          "title": "Гүрэнэй ажалдашье, гүн бэлигэй далайдашье...",
+          "match": "мэргэжэлтэдые"
+        },
+        {
+          "sentence": "Шэнэ барилганууд бодоо, совхозоймнай соло суу дэлгэрээ, ходо түрүүшүүлэй зэргэдэ ябаабди, - гэжэ Цырен Цыренович тэрэ габшагай үеые дулааханаар дурсан хөөрэжэ байгаа һэн.",
+          "url": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+          "title": "Гүрэнэй ажалдашье, гүн бэлигэй далайдашье...",
+          "match": "үеые"
+        },
+        {
+          "sentence": "Дайшалхы габьяагай түлөө, Ленинградые хамгаалһанай түлөө гэһэн медальнуудта красноармеец Буда Холходоев эрэлхэг зоригтойгоор дайсантай тэмсэһэндээ хүртэһэн байха юм.",
+          "url": "https://burunen.ru/bur/news/society/147851-khitad-kheleney-erkhim-bagsha/",
+          "title": "Хитад хэлэнэй эрхим багша",
+          "match": "Ленинградые"
+        },
+        {
+          "sentence": "Түрэл нютагтаа хүсэ шадалаа зорюулхагүй һаа, хүдөөдэ соёл урлалые хэн үндылгэхэб даа?» - гэһэн сэдьхэлээр Баяр Нимаевич ниислэл томо хотонууд руу тэгүүлээгүй.",
+          "url": "https://burunen.ru/bur/news/society/147843-bayar-shoydokov-buryaad-estradyn-domog/",
+          "title": "Баяр Шойдоков — буряад эстрадын домог",
+          "match": "урлалые"
+        },
+        {
+          "sentence": "Хэжэнгэдээ үлэжэ, арадай бэлигтэниие нээхэ, эхэ хэлэеэ хүгжөөхэ хэрэгтэ бэеэ зорюулһан түүхэтэй.",
+          "url": "https://burunen.ru/bur/news/society/147843-bayar-shoydokov-buryaad-estradyn-domog/",
+          "title": "Баяр Шойдоков — буряад эстрадын домог",
+          "match": "бэлигтэниие"
+        },
+        {
+          "sentence": "Шүлэгэй уран үгые торгон хүгжэмтэй тааруулхадаа, тэрэ суута уран зохёолшодтой нягта харилсаа холбоотой хүдэлдэг.",
+          "url": "https://burunen.ru/bur/news/society/147843-bayar-shoydokov-buryaad-estradyn-domog/",
+          "title": "Баяр Шойдоков — буряад эстрадын домог",
+          "match": "үгые"
+        },
+        {
+          "sentence": "Хальмагяһанай Эрдня хүрьгэнтэниинь Бадма Виктория хоёр алтан зээнэрые бэлэглэнхэй, ажабайдалай харгыда альгаар дүүрэн ажалтайнууд.",
+          "url": "https://burunen.ru/bur/news/society/147842-buryaadayngaa-nere-rge-en-budasheryn-basagan/",
+          "title": "Буряадайнгаа нэрэ үргэһэн Будашэрын басаган",
+          "match": "зээнэрые"
+        },
+        {
+          "sentence": "Энэ хамталигай гимнын үгэнүүдые өөрөө Нина Будаширеевна бэшэһэн, олохон дуунуудынь репертуарайнь үндэһэн болонхой гээшэ.",
+          "url": "https://burunen.ru/bur/news/society/147842-buryaadayngaa-nere-rge-en-budasheryn-basagan/",
+          "title": "Буряадайнгаа нэрэ үргэһэн Будашэрын басаган",
+          "match": "үгэнүүдые"
+        }
+      ]
+    },
+    "case_instrumental": {
+      "label": "Instrumental case",
+      "description": "-аар / -ээр / -оор / -өөр",
+      "total": 2454,
+      "examples": [
+        {
+          "sentence": "Октябриин 26, гарагай 2, буряад-монгол литээр 15.",
+          "url": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+          "title": "Буряад-монгол зурхай октябриин 26-һаа ноябриин 1 болотор",
+          "match": "литээр"
+        },
+        {
+          "sentence": "Нүүхые, дэгэл хубсаһа эсхэхые, адуу мал хүнгэлхые, урьһаар, займаар абахые, бусаахые, наһа барагшын, бэриин үйлэнүүдые бүтээхые тэбшэхэ.",
+          "url": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+          "title": "Буряад-монгол зурхай октябриин 26-һаа ноябриин 1 болотор",
+          "match": "урьһаар"
+        },
+        {
+          "sentence": "Октябриин 27, гарагай 3, буряад-монгол литээр 16.",
+          "url": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+          "title": "Буряад-монгол зурхай октябриин 26-һаа ноябриин 1 болотор",
+          "match": "литээр"
+        },
+        {
+          "sentence": "Гэр бүлэдөө Софья эгэшэтэй, Анатолий дүүтэй. 1973 ондо Хамниин дунда һургуули дүүргэжэ, совхоздоо хоёр жэлэй туршада механизатораар хүдэлөө.",
+          "url": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+          "title": "Гүрэнэй ажалдашье, гүн бэлигэй далайдашье...",
+          "match": "механизатораар"
+        },
+        {
+          "sentence": "Буряадай хүдөө ажахын институт дүүргээд, Сельхозтехникэ нэгэдэлэй харьяата эмхидэ 3 жэлэй туршада инженерээр, прорабаар хүдэлөө.",
+          "url": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+          "title": "Гүрэнэй ажалдашье, гүн бэлигэй далайдашье...",
+          "match": "инженерээр"
+        },
+        {
+          "sentence": "Иигэжэ Знамя труда гэһэн аймагай сониндо сурбалжалагшаар, таһагые даагшаар, редакторай орлогшоор хүдэлөө.",
+          "url": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+          "title": "Гүрэнэй ажалдашье, гүн бэлигэй далайдашье...",
+          "match": "сурбалжалагшаар"
+        },
+        {
+          "sentence": "Дайшалхы габьяагай түлөө, Ленинградые хамгаалһанай түлөө гэһэн медальнуудта красноармеец Буда Холходоев эрэлхэг зоригтойгоор дайсантай тэмсэһэндээ хүртэһэн байха юм.",
+          "url": "https://burunen.ru/bur/news/society/147851-khitad-kheleney-erkhim-bagsha/",
+          "title": "Хитад хэлэнэй эрхим багша",
+          "match": "зоригтойгоор"
+        },
+        {
+          "sentence": "Бэлигтэй багшын зааһан оюутад түрэл дээдэ һургуулида хүдэлхөөр бусаа.",
+          "url": "https://burunen.ru/bur/news/society/147851-khitad-kheleney-erkhim-bagsha/",
+          "title": "Хитад хэлэнэй эрхим багша",
+          "match": "хүдэлхөөр"
+        },
+        {
+          "sentence": "Бэрхээр һураһан Светлана Терехова, Екатерина Тарасава, Иван Чеботарь Далянда (Хитад) оршуулагшаар хүдэлжэ байна.",
+          "url": "https://burunen.ru/bur/news/society/147851-khitad-kheleney-erkhim-bagsha/",
+          "title": "Хитад хэлэнэй эрхим багша",
+          "match": "Бэрхээр"
+        },
+        {
+          "sentence": "Түрэл нютагтаа хүсэ шадалаа зорюулхагүй һаа, хүдөөдэ соёл урлалые хэн үндылгэхэб даа?» - гэһэн сэдьхэлээр Баяр Нимаевич ниислэл томо хотонууд руу тэгүүлээгүй.",
+          "url": "https://burunen.ru/bur/news/society/147843-bayar-shoydokov-buryaad-estradyn-domog/",
+          "title": "Баяр Шойдоков — буряад эстрадын домог",
+          "match": "сэдьхэлээр"
+        },
+        {
+          "sentence": "Энэ үедэ олон нютагуудаар ВИА-нуудай долгин хүсэтэйгөөр дэлгэрһэн хаһа.",
+          "url": "https://burunen.ru/bur/news/society/147843-bayar-shoydokov-buryaad-estradyn-domog/",
+          "title": "Баяр Шойдоков — буряад эстрадын домог",
+          "match": "нютагуудаар"
+        },
+        {
+          "sentence": "Иимэ үүсхэлэй ашаар буряад дуунууд залуушуулай дунда моодотой, ехэ шударгы дэлгэрээ.",
+          "url": "https://burunen.ru/bur/news/society/147843-bayar-shoydokov-buryaad-estradyn-domog/",
+          "title": "Баяр Шойдоков — буряад эстрадын домог",
+          "match": "ашаар"
+        }
+      ]
+    },
+    "case_comitative": {
+      "label": "Comitative case",
+      "description": "-тай / -тэй / -той",
+      "total": 2717,
+      "examples": [
+        {
+          "sentence": "Амгалан тайбанай, баялигай, малгайн, гуталай, хубсаһанай хэшэг даллага абахада; гахай, хонин, туулай жэлтэй хүнүүдтэ хии мориёо хиидхэхэдэ, һайн үдэр.",
+          "url": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+          "title": "Буряад-монгол зурхай октябриин 26-һаа ноябриин 1 болотор",
+          "match": "жэлтэй"
+        },
+        {
+          "sentence": "Нохой жэлтэндэ һанаһанаа бүтээхэдэ урагшатай, хонин жэлтэнэй буянай гараг.",
+          "url": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+          "title": "Буряад-монгол зурхай октябриин 26-һаа ноябриин 1 болотор",
+          "match": "урагшатай"
+        },
+        {
+          "sentence": "Үһэеэ абхуулхада – үлзытэй, гэбэшье һүнэһэн толгойдо оршоно.",
+          "url": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+          "title": "Буряад-монгол зурхай октябриин 26-һаа ноябриин 1 болотор",
+          "match": "үлзытэй"
+        },
+        {
+          "sentence": "Эдэ хоёрнай жэнхэни буряад сэдьхэлтэй, сомор даруу абари зантай юм.",
+          "url": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+          "title": "Гүрэнэй ажалдашье, гүн бэлигэй далайдашье...",
+          "match": "сэдьхэлтэй"
+        },
+        {
+          "sentence": "Минии һанахада, энэ гэр бүлэ совет үеын һургаалтай, түүхэтэ 90-ээд онуудай эгээл хүндэ сагта түрэл аймагтаа харюусалгата тушаалнуудта хүдэлжэ, наһанай ехэ һургуули гараһан.",
+          "url": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+          "title": "Гүрэнэй ажалдашье, гүн бэлигэй далайдашье...",
+          "match": "һургаалтай"
+        },
+        {
+          "sentence": "Цырен Цыренов 1956 ондо Нурта нютагта түрэһэн, хожомоо Бүргэ руу буужа, хоёрдохи нютагтай болоо.",
+          "url": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+          "title": "Гүрэнэй ажалдашье, гүн бэлигэй далайдашье...",
+          "match": "нютагтай"
+        },
+        {
+          "sentence": "Дайшалхы габьяагай түлөө, Ленинградые хамгаалһанай түлөө гэһэн медальнуудта красноармеец Буда Холходоев эрэлхэг зоригтойгоор дайсантай тэмсэһэндээ хүртэһэн байха юм.",
+          "url": "https://burunen.ru/bur/news/society/147851-khitad-kheleney-erkhim-bagsha/",
+          "title": "Хитад хэлэнэй эрхим багша",
+          "match": "дайсантай"
+        },
+        {
+          "sentence": "Бэлигтэй багшын зааһан оюутад түрэл дээдэ һургуулида хүдэлхөөр бусаа.",
+          "url": "https://burunen.ru/bur/news/society/147851-khitad-kheleney-erkhim-bagsha/",
+          "title": "Хитад хэлэнэй эрхим багша",
+          "match": "Бэлигтэй"
+        },
+        {
+          "sentence": "Тэдэнэй дунда Алексей Архипов, Ксения Бычкова Дальрыбтузай Уласхоорондын институдта амжалтатай ажаллана.",
+          "url": "https://burunen.ru/bur/news/society/147851-khitad-kheleney-erkhim-bagsha/",
+          "title": "Хитад хэлэнэй эрхим багша",
+          "match": "амжалтатай"
+        },
+        {
+          "sentence": "Хэжэнгэдээ үлэжэ, арадай бэлигтэниие нээхэ, эхэ хэлэеэ хүгжөөхэ хэрэгтэ бэеэ зорюулһан түүхэтэй.",
+          "url": "https://burunen.ru/bur/news/society/147843-bayar-shoydokov-buryaad-estradyn-domog/",
+          "title": "Баяр Шойдоков — буряад эстрадын домог",
+          "match": "түүхэтэй"
+        },
+        {
+          "sentence": "Иимэ үүсхэлэй ашаар буряад дуунууд залуушуулай дунда моодотой, ехэ шударгы дэлгэрээ.",
+          "url": "https://burunen.ru/bur/news/society/147843-bayar-shoydokov-buryaad-estradyn-domog/",
+          "title": "Баяр Шойдоков — буряад эстрадын домог",
+          "match": "моодотой"
+        },
+        {
+          "sentence": "Шүлэгэй уран үгые торгон хүгжэмтэй тааруулхадаа, тэрэ суута уран зохёолшодтой нягта харилсаа холбоотой хүдэлдэг.",
+          "url": "https://burunen.ru/bur/news/society/147843-bayar-shoydokov-buryaad-estradyn-domog/",
+          "title": "Баяр Шойдоков — буряад эстрадын домог",
+          "match": "хүгжэмтэй"
+        }
+      ]
+    },
+    "case_ablative": {
+      "label": "Ablative case",
+      "description": "-һаа / -һээ / -һоо / -һөө",
+      "total": 1042,
+      "examples": [
+        {
+          "sentence": "Энэ үдэр морин үхэхэ, эмээл хухарха ушарһаа харгыда гарахада муу, илангаяа зүүн зүг руу.",
+          "url": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+          "title": "Буряад-монгол зурхай октябриин 26-һаа ноябриин 1 болотор",
+          "match": "ушарһаа"
+        },
+        {
+          "sentence": "Ушарынь хадаа мяханай комбинадта Монголһоо 1000 толгой эбэртэ бодо мал оруулагдаа һэн.",
+          "url": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+          "title": "Гүрэнэй ажалдашье, гүн бэлигэй далайдашье...",
+          "match": "Монголһоо"
+        },
+        {
+          "sentence": "Комбинадынь мүнөөшье болотор хүдэлжэл байһаар. 2001 онһоо Цырен Цыренович Закаменск хотын захиргаанай гулваагай орлогшоор 6 жэлдэ ажаллаа.",
+          "url": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+          "title": "Гүрэнэй ажалдашье, гүн бэлигэй далайдашье...",
+          "match": "онһоо"
+        },
+        {
+          "sentence": "Цыреновтэн гээшэмнай наһанайнгаа амаралтада гараһан сагһаа оюун сэдьхэлэй дэбжэлтын замда гараа гэбэл, оройдоо үлүү бэшэ.",
+          "url": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+          "title": "Гүрэнэй ажалдашье, гүн бэлигэй далайдашье...",
+          "match": "сагһаа"
+        },
+        {
+          "sentence": "Хоёрдохи Баирынь һаяшаг хүндэ үбшэнһөө наһа бараба.",
+          "url": "https://burunen.ru/bur/news/society/147851-khitad-kheleney-erkhim-bagsha/",
+          "title": "Хитад хэлэнэй эрхим багша",
+          "match": "үбшэнһөө"
+        },
+        {
+          "sentence": "Алима БАЛЬЖИНИМАЕВА түрэлхидэйнгөө зүгһөө бэшэбэ Фото: Гэр бүлын архивһаа гэрэл зурагууд Буряад Улас Буряадай түрүү хүнүүд",
+          "url": "https://burunen.ru/bur/news/society/147851-khitad-kheleney-erkhim-bagsha/",
+          "title": "Хитад хэлэнэй эрхим багша",
+          "match": "зүгһөө"
+        },
+        {
+          "sentence": "Хэжэнгын голой тунгалаг арюун уһаниинь үеһөө үедэ буряад дуунай уран аялгые шэбэнэн урдуулжа байдаг.",
+          "url": "https://burunen.ru/bur/news/society/147843-bayar-shoydokov-buryaad-estradyn-domog/",
+          "title": "Баяр Шойдоков — буряад эстрадын домог",
+          "match": "үеһөө"
+        },
+        {
+          "sentence": "Нина Димитрова, Буряадай соёлой габьяата хүдэлмэрилэгшэ, Оросой гэгээрэлэй отличник Фото: Гэр бүлын архивһаа гэрэл зураг Буряад Улас Буряадай түрүү хүнүүд Баяр Шойдоков",
+          "url": "https://burunen.ru/bur/news/society/147843-bayar-shoydokov-buryaad-estradyn-domog/",
+          "title": "Баяр Шойдоков — буряад эстрадын домог",
+          "match": "архивһаа"
+        },
+        {
+          "sentence": "Дээдэ гарай багша болоод байхадаа: «Минии багшанар бэрхэ хүнүүд байһан, би түрүүшынгээ багша Любовь Балдановнаһаа жэшээ абан ябагша һэм», - гэжэ хөөрөө.",
+          "url": "https://burunen.ru/bur/news/society/147842-buryaadayngaa-nere-rge-en-budasheryn-basagan/",
+          "title": "Буряадайнгаа нэрэ үргэһэн Будашэрын басаган",
+          "match": "Балдановнаһаа"
+        },
+        {
+          "sentence": "Нина Будаширеевна «Мүнгэн шүрэнүүд» хамталигтаяа 2018 онһоо уласхоорондын элдэб фестивальнуудта хабаадажа, лауреат болон дипломуудта хүртэһэн.",
+          "url": "https://burunen.ru/bur/news/society/147842-buryaadayngaa-nere-rge-en-budasheryn-basagan/",
+          "title": "Буряадайнгаа нэрэ үргэһэн Будашэрын басаган",
+          "match": "онһоо"
+        },
+        {
+          "sentence": "Бэшэхэ охиниинь һүүлшын жэлнүүдтэ эршэдэжэ, 2025 ондо шүлэгүүдэйнь суглуулбари «Эхэ газарһаа эхитэй» гэжэ нэрэтэйгээр нара хараа.",
+          "url": "https://burunen.ru/bur/news/society/147842-buryaadayngaa-nere-rge-en-budasheryn-basagan/",
+          "title": "Буряадайнгаа нэрэ үргэһэн Будашэрын басаган",
+          "match": "газарһаа"
+        },
+        {
+          "sentence": "Энэ үзэсхэлэнтэ һайхан нютаг Улаан-Үдэһөө 80 модоной газарта, Бүхэн голой эрьедэ оршодог.",
+          "url": "https://burunen.ru/bur/news/society/147777-t-re-en-aykhan-toontodoo/",
+          "title": "Түрэһэн һайхан тоонтодоо",
+          "match": "Үдэһөө"
+        }
+      ]
+    },
+    "verb_present": {
+      "label": "Present-future",
+      "description": "-на / -нэ / -но",
+      "total": 1168,
+      "examples": [
+        {
+          "sentence": "Үһэеэ абхуулхада – үлзытэй, гэбэшье һүнэһэн толгойдо оршоно.",
+          "url": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+          "title": "Буряад-монгол зурхай октябриин 26-һаа ноябриин 1 болотор",
+          "match": "оршоно"
+        },
+        {
+          "sentence": "Аза хүсэл, Хонгоодорой соло гэһэн фольклорно бүлгэмүүдтэ арбаад жэлдэ таһалгаряагүй ябана, дуу, хатараараа зоноо баясуулна.",
+          "url": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+          "title": "Гүрэнэй ажалдашье, гүн бэлигэй далайдашье...",
+          "match": "баясуулна"
+        },
+        {
+          "sentence": "Цырен Цыренович мүнөө монгол босоо үзэг шудалха хэшээлнүүдтэ ябана.",
+          "url": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+          "title": "Гүрэнэй ажалдашье, гүн бэлигэй далайдашье...",
+          "match": "ябана"
+        },
+        {
+          "sentence": "Иигэжэ сүлөө забдагүй, олондо ашатай үдэрнүүд һубарин үнгэрнэ.",
+          "url": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+          "title": "Гүрэнэй ажалдашье, гүн бэлигэй далайдашье...",
+          "match": "үнгэрнэ"
+        },
+        {
+          "sentence": "Тэдэнэй дунда Алексей Архипов, Ксения Бычкова Дальрыбтузай Уласхоорондын институдта амжалтатай ажаллана.",
+          "url": "https://burunen.ru/bur/news/society/147851-khitad-kheleney-erkhim-bagsha/",
+          "title": "Хитад хэлэнэй эрхим багша",
+          "match": "ажаллана"
+        },
+        {
+          "sentence": "Мүн лэ дуунай амин һүлдэ яажа зэдэлхэб гэжэ үдэр һүнигүй студи соогоо нягтаар мүлидэг ажалынь - аранжировщигой зохёохы хүгжэм болоно.",
+          "url": "https://burunen.ru/bur/news/society/147843-bayar-shoydokov-buryaad-estradyn-domog/",
+          "title": "Баяр Шойдоков — буряад эстрадын домог",
+          "match": "болоно"
+        },
+        {
+          "sentence": "Эдэ клипүүд соо арад зон үндэһэн һайхан дэгэлээ үмдэжэ, үндэр наһатайшуул залуу үедөө сэсэн һургаал, ёһо заншалаа дамжуулна.",
+          "url": "https://burunen.ru/bur/news/society/147843-bayar-shoydokov-buryaad-estradyn-domog/",
+          "title": "Баяр Шойдоков — буряад эстрадын домог",
+          "match": "дамжуулна"
+        },
+        {
+          "sentence": "Эгээл найдамтай түшэгынь — гэр бүлэнь Наһанайнь хани Эльвира Дансарановна бүхы эдэ жэлнүүдтэ бүлгэмэй продюсер, хореограф, фото- ба видеографоор хүдэлнэ.",
+          "url": "https://burunen.ru/bur/news/society/147843-bayar-shoydokov-buryaad-estradyn-domog/",
+          "title": "Баяр Шойдоков — буряад эстрадын домог",
+          "match": "хүдэлнэ"
+        },
+        {
+          "sentence": "«Мүнгэн шүрэнүүд» хамталигай үндэһэ һуури табигшадай нэгэн Нина Будаширеевна Димитрова гэр бүлэтэеэ хорёод жэлэй туршада Санкт-Петербургда ажаһууна.",
+          "url": "https://burunen.ru/bur/news/society/147842-buryaadayngaa-nere-rge-en-budasheryn-basagan/",
+          "title": "Буряадайнгаа нэрэ үргэһэн Будашэрын басаган",
+          "match": "ажаһууна"
+        },
+        {
+          "sentence": "Суглуулбариин нэрэ уншаад байхада, нютагтаяа таһаршагүй холбоо, эхэ газарай шэдитэ хүсэ шадал, уг гарбалай нангин утаһан эли тодоор харагдана.",
+          "url": "https://burunen.ru/bur/news/society/147842-buryaadayngaa-nere-rge-en-budasheryn-basagan/",
+          "title": "Буряадайнгаа нэрэ үргэһэн Будашэрын басаган",
+          "match": "харагдана"
+        },
+        {
+          "sentence": "Буряад, холимог бүлэнүүдшье үхибүүдээрээ ябана.",
+          "url": "https://burunen.ru/bur/news/society/147842-buryaadayngaa-nere-rge-en-budasheryn-basagan/",
+          "title": "Буряадайнгаа нэрэ үргэһэн Будашэрын басаган",
+          "match": "ябана"
+        },
+        {
+          "sentence": "Хүдөө ажахыда хүдэлхэдэ, ехэ хүндэ гэжэ тиихэдэ мэдэрһэн байнаб.",
+          "url": "https://burunen.ru/bur/news/society/147777-t-re-en-aykhan-toontodoo/",
+          "title": "Түрэһэн һайхан тоонтодоо",
+          "match": "байнаб"
+        }
+      ]
+    },
+    "verb_past": {
+      "label": "Simple past",
+      "description": "-ба / -бэ / -бо",
+      "total": 195,
+      "examples": [
+        {
+          "sentence": "Хоёрдохи Баирынь һаяшаг хүндэ үбшэнһөө наһа бараба.",
+          "url": "https://burunen.ru/bur/news/society/147851-khitad-kheleney-erkhim-bagsha/",
+          "title": "Хитад хэлэнэй эрхим багша",
+          "match": "бараба"
+        },
+        {
+          "sentence": "Баяр Нимаевичай дуунуудай ноототой тусхай суглуулбари хэблэлдэ бэлэн болобо.",
+          "url": "https://burunen.ru/bur/news/society/147843-bayar-shoydokov-buryaad-estradyn-domog/",
+          "title": "Баяр Шойдоков — буряад эстрадын домог",
+          "match": "болобо"
+        },
+        {
+          "sentence": "Ниигэм 18 oct 2026 220 Суута ректорые дурсаа Буряадай гүрэнэй хүдөө ажахын академиин дэргэдэ барилдаанай мүрысөөн болобо.",
+          "url": "https://burunen.ru/bur/news/society/147745-suuta-rektorye-dursaa/",
+          "title": "Суута ректорые дурсаа",
+          "match": "болобо"
+        },
+        {
+          "sentence": "Бултанай ашаар ээлжээтэ мүрысөөн үнгэргэгдэбэ.",
+          "url": "https://burunen.ru/bur/news/society/147745-suuta-rektorye-dursaa/",
+          "title": "Суута ректорые дурсаа",
+          "match": "үнгэргэгдэбэ"
+        },
+        {
+          "sentence": "Яагаад, юунһээ эхилхэ юм гэжэ һанаһаар байтарни, энэ хэрэгтэ хүүгэдни, суг хүдэлһэн багшанарни, манай һургуулиие олон ондоо сагуудта дүүргэгшэд хамтарба ха юм.",
+          "url": "https://burunen.ru/bur/news/society/147744-uragshaa-minii-poezd-/",
+          "title": "«Урагшаа, минии поезд!..»",
+          "match": "хамтарба"
+        },
+        {
+          "sentence": "Баярай амаршалганууд - Мүнөө энэ нарата үдэр бидэ бүгэдэндэ аргагүй ехэ удха шанартай үйлэ хэрэг боложо байна – Буряад орондо Алас Дурнын хоёрдохи эко-зам нээгдэбэ.",
+          "url": "https://burunen.ru/bur/news/society/147710-chingis-khaanay-nderlig/",
+          "title": "Чингис Хаанай үндэрлиг",
+          "match": "нээгдэбэ"
+        },
+        {
+          "sentence": "«Алас Дурнын этно-зам» гэһэн шэнэ түсэл Буряад Уласта Чингис хаанай үндэрлигые оюун сэдьхэлэй баялигуудаар - урлалаар, соёлой зүйлнүүдээр дүүргэжэ, аяншалгын онсо газар болгобо.",
+          "url": "https://burunen.ru/bur/news/society/147710-chingis-khaanay-nderlig/",
+          "title": "Чингис Хаанай үндэрлиг",
+          "match": "болгобо"
+        },
+        {
+          "sentence": "Эгээл энэ сагта түрэһэн, гараһан нютагаа ошожо, сабдагуудта мүргэжэ, буусынгаа буурал үбгэдэй адиста хүртэбэб.",
+          "url": "https://burunen.ru/bur/news/society/147771-ezhel-khoyer-z-rkhen/",
+          "title": "Эжэл хоёр зүрхэн",
+          "match": "хүртэбэб"
+        },
+        {
+          "sentence": "Эгээл энэ талынгаа жэргээн дундуур ябажа байхадаа, гэнтэ гуурһамни тэршэлжэ, бэрхэ, хүдэлмэришэ, талын зоной шарай дааһан Гомбоевтоной гэр бүлэ тухай бэшэхэ дуран хүрэбэ.",
+          "url": "https://burunen.ru/bur/news/society/147771-ezhel-khoyer-z-rkhen/",
+          "title": "Эжэл хоёр зүрхэн",
+          "match": "хүрэбэ"
+        },
+        {
+          "sentence": "Дурасхаал» гэһэн номууд хэблэгдэн гараба.",
+          "url": "https://burunen.ru/bur/news/society/147730-nyutagaymnay-khaluun-z-rkhetey-ekhener/",
+          "title": "Нютагаймнай халуун зүрхэтэй эхэнэр",
+          "match": "гараба"
+        },
+        {
+          "sentence": "Мүн тэрэ «Доодо-Ивалгын буряадуудай угай гар бэшэг» гэжэ ном гаргаха хэрэгтэ эдэбхитэй оролсобо.",
+          "url": "https://burunen.ru/bur/news/society/147730-nyutagaymnay-khaluun-z-rkhetey-ekhener/",
+          "title": "Нютагаймнай халуун зүрхэтэй эхэнэр",
+          "match": "оролсобо"
+        },
+        {
+          "sentence": "Тиихэ зуура уһан түргэн саг соо ехээр нэмэжэл байба.",
+          "url": "https://burunen.ru/bur/news/society/147680-d-rben-tegshe-beligtey-/",
+          "title": "Дүрбэн тэгшэ бэлигтэй",
+          "match": "байба"
+        }
+      ]
+    },
+    "verb_perfect": {
+      "label": "Perfect",
+      "description": "-аа / -ээ / -оо / -өө",
+      "total": 1725,
+      "examples": [
+        {
+          "sentence": "Цырен Цыренов 1956 ондо Нурта нютагта түрэһэн, хожомоо Бүргэ руу буужа, хоёрдохи нютагтай болоо.",
+          "url": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+          "title": "Гүрэнэй ажалдашье, гүн бэлигэй далайдашье...",
+          "match": "болоо"
+        },
+        {
+          "sentence": "Гэр бүлэдөө Софья эгэшэтэй, Анатолий дүүтэй. 1973 ондо Хамниин дунда һургуули дүүргэжэ, совхоздоо хоёр жэлэй туршада механизатораар хүдэлөө.",
+          "url": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+          "title": "Гүрэнэй ажалдашье, гүн бэлигэй далайдашье...",
+          "match": "хүдэлөө"
+        },
+        {
+          "sentence": "Буряадай хүдөө ажахын институт дүүргээд, Сельхозтехникэ нэгэдэлэй харьяата эмхидэ 3 жэлэй туршада инженерээр, прорабаар хүдэлөө.",
+          "url": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+          "title": "Гүрэнэй ажалдашье, гүн бэлигэй далайдашье...",
+          "match": "хүдэлөө"
+        },
+        {
+          "sentence": "Истории подвигов... гэһэн номойнгоо 5-дахи хуби соогоо (У памяти павших) бэшээ.",
+          "url": "https://burunen.ru/bur/news/society/147851-khitad-kheleney-erkhim-bagsha/",
+          "title": "Хитад хэлэнэй эрхим багша",
+          "match": "бэшээ"
+        },
+        {
+          "sentence": "Энэ хадаа Красносельско-Ропшинска операциин үедэ управлениин буудагша байһан Буда Циндинович эдэ шагналнуудта хүртөө бэлэй.",
+          "url": "https://burunen.ru/bur/news/society/147851-khitad-kheleney-erkhim-bagsha/",
+          "title": "Хитад хэлэнэй эрхим багша",
+          "match": "хүртөө"
+        },
+        {
+          "sentence": "Бэлигтэй багшын зааһан оюутад түрэл дээдэ һургуулида хүдэлхөөр бусаа.",
+          "url": "https://burunen.ru/bur/news/society/147851-khitad-kheleney-erkhim-bagsha/",
+          "title": "Хитад хэлэнэй эрхим багша",
+          "match": "бусаа"
+        },
+        {
+          "sentence": "Иимэ үүсхэлэй ашаар буряад дуунууд залуушуулай дунда моодотой, ехэ шударгы дэлгэрээ.",
+          "url": "https://burunen.ru/bur/news/society/147843-bayar-shoydokov-buryaad-estradyn-domog/",
+          "title": "Баяр Шойдоков — буряад эстрадын домог",
+          "match": "дэлгэрээ"
+        },
+        {
+          "sentence": "Студиин нэгэ онсо гайхамшаг бүтээл гэбэл — Хэжэнгын аймагай бүхы нютаг тосхонуудта зорюулһан тусхай дуунууд болон уран видеоклипүүд бэлдэгдээ.",
+          "url": "https://burunen.ru/bur/news/society/147843-bayar-shoydokov-buryaad-estradyn-domog/",
+          "title": "Баяр Шойдоков — буряад эстрадын домог",
+          "match": "бэлдэгдээ"
+        },
+        {
+          "sentence": "Хахад зуун жэлэй дабаан 50 жэлэй туршада 38 бэлигтэй дуушад ба хүгжэмшэд бүлгэмэй түүхэтэй холбогдон ургажа гараа.",
+          "url": "https://burunen.ru/bur/news/society/147843-bayar-shoydokov-buryaad-estradyn-domog/",
+          "title": "Баяр Шойдоков — буряад эстрадын домог",
+          "match": "гараа"
+        },
+        {
+          "sentence": "Дээдэ гарай багша болоод байхадаа: «Минии багшанар бэрхэ хүнүүд байһан, би түрүүшынгээ багша Любовь Балдановнаһаа жэшээ абан ябагша һэм», - гэжэ хөөрөө.",
+          "url": "https://burunen.ru/bur/news/society/147842-buryaadayngaa-nere-rge-en-budasheryn-basagan/",
+          "title": "Буряадайнгаа нэрэ үргэһэн Будашэрын басаган",
+          "match": "хөөрөө"
+        },
+        {
+          "sentence": "Наранай элшэ татаһан «Һолонго» бүлгэм Нина Будаширеевна Дунда-Худанай һургуулиин хүтэлбэрилэгшын орлогшоор хүдэлжэ байхадаа, 1990-ээд онуудаар «Һолонго» бүлгэм байгуулаа.",
+          "url": "https://burunen.ru/bur/news/society/147842-buryaadayngaa-nere-rge-en-budasheryn-basagan/",
+          "title": "Буряадайнгаа нэрэ үргэһэн Будашэрын басаган",
+          "match": "байгуулаа"
+        },
+        {
+          "sentence": "Байгша оной май һарын 27-до Санкт-Петербург хотын «Комсомольская правда» сониндо 2017 ондо байгуулагдаһан «Мүнгэн шүрэнүүд» хамталиг тухай дура буляамаар бэшэгдэһэн статья гараа.",
+          "url": "https://burunen.ru/bur/news/society/147842-buryaadayngaa-nere-rge-en-budasheryn-basagan/",
+          "title": "Буряадайнгаа нэрэ үргэһэн Будашэрын басаган",
+          "match": "гараа"
+        }
+      ]
+    },
+    "verb_past_participle": {
+      "label": "Past participle",
+      "description": "-һан / -һэн / -һон",
+      "total": 649,
+      "examples": [
+        {
+          "sentence": "Минии һанахада, энэ гэр бүлэ совет үеын һургаалтай, түүхэтэ 90-ээд онуудай эгээл хүндэ сагта түрэл аймагтаа харюусалгата тушаалнуудта хүдэлжэ, наһанай ехэ һургуули гараһан.",
+          "url": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+          "title": "Гүрэнэй ажалдашье, гүн бэлигэй далайдашье...",
+          "match": "гараһан"
+        },
+        {
+          "sentence": "Уданшьегүй намтарайнь шэглэлдэ һонин хуудаһан нээгдэһэн юм.",
+          "url": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+          "title": "Гүрэнэй ажалдашье, гүн бэлигэй далайдашье...",
+          "match": "нээгдэһэн"
+        },
+        {
+          "sentence": "Минии үетэн, залуу мэргэжэлтэдые олон юумэндэ һургаһан.",
+          "url": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+          "title": "Гүрэнэй ажалдашье, гүн бэлигэй далайдашье...",
+          "match": "һургаһан"
+        },
+        {
+          "sentence": "Екатерина Будаевна Үбэр Байгалай хизаарта, Угдаан нютагта түрэһэн юм.",
+          "url": "https://burunen.ru/bur/news/society/147851-khitad-kheleney-erkhim-bagsha/",
+          "title": "Хитад хэлэнэй эрхим багша",
+          "match": "түрэһэн"
+        },
+        {
+          "sentence": "«Үетэн» студи 85-һаа дээшэ аудиоальбом болон олон тоото видеоклипүүдые бэлдэжэ гаргаһан юм.",
+          "url": "https://burunen.ru/bur/news/society/147843-bayar-shoydokov-buryaad-estradyn-domog/",
+          "title": "Баяр Шойдоков — буряад эстрадын домог",
+          "match": "гаргаһан"
+        },
+        {
+          "sentence": "Арад зондо хүгжэмэй дали бэлэглэгшэ Баяр Нимаевич «Зүрхэнэй дуун» ба «Алтан хараасгай» гэһэн хоёр томо түсэлые зохёон байгуулһан.",
+          "url": "https://burunen.ru/bur/news/society/147843-bayar-shoydokov-buryaad-estradyn-domog/",
+          "title": "Баяр Шойдоков — буряад эстрадын домог",
+          "match": "байгуулһан"
+        },
+        {
+          "sentence": "Мүнөө үедэ сууда гараһан Баярма Лайдапова, Дина Санданова, Жаргал Цымпилов, Жаргал Бадмаев, Содном ба Солбон Доржиевууд болон бусад олон бэлигтэн энэ һургуули гараһан юм.",
+          "url": "https://burunen.ru/bur/news/society/147843-bayar-shoydokov-buryaad-estradyn-domog/",
+          "title": "Баяр Шойдоков — буряад эстрадын домог",
+          "match": "гараһан"
+        },
+        {
+          "sentence": "Иигэжэ һургуулияа аймагтаа, Буряадтаа нилээд суурхуулһан юм.",
+          "url": "https://burunen.ru/bur/news/society/147842-buryaadayngaa-nere-rge-en-budasheryn-basagan/",
+          "title": "Буряадайнгаа нэрэ үргэһэн Будашэрын басаган",
+          "match": "суурхуулһан"
+        },
+        {
+          "sentence": "«Бал у Терпсихоры», «Наранай туяа», «Сагаан һара», «Гэсэриада» гэхэ мэтэ мүрысөөнүүдэй илагшад, лауреадууд оло дахин болоһон.",
+          "url": "https://burunen.ru/bur/news/society/147842-buryaadayngaa-nere-rge-en-budasheryn-basagan/",
+          "title": "Буряадайнгаа нэрэ үргэһэн Будашэрын басаган",
+          "match": "болоһон"
+        },
+        {
+          "sentence": "Олон жэлэй туршада энэ хотодо ажаһуудаг нютагаархиднай удхатай заншалнуудаараа, сэбэр бодолоороо, урагшаа һанаатай сэдьхэлээрээ бүгэдын хүндэдэ хүртэһэн байна.",
+          "url": "https://burunen.ru/bur/news/society/147842-buryaadayngaa-nere-rge-en-budasheryn-basagan/",
+          "title": "Буряадайнгаа нэрэ үргэһэн Будашэрын басаган",
+          "match": "хүртэһэн"
+        },
+        {
+          "sentence": "Уг удам Эдик хүбүүн 1978 ондо Михаил ба Дарима Данзановтанай бүлэдэ түрэһэн юм.",
+          "url": "https://burunen.ru/bur/news/society/147777-t-re-en-aykhan-toontodoo/",
+          "title": "Түрэһэн һайхан тоонтодоо",
+          "match": "түрэһэн"
+        },
+        {
+          "sentence": "Харамтайнь гэхэдэ, залуугаар наһа барашаһан.",
+          "url": "https://burunen.ru/bur/news/society/147777-t-re-en-aykhan-toontodoo/",
+          "title": "Түрэһэн һайхан тоонтодоо",
+          "match": "барашаһан"
+        }
+      ]
+    },
+    "verb_resultative": {
+      "label": "Resultative",
+      "description": "-нхай / -нхэй / -нхой",
+      "total": 223,
+      "examples": [
+        {
+          "sentence": "Хүреэлэлгын Ленинградай дурасхаалай ном соо тэрэнэй нэрэ оронхой юм.",
+          "url": "https://burunen.ru/bur/news/society/147851-khitad-kheleney-erkhim-bagsha/",
+          "title": "Хитад хэлэнэй эрхим багша",
+          "match": "оронхой"
+        },
+        {
+          "sentence": "Мүнөө үедэ Анастасия Дальрыбтузайнгаа Уласхоорондын департаментда ажалтай, харин Маргарита Харбин хүдэлхөө ошонхой.",
+          "url": "https://burunen.ru/bur/news/society/147851-khitad-kheleney-erkhim-bagsha/",
+          "title": "Хитад хэлэнэй эрхим багша",
+          "match": "ошонхой"
+        },
+        {
+          "sentence": "Хальмагяһанай Эрдня хүрьгэнтэниинь Бадма Виктория хоёр алтан зээнэрые бэлэглэнхэй, ажабайдалай харгыда альгаар дүүрэн ажалтайнууд.",
+          "url": "https://burunen.ru/bur/news/society/147842-buryaadayngaa-nere-rge-en-budasheryn-basagan/",
+          "title": "Буряадайнгаа нэрэ үргэһэн Будашэрын басаган",
+          "match": "бэлэглэнхэй"
+        },
+        {
+          "sentence": "Энэ хамталигай гимнын үгэнүүдые өөрөө Нина Будаширеевна бэшэһэн, олохон дуунуудынь репертуарайнь үндэһэн болонхой гээшэ.",
+          "url": "https://burunen.ru/bur/news/society/147842-buryaadayngaa-nere-rge-en-budasheryn-basagan/",
+          "title": "Буряадайнгаа нэрэ үргэһэн Будашэрын басаган",
+          "match": "болонхой"
+        },
+        {
+          "sentence": "Аба эжынгээ гэртэ уһа оруулжа, бэеэ угааха газар, жорлон – хуу хэжэ үгэнхэй.",
+          "url": "https://burunen.ru/bur/news/society/147777-t-re-en-aykhan-toontodoo/",
+          "title": "Түрэһэн һайхан тоонтодоо",
+          "match": "үгэнхэй"
+        },
+        {
+          "sentence": "Хартаабхаяа малтаа. 5 га газарта шэниисэ, 8 га ешмээн, 8 га зелёнко таринхай.",
+          "url": "https://burunen.ru/bur/news/society/147777-t-re-en-aykhan-toontodoo/",
+          "title": "Түрэһэн һайхан тоонтодоо",
+          "match": "таринхай"
+        },
+        {
+          "sentence": "Эржена Бимбаевна буйлуулһан һүнэйнгөө сүсэгы, ээзгэй наймаанда гаргадаг, худалдажа абаха өөрын хүнүүдтэй болонхой юм.",
+          "url": "https://burunen.ru/bur/news/society/147777-t-re-en-aykhan-toontodoo/",
+          "title": "Түрэһэн һайхан тоонтодоо",
+          "match": "болонхой"
+        },
+        {
+          "sentence": "Хүндэ сагта дээшэнь үргэһэн һуралсалай гуламта хүгжэлтын шэнэ бүри үргэн харгыда гаранхай.",
+          "url": "https://burunen.ru/bur/news/society/147745-suuta-rektorye-dursaa/",
+          "title": "Суута ректорые дурсаа",
+          "match": "гаранхай"
+        },
+        {
+          "sentence": "Алас Дурнын федеральна тойрогой можо нютагуудта аяншалгын замуудай инфраструктура хүгжөөхэ талаар 18 түсэл зохёогдонхой.",
+          "url": "https://burunen.ru/bur/news/society/147710-chingis-khaanay-nderlig/",
+          "title": "Чингис Хаанай үндэрлиг",
+          "match": "зохёогдонхой"
+        },
+        {
+          "sentence": "«Аза хүсэл» бүлгэм 2023 онһоо Новосибирск хотын «Байгал» гэһэн буряад үндэһэтэнэй соёлой автономиин бүридэлдэ оруулагданхай.",
+          "url": "https://burunen.ru/bur/news/society/147717-araday-aman-zokhyeol-manay-kh-sen/",
+          "title": "«Арадай аман зохёол – манай хүсэн»",
+          "match": "оруулагданхай"
+        },
+        {
+          "sentence": "Тулдуун нютагайнгаа хүгжэлтын баян түүхэ, дайнай ба ажалай ветеранууд тухай, һургуули дүүргэгшэд тухай ехэ баян материал суглуулжа, олон альбомуудые, планшедүүдые гарганхай.",
+          "url": "https://burunen.ru/bur/news/society/147731-bagshyn-rgen-khargyda/",
+          "title": "Багшын үргэн харгыда",
+          "match": "гарганхай"
+        },
+        {
+          "sentence": "Павел хүбүүниинь БГУ дүүргээд, сагдаагай ажал хээд, амаралтада гаранхай, нэгэ хүбүүтэй.",
+          "url": "https://burunen.ru/bur/news/society/147731-bagshyn-rgen-khargyda/",
+          "title": "Багшын үргэн харгыда",
+          "match": "гаранхай"
+        }
+      ]
+    },
+    "verb_habitual": {
+      "label": "Habitual",
+      "description": "-даг / -дэг / -дог",
+      "total": 1491,
+      "examples": [
+        {
+          "sentence": "Морин, могой жэлтэн һэргэг байхые оролдог.",
+          "url": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+          "title": "Буряад-монгол зурхай октябриин 26-һаа ноябриин 1 болотор",
+          "match": "оролдог"
+        },
+        {
+          "sentence": "Дуун бэлиг руу ходо тэгүүлжэ ябадаг энэ айлай харгы зам, ажалайнь намтар тухай хөөрэхэ хүсэлэнтэйб.",
+          "url": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+          "title": "Гүрэнэй ажалдашье, гүн бэлигэй далайдашье...",
+          "match": "ябадаг"
+        },
+        {
+          "sentence": "Иимэл ушарта хүнэй эрхим шэнжэ шанар элирдэг гэжэ мэдээжэ.",
+          "url": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+          "title": "Гүрэнэй ажалдашье, гүн бэлигэй далайдашье...",
+          "match": "элирдэг"
+        },
+        {
+          "sentence": "Сэбэрхэн һайхан шарайтай, һэргэг дорюун харасатай арадай аман зохёол гүйсэдхэгшэд альга ташалганда хүртэхэдөө, урма баяраар сээжэ зүрхэниинь халидаг ёһотой.",
+          "url": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+          "title": "Гүрэнэй ажалдашье, гүн бэлигэй далайдашье...",
+          "match": "халидаг"
+        },
+        {
+          "sentence": "Шүлэгэй уран үгые торгон хүгжэмтэй тааруулхадаа, тэрэ суута уран зохёолшодтой нягта харилсаа холбоотой хүдэлдэг.",
+          "url": "https://burunen.ru/bur/news/society/147843-bayar-shoydokov-buryaad-estradyn-domog/",
+          "title": "Баяр Шойдоков — буряад эстрадын домог",
+          "match": "хүдэлдэг"
+        },
+        {
+          "sentence": "Мүн лэ дуунай амин һүлдэ яажа зэдэлхэб гэжэ үдэр һүнигүй студи соогоо нягтаар мүлидэг ажалынь - аранжировщигой зохёохы хүгжэм болоно.",
+          "url": "https://burunen.ru/bur/news/society/147843-bayar-shoydokov-buryaad-estradyn-domog/",
+          "title": "Баяр Шойдоков — буряад эстрадын домог",
+          "match": "мүлидэг"
+        },
+        {
+          "sentence": "Хэжэнгын голой тунгалаг арюун уһаниинь үеһөө үедэ буряад дуунай уран аялгые шэбэнэн урдуулжа байдаг.",
+          "url": "https://burunen.ru/bur/news/society/147843-bayar-shoydokov-buryaad-estradyn-domog/",
+          "title": "Баяр Шойдоков — буряад эстрадын домог",
+          "match": "байдаг"
+        },
+        {
+          "sentence": "Олон жэлэй туршада энэ хотодо ажаһуудаг нютагаархиднай удхатай заншалнуудаараа, сэбэр бодолоороо, урагшаа һанаатай сэдьхэлээрээ бүгэдын хүндэдэ хүртэһэн байна.",
+          "url": "https://burunen.ru/bur/news/society/147842-buryaadayngaa-nere-rge-en-budasheryn-basagan/",
+          "title": "Буряадайнгаа нэрэ үргэһэн Будашэрын басаган",
+          "match": "ажаһуудаг"
+        },
+        {
+          "sentence": "Зохёохы ажал Нина Будаширеевна һургуулида һураха үедөө шүлэгүүдые бэшэжэ туршадаг байгаа.",
+          "url": "https://burunen.ru/bur/news/society/147842-buryaadayngaa-nere-rge-en-budasheryn-basagan/",
+          "title": "Буряадайнгаа нэрэ үргэһэн Будашэрын басаган",
+          "match": "туршадаг"
+        },
+        {
+          "sentence": "Энэ үзэсхэлэнтэ һайхан нютаг Улаан-Үдэһөө 80 модоной газарта, Бүхэн голой эрьедэ оршодог.",
+          "url": "https://burunen.ru/bur/news/society/147777-t-re-en-aykhan-toontodoo/",
+          "title": "Түрэһэн һайхан тоонтодоо",
+          "match": "оршодог"
+        },
+        {
+          "sentence": "Эдик угайнгаа һарбаалжа Шодонойтонһоо (Шоднэ) юһэн үе мэдэдэг юм.",
+          "url": "https://burunen.ru/bur/news/society/147777-t-re-en-aykhan-toontodoo/",
+          "title": "Түрэһэн һайхан тоонтодоо",
+          "match": "мэдэдэг"
+        },
+        {
+          "sentence": "Будацырен ахай Пурбоханда хээтэй хоёр зуун хонинһоо зуун хурьга абадаг суутай хонишод байгаа.",
+          "url": "https://burunen.ru/bur/news/society/147777-t-re-en-aykhan-toontodoo/",
+          "title": "Түрэһэн һайхан тоонтодоо",
+          "match": "абадаг"
+        }
+      ]
+    },
+    "verb_negation": {
+      "label": "Negation",
+      "description": "-гүй after a verb form",
+      "total": 648,
+      "examples": [
+        {
+          "sentence": "Түрэлнүүдэй үүдэн нээгдэнэ: түрэл гаралнуудтаяа найрлахагүй.",
+          "url": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+          "title": "Буряад-монгол зурхай октябриин 26-һаа ноябриин 1 болотор",
+          "match": "найрлахагүй"
+        },
+        {
+          "sentence": "Барилгын ажал хэхэгүй, агнахагүй, заргалдахагүй, замда гарахагүй.",
+          "url": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+          "title": "Буряад-монгол зурхай октябриин 26-һаа ноябриин 1 болотор",
+          "match": "хэхэгүй"
+        },
+        {
+          "sentence": "Хэрэмэй үүдэн нээгдэнэ: гэрэй һуури татахагүй, гэр байра заһабарилхагүй, зөөлгэхэгүй.",
+          "url": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+          "title": "Буряад-монгол зурхай октябриин 26-һаа ноябриин 1 болотор",
+          "match": "татахагүй"
+        },
+        {
+          "sentence": "Түрэл нютагтаа хүсэ шадалаа зорюулхагүй һаа, хүдөөдэ соёл урлалые хэн үндылгэхэб даа?» - гэһэн сэдьхэлээр Баяр Нимаевич ниислэл томо хотонууд руу тэгүүлээгүй.",
+          "url": "https://burunen.ru/bur/news/society/147843-bayar-shoydokov-buryaad-estradyn-domog/",
+          "title": "Баяр Шойдоков — буряад эстрадын домог",
+          "match": "зорюулхагүй"
+        },
+        {
+          "sentence": "Нина Будаширеевнагай наһанайнь хани нүхэр Цыренбал Жамсаранович багшын ажалай ветеран, гэртээ һуудаггүй, баһал ажалтай хүн.",
+          "url": "https://burunen.ru/bur/news/society/147842-buryaadayngaa-nere-rge-en-budasheryn-basagan/",
+          "title": "Буряадайнгаа нэрэ үргэһэн Будашэрын басаган",
+          "match": "һуудаггүй"
+        },
+        {
+          "sentence": "«Ниитын» үүдэн нээгдэнэ: суглаа зарлахагүй, шухала уулзалга эмхидхэхэгүй.",
+          "url": "https://burunen.ru/bur/news/society/147839-zurkhay-oktyabriin-21-garagay-4-buryaad-mongol-liteer-10/",
+          "title": "Зурхай - октябриин 21, гарагай 4, буряад-монгол литээр 10",
+          "match": "зарлахагүй"
+        },
+        {
+          "sentence": "Ветеринарна станци яашье хилэ гаргажа үгөөгүй.",
+          "url": "https://burunen.ru/bur/news/society/147777-t-re-en-aykhan-toontodoo/",
+          "title": "Түрэһэн һайхан тоонтодоо",
+          "match": "үгөөгүй"
+        },
+        {
+          "sentence": "«Үхэлэй» үүдэн нээгдэнэ: наһа барагшын хэрэг үйлэдэхэгүй.",
+          "url": "https://burunen.ru/bur/news/society/147743-buryaad-mongol-zurkhay-oktyabriin-19-oktyabriin-25-bolotor/",
+          "title": "Буряад-монгол зурхай октябриин 19-һөө октябриин 25 болотор",
+          "match": "үйлэдэхэгүй"
+        },
+        {
+          "sentence": "«Айлшанай» үүдэн нээгдэнэ: айлшадые гэртээ урихагүй.",
+          "url": "https://burunen.ru/bur/news/society/147743-buryaad-mongol-zurkhay-oktyabriin-19-oktyabriin-25-bolotor/",
+          "title": "Буряад-монгол зурхай октябриин 19-һөө октябриин 25 болотор",
+          "match": "урихагүй"
+        },
+        {
+          "sentence": "«Наймаанай» үүдэн нээгдэнэ: олзын хэрэг эрхилхэгүй.",
+          "url": "https://burunen.ru/bur/news/society/147743-buryaad-mongol-zurkhay-oktyabriin-19-oktyabriin-25-bolotor/",
+          "title": "Буряад-монгол зурхай октябриин 19-һөө октябриин 25 болотор",
+          "match": "эрхилхэгүй"
+        },
+        {
+          "sentence": "Иимэ томо нэрэ солотой хүн тухай мүнөөшье болотор ном юундэ гараагүйб, - гэжэ занаһан байна.",
+          "url": "https://burunen.ru/bur/news/society/147745-suuta-rektorye-dursaa/",
+          "title": "Суута ректорые дурсаа",
+          "match": "гараагүйб"
+        },
+        {
+          "sentence": "Тэрээн соохи баримтанууд ном шэмэглээ гэхэдэ, алдуу болохогүй, - гэжэ Любовь Зайцева хөөрэнэ.",
+          "url": "https://burunen.ru/bur/news/society/147745-suuta-rektorye-dursaa/",
+          "title": "Суута ректорые дурсаа",
+          "match": "болохогүй"
+        }
+      ]
+    },
+    "converb_simultaneous": {
+      "label": "Simultaneous converb",
+      "description": "-жа / -жэ / -жо",
+      "total": 2651,
+      "examples": [
+        {
+          "sentence": "Дуун бэлиг руу ходо тэгүүлжэ ябадаг энэ айлай харгы зам, ажалайнь намтар тухай хөөрэхэ хүсэлэнтэйб.",
+          "url": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+          "title": "Гүрэнэй ажалдашье, гүн бэлигэй далайдашье...",
+          "match": "тэгүүлжэ"
+        },
+        {
+          "sentence": "Минии һанахада, энэ гэр бүлэ совет үеын һургаалтай, түүхэтэ 90-ээд онуудай эгээл хүндэ сагта түрэл аймагтаа харюусалгата тушаалнуудта хүдэлжэ, наһанай ехэ һургуули гараһан.",
+          "url": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+          "title": "Гүрэнэй ажалдашье, гүн бэлигэй далайдашье...",
+          "match": "хүдэлжэ"
+        },
+        {
+          "sentence": "Цырен Цыренов 1956 ондо Нурта нютагта түрэһэн, хожомоо Бүргэ руу буужа, хоёрдохи нютагтай болоо.",
+          "url": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+          "title": "Гүрэнэй ажалдашье, гүн бэлигэй далайдашье...",
+          "match": "буужа"
+        },
+        {
+          "sentence": "Бэрхээр һураһан Светлана Терехова, Екатерина Тарасава, Иван Чеботарь Далянда (Хитад) оршуулагшаар хүдэлжэ байна.",
+          "url": "https://burunen.ru/bur/news/society/147851-khitad-kheleney-erkhim-bagsha/",
+          "title": "Хитад хэлэнэй эрхим багша",
+          "match": "хүдэлжэ"
+        },
+        {
+          "sentence": "Хэжэнгэдээ үлэжэ, арадай бэлигтэниие нээхэ, эхэ хэлэеэ хүгжөөхэ хэрэгтэ бэеэ зорюулһан түүхэтэй.",
+          "url": "https://burunen.ru/bur/news/society/147843-bayar-shoydokov-buryaad-estradyn-domog/",
+          "title": "Баяр Шойдоков — буряад эстрадын домог",
+          "match": "үлэжэ"
+        },
+        {
+          "sentence": "Мүн лэ дуунай амин һүлдэ яажа зэдэлхэб гэжэ үдэр һүнигүй студи соогоо нягтаар мүлидэг ажалынь - аранжировщигой зохёохы хүгжэм болоно.",
+          "url": "https://burunen.ru/bur/news/society/147843-bayar-shoydokov-buryaad-estradyn-domog/",
+          "title": "Баяр Шойдоков — буряад эстрадын домог",
+          "match": "яажа"
+        },
+        {
+          "sentence": "«Үетэн» студи 85-һаа дээшэ аудиоальбом болон олон тоото видеоклипүүдые бэлдэжэ гаргаһан юм.",
+          "url": "https://burunen.ru/bur/news/society/147843-bayar-shoydokov-buryaad-estradyn-domog/",
+          "title": "Баяр Шойдоков — буряад эстрадын домог",
+          "match": "бэлдэжэ"
+        },
+        {
+          "sentence": "Иигэжэ һургуулияа аймагтаа, Буряадтаа нилээд суурхуулһан юм.",
+          "url": "https://burunen.ru/bur/news/society/147842-buryaadayngaa-nere-rge-en-budasheryn-basagan/",
+          "title": "Буряадайнгаа нэрэ үргэһэн Будашэрын басаган",
+          "match": "Иигэжэ"
+        },
+        {
+          "sentence": "Нина Будаширеевна «Мүнгэн шүрэнүүд» хамталигтаяа 2018 онһоо уласхоорондын элдэб фестивальнуудта хабаадажа, лауреат болон дипломуудта хүртэһэн.",
+          "url": "https://burunen.ru/bur/news/society/147842-buryaadayngaa-nere-rge-en-budasheryn-basagan/",
+          "title": "Буряадайнгаа нэрэ үргэһэн Будашэрын басаган",
+          "match": "хабаадажа"
+        },
+        {
+          "sentence": "Энэ жэл Бүгэдэ Буряадай «Алтаргана» нааданда «Мүнгэн шүрэнүүд» хамталиг Санкт-Петербург хотоёо нэрлүүлжэ, һайндэрэй нээлгын жагсаалда эдэбхитэйнүүд байһанаа гэршэлээ.",
+          "url": "https://burunen.ru/bur/news/society/147842-buryaadayngaa-nere-rge-en-budasheryn-basagan/",
+          "title": "Буряадайнгаа нэрэ үргэһэн Будашэрын басаган",
+          "match": "нэрлүүлжэ"
+        },
+        {
+          "sentence": "Замда гарахые, эд бараа, адуу мал худалдажа абахые, найрлахые, гэр байра барихые, бэриин үйлэ бүтээхые тэбшэхэ.",
+          "url": "https://burunen.ru/bur/news/society/147839-zurkhay-oktyabriin-21-garagay-4-buryaad-mongol-liteer-10/",
+          "title": "Зурхай - октябриин 21, гарагай 4, буряад-монгол литээр 10",
+          "match": "худалдажа"
+        },
+        {
+          "sentence": "Эдик угайнгаа һарбаалжа Шодонойтонһоо (Шоднэ) юһэн үе мэдэдэг юм.",
+          "url": "https://burunen.ru/bur/news/society/147777-t-re-en-aykhan-toontodoo/",
+          "title": "Түрэһэн һайхан тоонтодоо",
+          "match": "һарбаалжа"
+        }
+      ]
+    },
+    "converb_sequential": {
+      "label": "Sequential converb",
+      "description": "-аад / -ээд / -оод / -өөд",
+      "total": 636,
+      "examples": [
+        {
+          "sentence": "Буряадай хүдөө ажахын институт дүүргээд, Сельхозтехникэ нэгэдэлэй харьяата эмхидэ 3 жэлэй туршада инженерээр, прорабаар хүдэлөө.",
+          "url": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+          "title": "Гүрэнэй ажалдашье, гүн бэлигэй далайдашье...",
+          "match": "дүүргээд"
+        },
+        {
+          "sentence": "Ушар юуб гэбэл, сурбалжалагшын ажалда бэеэ туршаад үзэхэ гэһэн байгаа.",
+          "url": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+          "title": "Гүрэнэй ажалдашье, гүн бэлигэй далайдашье...",
+          "match": "туршаад"
+        },
+        {
+          "sentence": "Тэрэ үедэ анхан баригдаад байһан Үлэгшэнэй соёлой ордон, хүүгэдэй сэсэрлиг болбосон түхэлдөө хүргэгдэжэ, баяр ёһололой оршон байдалда нээгдээ һэн.",
+          "url": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+          "title": "Гүрэнэй ажалдашье, гүн бэлигэй далайдашье...",
+          "match": "баригдаад"
+        },
+        {
+          "sentence": "Зандан хүбүүниинь эсэгынгээ замаар Монголой консерватори дүүргээд, морин хууршан, аранжировщик, «Байгал» театрта буряад хүгжэмөөрөө баясуулжа ябана.",
+          "url": "https://burunen.ru/bur/news/society/147843-bayar-shoydokov-buryaad-estradyn-domog/",
+          "title": "Баяр Шойдоков — буряад эстрадын домог",
+          "match": "дүүргээд"
+        },
+        {
+          "sentence": "Тиихэдэ бүлгэмэй 50 жэлэй зам харуулһан баримтата кино дүүргэхэ шатадаа ороод байна.",
+          "url": "https://burunen.ru/bur/news/society/147843-bayar-shoydokov-buryaad-estradyn-domog/",
+          "title": "Баяр Шойдоков — буряад эстрадын домог",
+          "match": "ороод"
+        },
+        {
+          "sentence": "Дээдэ гарай багша болоод байхадаа: «Минии багшанар бэрхэ хүнүүд байһан, би түрүүшынгээ багша Любовь Балдановнаһаа жэшээ абан ябагша һэм», - гэжэ хөөрөө.",
+          "url": "https://burunen.ru/bur/news/society/147842-buryaadayngaa-nere-rge-en-budasheryn-basagan/",
+          "title": "Буряадайнгаа нэрэ үргэһэн Будашэрын басаган",
+          "match": "болоод"
+        },
+        {
+          "sentence": "Суглуулбариин нэрэ уншаад байхада, нютагтаяа таһаршагүй холбоо, эхэ газарай шэдитэ хүсэ шадал, уг гарбалай нангин утаһан эли тодоор харагдана.",
+          "url": "https://burunen.ru/bur/news/society/147842-buryaadayngaa-nere-rge-en-budasheryn-basagan/",
+          "title": "Буряадайнгаа нэрэ үргэһэн Будашэрын басаган",
+          "match": "уншаад"
+        },
+        {
+          "sentence": "Данзановтан ВДНХ-гай путёвкоор шагнагдаад, Москва ошохо болоһон байгаа.",
+          "url": "https://burunen.ru/bur/news/society/147777-t-re-en-aykhan-toontodoo/",
+          "title": "Түрэһэн һайхан тоонтодоо",
+          "match": "шагнагдаад"
+        },
+        {
+          "sentence": "Тэрэниие Эдуард Михайлович бригадынгаа хүбүүдээр модо унагаажа, пилорамадаа гаргаад, барижа үгөө һэн.",
+          "url": "https://burunen.ru/bur/news/society/147777-t-re-en-aykhan-toontodoo/",
+          "title": "Түрэһэн һайхан тоонтодоо",
+          "match": "гаргаад"
+        },
+        {
+          "sentence": "Тиигээд: «Ши угтыш», - гэжэ Эдигтээ хонходоо гээшэ. - Харанхы боложо байхада ерээ, моридыень эдеэлүүлээд, айлшадаа амаруулаабди, - гэжэ Эдуард хөөрэнэ.",
+          "url": "https://burunen.ru/bur/news/society/147777-t-re-en-aykhan-toontodoo/",
+          "title": "Түрэһэн һайхан тоонтодоо",
+          "match": "Тиигээд"
+        },
+        {
+          "sentence": "Номтой танилсалга Александр Поповой нёдондо 75 жэлыень тэмдэглэжэ байгаад, мэдээжэ эрдэмтэн Арнольд Тулохонов ехэ гайхалаа мэдүүлээ һэн.",
+          "url": "https://burunen.ru/bur/news/society/147745-suuta-rektorye-dursaa/",
+          "title": "Суута ректорые дурсаа",
+          "match": "байгаад"
+        },
+        {
+          "sentence": "Бишье баһа минии багша гэжэ һанаад ябадагби.",
+          "url": "https://burunen.ru/bur/news/society/147745-suuta-rektorye-dursaa/",
+          "title": "Суута ректорые дурсаа",
+          "match": "һанаад"
+        }
+      ]
+    },
+    "converb_conditional": {
+      "label": "Conditional converb",
+      "description": "-бал / -бэл / -бол",
+      "total": 163,
+      "examples": [
+        {
+          "sentence": "Ушар юуб гэбэл, сурбалжалагшын ажалда бэеэ туршаад үзэхэ гэһэн байгаа.",
+          "url": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+          "title": "Гүрэнэй ажалдашье, гүн бэлигэй далайдашье...",
+          "match": "гэбэл"
+        },
+        {
+          "sentence": "Зоной байдал һайжаруулхада, буряад ёһоор хэлэбэл, ёһотойл буян гээшэл даа.",
+          "url": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+          "title": "Гүрэнэй ажалдашье, гүн бэлигэй далайдашье...",
+          "match": "хэлэбэл"
+        },
+        {
+          "sentence": "Үнэнииень хэлэбэл, ноён хүнэй, даргын һамган байха гээшэ нэгэ талаараа нилээн харюусалгатай, һанаа зоболготойшье уялга юм.",
+          "url": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+          "title": "Гүрэнэй ажалдашье, гүн бэлигэй далайдашье...",
+          "match": "хэлэбэл"
+        },
+        {
+          "sentence": "Студиин нэгэ онсо гайхамшаг бүтээл гэбэл — Хэжэнгын аймагай бүхы нютаг тосхонуудта зорюулһан тусхай дуунууд болон уран видеоклипүүд бэлдэгдээ.",
+          "url": "https://burunen.ru/bur/news/society/147843-bayar-shoydokov-buryaad-estradyn-domog/",
+          "title": "Баяр Шойдоков — буряад эстрадын домог",
+          "match": "гэбэл"
+        },
+        {
+          "sentence": "Энэ болбол сагай ошоходо, сэгнэшэгүй баялиг, Хэжэнгэ нютагай нюур шарай, амиды түүхэ болон үлэхэ бүтээл мүн.",
+          "url": "https://burunen.ru/bur/news/society/147843-bayar-shoydokov-buryaad-estradyn-domog/",
+          "title": "Баяр Шойдоков — буряад эстрадын домог",
+          "match": "болбол"
+        },
+        {
+          "sentence": "Ушар гэхэдэ, тэрэ амиды мэндэ ябабал, 76 наһа гүйсэхэ байгаа гэжэ «Буряад үнэн» сонин хөөрэнэ. фото: Борис Балданов.",
+          "url": "https://burunen.ru/bur/news/society/147745-suuta-rektorye-dursaa/",
+          "title": "Суута ректорые дурсаа",
+          "match": "ябабал"
+        },
+        {
+          "sentence": "Танил талануудтаяа юрын мэндэшэлээн, юрэнхыдөө, заабол эдеэн тухай хөөрэлдөөн болошодог юм, - гэжэ Роза Тумэнбаировна хубаалдана.",
+          "url": "https://burunen.ru/bur/news/society/147306-zayaanayn-zamay-ayanshalganuud/",
+          "title": "Заяанайнь замай аяншалганууд",
+          "match": "заабол"
+        },
+        {
+          "sentence": "Тиигэбэл бидэ тэрээн тухай бэшэжэ, уншагшадые танилсуулжа байхабди.",
+          "url": "https://burunen.ru/bur/news/society/147306-zayaanayn-zamay-ayanshalganuud/",
+          "title": "Заяанайнь замай аяншалганууд",
+          "match": "Тиигэбэл"
+        },
+        {
+          "sentence": "Тэрэ болбол ажалай ветеран, Доодо-Ивалгын хүдөөгэй һууринай Ветерануудай зүблэлэй түрүүлэгшэ, Ивалгын аймагай Хүндэтэ эрхэтэн юм.",
+          "url": "https://burunen.ru/bur/news/society/147730-nyutagaymnay-khaluun-z-rkhetey-ekhener/",
+          "title": "Нютагаймнай халуун зүрхэтэй эхэнэр",
+          "match": "болбол"
+        },
+        {
+          "sentence": "Уг гарбал тухайгаа бэшэһэн ном соогоо үргэнөөр хөөрөө һэм.",
+          "url": "https://burunen.ru/bur/news/society/147680-d-rben-tegshe-beligtey-/",
+          "title": "Дүрбэн тэгшэ бэлигтэй",
+          "match": "гарбал"
+        },
+        {
+          "sentence": "Нэгэ хэды хожомдобол, 600-гаад хонид уһанда урдаха һэн.",
+          "url": "https://burunen.ru/bur/news/society/147680-d-rben-tegshe-beligtey-/",
+          "title": "Дүрбэн тэгшэ бэлигтэй",
+          "match": "хожомдобол"
+        },
+        {
+          "sentence": "«Хүйхэр үбгэд» ансамблиин эдэбхитэй хабаадагшадые нэрлэбэл: А.В.",
+          "url": "https://burunen.ru/bur/news/society/147680-d-rben-tegshe-beligtey-/",
+          "title": "Дүрбэн тэгшэ бэлигтэй",
+          "match": "нэрлэбэл"
+        }
+      ]
+    },
+    "converb_concessive": {
+      "label": "Concessive",
+      "description": "-башье, or -аа + шье һаа",
+      "total": 116,
+      "examples": [
+        {
+          "sentence": "Үһэеэ абхуулхада – үлзытэй, гэбэшье һүнэһэн толгойдо оршоно.",
+          "url": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+          "title": "Буряад-монгол зурхай октябриин 26-һаа ноябриин 1 болотор",
+          "match": "гэбэшье"
+        },
+        {
+          "sentence": "Гэбэшье олоной сэдьхэлдэ һайхан мэдэрэлэй үрэһэ тарижа, буурашагүй буян хэжэ ябаһандань дүтынгөө эдэ нүхэдтэ дүүрэн һайхан баяраа мэдүүлэе.",
+          "url": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+          "title": "Гүрэнэй ажалдашье, гүн бэлигэй далайдашье...",
+          "match": "Гэбэшье"
+        },
+        {
+          "sentence": "Хэды хүндэ жэлнүүд байгаашье һаань, ехэ гоё хурим түрэ гэртэхиниинь эмхидхээ һэн.",
+          "url": "https://burunen.ru/bur/news/society/147777-t-re-en-aykhan-toontodoo/",
+          "title": "Түрэһэн һайхан тоонтодоо",
+          "match": "байгаашье һаа"
+        },
+        {
+          "sentence": "Ушар гэхэдэ, табан жэлэй саана энэ дэлхэйтэй хахасабашье, тэрээн тухайгаа үнгэрһэн сагаар хэлэхэ аргамнай үгы.",
+          "url": "https://burunen.ru/bur/news/society/147745-suuta-rektorye-dursaa/",
+          "title": "Суута ректорые дурсаа",
+          "match": "хахасабашье"
+        },
+        {
+          "sentence": "Тиибэшье ямаршье хүнэй хуби заяан хэнэйдэ түрэһэнһөөнь, хэнтэй нүхэсэһэн, хүмүүжэһэн байгааб гээд, орон нютагһаань, саг үеһөөнь, хуби заяанһаань дулдыдадаг ха юм даа.",
+          "url": "https://burunen.ru/bur/news/society/147744-uragshaa-minii-poezd-/",
+          "title": "«Урагшаа, минии поезд!..»",
+          "match": "Тиибэшье"
+        },
+        {
+          "sentence": "Хэды тиибэшье Василий Санжиевичай эгээл дуратай поэт Даша Дамбаев болоно.",
+          "url": "https://burunen.ru/bur/news/society/147744-uragshaa-minii-poezd-/",
+          "title": "«Урагшаа, минии поезд!..»",
+          "match": "тиибэшье"
+        },
+        {
+          "sentence": "Багшынгаа ууртайхан гү, али нэгэл ондоохоноор дуугараашье һаань, энэ багшымнай гэртэ нэгэл юумэн болоол даа, һамгатаяа ур-тар гэлдээл ха гэжэ үхибүүд абаһаар тухайлаадхидаг.",
+          "url": "https://burunen.ru/bur/news/society/147744-uragshaa-minii-poezd-/",
+          "title": "«Урагшаа, минии поезд!..»",
+          "match": "дуугараашье һаа"
+        },
+        {
+          "sentence": "Тиигэбэшье хамтын ажахынууд байгуулагдажа, һургуулинууд нээгдэжэ, соёл болбосорол хүгжэжэ, арад зоной ажабайдал һэргэжэ байгаа.",
+          "url": "https://burunen.ru/bur/news/society/147716-kh-rkh-dey-kh-ndetey-taabay/",
+          "title": "Хүрхүүдэй хүндэтэй таабай",
+          "match": "Тиигэбэшье"
+        },
+        {
+          "sentence": "Наһатай болоошье һаа, Доржо-Цыден Бадмаевич 1997 ондо нютагтаа арадай барилгын аргаар тамирай ехэ байшан бариха ажалые урагшатайгаар ябуулаа.",
+          "url": "https://burunen.ru/bur/news/society/147716-kh-rkh-dey-kh-ndetey-taabay/",
+          "title": "Хүрхүүдэй хүндэтэй таабай",
+          "match": "болоошье һаа"
+        },
+        {
+          "sentence": "Ямар нэгэн театрта тогтожо, бэеэ зорюулан хүдэлбэшье, зүрхэ сэдьхэлээрээ мэдэгдээгүй шэнэ орьёлнууд руу тэгүүлһэн «нүүдэлшэд» зандаа үлэдэг юм, - гэжэ Олег Юмов хөөрэнэ.",
+          "url": "https://burunen.ru/bur/news/culture/147503-n-delshe-nayruulagsha/",
+          "title": "«Нүүдэлшэ найруулагша»",
+          "match": "хүдэлбэшье"
+        },
+        {
+          "sentence": "Тиигэбэшье, Роза Тумэнбаировнагай хэлэһээр, өөрын онсо һайхан байгаалиин үзэсхэлэнгүүдээрээ хүнэй дура сэдьхэл татадаг.",
+          "url": "https://burunen.ru/bur/news/society/147306-zayaanayn-zamay-ayanshalganuud/",
+          "title": "Заяанайнь замай аяншалганууд",
+          "match": "Тиигэбэшье"
+        },
+        {
+          "sentence": "Александр Павлович нүхэрынь агроном мэргэжэлтэй, наһанай амаралтада гараашье һаа, мүнөө һургуулиин жолоошоноор хүдэлнэ.",
+          "url": "https://burunen.ru/bur/news/society/147731-bagshyn-rgen-khargyda/",
+          "title": "Багшын үргэн харгыда",
+          "match": "гараашье һаа"
+        }
+      ]
+    },
+    "deriv_passive": {
+      "label": "Passive",
+      "description": "-гда / -гдэ / -гдо",
+      "total": 1790,
+      "examples": [
+        {
+          "sentence": "Түрэлнүүдэй үүдэн нээгдэнэ: түрэл гаралнуудтаяа найрлахагүй.",
+          "url": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+          "title": "Буряад-монгол зурхай октябриин 26-һаа ноябриин 1 болотор",
+          "match": "нээгдэнэ"
+        },
+        {
+          "sentence": "Хэрэмэй үүдэн нээгдэнэ: гэрэй һуури татахагүй, гэр байра заһабарилхагүй, зөөлгэхэгүй.",
+          "url": "https://burunen.ru/bur/news/society/147904-buryaad-mongol-zurkhay-oktyabriin-26-aa-noyabriin-1-bolotor/",
+          "title": "Буряад-монгол зурхай октябриин 26-һаа ноябриин 1 болотор",
+          "match": "нээгдэнэ"
+        },
+        {
+          "sentence": "Уданшьегүй намтарайнь шэглэлдэ һонин хуудаһан нээгдэһэн юм.",
+          "url": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+          "title": "Гүрэнэй ажалдашье, гүн бэлигэй далайдашье...",
+          "match": "нээгдэһэн"
+        },
+        {
+          "sentence": "Тэрэ үедэ анхан баригдаад байһан Үлэгшэнэй соёлой ордон, хүүгэдэй сэсэрлиг болбосон түхэлдөө хүргэгдэжэ, баяр ёһололой оршон байдалда нээгдээ һэн.",
+          "url": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+          "title": "Гүрэнэй ажалдашье, гүн бэлигэй далайдашье...",
+          "match": "баригдаад"
+        },
+        {
+          "sentence": "Хамтын бани, Харацайда техникэ табиха гараж һэльбэн шэнэлэгдээ.",
+          "url": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+          "title": "Гүрэнэй ажалдашье, гүн бэлигэй далайдашье...",
+          "match": "шэнэлэгдээ"
+        },
+        {
+          "sentence": "Студиин нэгэ онсо гайхамшаг бүтээл гэбэл — Хэжэнгын аймагай бүхы нютаг тосхонуудта зорюулһан тусхай дуунууд болон уран видеоклипүүд бэлдэгдээ.",
+          "url": "https://burunen.ru/bur/news/society/147843-bayar-shoydokov-buryaad-estradyn-domog/",
+          "title": "Баяр Шойдоков — буряад эстрадын домог",
+          "match": "бэлдэгдээ"
+        },
+        {
+          "sentence": "Эдэ шагналнууд — буряад дуунда зорюулагдаһан олон жэлэй аглаг ажалай багахан лэ хубиин гэршэ юм.",
+          "url": "https://burunen.ru/bur/news/society/147843-bayar-shoydokov-buryaad-estradyn-domog/",
+          "title": "Баяр Шойдоков — буряад эстрадын домог",
+          "match": "зорюулагдаһан"
+        },
+        {
+          "sentence": "Хахад зуун жэлэй дабаан 50 жэлэй туршада 38 бэлигтэй дуушад ба хүгжэмшэд бүлгэмэй түүхэтэй холбогдон ургажа гараа.",
+          "url": "https://burunen.ru/bur/news/society/147843-bayar-shoydokov-buryaad-estradyn-domog/",
+          "title": "Баяр Шойдоков — буряад эстрадын домог",
+          "match": "холбогдон"
+        },
+        {
+          "sentence": "Байгша оной май һарын 27-до Санкт-Петербург хотын «Комсомольская правда» сониндо 2017 ондо байгуулагдаһан «Мүнгэн шүрэнүүд» хамталиг тухай дура буляамаар бэшэгдэһэн статья гараа.",
+          "url": "https://burunen.ru/bur/news/society/147842-buryaadayngaa-nere-rge-en-budasheryn-basagan/",
+          "title": "Буряадайнгаа нэрэ үргэһэн Будашэрын басаган",
+          "match": "байгуулагдаһан"
+        },
+        {
+          "sentence": "Суглуулбариин нэрэ уншаад байхада, нютагтаяа таһаршагүй холбоо, эхэ газарай шэдитэ хүсэ шадал, уг гарбалай нангин утаһан эли тодоор харагдана.",
+          "url": "https://burunen.ru/bur/news/society/147842-buryaadayngaa-nere-rge-en-budasheryn-basagan/",
+          "title": "Буряадайнгаа нэрэ үргэһэн Будашэрын басаган",
+          "match": "харагдана"
+        },
+        {
+          "sentence": "Эндэ хэблэгдэһэн хори буряад уг гарбалай магтаалнууд наһатайшье зоной, залуушуулайшье һонирхол ехэ татана, бага хүүгэдэй сээжэлдэхэдэ хүнгэн, ходорхой, һургаал захяа үгэнүүдтэй.",
+          "url": "https://burunen.ru/bur/news/society/147842-buryaadayngaa-nere-rge-en-budasheryn-basagan/",
+          "title": "Буряадайнгаа нэрэ үргэһэн Будашэрын басаган",
+          "match": "хэблэгдэһэн"
+        },
+        {
+          "sentence": "Данзановтан ВДНХ-гай путёвкоор шагнагдаад, Москва ошохо болоһон байгаа.",
+          "url": "https://burunen.ru/bur/news/society/147777-t-re-en-aykhan-toontodoo/",
+          "title": "Түрэһэн һайхан тоонтодоо",
+          "match": "шагнагдаад"
+        }
+      ]
+    },
+    "deriv_cooperative": {
+      "label": "Cooperative",
+      "description": "-лса / -лсэ / -лсо",
+      "total": 242,
+      "examples": [
+        {
+          "sentence": "Зонтой харилсаа һайтай, үгэеэ ойлгуулхадаа бэрхэ Цырен Цыренович дүрбэн жэлэй туршада амжалтатай һайнаар директорээр хүдэлөө.",
+          "url": "https://burunen.ru/bur/news/society/147854-g-reney-azhaldashe-g-n-beligey-dalaydashe-/",
+          "title": "Гүрэнэй ажалдашье, гүн бэлигэй далайдашье...",
+          "match": "харилсаа"
+        },
+        {
+          "sentence": "Шүлэгэй уран үгые торгон хүгжэмтэй тааруулхадаа, тэрэ суута уран зохёолшодтой нягта харилсаа холбоотой хүдэлдэг.",
+          "url": "https://burunen.ru/bur/news/society/147843-bayar-shoydokov-buryaad-estradyn-domog/",
+          "title": "Баяр Шойдоков — буряад эстрадын домог",
+          "match": "харилсаа"
+        },
+        {
+          "sentence": "Энэ хэрэгтэ Данзановтан баһал оролсодог юм ааб даа.",
+          "url": "https://burunen.ru/bur/news/society/147777-t-re-en-aykhan-toontodoo/",
+          "title": "Түрэһэн һайхан тоонтодоо",
+          "match": "оролсодог"
+        },
+        {
+          "sentence": "Галина Шариповна үндэр наһатай бүлэг ветерануудтай хамта Ивалгын дасанай волонтёрнуудай нэгэдэлдэ оролсоно.",
+          "url": "https://burunen.ru/bur/news/society/147711-seber-sedkheltey-na-atayshuul/",
+          "title": "Сэбэр сэдьхэлтэй наһатайшуул",
+          "match": "оролсоно"
+        },
+        {
+          "sentence": "Тэндэ хүдэлхэеэ ерэһэн эхэнэрнүүдтэй Галина Шариповна Буянтуева танилсажа, хамсыгаа шуун, ажал хэлсэжэ эхилээ.",
+          "url": "https://burunen.ru/bur/news/society/147711-seber-sedkheltey-na-atayshuul/",
+          "title": "Сэбэр сэдьхэлтэй наһатайшуул",
+          "match": "танилсажа"
+        },
+        {
+          "sentence": "Буряадтамнай һайн зантай, урагшаа һанаатай хүнүүд олон юм гэжэ эндэ хүдэлхэ үедөө мэдэрээ. - Бүхы хүн зон өөрын ажалтайшье һаа, иишээ хэдэн часай хугасаада ерээд, оёлсоод ошоно.",
+          "url": "https://burunen.ru/bur/news/society/147711-seber-sedkheltey-na-atayshuul/",
+          "title": "Сэбэр сэдьхэлтэй наһатайшуул",
+          "match": "оёлсоод"
+        },
+        {
+          "sentence": "Молор һайхан Монгол орондо «Алтаргана-2024» нааданда оролсожо, 3-дахи һуури абаа.",
+          "url": "https://burunen.ru/bur/news/society/147773-shonorog-shambay-ugtay/",
+          "title": "Шонорог шамбай угтай",
+          "match": "оролсожо"
+        },
+        {
+          "sentence": "Уласхоорондын «Уулын уладай уулзалга - 2026» нааданда Михаил хам оролсожо, «Хонгоодорой соло» урилдаанда нэрэеэ нэрлүүлжэ, солоёо дуудуулаа һэн.",
+          "url": "https://burunen.ru/bur/news/society/147773-shonorog-shambay-ugtay/",
+          "title": "Шонорог шамбай угтай",
+          "match": "оролсожо"
+        },
+        {
+          "sentence": "Михаил Наханцаковтай «Буряад ФМ» радиогой 10 жэлэй ойн баярта зорюулагдаһан «Дүрбэн бэрхэ» мүрысөөндэ хамта хабаадалсажа танилсаабди.",
+          "url": "https://burunen.ru/bur/news/society/147773-shonorog-shambay-ugtay/",
+          "title": "Шонорог шамбай угтай",
+          "match": "хабаадалсажа"
+        },
+        {
+          "sentence": "Тиихэдэ Монгол гүрэнһөө үбһэ, һолоомо зөөхэдэнь, Алексей Дашинимаевич ябалсадаг байгаа. 1990-ээд онуудаар Соёл нютагтаа бригадираар хүдэлһэн.",
+          "url": "https://burunen.ru/bur/news/society/147771-ezhel-khoyer-z-rkhen/",
+          "title": "Эжэл хоёр зүрхэн",
+          "match": "ябалсадаг"
+        },
+        {
+          "sentence": "Лариса Цыреновна ехэ гоё хоолойгоор буряад һайхан дуунуудаа «Ая ганга» бүлгэмдөө дуулажа, ёохороо хатаржа, олон мүрысөөнүүдтэ хабаадалсажа ябадаг юм.",
+          "url": "https://burunen.ru/bur/news/society/147771-ezhel-khoyer-z-rkhen/",
+          "title": "Эжэл хоёр зүрхэн",
+          "match": "хабаадалсажа"
+        },
+        {
+          "sentence": "Эхэ эсэгэһээ дамжаһан заншал алдаагүй, гэр дээрээ уг гарбалаа үргэлжэлүүлжэ, элинсэгэйнгээ үлөөһэн газар нангинаар сахижа, 10 гаран аша зээнэрээ харалсажа ажаһууна.",
+          "url": "https://burunen.ru/bur/news/society/147771-ezhel-khoyer-z-rkhen/",
+          "title": "Эжэл хоёр зүрхэн",
+          "match": "харалсажа"
+        }
+      ]
+    }
+  }
+}

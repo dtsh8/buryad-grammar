@@ -10,6 +10,7 @@ import {
 } from '../data/grammar';
 import VerbBuilder from '../components/VerbBuilder';
 import CorpusLink from '../components/CorpusLink';
+import SayButton from '../components/SayButton';
 import Tabs from '../components/Tabs';
 import { tabPanelProps, useTab, type TabDef } from '../hooks/useTab';
 
@@ -735,6 +736,7 @@ function Conjugator() {
                       </td>
                       <td className={`py-2.5 font-buryat text-xl font-semibold ${row.color}`}>
                         {vp.forms[row.key]}
+                        <SayButton word={vp.forms[row.key]} className="ml-1" />
                       </td>
                     </tr>
                   ))}

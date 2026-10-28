@@ -2,6 +2,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { CASES, POSSESSIVE_SUFFIXES, type GrammarCase } from '../data/grammar';
 import CorpusLink from '../components/CorpusLink';
+import { PARADIGM_NOUN, PARADIGM_FORMS } from '../data/caseParadigm';
+import SayButton from '../components/SayButton';
 
 const fade = { hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } };
 
@@ -131,8 +133,9 @@ function CaseDetail({ c }: { c: GrammarCase }) {
               {c.examples.map((ex, i) => (
                 <tr key={i} className="border-b border-stone-200/30">
                   <td className="py-2 pr-4 font-buryat text-stone-600">{ex.stem}</td>
-                  <td className="py-2 pr-4 font-buryat font-bold text-stone-900 text-base">
+                  <td className="py-2 pr-4 font-buryat font-bold text-stone-900 text-base whitespace-nowrap">
                     {ex.inflected}
+                    <SayButton word={ex.inflected} className="ml-1" />
                   </td>
                   <td className="py-2 pr-4 text-stone-600 italic">'{ex.translation}'</td>
                   <td className="py-2 text-xs text-stone-500">{ex.note ?? ''}</td>
@@ -153,19 +156,6 @@ function CaseDetail({ c }: { c: GrammarCase }) {
     </motion.div>
   );
 }
-
-// ─── Declension paradigm table ─────────────────────────────────────────────
-
-const PARADIGM_NOUN = { root: 'гэр', meaning: 'house', harmony: 'front (э)' };
-const PARADIGM_FORMS: Array<{ case_: string; form: string }> = [
-  { case_: 'Nominative', form: 'гэр' },
-  { case_: 'Genitive', form: 'гэрэй' },
-  { case_: 'Dative-Locative', form: 'гэртэ' },
-  { case_: 'Accusative', form: 'гэрые' },
-  { case_: 'Instrumental', form: 'гэрээр' },
-  { case_: 'Comitative', form: 'гэртэй' },
-  { case_: 'Ablative', form: 'гэрһээ' },
-];
 
 export default function Cases() {
   const [selected, setSelected] = useState<string>(CASES[0].id);
@@ -247,6 +237,7 @@ export default function Cases() {
                   <td className="py-2.5 pr-4 font-buryat text-stone-500">{CASES[i]?.buryad}</td>
                   <td className="py-2.5 font-buryat text-lg text-buryat-700 font-semibold">
                     {row.form}
+                    <SayButton word={row.form} className="ml-1" />
                   </td>
                 </tr>
               ))}
@@ -281,6 +272,7 @@ export default function Cases() {
                   <td className="py-2.5 pr-4 font-buryat text-stone-700">{p.suffix}</td>
                   <td className="py-2.5 pr-4 font-buryat text-lg text-buryat-700 font-semibold">
                     {p.example}
+                    <SayButton word={p.example} className="ml-1" />
                   </td>
                   <td className="py-2.5 pr-4 font-mono text-xs text-stone-500">{p.gloss}</td>
                   <td className="py-2.5 italic text-stone-500">'{p.translation}'</td>

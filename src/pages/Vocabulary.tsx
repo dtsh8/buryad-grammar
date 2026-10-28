@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { useState, useMemo } from 'react';
 import { useVocabulary } from '../hooks/useVocabulary';
 import type { Lexeme, LexemeCategory } from '../data/vocabulary.types';
+import SayButton from '../components/SayButton';
 
 const fade = { hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } };
 
@@ -33,6 +34,7 @@ function LexemeCard({ l }: { l: Lexeme }) {
       <div className="flex items-start justify-between gap-2">
         <p className="font-buryat text-xl text-stone-800 font-semibold group-hover:text-buryat-700 transition-colors">
           {l.buryad}
+          <SayButton word={l.buryad} className="ml-1" />
         </p>
         <span className={`${CAT_COLORS[l.category] ?? 'badge'} shrink-0 text-xs`}>
           {l.category}

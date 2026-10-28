@@ -52,6 +52,18 @@ npm run corpus:bnc -- "*нхай" --sent 3   # * is a wildcard; --sent adds exam
 An earlier version also showed sentences from *Буряад үнэн* (burunen.ru). They were removed
 because the site allows republication, even partial, only with the editors' written permission.
 
+## Pronunciation
+
+No text-to-speech model covers Buryad, so pronunciation comes from native-speaker recordings.
+Put one clip per word in `public/audio/`, named after the word (`гэрһээ.mp3`), and run:
+
+```bash
+npm run audio   # updates public/audio/manifest.json and docs/audio-checklist.md
+```
+
+A word gets a play button everywhere it appears once its clip is listed in the manifest.
+[docs/audio-checklist.md](docs/audio-checklist.md) lists every word still to record, with its file name.
+
 ## Versioning
 
 Releases follow [Semantic Versioning](https://semver.org/) driven by [Conventional Commits](CONTRIBUTING.md):

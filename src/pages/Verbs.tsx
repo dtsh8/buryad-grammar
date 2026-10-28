@@ -142,8 +142,9 @@ function VerbAnatomy() {
       <div className="rounded-xl bg-amber-50 border border-amber-200 p-4 text-sm">
         <p className="font-semibold text-amber-800 mb-1">🔊 Every suffix is vowel-harmonic</p>
         <p className="text-amber-700">
-          Back-vowel roots (а/о/у) take <span className="font-buryat">-на / -ба / -жа</span> etc.;
-          front-vowel roots (э/ø/ü) take <span className="font-buryat">-нэ / -бэ / -жэ</span>.
+          Roots with а/у take <span className="font-buryat">-на / -ба / -жа</span> etc.; roots with
+          о take <span className="font-buryat">-но / -бо / -жо</span>; roots with э/ө/ү take{' '}
+          <span className="font-buryat">-нэ / -бэ / -жэ</span>.
         </p>
       </div>
     </div>

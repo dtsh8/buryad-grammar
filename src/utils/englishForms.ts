@@ -1,11 +1,12 @@
 // ─── English verb form helper ─────────────────────────────────────────────
-// Returns past tense, past participle, and gerund for any English verb.
+// Returns past tense, past participle, gerund, and 3rd person singular for any English verb.
 // Used to generate grammatically correct English glosses in the Verb Builder.
 
 export interface EnglishForms {
   past: string; // "went", "loved", "played"
   pastPart: string; // "gone", "loved", "played"
   gerund: string; // "going", "loving", "playing"
+  thirdPerson: string; // "goes", "loves", "plays"
 }
 
 // Irregular forms table — past tense + past participle
@@ -97,15 +98,29 @@ function regularPast(v: string): string {
 }
 
 // Gerund rules:
-//   ends in -ie          → +ing       (lie → lying is irregular; skip edge case)
-//   ends in -e           → drop e +ing (love → loving, make → making)
-//   CVC                  → double+ing  (run → running, sit: irregular)
-//   otherwise            → +ing
+//   ends in -ie          → -ie +ying   (lie → lying, die → dying)
+//   ends in consonant+e  → drop e +ing (love → loving, make → making)
+//   ends in -ee/-oe/-ye  → +ing        (see → seeing, hoe → hoeing, dye → dyeing)
+//   CVC                  → double+ing  (run → running)
+//   otherwise            → +ing        (be → being)
 function regularGerund(v: string): string {
-  if (/[^e]e$/.test(v)) return v.slice(0, -1) + 'ing'; // love→loving, make→making
-  if (/ee$/.test(v)) return v + 'ing'; // see→seeing (irregular anyway), flee→fleeing
+  if (/ie$/.test(v)) return v.slice(0, -2) + 'ying';
+  if (v.length > 2 && /[^aeiouy]e$/.test(v)) return v.slice(0, -1) + 'ing';
   if (needsDoubling(v)) return v + v[v.length - 1] + 'ing';
   return v + 'ing';
+}
+
+// 3rd person singular present:
+//   be / have            → is / has
+//   ends in s x z ch sh o → +es        (watch → watches, go → goes)
+//   ends in consonant y  → -y +ies     (carry → carries)
+//   otherwise            → +s
+function thirdPerson(v: string): string {
+  if (v === 'be') return 'is';
+  if (v === 'have') return 'has';
+  if (/(s|x|z|ch|sh|o)$/.test(v)) return v + 'es';
+  if (/[^aeiou]y$/.test(v)) return v.slice(0, -1) + 'ies';
+  return v + 's';
 }
 
 // CVC doubling: single-syllable verb ending consonant-vowel-consonant
@@ -122,6 +137,7 @@ export function englishForms(verb: string): EnglishForms {
       past: irreg[0],
       pastPart: irreg[1],
       gerund: regularGerund(key), // gerund is usually regular even for irregulars
+      thirdPerson: thirdPerson(key),
     };
   }
   const past = regularPast(key);
@@ -129,5 +145,6 @@ export function englishForms(verb: string): EnglishForms {
     past,
     pastPart: past, // regular verbs: past = past participle
     gerund: regularGerund(key),
+    thirdPerson: thirdPerson(key),
   };
 }

@@ -13,14 +13,16 @@
     "lint:fix": "eslint src/ --fix",
     "format": "prettier --write \"src/**/*.{ts,tsx,css}\" \".prettierrc\" \"eslint.config.js\"",
     "format:check": "prettier --check \"src/**/*.{ts,tsx,css}\"",
-    "validate": "npm run typecheck && npm run lint && npm run format:check",
-    "corpus:scrape":    "tsx scripts/scrape.ts",
-    "corpus:build-db":  "tsx scripts/build_db.ts",
-    "corpus:export":    "tsx scripts/export.ts",
-    "corpus:pipeline":  "npm run corpus:scrape && npm run corpus:build-db && npm run corpus:export",
-    "corpus:examples":  "tsx scripts/extract_examples.ts",
-    "corpus:vocab":     "tsx scripts/build_vocab.ts",
-    "corpus:all":       "npm run corpus:scrape && npm run corpus:examples && npm run corpus:vocab"
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "validate": "npm run typecheck && npm run lint && npm run format:check && npm run test",
+    "corpus:scrape": "tsx scripts/scrape.ts",
+    "corpus:build-db": "tsx scripts/build_db.ts",
+    "corpus:export": "tsx scripts/export.ts",
+    "corpus:pipeline": "npm run corpus:scrape && npm run corpus:build-db && npm run corpus:export",
+    "corpus:examples": "tsx scripts/extract_examples.ts",
+    "corpus:vocab": "tsx scripts/build_vocab.ts",
+    "corpus:all": "npm run corpus:scrape && npm run corpus:examples && npm run corpus:vocab"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
@@ -46,7 +48,8 @@
     "tsx": "^4.23.15",
     "typescript": "~6.0.3",
     "typescript-eslint": "^8.72.1",
-    "vite": "^8.3.4"
+    "vite": "^8.3.4",
+    "vitest": "^5.0.5"
   },
   "dependencies": {
     "framer-motion": "^14.6.0",

@@ -16,7 +16,7 @@ export default function WordOrderDiagram() {
       {/* SOV vs SVO comparison */}
       <div className="grid md:grid-cols-2 gap-4">
         <div className="card">
-          <p className="text-xs font-semibold text-stone-400 uppercase tracking-wide mb-3">
+          <p className="text-xs font-semibold text-stone-500 uppercase tracking-wide mb-3">
             Buryad (SOV)
           </p>
           <div className="flex gap-2 items-center">
@@ -30,10 +30,10 @@ export default function WordOrderDiagram() {
             ))}
           </div>
           <p className="mt-3 text-sm text-stone-500 font-buryat text-center">Би ном уншана</p>
-          <p className="text-xs text-stone-400 text-center">I book read</p>
+          <p className="text-xs text-stone-500 text-center">I book read</p>
         </div>
         <div className="card">
-          <p className="text-xs font-semibold text-stone-400 uppercase tracking-wide mb-3">
+          <p className="text-xs font-semibold text-stone-500 uppercase tracking-wide mb-3">
             English (SVO)
           </p>
           <div className="flex gap-2 items-center">
@@ -49,7 +49,7 @@ export default function WordOrderDiagram() {
             ))}
           </div>
           <p className="mt-3 text-sm text-stone-500 text-center">I read a book</p>
-          <p className="text-xs text-stone-400 text-center">I read book</p>
+          <p className="text-xs text-stone-500 text-center">I read book</p>
         </div>
       </div>
 
@@ -76,7 +76,7 @@ export default function WordOrderDiagram() {
                   >
                     {word}
                   </span>
-                  <span className="text-xs text-stone-400 mt-0.5">{ex.gloss[wi]}</span>
+                  <span className="text-xs text-stone-500 mt-0.5">{ex.gloss[wi]}</span>
                 </div>
               ))}
             </div>

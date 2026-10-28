@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
-import { useState } from 'react';
 import { CONSONANTS } from '../data/grammar';
 import VowelHarmonyChart from '../components/VowelHarmonyChart';
+import Tabs from '../components/Tabs';
+import { tabPanelProps, useTab, type TabDef } from '../hooks/useTab';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from 'recharts';
 
 const fade = { hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0 } };
@@ -24,8 +25,14 @@ const placeCounts = Object.entries(
 
 type Tab = 'harmony' | 'consonants' | 'structure';
 
+const TABS: Array<TabDef<Tab>> = [
+  { id: 'harmony', label: 'Vowel Harmony' },
+  { id: 'consonants', label: 'Consonants' },
+  { id: 'structure', label: 'Syllable Structure' },
+];
+
 export default function Phonology() {
-  const [tab, setTab] = useState<Tab>('harmony');
+  const [tab, setTab] = useTab(TABS);
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-10 space-y-8">
@@ -36,24 +43,7 @@ export default function Phonology() {
         </p>
       </motion.div>
 
-      {/* Tabs */}
-      <div className="border-b border-stone-200 flex gap-6">
-        {(
-          [
-            ['harmony', 'Vowel Harmony'],
-            ['consonants', 'Consonants'],
-            ['structure', 'Syllable Structure'],
-          ] as [Tab, string][]
-        ).map(([id, label]) => (
-          <button
-            key={id}
-            onClick={() => setTab(id)}
-            className={`pb-3 text-sm font-medium transition-colors ${tab === id ? 'tab-active' : 'tab-inactive'}`}
-          >
-            {label}
-          </button>
-        ))}
-      </div>
+      <Tabs tabs={TABS} active={tab} onChange={setTab} label="Phonology sections" />
 
       {/* Vowel Harmony panel */}
       {tab === 'harmony' && (
@@ -63,6 +53,7 @@ export default function Phonology() {
           animate="show"
           transition={{ duration: 0.3 }}
           className="space-y-6"
+          {...tabPanelProps(tab)}
         >
           <div className="card">
             <h2 className="text-lg font-semibold text-stone-800 mb-4">Vowel Inventory & Harmony</h2>
@@ -79,13 +70,13 @@ export default function Phonology() {
               <table className="text-sm w-full">
                 <thead>
                   <tr className="border-b border-stone-200">
-                    <th className="text-left py-2 pr-4 text-stone-400 font-normal">Root</th>
-                    <th className="text-left py-2 px-3 text-stone-400 font-normal">Harmony</th>
-                    <th className="text-left py-2 px-3 text-stone-400 font-normal">+Dative</th>
-                    <th className="text-left py-2 px-3 text-stone-400 font-normal">
+                    <th className="text-left py-2 pr-4 text-stone-500 font-normal">Root</th>
+                    <th className="text-left py-2 px-3 text-stone-500 font-normal">Harmony</th>
+                    <th className="text-left py-2 px-3 text-stone-500 font-normal">+Dative</th>
+                    <th className="text-left py-2 px-3 text-stone-500 font-normal">
                       +Instrumental
                     </th>
-                    <th className="text-left py-2 pl-3 text-stone-400 font-normal">Translation</th>
+                    <th className="text-left py-2 pl-3 text-stone-500 font-normal">Translation</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -138,6 +129,7 @@ export default function Phonology() {
           animate="show"
           transition={{ duration: 0.3 }}
           className="space-y-6"
+          {...tabPanelProps(tab)}
         >
           <div className="card">
             <h2 className="text-lg font-semibold text-stone-800 mb-4">
@@ -148,7 +140,7 @@ export default function Phonology() {
                 <thead>
                   <tr className="border-b border-stone-200">
                     {['Letter', 'IPA', 'Place', 'Manner', 'Voiced'].map(h => (
-                      <th key={h} className="text-left py-2 pr-4 text-stone-400 font-normal">
+                      <th key={h} className="text-left py-2 pr-4 text-stone-500 font-normal">
                         {h}
                       </th>
                     ))}
@@ -211,6 +203,7 @@ export default function Phonology() {
           animate="show"
           transition={{ duration: 0.3 }}
           className="space-y-6"
+          {...tabPanelProps(tab)}
         >
           <div className="card space-y-5">
             <h2 className="text-lg font-semibold text-stone-800">Syllable Structure</h2>
@@ -231,21 +224,21 @@ export default function Phonology() {
                     <div className="bg-mongol-100 border border-mongol-300 text-mongol-900 text-sm px-3 py-1.5 rounded-lg font-mono">
                       Onset (C)
                     </div>
-                    <p className="text-xs text-stone-400 mt-1">optional</p>
+                    <p className="text-xs text-stone-500 mt-1">optional</p>
                   </div>
                   <div className="flex flex-col items-center">
                     <div className="w-px h-6 bg-stone-400" />
                     <div className="bg-buryat-100 border border-buryat-300 text-buryat-900 text-sm px-3 py-1.5 rounded-lg font-mono">
                       Nucleus (V/VV)
                     </div>
-                    <p className="text-xs text-stone-400 mt-1">obligatory</p>
+                    <p className="text-xs text-stone-500 mt-1">obligatory</p>
                   </div>
                   <div className="flex flex-col items-center">
                     <div className="w-px h-6 bg-stone-400" />
                     <div className="bg-green-100 border border-green-300 text-green-900 text-sm px-3 py-1.5 rounded-lg font-mono">
                       Coda (C)
                     </div>
-                    <p className="text-xs text-stone-400 mt-1">optional</p>
+                    <p className="text-xs text-stone-500 mt-1">optional</p>
                   </div>
                 </div>
               </div>
@@ -263,7 +256,7 @@ export default function Phonology() {
                   className="bg-stone-50 border border-stone-200 rounded-xl p-3 text-center"
                 >
                   <p className="font-buryat text-2xl text-stone-800">{ex.word}</p>
-                  <p className="text-xs text-stone-400 mt-1 font-mono">{ex.parse}</p>
+                  <p className="text-xs text-stone-500 mt-1 font-mono">{ex.parse}</p>
                   <p className="badge badge-amber mt-1">{ex.pattern}</p>
                   <p className="text-xs text-stone-500 mt-1">'{ex.meaning}'</p>
                 </div>

@@ -38,13 +38,13 @@ function LexemeCard({ l }: { l: Lexeme }) {
           {l.category}
         </span>
       </div>
-      <p className="text-xs text-stone-400 font-mono mt-0.5">/{l.ipa}/</p>
+      <p className="text-xs text-stone-500 font-mono mt-0.5">/{l.ipa}/</p>
       <p className="text-sm text-stone-700 mt-1 font-medium">{l.english}</p>
-      {l.russian && <p className="text-xs text-stone-400 mt-0.5">{l.russian}</p>}
+      {l.russian && <p className="text-xs text-stone-500 mt-0.5">{l.russian}</p>}
       {l.tags && (
         <div className="flex flex-wrap gap-1 mt-2">
           {l.tags.map(t => (
-            <span key={t} className="text-[10px] bg-stone-100 text-stone-400 px-1.5 py-0.5 rounded">
+            <span key={t} className="text-[10px] bg-stone-100 text-stone-500 px-1.5 py-0.5 rounded">
               {t}
             </span>
           ))}
@@ -115,7 +115,7 @@ export default function Vocabulary() {
       <motion.div variants={fade} initial="hidden" animate="show" transition={{ duration: 0.4 }}>
         <div className="flex items-baseline gap-3">
           <h1 className="text-3xl font-bold text-stone-900">Vocabulary</h1>
-          {!loading && <span className="text-stone-400 text-sm">{data.length} entries</span>}
+          {!loading && <span className="text-stone-500 text-sm">{data.length} entries</span>}
         </div>
         <p className="text-stone-500 mt-1">
           Core Buryad lexicon — searchable by Буряад, English, or Russian.
@@ -127,14 +127,16 @@ export default function Vocabulary() {
         <div className="flex flex-wrap gap-2 items-center">
           <input
             type="search"
+            aria-label="Search vocabulary"
             placeholder="буряад / English / русский…"
             value={query}
             onChange={e => setQuery(e.target.value)}
-            className="border border-stone-200 rounded-lg px-3 py-1.5 text-sm outline-none focus:border-buryat-400 focus:ring-1 focus:ring-buryat-200 w-60"
+            className="border border-stone-200 rounded-lg px-3 py-1.5 text-sm outline-none focus:border-buryat-400 focus:ring-1 focus:ring-buryat-200 w-full sm:w-60"
           />
           <select
             value={sort}
             onChange={e => setSort(e.target.value as typeof sort)}
+            aria-label="Sort order"
             className="border border-stone-200 rounded-lg px-2 py-1.5 text-sm text-stone-600 outline-none focus:border-buryat-400"
           >
             <option value="alpha">A–Я alphabetical</option>
@@ -143,7 +145,7 @@ export default function Vocabulary() {
           {activeCats.size > 0 && (
             <button
               onClick={() => setActiveCats(new Set())}
-              className="text-xs text-stone-400 hover:text-stone-700 underline"
+              className="text-xs text-stone-500 hover:text-stone-700 underline"
             >
               clear filters
             </button>
@@ -156,6 +158,7 @@ export default function Vocabulary() {
             <button
               key={c}
               onClick={() => toggleCat(c)}
+              aria-pressed={activeCats.has(c)}
               className={`px-3 py-1 rounded-full text-xs font-medium transition-colors capitalize ${
                 activeCats.has(c)
                   ? 'bg-buryat-500 text-white'
@@ -189,12 +192,12 @@ export default function Vocabulary() {
               <LexemeCard key={l.id} l={l} />
             ))}
             {filtered.length === 0 && (
-              <p className="text-stone-400 text-sm col-span-3 py-8 text-center">
+              <p className="text-stone-500 text-sm col-span-3 py-8 text-center">
                 No words match your search.
               </p>
             )}
           </div>
-          <p className="text-xs text-stone-400 text-right mt-3">
+          <p className="text-xs text-stone-500 text-right mt-3">
             {filtered.length} of {data.length} entries
           </p>
         </motion.div>

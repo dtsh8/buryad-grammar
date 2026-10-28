@@ -76,7 +76,7 @@ async function resolveVerb(query: string, lexicon: Lexeme[]): Promise<Resolved> 
 function HarmonyBadge({ harmony }: { harmony: 'back' | 'front' }) {
   return (
     <span className={`badge ${harmony === 'back' ? 'badge-amber' : 'badge-blue'}`}>
-      {harmony === 'back' ? '🔴 Back harmony (а/о/у)' : '🔵 Front harmony (э/ө/ү)'}
+      {harmony === 'back' ? 'Back harmony (а/о/у)' : 'Front harmony (э/ө/ү)'}
     </span>
   );
 }
@@ -104,7 +104,7 @@ function BaseParadigm({ root, meaning }: { root: string; meaning: string }) {
       <div className="flex items-center gap-3 flex-wrap">
         <h3 className="text-base font-semibold text-stone-800">Base paradigm</h3>
         <span className="font-buryat text-xl text-buryat-700 font-bold">{forms.inf}</span>
-        {meaning && <span className="text-stone-400 italic text-sm">'{meaning}'</span>}
+        {meaning && <span className="text-stone-500 italic text-sm">'{meaning}'</span>}
       </div>
       <div className="overflow-x-auto">
         <table className="text-sm w-full">
@@ -115,7 +115,7 @@ function BaseParadigm({ root, meaning }: { root: string; meaning: string }) {
                 <td className="py-1.5 pr-4 font-buryat text-lg font-semibold text-stone-800">
                   {form}
                 </td>
-                <td className="py-1.5 text-xs text-stone-400 italic">{meaning && en}</td>
+                <td className="py-1.5 text-xs text-stone-500 italic">{meaning && en}</td>
               </tr>
             ))}
           </tbody>
@@ -143,6 +143,7 @@ function DerivCard({
       {/* Header */}
       <button
         onClick={onToggle}
+        aria-expanded={expanded}
         className="w-full flex items-center justify-between px-5 py-4 text-left"
       >
         <div className="flex items-center gap-3 flex-wrap">
@@ -153,7 +154,8 @@ function DerivCard({
         <div className="flex items-center gap-3 shrink-0 ml-2">
           <span className="text-xs text-stone-500 italic hidden sm:block">{d.englishRole}</span>
           <span
-            className={`text-stone-400 transition-transform text-lg ${expanded ? 'rotate-180' : ''}`}
+            aria-hidden="true"
+            className={`text-stone-500 transition-transform text-lg ${expanded ? 'rotate-180' : ''}`}
           >
             ▾
           </span>
@@ -181,21 +183,21 @@ function DerivCard({
                     {/* show the base root inside derived root */}
                     {d.root.slice(0, d.root.length - d.suffix.replace(/^[-+]/, '').length)}
                   </div>
-                  <span className="text-[10px] text-stone-400 mt-0.5 uppercase">ROOT</span>
+                  <span className="text-[10px] text-stone-500 mt-0.5 uppercase">ROOT</span>
                 </div>
                 <span className="text-stone-300 text-lg mb-4">+</span>
                 <div className="flex flex-col items-center">
                   <div className="bg-amber-500 text-white px-3 py-2 rounded-lg font-buryat text-base font-bold">
                     {d.suffix.replace(/^[-+]/, '')}
                   </div>
-                  <span className="text-[10px] text-stone-400 mt-0.5 uppercase">DERIV</span>
+                  <span className="text-[10px] text-stone-500 mt-0.5 uppercase">DERIV</span>
                 </div>
-                <span className="text-stone-400 mx-1 mb-4 font-bold">→</span>
+                <span className="text-stone-500 mx-1 mb-4 font-bold">→</span>
                 <div className="flex flex-col items-center">
                   <div className="bg-white border-2 border-stone-300 px-3 py-2 rounded-lg font-buryat text-lg font-bold text-stone-800">
                     {d.root}
                   </div>
-                  <span className="text-[10px] text-stone-400 mt-0.5 uppercase">DERIV.ROOT</span>
+                  <span className="text-[10px] text-stone-500 mt-0.5 uppercase">DERIV.ROOT</span>
                 </div>
               </div>
 
@@ -210,7 +212,7 @@ function DerivCard({
                   ] as [string, string][]
                 ).map(([lbl, frm]) => (
                   <div key={lbl} className="bg-white/70 rounded-lg p-2 text-center">
-                    <p className="text-[10px] text-stone-400 font-mono uppercase">{lbl}</p>
+                    <p className="text-[10px] text-stone-500 font-mono uppercase">{lbl}</p>
                     <p className="font-buryat text-base font-bold text-stone-800">{frm}</p>
                   </div>
                 ))}
@@ -219,7 +221,7 @@ function DerivCard({
               {/* Example sentence */}
               <div className="bg-white rounded-xl p-3 space-y-1">
                 <p className="font-buryat text-base text-stone-800">{d.exampleSentence.buryad}</p>
-                <p className="text-xs font-mono text-stone-400">{d.exampleSentence.gloss}</p>
+                <p className="text-xs font-mono text-stone-500">{d.exampleSentence.gloss}</p>
                 {glossed && (
                   <p className="text-sm italic text-stone-600">'{d.exampleSentence.translation}'</p>
                 )}
@@ -295,13 +297,14 @@ export default function VerbBuilder() {
             value={input}
             onChange={e => setInput(e.target.value)}
             onKeyDown={e => e.key === 'Enter' && handleTranslate()}
+            aria-label="English verb or Buryad infinitive"
             placeholder="e.g. see, to sing, хараха…"
             className="flex-1 border border-stone-200 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-buryat-400 focus:ring-2 focus:ring-buryat-100 transition"
           />
           <button
             onClick={() => handleTranslate()}
             disabled={status === 'loading' || !input.trim()}
-            className="px-5 py-2.5 bg-buryat-600 hover:bg-buryat-700 disabled:bg-stone-200 disabled:text-stone-400 text-white text-sm font-semibold rounded-xl transition-colors"
+            className="px-5 py-2.5 bg-buryat-600 hover:bg-buryat-700 disabled:bg-stone-200 disabled:text-stone-500 text-white text-sm font-semibold rounded-xl transition-colors"
           >
             {status === 'loading' ? '…' : 'Derive'}
           </button>
@@ -309,8 +312,8 @@ export default function VerbBuilder() {
 
         {/* Quick-pick */}
         <div className="flex flex-wrap gap-1.5">
-          <span className="text-xs text-stone-400 mr-1 self-center">From the vocabulary:</span>
-          {lexiconLoading && <span className="text-xs text-stone-400 self-center">loading…</span>}
+          <span className="text-xs text-stone-500 mr-1 self-center">From the vocabulary:</span>
+          {lexiconLoading && <span className="text-xs text-stone-500 self-center">loading…</span>}
           {quickVerbs.map(v => (
             <button
               key={v.id}
@@ -319,7 +322,7 @@ export default function VerbBuilder() {
               className="px-2.5 py-1 bg-stone-100 hover:bg-buryat-100 hover:text-buryat-800 text-stone-600 rounded-full text-xs transition-colors"
             >
               <span className="font-buryat">{v.buryad}</span>
-              <span className="text-stone-400 ml-1">{primarySense(v)}</span>
+              <span className="text-stone-500 ml-1">{primarySense(v)}</span>
             </button>
           ))}
         </div>
@@ -369,11 +372,11 @@ export default function VerbBuilder() {
                     <span className="font-buryat text-4xl font-bold">{result.infinitive}</span>
                   </div>
                   {result.russian && (
-                    <p className="text-stone-400 text-sm mt-1">рус. {result.russian}</p>
+                    <p className="text-stone-500 text-sm mt-1">рус. {result.russian}</p>
                   )}
                 </div>
                 <div className="text-right space-y-1">
-                  <p className="text-stone-400 text-xs">Root</p>
+                  <p className="text-stone-500 text-xs">Root</p>
                   <p className="font-buryat text-2xl font-bold text-buryat-400">{root}-</p>
                   {harmony && <HarmonyBadge harmony={harmony} />}
                 </div>
@@ -381,7 +384,7 @@ export default function VerbBuilder() {
 
               {/* Morpheme highlight */}
               <div className="flex items-center gap-1.5 text-sm flex-wrap">
-                <span className="text-stone-400">Structure:</span>
+                <span className="text-stone-500">Structure:</span>
                 <span className="bg-stone-600 text-white px-2 py-0.5 rounded font-buryat">
                   {root}
                 </span>
@@ -389,7 +392,7 @@ export default function VerbBuilder() {
                 <span className="bg-buryat-500 text-white px-2 py-0.5 rounded font-mono">
                   -{conjugate(root).inf.slice(root.length)}
                 </span>
-                <span className="text-stone-400 text-xs">(infinitive suffix)</span>
+                <span className="text-stone-500 text-xs">(infinitive suffix)</span>
               </div>
             </div>
 
@@ -413,7 +416,7 @@ export default function VerbBuilder() {
             </div>
 
             {/* Attribution */}
-            <p className="text-xs text-stone-400 text-center">
+            <p className="text-xs text-stone-500 text-center">
               {result.source === 'machine' &&
                 'Translation via Google Translate (bxr), not checked: the verb itself may be wrong. '}
               Forms are built by rule (Poppe 1960; Skribnik 2003; Учебник бурятского языка; Skribnik

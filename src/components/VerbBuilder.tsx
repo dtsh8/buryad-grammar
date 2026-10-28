@@ -13,6 +13,7 @@ import { findVerb, isBuryad, isInfinitive, primarySense } from '../utils/verbLex
 import { useVocabulary } from '../hooks/useVocabulary';
 import AttestBadge from './AttestBadge';
 import Suffixed from './Suffixed';
+import Tooltip from './Tooltip';
 import type { Lexeme } from '../data/vocabulary.types';
 
 const fade = { hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0 } };
@@ -150,23 +151,31 @@ function DerivCard({
 }) {
   return (
     <div className={`rounded-2xl border-2 overflow-hidden ${d.color}`}>
-      {/* Header */}
-      <button
-        onClick={onToggle}
-        aria-expanded={expanded}
-        className="w-full flex items-center justify-between px-5 py-4 text-left"
-      >
+      {/* Header: the toggle's tap area (::after) covers the whole header; the badges sit
+          above it (z-10) so they open their own tooltips. */}
+      <div className="relative w-full flex items-center justify-between px-5 py-4 text-left">
         <div className="flex items-center gap-3 flex-wrap">
-          <span className="font-bold text-stone-900">{d.label}</span>
-          <code className="text-xs bg-white/70 px-2 py-0.5 rounded font-mono">{d.suffix}</code>
-          <span
-            className="text-[11px] rounded-full border border-stone-300 bg-white/70 text-stone-600 px-2"
-            title="Built by rule. This verb may not have this voice in real use."
+          <button
+            type="button"
+            onClick={onToggle}
+            aria-expanded={expanded}
+            className="font-bold text-stone-900 text-left after:absolute after:inset-0 after:content-['']"
           >
-            built by rule
+            {d.label}
+          </button>
+          <code className="text-xs bg-white/70 px-2 py-0.5 rounded font-mono">{d.suffix}</code>
+          <span className="relative z-10">
+            <Tooltip
+              text="Built by rule. This verb may not have this voice in real use."
+              className="text-[11px] rounded-full border border-stone-300 bg-white/70 text-stone-600 px-2"
+            >
+              built by rule
+            </Tooltip>
           </span>
           <span className="font-buryat text-xl font-bold text-stone-800">{d.inf}</span>
-          <AttestBadge form={d.inf} />
+          <span className="relative z-10">
+            <AttestBadge form={d.inf} />
+          </span>
         </div>
         <div className="flex items-center gap-3 shrink-0 ml-2">
           <span className="text-xs text-stone-500 italic hidden sm:block">{d.englishRole}</span>
@@ -177,7 +186,7 @@ function DerivCard({
             ▾
           </span>
         </div>
-      </button>
+      </div>
 
       {/* Body */}
       <AnimatePresence>

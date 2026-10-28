@@ -10,6 +10,7 @@ import {
 } from '../data/grammar';
 import VerbBuilder from '../components/VerbBuilder';
 import CorpusLink from '../components/CorpusLink';
+import Tooltip from '../components/Tooltip';
 import SayButton from '../components/SayButton';
 import Tabs from '../components/Tabs';
 import { tabPanelProps, useTab, type TabDef } from '../hooks/useTab';
@@ -435,12 +436,12 @@ function VoiceDerivation() {
               <p className="text-sm text-stone-500 flex flex-wrap items-baseline gap-2">
                 <span className="font-buryat">{d.buryad}</span>
                 {d.buryadUnverified && (
-                  <span
+                  <Tooltip
+                    text="This Buryad term does not occur in the Buryat National Corpus or the textbook. It is being checked with a native speaker."
                     className="text-xs rounded-full border border-amber-300 bg-amber-50 text-amber-800 px-2"
-                    title="This Buryad term does not occur in the Buryat National Corpus or the textbook. It is being checked with a native speaker."
                   >
                     unverified term
-                  </span>
+                  </Tooltip>
                 )}
               </p>
               <p className="text-sm text-stone-600 mt-1">{d.description}</p>

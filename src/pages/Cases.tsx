@@ -257,19 +257,20 @@ export default function Cases() {
             const isOpen = openCase === c.id;
             return (
               <li key={c.id} className={isOpen ? 'bg-buryat-50' : undefined}>
-                <button
-                  type="button"
-                  aria-expanded={isOpen}
-                  onClick={() => setOpenCase(isOpen ? null : c.id)}
-                  className="w-full text-left px-2 py-2.5 grid grid-cols-[1fr_auto] items-center gap-x-3"
-                >
-                  <span className="text-xs font-semibold text-stone-700">
+                {/* The toggle's tap area (::after) covers the row; the badge sits above it. */}
+                <div className="relative px-2 py-2.5 grid grid-cols-[1fr_auto] items-center gap-x-3">
+                  <button
+                    type="button"
+                    aria-expanded={isOpen}
+                    onClick={() => setOpenCase(isOpen ? null : c.id)}
+                    className="text-left text-xs font-semibold text-stone-700 after:absolute after:inset-0 after:content-['']"
+                  >
                     {c.english}{' '}
                     <span lang="bua" className="font-buryat font-normal text-stone-500">
                       {c.buryad.replace(' падеж', '')}
                     </span>
-                  </span>
-                  <span className="row-span-2 self-center">
+                  </button>
+                  <span className="relative z-10 row-span-2 self-center">
                     <AttestBadge form={form} />
                   </span>
                   <Suffixed
@@ -277,7 +278,7 @@ export default function Cases() {
                     form={form}
                     className="text-xl font-bold text-stone-900"
                   />
-                </button>
+                </div>
                 {isOpen && (
                   <div className="px-2 pb-3 space-y-2">
                     <CaseRules c={c} />

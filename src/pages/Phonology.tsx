@@ -2,6 +2,8 @@ import { motion } from 'framer-motion';
 import { CONSONANTS } from '../data/grammar';
 import VowelHarmonyChart from '../components/VowelHarmonyChart';
 import Tabs from '../components/Tabs';
+import HintTooltip from '../components/Tooltip';
+import { HARMONY_TIP } from '../data/harmonyTerms';
 import { tabPanelProps, useTab, type TabDef } from '../hooks/useTab';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from 'recharts';
 
@@ -103,11 +105,12 @@ export default function Phonology() {
                         {row.root}
                       </td>
                       <td className="py-2.5 px-3">
-                        <span
+                        <HintTooltip
+                          text={HARMONY_TIP[row.harmony.startsWith('back') ? 'back' : 'front']}
                           className={`badge ${row.harmony.startsWith('back') ? 'badge-amber' : 'badge-blue'}`}
                         >
                           {row.harmony}
-                        </span>
+                        </HintTooltip>
                       </td>
                       <td className="py-2.5 px-3 font-buryat text-buryat-700">{row.dat}</td>
                       <td className="py-2.5 px-3 font-buryat text-buryat-700">{row.ins}</td>

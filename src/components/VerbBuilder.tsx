@@ -9,27 +9,67 @@ import {
   type DerivedForm,
 } from '../utils/verbMorphology';
 import { englishForms } from '../utils/englishForms';
+import { findVerb, isBuryad, isInfinitive, primarySense } from '../utils/verbLexicon';
+import { useVocabulary } from '../hooks/useVocabulary';
+import type { Lexeme } from '../data/vocabulary.types';
 
 const fade = { hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0 } };
 
-// ─── Quick-pick verbs ──────────────────────────────────────────────────────
+// ─── Where a verb came from ────────────────────────────────────────────────
 
-const QUICK_VERBS = [
-  'go',
-  'eat',
-  'read',
-  'write',
-  'love',
-  'speak',
-  'run',
-  'work',
-  'know',
-  'sing',
-  'dance',
-  'sleep',
-  'teach',
-  'help',
-];
+type Source = 'lexicon' | 'typed' | 'machine';
+
+const SOURCE_BADGE: Record<Source, { cls: string; text: string }> = {
+  lexicon: { cls: 'badge-green', text: '✓ From the app’s vocabulary' },
+  typed: { cls: 'badge-blue', text: 'Typed in Buryad' },
+  machine: { cls: 'badge-amber', text: '⚠ Machine translation, unverified' },
+};
+
+interface Resolved {
+  infinitive: string;
+  root: string;
+  meaning: string; // English gloss; empty when unknown (typed Buryad not in the vocabulary)
+  russian?: string;
+  source: Source;
+}
+
+function fromLexeme(l: Lexeme): Resolved {
+  return {
+    infinitive: l.buryad,
+    root: extractRoot(l.buryad),
+    meaning: primarySense(l),
+    russian: l.russian,
+    source: 'lexicon',
+  };
+}
+
+// Vocabulary first; a Buryad infinitive is used as typed; anything else goes to
+// machine translation, whose output must be a single infinitive to be accepted.
+async function resolveVerb(query: string, lexicon: Lexeme[]): Promise<Resolved> {
+  const found = findVerb(query, lexicon);
+  if (found) return fromLexeme(found);
+
+  if (isBuryad(query)) {
+    const word = query.trim().toLowerCase();
+    if (!isInfinitive(word)) {
+      throw new Error(
+        `"${query}" is not a Buryad infinitive. Type the -ха / -хо / -хэ form, e.g. хараха.`
+      );
+    }
+    return { infinitive: word, root: extractRoot(word), meaning: '', source: 'typed' };
+  }
+
+  const meaning = query.replace(/^to\s+/i, '').trim();
+  const buryad = (await translateToBuryad(query)).toLowerCase();
+  if (!isInfinitive(buryad)) {
+    throw new Error(
+      `Google Translate returned "${buryad}", which is not a single Buryad verb in -ха / -хо / -хэ. Try another verb, or type the Buryad infinitive.`
+    );
+  }
+  const known = findVerb(buryad, lexicon);
+  if (known) return { ...fromLexeme(known), meaning };
+  return { infinitive: buryad, root: extractRoot(buryad), meaning, source: 'machine' };
+}
 
 // ─── Harmony badge ─────────────────────────────────────────────────────────
 
@@ -45,7 +85,7 @@ function HarmonyBadge({ harmony }: { harmony: 'back' | 'front' }) {
 
 function BaseParadigm({ root, meaning }: { root: string; meaning: string }) {
   const forms = conjugate(root);
-  const ef = englishForms(meaning);
+  const ef = englishForms(meaning || 'do');
   const rows: Array<[string, string, string]> = [
     ['Present-Future', forms.prs, `→ ${ef.thirdPerson} / will ${meaning}`],
     ['Perfect', forms.perf, `→ ${ef.past} / has ${ef.pastPart}`],
@@ -64,7 +104,7 @@ function BaseParadigm({ root, meaning }: { root: string; meaning: string }) {
       <div className="flex items-center gap-3 flex-wrap">
         <h3 className="text-base font-semibold text-stone-800">Base paradigm</h3>
         <span className="font-buryat text-xl text-buryat-700 font-bold">{forms.inf}</span>
-        <span className="text-stone-400 italic text-sm">'{meaning}'</span>
+        {meaning && <span className="text-stone-400 italic text-sm">'{meaning}'</span>}
       </div>
       <div className="overflow-x-auto">
         <table className="text-sm w-full">
@@ -75,7 +115,7 @@ function BaseParadigm({ root, meaning }: { root: string; meaning: string }) {
                 <td className="py-1.5 pr-4 font-buryat text-lg font-semibold text-stone-800">
                   {form}
                 </td>
-                <td className="py-1.5 text-xs text-stone-400 italic">{en}</td>
+                <td className="py-1.5 text-xs text-stone-400 italic">{meaning && en}</td>
               </tr>
             ))}
           </tbody>
@@ -91,10 +131,12 @@ function DerivCard({
   d,
   expanded,
   onToggle,
+  glossed,
 }: {
   d: DerivedForm;
   expanded: boolean;
   onToggle: () => void;
+  glossed: boolean;
 }) {
   return (
     <div className={`rounded-2xl border-2 overflow-hidden ${d.color}`}>
@@ -130,7 +172,7 @@ function DerivCard({
           >
             <div className="px-5 pb-5 space-y-4 border-t border-stone-200/60">
               {/* Description */}
-              <p className="text-sm text-stone-600 mt-3">{d.description}</p>
+              {glossed && <p className="text-sm text-stone-600 mt-3">{d.description}</p>}
 
               {/* Morpheme breakdown */}
               <div className="flex items-end gap-2 flex-wrap">
@@ -178,7 +220,9 @@ function DerivCard({
               <div className="bg-white rounded-xl p-3 space-y-1">
                 <p className="font-buryat text-base text-stone-800">{d.exampleSentence.buryad}</p>
                 <p className="text-xs font-mono text-stone-400">{d.exampleSentence.gloss}</p>
-                <p className="text-sm italic text-stone-600">'{d.exampleSentence.translation}'</p>
+                {glossed && (
+                  <p className="text-sm italic text-stone-600">'{d.exampleSentence.translation}'</p>
+                )}
               </div>
             </div>
           </motion.div>
@@ -193,11 +237,11 @@ function DerivCard({
 type Status = 'idle' | 'loading' | 'done' | 'error';
 
 export default function VerbBuilder() {
+  const { data: lexicon, loading: lexiconLoading } = useVocabulary();
+  const quickVerbs = lexicon.filter(l => l.category === 'verb');
   const [input, setInput] = useState('');
   const [status, setStatus] = useState<Status>('idle');
-  const [infinitive, setInfinitive] = useState('');
-  const [root, setRoot] = useState('');
-  const [meaning, setMeaning] = useState('');
+  const [result, setResult] = useState<Resolved | null>(null);
   const [derivations, setDerivations] = useState<DerivedForm[]>([]);
   const [expanded, setExpanded] = useState<string>('Causative');
   const [errorMsg, setErrorMsg] = useState('');
@@ -215,14 +259,10 @@ export default function VerbBuilder() {
     setStatus('loading');
     setErrorMsg('');
     try {
-      const buryad = await translateToBuryad(query);
+      const r = await resolveVerb(query, lexicon);
       if (id !== requestId.current) return;
-      const r = extractRoot(buryad);
-      const d = deriveAll(r, query.replace(/^to\s+/i, ''));
-      setInfinitive(buryad);
-      setRoot(r);
-      setMeaning(query.replace(/^to\s+/i, ''));
-      setDerivations(d);
+      setResult(r);
+      setDerivations(deriveAll(r.root, r.meaning || 'do it'));
       setStatus('done');
     } catch (e) {
       if (id !== requestId.current) return;
@@ -231,6 +271,8 @@ export default function VerbBuilder() {
     }
   }
 
+  const root = result?.root ?? '';
+  const meaning = result?.meaning ?? '';
   const harmony = root ? detectHarmony(root) : null;
 
   return (
@@ -239,10 +281,10 @@ export default function VerbBuilder() {
       <div className="card space-y-4">
         <h2 className="text-lg font-semibold text-stone-800">Verb Builder</h2>
         <p className="text-sm text-stone-500">
-          Enter any English verb. It will be translated to Буряад using the Google Translate
-          <span className="font-mono text-xs ml-1 bg-stone-100 px-1 rounded">bxr</span> (Buryat
-          Russia) API, then the root is extracted and all four voice derivations are applied
-          automatically.
+          Type an English verb or a Buryad infinitive. Verbs in the app’s vocabulary are used as
+          they are. Anything else is sent to Google Translate, whose Buryad is often wrong, so those
+          results are marked as unverified. The full paradigm and the four voice derivations are
+          then built by rule.
         </p>
 
         {/* Search box */}
@@ -253,7 +295,7 @@ export default function VerbBuilder() {
             value={input}
             onChange={e => setInput(e.target.value)}
             onKeyDown={e => e.key === 'Enter' && handleTranslate()}
-            placeholder="e.g. write, to sing, dance…"
+            placeholder="e.g. see, to sing, хараха…"
             className="flex-1 border border-stone-200 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-buryat-400 focus:ring-2 focus:ring-buryat-100 transition"
           />
           <button
@@ -267,14 +309,17 @@ export default function VerbBuilder() {
 
         {/* Quick-pick */}
         <div className="flex flex-wrap gap-1.5">
-          <span className="text-xs text-stone-400 mr-1 self-center">Quick:</span>
-          {QUICK_VERBS.map(v => (
+          <span className="text-xs text-stone-400 mr-1 self-center">From the vocabulary:</span>
+          {lexiconLoading && <span className="text-xs text-stone-400 self-center">loading…</span>}
+          {quickVerbs.map(v => (
             <button
-              key={v}
-              onClick={() => handleTranslate(v)}
+              key={v.id}
+              onClick={() => handleTranslate(v.buryad)}
+              title={v.english}
               className="px-2.5 py-1 bg-stone-100 hover:bg-buryat-100 hover:text-buryat-800 text-stone-600 rounded-full text-xs transition-colors"
             >
-              {v}
+              <span className="font-buryat">{v.buryad}</span>
+              <span className="text-stone-400 ml-1">{primarySense(v)}</span>
             </button>
           ))}
         </div>
@@ -297,10 +342,10 @@ export default function VerbBuilder() {
       )}
 
       {/* Results */}
-      {status === 'done' && (
+      {status === 'done' && result && (
         <AnimatePresence mode="wait">
           <motion.div
-            key={infinitive}
+            key={result.infinitive}
             variants={fade}
             initial="hidden"
             animate="show"
@@ -311,14 +356,21 @@ export default function VerbBuilder() {
             <div className="rounded-2xl bg-gradient-to-r from-stone-800 to-stone-700 text-white p-5 space-y-3">
               <div className="flex items-start justify-between flex-wrap gap-3">
                 <div>
-                  <p className="text-stone-400 text-xs uppercase tracking-wide mb-1">
-                    English → Buryad
-                  </p>
-                  <div className="flex items-baseline gap-3 flex-wrap">
-                    <span className="text-stone-300 text-lg italic">"{meaning}"</span>
-                    <span className="text-stone-500 text-xl">→</span>
-                    <span className="font-buryat text-4xl font-bold">{infinitive}</span>
+                  <span className={`badge ${SOURCE_BADGE[result.source].cls}`}>
+                    {SOURCE_BADGE[result.source].text}
+                  </span>
+                  <div className="flex items-baseline gap-3 flex-wrap mt-2">
+                    {meaning && (
+                      <>
+                        <span className="text-stone-300 text-lg italic">"{meaning}"</span>
+                        <span className="text-stone-500 text-xl">→</span>
+                      </>
+                    )}
+                    <span className="font-buryat text-4xl font-bold">{result.infinitive}</span>
                   </div>
+                  {result.russian && (
+                    <p className="text-stone-400 text-sm mt-1">рус. {result.russian}</p>
+                  )}
                 </div>
                 <div className="text-right space-y-1">
                   <p className="text-stone-400 text-xs">Root</p>
@@ -355,15 +407,17 @@ export default function VerbBuilder() {
                   d={d}
                   expanded={expanded === d.label}
                   onToggle={() => setExpanded(expanded === d.label ? '' : d.label)}
+                  glossed={meaning !== ''}
                 />
               ))}
             </div>
 
             {/* Attribution */}
             <p className="text-xs text-stone-400 text-center">
-              Translation via Google Translate (bxr — Buryat Russia). Morphology rules: Poppe (1960)
-              · Skribnik &amp; Sesenova (2006). Results are approximate — always verify with a
-              native speaker.
+              {result.source === 'machine' &&
+                'Translation via Google Translate (bxr), not checked: the verb itself may be wrong. '}
+              Forms are built by rule (Poppe 1960; Skribnik 2003; Учебник бурятского языка; Skribnik
+              &amp; Darzhaeva 2020) and can miss irregular verbs.
             </p>
           </motion.div>
         </AnimatePresence>

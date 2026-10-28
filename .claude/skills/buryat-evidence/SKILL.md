@@ -20,12 +20,31 @@ status of every open question and the list of written sources.
    - *Учебник бурятского языка*: rules and paradigms; cite printed page numbers.
    - Skribnik & Darzhaeva 2020: morpheme-by-morpheme glosses of Buryat National Corpus examples.
    - Darzhaeva 2019: concessive constructions. Poppe 1960, Skribnik 2003.
-2. **Corpus** (`npm run corpus:search`, below): shows which forms exist and how often.
+2. **Corpora** (below): which forms exist and how often. Prefer the Buryat National Corpus
+   (large, literary and folklore); the local news corpus is small but fast and offline.
 3. **Engine output**: only shows what the rules produce, never evidence by itself.
 4. **Native speaker**: meaning, evidentiality, dialect and naturalness. Add these to
    `docs/verification-questions.md` instead of guessing.
 
-## 3. Search the corpus
+## 3. Search the corpora
+
+**Buryat National Corpus** (https://buryat.web-corpora.net/buryat_corpus/search), online:
+
+```bash
+npm run corpus:bnc -- эдеэд эдеэгээд               # exact forms: tokens and documents
+npm run corpus:bnc -- "*нхай" --top 30             # * is a wildcard
+npm run corpus:bnc -- ябалай --sent 3              # with sentences, author, title, year
+```
+
+- Compare minimal pairs (*үзөөд* 240 vs *үзээд* 23), not single counts.
+- Check how many documents and authors a rare form comes from: *-лай* verbs are real but
+  come almost only from one writer (Д.-Д. Дугаров), so they aren't standard.
+- Its automatic lemma and grammar tags are often wrong for verb forms (*эдеэд* is tagged as the
+  plural of *эдеэн* "food"). Trust counts and sentences, not tags.
+- It is a shared academic server: keep queries to what you need (the tool waits 1.5 s
+  between requests).
+
+**Local news corpus** (*Буряад үнэн*, offline):
 
 ```bash
 npm run corpus:search -- эдихэ эдеэхэ              # exact forms

@@ -48,7 +48,11 @@ The raw text stays local (`data/corpus/`, gitignored); only `public/data/corpus_
 npm run corpus:scrape                 # download new articles (add -- --refresh to re-download all)
 npm run corpus:build                  # pick example sentences → public/data/corpus_examples.json
 npm run corpus:search -- ".+нхай"     # count word forms (whole-word regex); add --ctx 2 for contexts
+npm run corpus:bnc -- "*нхай" --sent 3 # same question to the online Buryat National Corpus
 ```
+
+For checking grammar claims, the [Buryat National Corpus](https://buryat.web-corpora.net/buryat_corpus/search)
+(fiction, folklore and press) is much larger than the news sample; `corpus:bnc` queries it.
 
 Features are matched by word ending (`scripts/lib/features.ts`), so a few examples may be wrong.
 
@@ -69,6 +73,7 @@ Releases follow [Semantic Versioning](https://semver.org/) driven by [Convention
 - Скрибник Е. К., Даржаева Н. Б. (2020). Семантика обстоятельственного сложного предложения в бурятском языке. *Вестник БГУ* 4: 58–69.
 - Даржаева Н. Б. (2019). Квазисинонимические уступительные конструкции в бурятском языке. *Oriental Studies* 4: 682–690.
 - *Буряад үнэн* news corpus (burunen.ru).
+- Buryat National Corpus — https://buryat.web-corpora.net/buryat_corpus/search
 - WALS Online — Feature data for Buryat (bua).
 - ISO 639-3: `bua` (Buriat).
 

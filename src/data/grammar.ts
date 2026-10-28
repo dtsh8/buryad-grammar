@@ -723,8 +723,9 @@ export interface TenseEntry {
 }
 
 // Past forms per the burunen.ru corpus (docs/verification-questions.md, A1): -аа and -һан
-// dominate written Buryad, -ба is much rarer. The earlier "evidential past -лай" is not
-// attested anywhere. Glosses follow Skribnik & Darzhaeva (2020): -ба PST, -аа PC.PRS,
+// dominate written Buryad, -ба is much rarer. The earlier "evidential past -лай" is gone: a
+// narrative past in -лай exists (BNC: ошолой 13, ерэлэй 11, ябалай 1, mostly Д.-Д. Дугаров)
+// but is rare and nowhere described as evidential. Glosses follow Skribnik & Darzhaeva (2020): -ба PST, -аа PC.PRS,
 // -һан PC.PST, -нхай PC.RES; the textbook (p. 67) counts -аа, -нхай, -һан as past participles.
 export const TENSE_ENTRIES: TenseEntry[] = [
   {

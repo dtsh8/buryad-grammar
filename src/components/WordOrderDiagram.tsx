@@ -1,4 +1,6 @@
 import { WORD_ORDER_EXAMPLES } from '../data/grammar';
+import { ABBR_CLASS, ORDER_TIP } from '../data/abbreviations';
+import Tooltip from './Tooltip';
 
 const SLOT_COLORS = [
   'bg-mongol-100 border-mongol-300 text-mongol-900',
@@ -17,16 +19,21 @@ export default function WordOrderDiagram() {
       <div className="grid md:grid-cols-2 gap-4">
         <div className="card">
           <p className="text-xs font-semibold text-stone-500 uppercase tracking-wide mb-3">
-            Buryad (SOV)
+            Buryad (
+            <Tooltip text={ORDER_TIP.SOV} className={ABBR_CLASS}>
+              SOV
+            </Tooltip>
+            )
           </p>
           <div className="flex gap-2 items-center">
             {['S', 'O', 'V'].map((slot, i) => (
-              <div
+              <Tooltip
                 key={slot}
+                text={ORDER_TIP[slot]}
                 className={`flex-1 text-center rounded-lg border-2 py-3 font-bold text-lg ${SLOT_COLORS[i === 2 ? 3 : i]}`}
               >
                 {slot}
-              </div>
+              </Tooltip>
             ))}
           </div>
           <p className="mt-3 text-sm text-stone-500 font-buryat text-center">Би ном уншана</p>
@@ -34,18 +41,23 @@ export default function WordOrderDiagram() {
         </div>
         <div className="card">
           <p className="text-xs font-semibold text-stone-500 uppercase tracking-wide mb-3">
-            English (SVO)
+            English (
+            <Tooltip text={ORDER_TIP.SVO} className={ABBR_CLASS}>
+              SVO
+            </Tooltip>
+            )
           </p>
           <div className="flex gap-2 items-center">
             {EN_ORDER.map(slot => (
-              <div
+              <Tooltip
                 key={slot}
+                text={ORDER_TIP[slot]}
                 className={`flex-1 text-center rounded-lg border-2 py-3 font-bold text-lg ${
                   slot === 'S' ? SLOT_COLORS[0] : slot === 'V' ? SLOT_COLORS[3] : SLOT_COLORS[1]
                 }`}
               >
                 {slot}
-              </div>
+              </Tooltip>
             ))}
           </div>
           <p className="mt-3 text-sm text-stone-500 text-center">I read a book</p>
@@ -125,9 +137,13 @@ export default function WordOrderDiagram() {
       {/* Legend */}
       <div className="flex flex-wrap gap-3 text-xs">
         {SLOT_LABELS.map((label, i) => (
-          <span key={label} className={`badge ${SLOT_COLORS[i]} px-2 py-1`}>
+          <Tooltip
+            key={label}
+            text={ORDER_TIP[label]}
+            className={`badge ${SLOT_COLORS[i]} px-2 py-1`}
+          >
             {label}
-          </span>
+          </Tooltip>
         ))}
       </div>
     </div>

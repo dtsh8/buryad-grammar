@@ -4,6 +4,7 @@ import VowelHarmonyChart from '../components/VowelHarmonyChart';
 import Tabs from '../components/Tabs';
 import HintTooltip from '../components/Tooltip';
 import { HARMONY_TIP } from '../data/harmonyTerms';
+import { ABBR_CLASS, SYLLABLE_TIP } from '../data/abbreviations';
 import { tabPanelProps, useTab, type TabDef } from '../hooks/useTab';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from 'recharts';
 
@@ -219,16 +220,22 @@ export default function Phonology() {
           <div className="card space-y-5">
             <h2 className="text-lg font-semibold text-stone-800">Syllable Structure</h2>
             <p className="text-sm text-stone-600">
-              Buryad syllable structure is <strong>(C)(C)V(C)(C)</strong> — a vowel nucleus is
-              obligatory; onset and coda consonants are optional. Long vowels (VV) count as one
-              syllable nucleus.
+              Buryad syllable structure is{' '}
+              <HintTooltip text={SYLLABLE_TIP.formula} className={`font-bold ${ABBR_CLASS}`}>
+                (C)(C)V(C)(C)
+              </HintTooltip>{' '}
+              — a vowel nucleus is obligatory; onset and coda consonants are optional. Long vowels
+              (VV) count as one syllable nucleus.
             </p>
             {/* Syllable tree */}
             <div className="flex justify-center">
               <div className="text-center space-y-2">
-                <div className="inline-block bg-stone-800 text-white text-sm px-4 py-2 rounded-full font-mono">
+                <HintTooltip
+                  text={SYLLABLE_TIP.sigma}
+                  className="inline-block bg-stone-800 text-white text-sm px-4 py-2 rounded-full font-mono"
+                >
                   σ (syllable)
-                </div>
+                </HintTooltip>
                 <div className="flex gap-8 justify-center">
                   <div className="flex flex-col items-center">
                     <div className="w-px h-6 bg-stone-400" />
@@ -268,7 +275,9 @@ export default function Phonology() {
                 >
                   <p className="font-buryat text-2xl text-stone-800">{ex.word}</p>
                   <p className="text-xs text-stone-500 mt-1 font-mono">{ex.parse}</p>
-                  <p className="badge badge-amber mt-1">{ex.pattern}</p>
+                  <HintTooltip text={SYLLABLE_TIP[ex.pattern]} className="badge badge-amber mt-1">
+                    {ex.pattern}
+                  </HintTooltip>
                   <p className="text-xs text-stone-500 mt-1">'{ex.meaning}'</p>
                 </div>
               ))}

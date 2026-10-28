@@ -337,13 +337,13 @@ export const VERB_FORMS: VerbForm[] = [
     label: 'Infinitive',
     suffix: '-ха/-хэ/-хо',
     example: { verb: 'ябаха', form: 'ябаха', translation: 'to go' },
-    note: 'Citation form. Combines with auxiliary verbs.',
+    note: 'Citation form; with auxiliary verbs; and, ending a sentence, the future tense: ябахаб "I will go" (see Tenses).',
   },
   {
-    label: 'Present-Future',
+    label: 'Present',
     suffix: '-на/-нэ/-но',
-    example: { verb: 'яба-', form: 'ябана', translation: '(I/he/she) go(es) / will go' },
-    note: 'Single form for present and future — context disambiguates.',
+    example: { verb: 'яба-', form: 'ябана', translation: '(I/he/she) go(es), is going' },
+    note: 'Present tense (textbook p. 28). The future is the -ха form: ябахаб "I will go".',
   },
   {
     label: 'Simple Past',
@@ -366,8 +366,8 @@ export const VERB_FORMS: VerbForm[] = [
   {
     label: 'Resultative',
     suffix: '-нхай/-нхэй/-нхой',
-    example: { verb: 'ерэ-', form: 'ерэнхэй', translation: '(he/she) came long ago / is here' },
-    note: 'An action completed well before now whose result still holds (textbook p. 67). Often becomes an adjective: туранхай "thin, emaciated".',
+    example: { verb: 'ерэ-', form: 'ерэнхэй', translation: '(he/she) has come, is here' },
+    note: 'The state left by a finished action: һуунхай "has sat down, is sitting". Often becomes an adjective: туранхай "thin, emaciated".',
   },
   {
     label: 'Imperative',
@@ -734,7 +734,15 @@ export interface TenseEntry {
   label: string;
   buryad: string;
   suffix: { back: string; front: string };
-  timelinePosition: number; // -2 past..0 now..+2 future
+  // Where the form sits on the Tense System timeline (-3 long ago … 0 now … +2 future):
+  //   point     one event (-ба)               span      a stretch of time (-на: now → future)
+  //   repeated  recurring events (-даг)       reachesNow: the result or relevance lasts until now
+  timeline: {
+    kind: 'point' | 'span' | 'repeated';
+    from: number;
+    to?: number;
+    reachesNow?: boolean;
+  };
   aspectuality: 'perfective' | 'imperfective' | 'habitual' | 'n/a';
   examples: Array<{ form: string; translation: string }>;
   note: string;
@@ -752,7 +760,7 @@ export const TENSE_ENTRIES: TenseEntry[] = [
     corpusQuery: '*ба',
     buryad: 'Үнгэрһэн сагай хэлбэри',
     suffix: { back: '-ба', front: '-бэ' },
-    timelinePosition: -2,
+    timeline: { kind: 'point', from: -1.8 },
     aspectuality: 'perfective',
     examples: [
       { form: 'ябаба', translation: '(he/she/I) went' },
@@ -765,7 +773,7 @@ export const TENSE_ENTRIES: TenseEntry[] = [
     corpusQuery: '*һан',
     buryad: '—',
     suffix: { back: '-һан', front: '-һэн' },
-    timelinePosition: -2,
+    timeline: { kind: 'point', from: -1.5 },
     aspectuality: 'perfective',
     examples: [
       { form: 'ябаһан', translation: '(he/she) went; who went' },
@@ -778,7 +786,7 @@ export const TENSE_ENTRIES: TenseEntry[] = [
     corpusQuery: '*аа',
     buryad: '—',
     suffix: { back: '-аа', front: '-ээ / -өө' },
-    timelinePosition: -1,
+    timeline: { kind: 'point', from: -0.9, reachesNow: true },
     aspectuality: 'perfective',
     examples: [
       { form: 'ябаа', translation: '(he/she) went / has gone' },
@@ -791,20 +799,34 @@ export const TENSE_ENTRIES: TenseEntry[] = [
     corpusQuery: '*нхай',
     buryad: '—',
     suffix: { back: '-нхай', front: '-нхэй / -нхой' },
-    timelinePosition: -2,
+    timeline: { kind: 'point', from: -0.5, reachesNow: true },
     aspectuality: 'perfective',
     examples: [
-      { form: 'ерэнхэй', translation: '(he/she) came long ago' },
-      { form: 'болонхой', translation: 'has become' },
+      { form: 'ерэнхэй', translation: '(he/she) has come and is here' },
+      { form: 'һуунхай', translation: '(he/she) has sat down, is sitting' },
+      { form: 'баринхай', translation: 'holding (having taken hold)' },
     ],
-    note: 'An action finished well before now whose result still holds (textbook p. 67). Common in news text: болонхой, шагнагданхай "has been awarded".',
+    note: 'A state perfect: the action is over and its result is in place now, like "has sat down" = "is sitting". The textbook calls it the long-ago past (p. 67: ерэнхэй "давно пришел"), but in the Buryat National Corpus it occurs with мүнөө "now" (101 sentences) and һаяхан "just recently" (15) far more than with эртэ "long ago" (9). With a past auxiliary the state is in the past: эсэгэнь үнинэй аяланхай һэн "his father had long since gone away".',
+  },
+  {
+    label: 'Present Continuous',
+    corpusQuery: '*жа',
+    buryad: '—',
+    suffix: { back: '-жа байна', front: '-жэ байна' },
+    timeline: { kind: 'point', from: 0 },
+    aspectuality: 'imperfective',
+    examples: [
+      { form: 'уншажа байна', translation: '(he/she) is reading right now' },
+      { form: 'хүдэлжэ байна', translation: '(he/she) is working right now' },
+    ],
+    note: 'Not a suffix but a phrase: the simultaneous converb -жа/-жэ/-жо plus байна "is". It is how Buryad says "right now, in progress": Дамба номоо уншажа байна "Damba is reading his book" (textbook p. 88). Plain -на also covers "is going"; -жа байна makes "in progress" explicit. With a past auxiliary it is a past progressive: уншажа байба "was reading".',
   },
   {
     label: 'Habitual',
     corpusQuery: '*даг',
     buryad: 'Заншалай хэлбэри',
     suffix: { back: '-даг', front: '-дэг' },
-    timelinePosition: 0,
+    timeline: { kind: 'repeated', from: -2.2, to: 1.6 },
     aspectuality: 'habitual',
     examples: [
       { form: 'ябадаг', translation: '(he/she) habitually goes / used to go' },
@@ -813,17 +835,31 @@ export const TENSE_ENTRIES: TenseEntry[] = [
     note: 'Recurring or characteristic action; negated as ябадаггүй. The progressive is a separate construction: -жа байна (хүдэлжэ байна "is working").',
   },
   {
-    label: 'Present-Future',
+    label: 'Present',
     corpusQuery: '*на',
-    buryad: 'Одоо / Ерээдүй сагай хэлбэри',
+    buryad: 'Одоо сагай хэлбэри',
     suffix: { back: '-на', front: '-нэ' },
-    timelinePosition: 1,
+    timeline: { kind: 'span', from: -0.5, to: 0.5 },
     aspectuality: 'imperfective',
     examples: [
-      { form: 'ябана', translation: '(he/she/I) go(es) / will go' },
-      { form: 'уншана', translation: '(he/she/I) read(s) / will read' },
+      { form: 'ябана', translation: '(he/she) goes, is going' },
+      { form: 'уншанаб', translation: 'I read, I am reading' },
     ],
-    note: 'Single form covers present and future. Context disambiguates.',
+    note: 'The present: морин ябана "the horse is going", бэшэнэб "I write" (textbook p. 28). In the Buryat National Corpus, actions after үглөөдэр "tomorrow" or хожом "later" take -ха (Үглөөдэр … гарахаб "Tomorrow I’ll go"); -на there is the speaker’s present state (һананаб "I think", найданаб "I hope"). To stress "in progress" Buryad adds байна: ябажа байна.',
+  },
+  {
+    label: 'Future',
+    corpusQuery: '*хаб',
+    buryad: '—',
+    suffix: { back: '-ха', front: '-хэ / -хо' },
+    timeline: { kind: 'span', from: 0.5, to: 2.4 },
+    aspectuality: 'n/a',
+    examples: [
+      { form: 'ябахаб', translation: 'I will go' },
+      { form: 'ошохобди', translation: 'we will go' },
+      { form: 'мартахагүйб', translation: "I won't forget" },
+    ],
+    note: 'The infinitive form ending a sentence is a future tense: Харин би ябахаб "But I will go" (textbook p. 40). It takes person endings (Buryat National Corpus: ябахаб 114, ошохобди 86, ябахаш 63; no 3pl -д) and negates as -хагүй: ошохогүйб "I won\'t go". Unlike -на it points only ahead. Grammars also call it the future participle (Skribnik & Darzhaeva 2020: PC.FUT).',
   },
 ];
 
@@ -840,6 +876,9 @@ export interface PersonEnding {
   present: string; // ябана + ending
   past: string; // ябаба + ending
   perfect?: string; // ябаа + ending; 3pl ябаа-д would merge with the converb ябаад
+  // ябаха + ending. Buryat National Corpus: ябахаб 114, ябахаш 63, ябахабди 60, ябахат 14;
+  // no 3pl -д (ябахад, ерэхэд, ошоход: 0).
+  future?: string;
   attested: string[];
 }
 
@@ -849,6 +888,7 @@ export const PERSON_ENDINGS: PersonEnding[] = [
     pronoun: 'би',
     suffix: '-б',
     present: 'ябанаб',
+    future: 'ябахаб',
     past: 'ябабаб',
     perfect: 'ябааб',
     attested: ['байнаб', 'хүргэнэб', 'байгааб', 'ябааб', 'абтабаб'],
@@ -858,6 +898,7 @@ export const PERSON_ENDINGS: PersonEnding[] = [
     pronoun: 'ши',
     suffix: '-ш',
     present: 'ябанаш',
+    future: 'ябахаш',
     past: 'ябабаш',
     perfect: 'ябааш',
     attested: ['ойлгонош'],
@@ -867,6 +908,7 @@ export const PERSON_ENDINGS: PersonEnding[] = [
     pronoun: 'тэрэ',
     suffix: '∅',
     present: 'ябана',
+    future: 'ябаха',
     past: 'ябаба',
     perfect: 'ябаа',
     attested: ['ябана', 'ябаа'],
@@ -876,6 +918,7 @@ export const PERSON_ENDINGS: PersonEnding[] = [
     pronoun: 'бидэ',
     suffix: '-бди',
     present: 'ябанабди',
+    future: 'ябахабди',
     past: 'ябабабди',
     perfect: 'ябаабди',
     attested: ['байнабди', 'мэдэнэбди', 'ябаабди', 'хэлэдэгбди', 'ябаагүйбди'],
@@ -885,6 +928,7 @@ export const PERSON_ENDINGS: PersonEnding[] = [
     pronoun: 'та',
     suffix: '-т',
     present: 'ябанат',
+    future: 'ябахат',
     past: 'ябабат',
     perfect: 'ябаат',
     attested: ['мэдэнэт', 'байгаат'],

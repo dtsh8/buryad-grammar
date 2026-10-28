@@ -103,6 +103,48 @@ The Verb Builder applies every voice to every verb, so it also builds reciprocal
 and passives that no text uses (*унтагдаха* "be slept", *уншалдаха*). The suffixes are right;
 whether such a verb exists is lexical.
 
+### Future in -ха (2026-10-28)
+
+The textbook (p. 40, "Будущее время") gives *ерэхэ* "придёт", *уншаха* "будет читать": the
+infinitive form ending a sentence is a future. The Buryat National Corpus confirms it is finite,
+because it takes person endings: 1sg *-хаб/-хэб/-хоб* 6,901 tokens (*ерэхэб* 180, *ошохоб* 143,
+*ябахаб* 114), 1pl *-хабди* 2,260 (*ошохобди* 86, *ябахабди* 60), 2sg *ябахаш* 63, 2pl
+*ябахат* 14, negative 1sg *-хагүйб* 1,119 (*ошохогүйб* 90, *мартахагүйб* 51). No 3pl *-д*
+(*ябахад, ерэхэд, ошоход*: 0). Sentences: «Харин би ябахаб», «Ошохобди хоюулан», «Шамайе
+мартахагүйб». The app now has a Future tense, a Future column in the person table and a Future
+option in the conjugation drill.
+
+### -на is the present, not a present-future (2026-10-28)
+
+The textbook calls -на "Настоящее время" (p. 28: *морин ябана* "конь идёт", *бэшэнэб* "я
+пишу"). The app called it "Present-Future"; the corpus does not support that. Two-word BNC
+searches (time word, then a 1sg verb within 3–4 words):
+
+| Time word             | + *-наб*    | + *-хаб* |
+| --------------------- | ----------- | -------- |
+| *үглөөдэр* "tomorrow" | 5 sentences | 20       |
+| *хожом* "later"       | 6           | 11       |
+| *мүнөө* "now"         | 202         | 104      |
+
+The *-наб* hits after "tomorrow" and "later" are the speaker's present state (*һананаб* "I
+think", *найданаб* "I hope", *бэлдэжэ байнаб* "I am preparing"); the planned action itself is
+*-ха* (*Үглөөдэр Хойто-Ага гарахаб*). With *мүнөө* the *-хаб* hits are mostly modal ("what will
+come of it"). The app now calls -на "Present" and -жа байна "Present Continuous"; the latter
+also has a past, *-жа байба* "was …-ing" (1,367 sentences).
+
+### -нхай is a state perfect, not a long-ago past (2026-10-28)
+
+The textbook (p. 67) calls -нхай "причастие давно прошедшего времени": *ерэнхэй* "давно пришел",
+*ошонхой* "давно ушел". Skribnik & Darzhaeva (2020) gloss it PC.RES, resultative. The corpus
+supports the second: two-word BNC searches find *мүнөө* "now" + *-нхай* in 101 sentences,
+*һаяхан* "just recently" + *-нхай* in 15, and *эртэ* "early, long ago" + *-нхай* in only 9.
+The common forms are states: *баринхай* "holding" 176, *һуунхай* "sitting" 73, *ерэнхэй* 133.
+The present-perfect reading shows in «Мягмар Хэшэгмаа хоёр Улаан-Үдэ ошонхой, Ешигмаа гастрольдо
+ябанхай» ("have gone to Ulan-Ude … is away on tour"). With a past auxiliary the state is in the
+past (*-нхай байба* 128 sentences, *үнинэй аяланхай һэн* "had long since gone"). The timeline now
+puts -нхай just before NOW with its result reaching NOW, and the glosses say "has gone, is away".
+The textbook wording is kept as a quotation in the note.
+
 ### Declension engine (2026-10-28)
 
 `src/utils/nounMorphology.ts` builds the six oblique cases from the textbook rules (pp. 31,
@@ -148,7 +190,9 @@ for each.
 5. *эди-* "eat" is a regular и-stem: *эдихэ, эдинэ, эдидэг, эдижэ, эдеэ, эдеэд*. The engine
    rule also gives *баряад, табяад, болёод*.
 6. Dative and accusative rules as in B5 and B6; case names as in C1.
-7. "Habitual / Progressive" relabelled "Habitual"; the progressive is *-жа байна*.
+7. "Habitual / Progressive" relabelled "Habitual"; the progressive (Present Continuous) is
+   *-жа байна*.
+   "Present-Future" -на relabelled "Present"; the future is -ха.
 8. Reflexive voice removed; passive -да/-та for *аба-, үгэ-, оло-*.
 9. Concessive: -ААшье һаа shown first, -башье as the bookish variant.
 

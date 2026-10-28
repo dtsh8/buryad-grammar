@@ -53,15 +53,16 @@ export function checkAnswer(input: string, expected: string): Verdict {
 // ─── Conjugation drill ────────────────────────────────────────────────────
 
 export interface ConjugationTense {
-  id: 'prs' | 'pst' | 'perf';
+  id: 'prs' | 'pst' | 'perf' | 'inf';
   label: string;
 }
 
 // The finite forms that take person endings (Verbs page, "Person" tab).
 export const CONJUGATION_TENSES: ConjugationTense[] = [
-  { id: 'prs', label: 'Present-Future' },
+  { id: 'prs', label: 'Present' },
   { id: 'pst', label: 'Simple Past' },
   { id: 'perf', label: 'Perfect' },
+  { id: 'inf', label: 'Future' }, // ябаха + ending: ябахаб 'I will go'
 ];
 
 export interface ConjugationQuestion {
@@ -83,8 +84,12 @@ export function drillVerbs(lexicon: Lexeme[]): Lexeme[] {
 export function conjugationQuestion(verbs: Lexeme[], rng: Rng): ConjugationQuestion {
   const verb = pick(verbs, rng);
   const tense = pick(CONJUGATION_TENSES, rng);
-  // The perfect has no 3pl form: ябаа-д would merge with the converb ябаад.
-  const persons = PERSON_ENDINGS.filter(p => tense.id !== 'perf' || p.perfect);
+  // Only persons with a form in this tense's column of PERSON_ENDINGS: the perfect and the
+  // future have no 3pl. The future 3sg is the bare infinitive, already in the question.
+  const column = { prs: 'present', pst: 'past', perf: 'perfect', inf: 'future' } as const;
+  const persons = PERSON_ENDINGS.filter(
+    p => p[column[tense.id]] !== undefined && !(tense.id === 'inf' && p.suffix === '∅')
+  );
   const p = pick(persons, rng);
   const root = extractRoot(verb.buryad);
   const stem = conjugate(root)[tense.id];

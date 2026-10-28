@@ -312,12 +312,13 @@ describe('deriveAll', () => {
 
 describe('grammar data', () => {
   it('person-ending table is the engine form plus the ending', () => {
-    const { prs, pst, perf } = conjugate('яба');
+    const { prs, pst, perf, inf } = conjugate('яба');
     for (const p of PERSON_ENDINGS) {
       const ending = p.suffix === '∅' ? '' : p.suffix.replace(/^-/, '');
       expect(p.present, p.person).toBe(prs + ending);
       expect(p.past, p.person).toBe(pst + ending);
       if (p.perfect) expect(p.perfect, p.person).toBe(perf + ending);
+      if (p.future) expect(p.future, p.person).toBe(inf + ending);
     }
   });
 

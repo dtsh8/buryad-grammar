@@ -6,6 +6,9 @@ export default {
       fontFamily: {
         buryat: ['"Noto Serif"', 'Georgia', 'serif'],
         sans: ['"Inter"', 'system-ui', 'sans-serif'],
+        // Noto Sans Mono has һ ү ө; system monospace fonts (Consolas, Menlo) mostly don't,
+        // which garbled suffixes such as -һан in code-styled text.
+        mono: ['"Noto Sans Mono"', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Consolas', 'monospace'],
       },
       colors: {
         buryat: {

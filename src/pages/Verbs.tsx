@@ -10,6 +10,7 @@ import {
 } from '../data/grammar';
 import VerbBuilder from '../components/VerbBuilder';
 import CorpusLink from '../components/CorpusLink';
+import TenseLanes from '../components/TenseLanes';
 import Tooltip from '../components/Tooltip';
 import { HARMONY_TIP } from '../data/harmonyTerms';
 import SayButton from '../components/SayButton';
@@ -184,42 +185,19 @@ function TenseTimeline() {
       <div className="card space-y-5">
         <h2 className="text-lg font-semibold text-stone-800">Tense System</h2>
 
-        {/* Timeline bar */}
-        <div className="relative pt-2 pb-6">
-          <div className="absolute top-5 left-0 right-0 h-0.5 bg-stone-200" />
-          <div className="flex justify-between">
-            {(['PAST', 'NOW', 'FUTURE'] as const).map(l => (
-              <span key={l} className="text-xs text-stone-500 font-semibold">
-                {l}
-              </span>
-            ))}
-          </div>
-          <div className="flex justify-around mt-2">
-            {TENSE_ENTRIES.map((te, i) => (
-              <button
-                key={te.label}
-                onClick={() => setSelected(i)}
-                aria-pressed={selected === i}
-                title={te.label}
-                aria-label={`${te.label} (${te.suffix.back})`}
-                className="flex flex-col items-center gap-1 group"
-              >
-                <div
-                  className={`w-4 h-4 rounded-full border-2 transition-all ${
-                    selected === i
-                      ? 'scale-150 bg-mongol-500 border-mongol-600'
-                      : 'bg-white border-stone-300 group-hover:border-stone-400'
-                  }`}
-                />
-                <span
-                  className={`text-xs font-medium transition-colors ${selected === i ? 'text-stone-800' : 'text-stone-500 group-hover:text-stone-600'}`}
-                >
-                  {te.suffix.back}
-                </span>
-              </button>
-            ))}
-          </div>
-        </div>
+        <p className="text-sm text-stone-500">
+          The present is <span className="font-buryat">-на</span> (
+          <span className="font-buryat">ябана</span> “goes, is going”); “right now, in progress” is
+          the phrase <span className="font-buryat">-жа байна</span>. The future is{' '}
+          <span className="font-buryat">-ха</span> (<span className="font-buryat">ябахаб</span> “I
+          will go”). Pick a row for details.
+        </p>
+
+        {/* Timeline: one row per tense, placed in time */}
+        <TenseLanes tenses={TENSE_ENTRIES} selected={selected} onSelect={setSelected} />
+        <p className="text-xs text-stone-500">
+          ● one event · ●— result or relevance lasting until now · ••• a habit · ▬ a stretch of time
+        </p>
 
         {/* Selected tense detail */}
         <AnimatePresence mode="wait">
@@ -236,11 +214,13 @@ function TenseTimeline() {
                 <h3 className="text-lg font-bold text-stone-900">{t.label}</h3>
                 <p className="text-sm font-buryat text-stone-500">{t.buryad}</p>
               </div>
-              <div className="flex gap-2">
-                <span className="badge bg-stone-100 border-stone-300 text-stone-700 capitalize">
-                  {t.aspectuality}
-                </span>
-              </div>
+              {t.aspectuality !== 'n/a' && (
+                <div className="flex gap-2">
+                  <span className="badge bg-stone-100 border-stone-300 text-stone-700 capitalize">
+                    {t.aspectuality}
+                  </span>
+                </div>
+              )}
             </div>
             <div className="grid sm:grid-cols-2 gap-2">
               {[
@@ -249,7 +229,7 @@ function TenseTimeline() {
               ].map(row => (
                 <div key={row.label} className="bg-white/60 rounded-lg p-2">
                   <p className="text-xs text-stone-500">{row.label}</p>
-                  <p className="font-mono font-bold text-stone-800">{row.val}</p>
+                  <p className="font-buryat font-bold text-stone-800">{row.val}</p>
                 </div>
               ))}
             </div>
@@ -283,7 +263,7 @@ function TenseTimeline() {
             { form: 'ябаба', suffix: '-ба', label: 'Simple past', gloss: 'went' },
             { form: 'ябаа', suffix: '-аа', label: 'Perfect', gloss: 'went, has gone' },
             { form: 'ябаһан', suffix: '-һан', label: 'Past participle', gloss: 'went; who went' },
-            { form: 'ябанхай', suffix: '-нхай', label: 'Resultative', gloss: 'went long ago' },
+            { form: 'ябанхай', suffix: '-нхай', label: 'Resultative', gloss: 'has gone, is away' },
           ].map(p => (
             <div key={p.suffix} className="rounded-xl bg-stone-50 border border-stone-200 p-3">
               <p className="text-xs text-stone-500">
@@ -378,6 +358,7 @@ function PersonEndings() {
                 <th className="text-left py-2 pr-4 text-stone-500 font-normal">Present</th>
                 <th className="text-left py-2 pr-4 text-stone-500 font-normal">Past -ба</th>
                 <th className="text-left py-2 pr-4 text-stone-500 font-normal">Perfect</th>
+                <th className="text-left py-2 pr-4 text-stone-500 font-normal">Future -ха</th>
                 <th className="text-left py-2 text-stone-500 font-normal">Attested</th>
               </tr>
             </thead>
@@ -392,6 +373,9 @@ function PersonEndings() {
                   <td className="py-2.5 pr-4 font-buryat text-lg text-stone-800">
                     {p.perfect ?? '—'}
                   </td>
+                  <td className="py-2.5 pr-4 font-buryat text-lg text-stone-800">
+                    {p.future ?? '—'}
+                  </td>
                   <td className="py-2.5 font-buryat text-xs text-stone-500">
                     {p.attested.join(', ')}
                   </td>
@@ -405,7 +389,8 @@ function PersonEndings() {
           endings to <span className="font-buryat">яба-</span> "go"; forms not listed as attested
           are built by rule. The textbook also gives -м and -мди as variants of -б and -бди. The 3pl
           perfect is left blank because ябаа + -д would look like the converb ябаад; 3pl -д is shown
-          on the present and the -ба past, as in the textbook.
+          on the present and the -ба past, as in the textbook. The future has no 3pl -д at all: the
+          Buryat National Corpus has ябахаб 114 times but no ябахад.
         </p>
       </div>
     </div>
@@ -623,7 +608,7 @@ const FORM_ROWS: Array<{
   category: string;
   color: string;
 }> = [
-  { key: 'presentFuture', label: 'Present-Future', category: 'Finite', color: 'text-mongol-700' },
+  { key: 'presentFuture', label: 'Present', category: 'Finite', color: 'text-mongol-700' },
   { key: 'simplePast', label: 'Simple Past (-ба)', category: 'Finite', color: 'text-green-700' },
   { key: 'perfect', label: 'Perfect (-аа)', category: 'Finite', color: 'text-green-700' },
   {

@@ -29,33 +29,39 @@ export default function Tabs<T extends string>({
     refs.current[next]?.focus();
   }
 
+  // The grey baseline is drawn behind the row, so the active underline covers it without any
+  // tab sticking out of the row; that 1px of overflow made browsers show a vertical scrollbar.
+  // Narrow screens still scroll the row sideways (swipe, trackpad, arrow keys) with no visible bar.
   return (
-    <div
-      role="tablist"
-      aria-label={label}
-      className="border-b border-stone-200 flex gap-1 overflow-x-auto"
-    >
-      {tabs.map(({ id, label, icon }, i) => (
-        <button
-          key={id}
-          ref={el => {
-            refs.current[i] = el;
-          }}
-          role="tab"
-          id={`tab-${id}`}
-          aria-selected={active === id}
-          aria-controls={`panel-${id}`}
-          tabIndex={active === id ? 0 : -1}
-          onClick={() => onChange(id)}
-          onKeyDown={e => onKeyDown(e, i)}
-          className={`-mb-px flex items-center gap-1.5 pb-3 px-3 text-sm font-medium whitespace-nowrap transition-colors ${
-            active === id ? 'tab-active' : 'tab-inactive'
-          }`}
-        >
-          {icon && <span aria-hidden="true">{icon}</span>}
-          {label}
-        </button>
-      ))}
+    <div className="relative">
+      <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-px bg-stone-200" />
+      <div
+        role="tablist"
+        aria-label={label}
+        className="relative flex gap-1 overflow-x-auto overflow-y-hidden no-scrollbar"
+      >
+        {tabs.map(({ id, label, icon }, i) => (
+          <button
+            key={id}
+            ref={el => {
+              refs.current[i] = el;
+            }}
+            role="tab"
+            id={`tab-${id}`}
+            aria-selected={active === id}
+            aria-controls={`panel-${id}`}
+            tabIndex={active === id ? 0 : -1}
+            onClick={() => onChange(id)}
+            onKeyDown={e => onKeyDown(e, i)}
+            className={`flex items-center gap-1.5 pb-3 px-3 text-sm font-medium whitespace-nowrap transition-colors ${
+              active === id ? 'tab-active' : 'tab-inactive'
+            }`}
+          >
+            {icon && <span aria-hidden="true">{icon}</span>}
+            {label}
+          </button>
+        ))}
+      </div>
     </div>
   );
 }

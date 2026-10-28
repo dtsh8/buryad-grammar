@@ -1,11 +1,13 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useRef, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { CASES, POSSESSIVE_SUFFIXES, type GrammarCase } from '../data/grammar';
 import CorpusLink from '../components/CorpusLink';
 import { useVocabulary } from '../hooks/useVocabulary';
 import { decline, type CaseId } from '../utils/nounMorphology';
 import SayButton from '../components/SayButton';
 import AttestBadge from '../components/AttestBadge';
+import Suffixed from '../components/Suffixed';
 
 const fade = { hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } };
 
@@ -21,6 +23,18 @@ function suffixRules(s: string): Array<{ form: string; when: string }> {
 // Just the forms, for the compact case card: "-да / -та".
 function suffixForms(s: string): string {
   return [...new Set(suffixRules(s).map(r => r.form))].join(' / ');
+}
+
+// The suffix rows of one case; consonant and vowel rows merge when they are the same.
+function CaseRules({ c }: { c: GrammarCase }) {
+  return !c.suffix.afterVowel || c.suffix.afterVowel === c.suffix.afterConsonant ? (
+    <SuffixRow label="After any stem" value={c.suffix.afterConsonant} />
+  ) : (
+    <>
+      <SuffixRow label="After a consonant" value={c.suffix.afterConsonant} />
+      <SuffixRow label="After a vowel" value={c.suffix.afterVowel} />
+    </>
+  );
 }
 
 function SuffixRow({ label, value }: { label: string; value: string }) {
@@ -92,14 +106,7 @@ function CaseDetail({ c }: { c: GrammarCase }) {
       {/* Suffix rules */}
       <div className="space-y-2">
         <p className="text-xs font-semibold uppercase tracking-wide text-stone-500">Suffix</p>
-        {!c.suffix.afterVowel || c.suffix.afterVowel === c.suffix.afterConsonant ? (
-          <SuffixRow label="After any stem" value={c.suffix.afterConsonant} />
-        ) : (
-          <>
-            <SuffixRow label="After a consonant" value={c.suffix.afterConsonant} />
-            <SuffixRow label="After a vowel" value={c.suffix.afterVowel} />
-          </>
-        )}
+        <CaseRules c={c} />
       </div>
 
       {/* Questions */}
@@ -167,7 +174,10 @@ export default function Cases() {
   const nouns = lexicon
     .filter(l => l.category === 'noun')
     .sort((a, b) => a.buryad.localeCompare(b.buryad, 'ru'));
-  const [nounId, setNounId] = useState('ger');
+  const [params] = useSearchParams();
+  const [nounId, setNounId] = useState(() => params.get('noun') ?? 'ger');
+  // Phones: the case row whose rule is open in place
+  const [openCase, setOpenCase] = useState<string | null>(null);
   const noun = nouns.find(n => n.id === nounId);
   // гэр until the vocabulary has loaded (or if its id ever changes)
   const forms = decline(noun?.buryad ?? 'гэр', noun?.nStem);
@@ -213,7 +223,7 @@ export default function Cases() {
             id="declension-noun"
             value={noun ? nounId : 'ger'}
             onChange={e => setNounId(e.target.value)}
-            className="rounded-lg border border-stone-300 bg-white px-2 py-1 font-buryat text-stone-800 max-w-full"
+            className="w-full sm:w-auto rounded-lg border border-stone-300 bg-white px-3 py-2 sm:px-2 sm:py-1 font-buryat text-stone-800 max-w-full"
           >
             {nouns.length === 0 && <option value="ger">гэр — house</option>}
             {nouns.map(n => (
@@ -240,7 +250,45 @@ export default function Cases() {
             </>
           )}
         </p>
-        <div className="overflow-x-auto">
+        {/* Phones: one row per case; tap to open its rule in place. */}
+        <ul className="sm:hidden -mx-2 divide-y divide-stone-100 border-y border-stone-100">
+          {CASES.map(c => {
+            const form = forms[c.id as CaseId];
+            const isOpen = openCase === c.id;
+            return (
+              <li key={c.id} className={isOpen ? 'bg-buryat-50' : undefined}>
+                <button
+                  type="button"
+                  aria-expanded={isOpen}
+                  onClick={() => setOpenCase(isOpen ? null : c.id)}
+                  className="w-full text-left px-2 py-2.5 grid grid-cols-[1fr_auto] items-center gap-x-3"
+                >
+                  <span className="text-xs font-semibold text-stone-700">
+                    {c.english}{' '}
+                    <span lang="bua" className="font-buryat font-normal text-stone-500">
+                      {c.buryad.replace(' падеж', '')}
+                    </span>
+                  </span>
+                  <span className="row-span-2 self-center">
+                    <AttestBadge form={form} />
+                  </span>
+                  <Suffixed
+                    base={noun?.buryad ?? 'гэр'}
+                    form={form}
+                    className="text-xl font-bold text-stone-900"
+                  />
+                </button>
+                {isOpen && (
+                  <div className="px-2 pb-3 space-y-2">
+                    <CaseRules c={c} />
+                    <SayButton word={form} />
+                  </div>
+                )}
+              </li>
+            );
+          })}
+        </ul>
+        <div className="hidden sm:block overflow-x-auto">
           <table className="text-sm w-full">
             <thead>
               <tr className="border-b-2 border-stone-200">
@@ -275,8 +323,8 @@ export default function Cases() {
                     </button>
                   </td>
                   <td className="py-2.5 pr-4 font-buryat text-stone-500">{CASES[i]?.buryad}</td>
-                  <td className="py-2.5 font-buryat text-lg text-buryat-700 font-semibold">
-                    {row.form}
+                  <td className="py-2.5 text-lg text-stone-900 font-semibold">
+                    <Suffixed base={noun?.buryad ?? 'гэр'} form={row.form} />
                     <SayButton word={row.form} className="ml-1" /> <AttestBadge form={row.form} />
                   </td>
                 </tr>

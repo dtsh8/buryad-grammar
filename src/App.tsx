@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { MotionConfig } from 'framer-motion';
 import Navbar from './components/Navbar';
+import TabBar from './components/TabBar';
 import RouteEffects from './components/RouteEffects';
 import Home from './pages/Home';
 import Phonology from './pages/Phonology';
@@ -17,7 +18,8 @@ export default function App() {
       <BrowserRouter basename={import.meta.env.BASE_URL}>
         <RouteEffects />
         <Navbar />
-        <main>
+        {/* Bottom padding keeps content clear of the phone tab bar. */}
+        <main className="pb-24 md:pb-0">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/phonology" element={<Phonology />} />
@@ -29,7 +31,7 @@ export default function App() {
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
-        <footer className="border-t border-stone-200 mt-10">
+        <footer className="border-t border-stone-200 mt-10 mb-20 md:mb-0">
           <div className="max-w-6xl mx-auto px-4 py-6 text-xs text-stone-500 flex flex-wrap gap-x-4 gap-y-1 justify-between">
             <span>
               Sources: Poppe 1960; Skribnik 2003; Учебник бурятского языка; Skribnik &amp; Darzhaeva
@@ -45,6 +47,7 @@ export default function App() {
             </a>
           </div>
         </footer>
+        <TabBar />
       </BrowserRouter>
     </MotionConfig>
   );

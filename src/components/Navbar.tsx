@@ -1,15 +1,8 @@
-import { NavLink, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
-import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import { SECTIONS } from '../sections';
 
+// Top bar. On phones it shows only the brand; navigation is the bottom TabBar.
 export default function Navbar() {
-  const { pathname } = useLocation();
-  // The path the mobile menu was opened on: any navigation, including the brand link,
-  // closes it.
-  const [openedOn, setOpenedOn] = useState<string | null>(null);
-  const open = openedOn === pathname;
-
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-stone-200 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -42,45 +35,8 @@ export default function Navbar() {
               </NavLink>
             ))}
           </nav>
-
-          {/* Mobile hamburger */}
-          <button
-            className="md:hidden p-2 rounded-lg text-stone-500 hover:bg-stone-100"
-            onClick={() => setOpenedOn(open ? null : pathname)}
-            aria-label={open ? 'Close menu' : 'Open menu'}
-            aria-expanded={open}
-            aria-controls="mobile-nav"
-          >
-            {open ? <X size={20} /> : <Menu size={20} />}
-          </button>
         </div>
       </div>
-
-      {/* Mobile dropdown */}
-      {open && (
-        <nav
-          id="mobile-nav"
-          aria-label="Main"
-          className="md:hidden border-t border-stone-100 bg-white px-4 pb-3 pt-1"
-        >
-          {SECTIONS.map(({ to, label, icon: Icon }) => (
-            <NavLink
-              key={to}
-              to={to}
-              end={to === '/'}
-              onClick={() => setOpenedOn(null)}
-              className={({ isActive }) =>
-                `flex items-center gap-2 py-2.5 px-2 rounded-lg text-sm font-medium ${
-                  isActive ? 'text-buryat-700 bg-buryat-50' : 'text-stone-600'
-                }`
-              }
-            >
-              <Icon size={16} aria-hidden="true" />
-              {label}
-            </NavLink>
-          ))}
-        </nav>
-      )}
     </header>
   );
 }

@@ -265,7 +265,13 @@ export const CASES: GrammarCase[] = [
     russian: 'Орудный',
     semanticRole: 'Means / instrument / path',
     questions: ['Юугээр? (With/by what?)', 'Яагаад? (How?)'],
-    suffix: { afterConsonant: '-аар/-ээр/-оор', afterVowel: '-гаар/-гээр/-гоор' },
+    // Textbook p. 36: a short final vowel drops (ахаар), и fuses (һургууляар, морёор), long
+    // vowels and diphthongs take г (бороогоор, нохойгоор).
+    suffix: {
+      afterConsonant: '-аар/-ээр/-оор/-өөр',
+      afterVowel:
+        '-аар (short vowel drops) · -яар/-еэр/-ёор after и · -гаар/-гээр/-гоор after long vowels and й',
+    },
     examples: [
       { stem: 'гар', inflected: 'гараар', translation: 'by hand' },
       { stem: 'галта тэргэ', inflected: 'галта тэргээр', translation: 'by train' },

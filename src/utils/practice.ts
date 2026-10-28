@@ -112,6 +112,7 @@ export interface CaseItem {
   translation: string;
   rule: string; // the case's suffix summary, shown after an answer
   generated?: boolean; // built by the declension engine, not a curated example
+  nStem?: Lexeme['nStem']; // so feedback can explain a dropped н
 }
 
 function caseRule(c: (typeof CASES)[number]): string {
@@ -138,6 +139,7 @@ export function generatedCaseItems(lexicon: Lexeme[]): CaseItem[] {
         translation: `${meaning} (${c.english.toLowerCase()})`,
         rule: caseRule(c),
         generated: true,
+        nStem: n.nStem,
       });
     }
   }

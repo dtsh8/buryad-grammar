@@ -117,10 +117,22 @@ export interface Consonant {
   place: string;
   manner: string;
   voiced: boolean;
+  // A positional pronunciation reported by a native speaker, not yet found in a written source.
+  allophone?: { ipa: string; note: string };
 }
 
 export const CONSONANTS: Consonant[] = [
-  { letter: 'б', ipa: 'b', place: 'bilabial', manner: 'plosive', voiced: true },
+  {
+    letter: 'б',
+    ipa: 'b',
+    place: 'bilabial',
+    manner: 'plosive',
+    voiced: true,
+    allophone: {
+      ipa: 'β',
+      note: 'Between vowels in back-vowel words (а, о, у) б softens to a sound like English w: ябаха [jaβaxa], ябаба [jaβaβa]. In front-vowel words it stays [b]: ерэбэ [jɛrɛbɛ].',
+    },
+  },
   { letter: 'п', ipa: 'p', place: 'bilabial', manner: 'plosive', voiced: false },
   { letter: 'д', ipa: 'd', place: 'alveolar', manner: 'plosive', voiced: true },
   { letter: 'т', ipa: 't', place: 'alveolar', manner: 'plosive', voiced: false },

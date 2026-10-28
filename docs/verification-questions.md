@@ -210,6 +210,11 @@ for each.
      the speaker knows (saw it vs heard about it), in how recent the event is, or in style?
   2. Does *ябалай* exist at all? If so, what does it mean?
   3. Can *ябаба* take person endings (*ябабаб*?), as *ябаа* does (*ябааб*)?
+- **Speaker note (2026-10-28):** the forms are hard to tell apart by ear in back-vowel verbs,
+  because б between vowels there sounds like English w: *ябаба* [jaβaβa] is close to *ябаа*
+  [jabaː]. In front-vowel words б stays [b], so ask with front verbs: *ерэбэ / ерээ / ерэһэн*,
+  *хэлэбэ / хэлээ / хэлэһэн*. The app shows б ~[β] on the Phonology page as unconfirmed; a
+  written source (Бураев 1959, Poppe 1960) is still wanted.
 
 ### A2. Are the reciprocal and cooperative suffixes swapped?
 

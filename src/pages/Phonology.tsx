@@ -155,10 +155,18 @@ export default function Phonology() {
                       <td className="py-2 pr-4 font-buryat text-2xl text-stone-800 w-10">
                         {c.letter}
                       </td>
-                      <td className="py-2 pr-4">
+                      <td className="py-2 pr-4 whitespace-nowrap">
                         <code className="text-xs bg-stone-100 px-1.5 py-0.5 rounded">
                           /{c.ipa}/
                         </code>
+                        {c.allophone && (
+                          <HintTooltip
+                            text={`${c.allophone.note} Reported by a native speaker; not yet confirmed in a written source.`}
+                            className="ml-1.5 whitespace-nowrap text-xs rounded-full border border-amber-300 bg-amber-50 text-amber-800 px-2"
+                          >
+                            ~[{c.allophone.ipa}]
+                          </HintTooltip>
+                        )}
                       </td>
                       <td className="py-2 pr-4">
                         <span

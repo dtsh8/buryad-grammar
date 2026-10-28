@@ -18,7 +18,7 @@ const MIN_COUNT = parseInt(args[args.indexOf('--min-count') + 1] ?? '3', 10);
 // ─── Stop words — common Buryad grammatical words to exclude from top list ─
 // These are highly frequent but carry no standalone lexical meaning.
 const STOP_WORDS = new Set([
-  'гэжэ', 'гэhэн', 'болон', 'байна', 'байгаа', 'байха', 'юм', 'юмн',
+  'гэжэ', 'гэһэн', 'болон', 'байна', 'байгаа', 'байха', 'юм', 'юмн',
   'тиигэжэ', 'тиин', 'үшөө', 'бас', 'мүн', 'энэ', 'тэрэ', 'эдэ', 'тэдэ',
   'бидэ', 'манай', 'таанай', 'мэн', 'хэн', 'юун', 'яагаад',
   'тиимэ', 'үгы', 'ба', 'бэ', 'гү', 'лэ', 'ла',
@@ -29,8 +29,8 @@ const STOP_WORDS = new Set([
 function tokenize(text: string): string[] {
   return (
     text
-      // keep Cyrillic + Buryad h (hа, hэ forms use Latin-looking h or Cyrillic)
-      .match(/[а-яёА-ЯЁhh\u04BB\u04BC]+/gu) ?? []
+      // Cyrillic + Buryad letters ү Ү ө Ө һ Һ
+      .match(/[а-яёА-ЯЁ\u04AF\u04AE\u04E9\u04E8\u04BB\u04BA]+/gu) ?? []
   )
     .map(w => w.toLowerCase())
     .filter(w => w.length >= 3); // skip very short tokens

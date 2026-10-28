@@ -256,7 +256,7 @@ export default function Phonology() {
               {[
                 { word: 'гэр', parse: 'г-э-р', pattern: 'CVC', meaning: 'house' },
                 { word: 'аха', parse: 'а-ха', pattern: 'V.CV', meaning: 'elder brother' },
-                { word: 'уhан', parse: 'у-hан', pattern: 'V.CVC', meaning: 'water' },
+                { word: 'уһан', parse: 'у-һан', pattern: 'V.CVC', meaning: 'water' },
               ].map(ex => (
                 <div
                   key={ex.word}

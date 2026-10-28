@@ -59,7 +59,7 @@ export default function ComparisonTable() {
           <p className="text-sm font-semibold text-amber-800">🤝 Buryad ≈ Mongolian</p>
           <p className="text-xs text-amber-700 mt-1">
             Buryad and Mongolian are sister languages — closely related in all structural features.
-            Buryad has preserved more archaic features like the h- in ablative.
+            Buryad innovations include the shift s → һ (Mongolian ablative -аас vs Buryad -һаа).
           </p>
         </div>
         <div className="p-4 rounded-xl bg-green-50 border border-green-200">

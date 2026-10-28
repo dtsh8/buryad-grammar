@@ -1,0 +1,6 @@
+# Normalize line endings: LF in repo and working tree (matches .prettierrc endOfLine: lf)
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.ico binary
+*.db binary

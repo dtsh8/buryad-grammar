@@ -14,9 +14,9 @@ const IN_FILE = path.resolve('data', 'corpus', 'raw_articles.json');
 const OUT_DIR = path.resolve('public', 'data');
 
 // ─── Cyrillic + Buryad-specific Unicode ranges ────────────────────────────
-// а-я + А-Я + ё + Ё + ү (U+04AF) + Ү (U+04AE) + ő (U+04E9) + Ő (U+04E8)
-//   + ħ/h (U+04BB SHHA) + Ħ (U+04BA)
-const C = '[а-яёА-ЯЁ\u04AF\u04AE\u04E8\u04E9\u04BB\u04BC]+';
+// а-я + А-Я + ё + Ё + ү (U+04AF) + Ү (U+04AE) + ө (U+04E9) + Ө (U+04E8)
+//   + һ (U+04BB SHHA) + Һ (U+04BA)
+const C = '[а-яёА-ЯЁ\u04AF\u04AE\u04E8\u04E9\u04BB\u04BA]+';
 
 // ─── Grammar feature definitions ─────────────────────────────────────────
 
@@ -60,9 +60,9 @@ const FEATURES: Array<{
   {
     id: 'case_ablative',
     label: 'Ablative case',
-    description: 'Suffix -hаа/-hэй/-hоо (h = U+04BB SHHA)',
+    description: 'Suffix -һаа/-һээ/-һоо/-һөө (һ = U+04BB SHHA)',
     // Buryad ablative uses SHHA (ħ U+04BB)
-    patterns: [new RegExp(`${C}(\u04BBаа|\u04BBоо|\u04BBэй|\u04BBээ)`)],
+    patterns: [new RegExp(`${C}(\u04BBаа|\u04BBоо|\u04BBээ|\u04BBөө)`)],
     maxExamples: 30,
   },
 
@@ -71,7 +71,7 @@ const FEATURES: Array<{
     id: 'verb_simple_past',
     label: 'Simple Past (direct evidential)',
     description: 'Suffix -ба/-бэ/-бо',
-    patterns: [new RegExp(`${C}(баа|бэ|бо)\\s`)],
+    patterns: [new RegExp(`${C}(ба|бэ|бо)\\s`)],
     maxExamples: 25,
   },
   {
@@ -117,7 +117,7 @@ const FEATURES: Array<{
     id: 'deriv_causative',
     label: 'Causative voice',
     description: 'Suffix -уул/-үүл (make/let someone do)',
-    patterns: [new RegExp(`${C}(уул|\u04AF\u04AFL)(ха|хэ|на|нэ|ба|бэ)`)],
+    patterns: [new RegExp(`${C}(уул|\u04AF\u04AFл)(ха|хэ|на|нэ|ба|бэ)`)],
     maxExamples: 20,
   },
   {
@@ -135,7 +135,7 @@ function splitSentences(text: string, url: string, date: string) {
   // Split on sentence-ending punctuation followed by space + capital
   // Handles both Latin full stop and Cyrillic-context periods
   return text
-    .split(/(?<=[.!?»])\s+(?=[А-ЯЁҮӨHА-Я\u04BB\u04BC\u04AE\u04B0])/)
+    .split(/(?<=[.!?»])\s+(?=[А-ЯЁ\u04AE\u04E8\u04BA])/)
     .map(s => s.trim())
     .filter(s => {
       return (

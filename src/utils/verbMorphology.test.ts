@@ -114,9 +114,42 @@ const GOLD: Array<{ root: string; note: string; forms: Partial<ReturnType<typeof
     forms: { seqConv: 'бүтээгээд', pstPtcp: 'бүтээһэн', neg: 'бүтээдэггүй' },
   },
   {
-    root: 'эдеэ',
-    note: 'irregular: эди- stem, ээ absorbs long suffixes (corpus эдеэд, эдидэг)',
-    forms: { inf: 'эдеэхэ', prs: 'эдеэнэ', seqConv: 'эдеэд', hab: 'эдидэг', jussive: 'эдеэг' },
+    root: 'эди',
+    note: 'и-stem: и + ээ → еэ (corpus эдихэ, эдидэг, эдижэ, эдеэд)',
+    forms: {
+      inf: 'эдихэ',
+      prs: 'эдинэ',
+      hab: 'эдидэг',
+      simConv: 'эдижэ',
+      perf: 'эдеэ',
+      negPst: 'эдеэгүй',
+      seqConv: 'эдеэд',
+    },
+  },
+  {
+    root: 'бари',
+    note: 'и-stem: и + аа → яа (corpus бариха, барижа, баридаг, баряад, баряа)',
+    forms: { inf: 'бариха', simConv: 'барижа', hab: 'баридаг', seqConv: 'баряад', perf: 'баряа' },
+  },
+  {
+    root: 'таби',
+    note: 'и-stem (corpus табяад, табяа)',
+    forms: { seqConv: 'табяад', perf: 'табяа' },
+  },
+  {
+    root: 'боли',
+    note: 'и-stem, о-class: и + оо → ёо (corpus болёод)',
+    forms: { seqConv: 'болёод' },
+  },
+  {
+    root: 'үрди',
+    note: 'front и-stem gets еэ even after ү (Skribnik & Darzhaeva 2020 үрдеэд; corpus үрдеэгүй)',
+    forms: { seqConv: 'үрдеэд', negPst: 'үрдеэгүй' },
+  },
+  {
+    root: 'ури',
+    note: 'и-stem, short suffixes unchanged (corpus урина, уриба, урижа)',
+    forms: { prs: 'урина', pst: 'уриба', simConv: 'урижа', perf: 'уряа' },
   },
 ];
 
@@ -133,6 +166,15 @@ describe('conjugate — gold forms', () => {
   it('consonant-final jussive follows the а/о/э class (mechanism; бол- is not a real stem)', () => {
     expect(conjugate('бол').jussive).toBe('болог');
     expect(conjugate('хүдэл').jussive).toBe('хүдэлэг');
+  });
+
+  it('resultative -нхай (textbook ерэнхэй, ошонхой; corpus болонхой, гаранхай, бэшэнхэй)', () => {
+    expect(conjugate('ерэ').res).toBe('ерэнхэй');
+    expect(conjugate('ошо').res).toBe('ошонхой');
+    expect(conjugate('бол').res).toBe('болонхой');
+    expect(conjugate('гара').res).toBe('гаранхай');
+    expect(conjugate('бэшэ').res).toBe('бэшэнхэй');
+    expect(conjugate('бари').res).toBe('баринхай');
   });
 
   it('never produces three vowels in a row', () => {
@@ -211,6 +253,18 @@ describe('deriveAll', () => {
   it('passive', () => {
     expect(byLabel('унша').Passive.inf).toBe('уншагдаха');
     expect(byLabel('мэдэ').Passive.inf).toBe('мэдэгдэхэ');
+    expect(byLabel('хара').Passive.inf).toBe('харагдаха');
+  });
+
+  it('passive -да/-та stems (textbook p. 84; corpus абтаа, үгтэнэ, олдоно)', () => {
+    expect(byLabel('аба').Passive.inf).toBe('абтаха');
+    expect(byLabel('аба').Passive.suffix).toBe('-та');
+    expect(byLabel('үгэ').Passive.inf).toBe('үгтэхэ');
+    expect(byLabel('оло').Passive.inf).toBe('олдохо');
+  });
+
+  it('has no reflexive voice (none in the textbook or corpus)', () => {
+    expect(deriveAll('яба', 'x').map(d => d.label)).not.toContain('Reflexive');
   });
 
   it('reciprocal is -лда, cooperative is -лса (corpus барилдаха, оролсохо)', () => {
@@ -221,7 +275,6 @@ describe('deriveAll', () => {
   it('о-class stems take о-variants of derivational suffixes', () => {
     const d = byLabel('оро');
     expect(d.Passive.root).toBe('орогдо');
-    expect(d.Reflexive.root).toBe('оро' + 'до');
     expect(d.Reciprocal.root.endsWith('о')).toBe(true);
     expect(d.Cooperative.root.endsWith('о')).toBe(true);
   });
@@ -231,11 +284,12 @@ describe('deriveAll', () => {
 
 describe('grammar data', () => {
   it('person-ending table is the engine form plus the ending', () => {
-    const { prs, perf } = conjugate('яба');
+    const { prs, pst, perf } = conjugate('яба');
     for (const p of PERSON_ENDINGS) {
       const ending = p.suffix === '∅' ? '' : p.suffix.replace(/^-/, '');
       expect(p.present, p.person).toBe(prs + ending);
-      expect(p.perfect, p.person).toBe(perf + ending);
+      expect(p.past, p.person).toBe(pst + ending);
+      if (p.perfect) expect(p.perfect, p.person).toBe(perf + ending);
     }
   });
 

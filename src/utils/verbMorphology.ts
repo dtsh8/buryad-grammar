@@ -92,7 +92,7 @@ function attach(root: string, suffix: string): string {
 
 // Returns true when epenthetic г must be inserted before the suffix.
 // Two environments (Skribnik 2003):
-//   • Long-vowel endings (аа оо уу ии ээ өө үү, also еэ яа): угаа → угаагаад, эдеэ → эдеэгээд
+//   • Long-vowel endings (аа оо уу ии ээ өө үү, also еэ яа): угаа → угаагаад, түлеэ → түлеэгээд
 //   • Semivowel й:                                   бай  → байгаад
 function needsEpentheticG(root: string): boolean {
   if (root.endsWith('й')) return true;
@@ -144,10 +144,22 @@ function longVowelClass(root: string): LongVowel {
   return sawFront ? 'ээ' : 'аа';
 }
 
+// A stem-final short и fuses with a long suffix vowel into an iotated letter:
+//   бари + аад → баряад, таби + аа → табяа, боли + оод → болёод, эди + ээд → эдеэд
+// Front stems always get еэ, even after ү (үрди → үрдеэд; Skribnik & Darzhaeva 2020).
+// Short suffixes attach unchanged: бариха, барижа, эдихэ, эдидэг (burunen.ru corpus).
+const IOTATED_LONG: Record<LongVowel, string> = { аа: 'яа', оо: 'ёо', ээ: 'еэ', өө: 'еэ' };
+
+function endsInShortI(root: string): boolean {
+  return root.endsWith('и') && !root.endsWith('ии');
+}
+
 // Root + long-vowel-initial suffix (-аа, -аад, …), with epenthetic г after
 // long vowels and й (угаагаад, байгаа) and absorption otherwise (ябаад, үзөөд).
 function attachLong(root: string, rest: string): string {
-  const suffix = longVowelClass(root) + rest;
+  const cls = longVowelClass(root);
+  if (endsInShortI(root)) return root.slice(0, -1) + IOTATED_LONG[cls] + rest;
+  const suffix = cls + rest;
   return needsEpentheticG(root) ? root + 'г' + suffix : attach(root, suffix);
 }
 
@@ -163,22 +175,8 @@ export interface Conjugation {
   simConv: string;
   seqConv: string;
   jussive: string;
+  res: string;
 }
-
-// Stems whose forms don't follow the rules. Each entry should cite its evidence.
-const IRREGULAR: Record<string, Partial<Conjugation>> = {
-  // эдеэ- 'eat': suppletive эди- before -дэг / -жэ (corpus: эдидэг); the final ээ
-  // absorbs long suffixes instead of taking г (corpus: "суглуулжа эдеэд").
-  // perf / negPst follow the same pattern but are unattested — see the verification doc.
-  эдеэ: {
-    hab: 'эдидэг',
-    neg: 'эдидэггүй',
-    simConv: 'эдижэ',
-    seqConv: 'эдеэд',
-    perf: 'эдеэ',
-    negPst: 'эдеэгүй',
-  },
-};
 
 export function conjugate(root: string): Conjugation {
   const cls = getSufClass(root);
@@ -193,6 +191,11 @@ export function conjugate(root: string): Conjugation {
   // Perfect -аа (ябаа, хүдэлөө): the most frequent past form in the corpus.
   const perf = attachLong(root, '');
 
+  // Resultative participle -нхай "has (long since) done" (textbook p. 67: ерэнхэй, ошонхой).
+  // Consonant-final roots insert the class vowel, as in the jussive (corpus: болонхой).
+  const resSuffix = sufC(cls, 'нхай', 'нхой', 'нхэй');
+  const res = endsInVowel(root) ? root + resSuffix : root + cls + resSuffix;
+
   return {
     inf: root + sufC(cls, 'ха', 'хо', 'хэ'),
     prs: root + sufC(cls, 'на', 'но', 'нэ'),
@@ -206,9 +209,15 @@ export function conjugate(root: string): Conjugation {
     simConv: root + sufC(cls, 'жа', 'жо', 'жэ'),
     seqConv: attachLong(root, 'д'),
     jussive,
-    ...IRREGULAR[root],
+    res,
   };
 }
+
+// Stems that take the passive -да/-та instead of -гда (textbook p. 84):
+// -да after л + vowel (оло → олдохо), -та after р, г, б + short vowel (аба → абтаха).
+// The textbook's own хара → харагдаха and бари → баригдаха show this is not a general
+// rule, so only the cited stems are listed (corpus: абтаа, үгтэнэ, олдоно).
+const PASSIVE_STEMS: Record<string, string> = { аба: 'абта', үгэ: 'үгтэ', оло: 'олдо' };
 
 // ─── Derivation rules ──────────────────────────────────────────────────────
 
@@ -266,21 +275,21 @@ export function deriveAll(baseRoot: string, baseMeaning: string): DerivedForm[] 
       : baseRoot + causVoiceSuffix; // consonant final: direct
   // The remaining suffixes have short non-high vowels, so they follow the
   // same 3-way а/о/э class as inflection (оро → орогдо, not *орогда).
-  // Passive: г-initial suffix гда/гдэ already provides the buffer consonant.
-  const passSuffix = v ? sufC(cls, 'гда', 'гдо', 'гдэ') : sufC(cls, 'агда', 'огдо', 'эгдэ');
-  // Reflexive / reciprocal / cooperative: consonant-initial suffixes — no г needed.
-  const reflSuffix = sufC(cls, 'да', 'до', 'дэ');
-  // Reciprocal -лда 'each other' (барилдаха 'wrestle', заргалдаха 'sue each other');
-  // cooperative -лса 'together' (оролсохо 'take part', хабаадалсаха 'participate').
-  // Corpus evidence — docs/verification-questions.md, A2.
+  // Passive: г-initial suffix гда/гдэ already provides the buffer consonant;
+  // a few stems take -да/-та instead (PASSIVE_STEMS).
+  const passRoot =
+    PASSIVE_STEMS[baseRoot] ??
+    baseRoot + (v ? sufC(cls, 'гда', 'гдо', 'гдэ') : sufC(cls, 'агда', 'огдо', 'эгдэ'));
+  const passSuffix = passRoot.slice(passRoot.startsWith(baseRoot) ? baseRoot.length : -2);
+  // Reciprocal -лда and cooperative -лса: the textbook's "взаимно-совместный залог" (p. 86).
+  // -лда: two parties act on each other (барилдаха 'wrestle', хөөрэлдэхэ 'talk together');
+  // -лса: joining someone in an action (ошолсохо 'go along with', таиралсаха 'help saw').
   const recipSuffix = v ? sufC(cls, 'лда', 'лдо', 'лдэ') : sufC(cls, 'алда', 'олдо', 'элдэ');
   const coopSuffix = v ? sufC(cls, 'лса', 'лсо', 'лсэ') : sufC(cls, 'алса', 'олсо', 'элсэ');
-  const passRoot = baseRoot + passSuffix;
-  const reflRoot = baseRoot + reflSuffix;
   const recipRoot = baseRoot + recipSuffix;
   const coopRoot = baseRoot + coopSuffix;
 
-  // Pre-compute correct English forms once — shared across all 5 example sentences
+  // Pre-compute correct English forms once — shared across all 4 example sentences
   const ef = englishForms(baseMeaning);
 
   return [
@@ -314,25 +323,11 @@ export function deriveAll(baseRoot: string, baseMeaning: string): DerivedForm[] 
       }
     ),
     make(
-      'Reflexive',
-      'Бэеэ үйлдэхэ',
-      reflRoot,
-      '-' + reflSuffix,
-      `Subject "${ef.thirdPerson}" on itself.`,
-      'do to oneself',
-      'bg-green-50 border-green-300',
-      {
-        buryad: `Тэрэ ${conjugate(reflRoot).prs}.`,
-        gloss: `he/she ${reflRoot}-PRS`,
-        translation: `He/She ${ef.thirdPerson} himself/herself.`,
-      }
-    ),
-    make(
       'Reciprocal',
       'Хэлсэлэй',
       recipRoot,
       '-' + recipSuffix,
-      `Two or more subjects "${baseMeaning}" each other mutually.`,
+      `Two parties "${baseMeaning}" each other, or do it jointly as partners.`,
       'do to each other',
       'bg-purple-50 border-purple-300',
       {
@@ -346,7 +341,7 @@ export function deriveAll(baseRoot: string, baseMeaning: string): DerivedForm[] 
       'Хамтаршалай',
       coopRoot,
       '-' + coopSuffix,
-      `Several subjects jointly "${baseMeaning}" (not directed at each other).`,
+      `Someone joins another person in the action "${baseMeaning}" (not directed at each other).`,
       'do together',
       'bg-pink-50 border-pink-300',
       {

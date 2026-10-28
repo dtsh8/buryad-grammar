@@ -32,21 +32,59 @@ it can't settle meanings, names or IPA, and a small corpus can miss rare forms.
 Not answerable from a news corpus: A2 meanings beyond these examples, B4 (reflexive), C1/C2
 (terminology), C4/C5 (IPA), C7 (the scraper strips digits), C8, C9.
 
+## Written sources
+
+| Short name | Source | Used for |
+| ---------- | ------ | -------- |
+| Textbook | *Учебник бурятского языка* (40 lessons, literary Buryad on the Khori base; Academia.edu 35182608) | Rules and paradigms; page numbers below refer to it |
+| S&D 2020 | Скрибник Е. К., Даржаева Н. Б. Семантика обстоятельственного сложного предложения в бурятском языке и языковая картина мира // Вестник БГУ. Язык. Литература. Культура. 2020. № 4. С. 58–69 | Morpheme-by-morpheme glosses of Buryat National Corpus examples |
+| D 2019 | Даржаева Н. Б. Квазисинонимические уступительные конструкции в бурятском языке // Oriental Studies. 2019. № 4. С. 682–690 | Concessive constructions |
+
+| Q   | Finding | Status |
+| --- | ------- | ------ |
+| A1  | -ба is the past tense and takes person endings: *уншабаб, уншабаш, уншабабди, уншабат, уншабад* (Textbook p. 37). -аа, -нхай, -һан are "past participles" (p. 67); S&D 2020 gloss -ба PST, -аа PC.PRS, -һан PC.PST, -нхай PC.RES. -лай appears in no source. | **Answered**, except evidentiality (see A1) |
+| A2  | One "взаимно-совместный" voice: -лда = two parties with each other (*Дамба Дашатай барилдаба*, *хөөрэлдэбэ*); -лса = joining someone (*город ошолсобо*, *таиралсажа үгэбэ*) (p. 86). | **Answered** |
+| A3  | 1sg -б/-м, 2sg -ш, 1pl -бди/-мди, 2pl -т, **3pl -д** (*тэдэ бэшэнэд*) (p. 28); in questions the ending goes on the particle (*бэшэнэ гүш?*); also on nouns and pronouns (p. 74). Corpus 3pl: *ябанад, хүдэлнэд*. | **Answered** |
+| A4  | -мни, -шни, -нь/-иинь/-ынь, -мнай, -тнай; case before possessive (*мориндомни*); shortened in the instrumental (*мориёорни*) (pp. 47–49). | **Answered** |
+| B1  | и-stems: short suffixes attach as is (corpus *эдихэ, эдидэг, эдижэ; бариха, барижа*), long ones fuse into iotated vowels (*эдеэд, баряад, табяад, болёод*; S&D 2020 *үрдеэд, уряа*). The stem is *эди-*, not *эдеэ-*. | **Answered**: *эдеэд* by rule |
+| B2  | *ябадаггүй*; also *ябанагүй* "is not going", *ерэбэгүй* "didn't come"; -дүй "not yet": *ябаадүй* (p. 54). Corpus: *алданагүй, мэдэнэгүй*. | **Answered** |
+| B4  | No reflexive voice in the textbook. -да occurs only as a passive variant: *оло → олдохо* (p. 84). | **Answered**: reflexive removed |
+| B5  | -да after л, м, н, ж, з, vowels and clusters; -та after other consonants: *эбтэ, бараста, богто, театрта, класста* (p. 39). | **Answered** |
+| B6  | -ые after short vowels and consonants; -иие after и and stable н; -е after long vowels and diphthongs (*шанаае, бороое, баабгайе*); -гые after back н (*ангые*) (pp. 33–34). | **Answered** |
+| C1  | Нэрын, Хамаанай, Зүгэй, Үйлын, Зэбсэгэй, Хамтын, Гаралай падеж (p. 8). | **Answered** |
+| C3  | Seven cases (p. 8). | **Answered** |
+| C4  | ү "very close to Russian у"; у "between Russian о and у"; ө always long, "close to Russian о" (p. 2). | Supports у [ʊ], ү [u], ө [oː]; speaker to confirm |
+| C10 | -ААшье һаа is the common concessive (Khori, any person); -башье is bookish, 3rd person only, from western/northern dialects (D 2019, citing Poppe 1938). | **Answered** |
+
+Passive variants (p. 84): -гда after vowels (*тари → таригдаха*); -да after л + vowel
+(*оло → олдохо*); -та after р, г, б + short vowel (*аба → абтаха*, *үгэ → үгтэхэ*). The same page
+has *хара → харагдаха* and *бари → баригдаха*, so the -да/-та stems are listed one by one in the
+engine instead of following a general rule.
+
+**Still open for the native speaker:** whether the past forms differ in evidentiality (A1);
+the Buryad names of the voices (C2); IPA of у/ү/ө and ж (C4, C5); speaker numbers (C7); the
+"ergative tendencies" claim (C8); the years of the Latin script (C9); and whether the
+speaker's own dialect differs from the literary forms above.
+
 ## Already applied to the app: please confirm
 
-These corpus findings are now in the app. A native speaker's ✓ or correction is still wanted
+These findings are now in the app. A native speaker's ✓ or correction is still wanted
 for each.
 
-1. The "evidential past -лай" is removed. The Tenses tab now shows three past forms (-ба, -аа,
-   -һан) without claiming how they differ. **See A1 for the question.**
-2. Reciprocal = -лда (*барилдаха* "wrestle"), cooperative = -лса (*оролсохо* "take part").
-3. Person endings on verbs (new "Person" tab) and possessive suffixes (Cases page), with corpus
-   examples. Built by rule but not seen in the corpus: *ябанаш*, *ябааш*, *ябанат*, *ябаат*.
-4. Negative habitual *ябадаггүй*; concessive *-башье* (corpus sentences as examples).
-5. *эдеэ-* is an irregular stem: *эдеэд, эдидэг, эдижэ*. Also set, but unattested: perfect
-   *эдеэ*, negative past *эдеэгүй*.
-6. Dative -та after д, г, р; accusative -иие after н, -е after й.
+1. The "evidential past -лай" is removed. The Tenses tab shows four past forms: -ба (past
+   tense), -аа (perfect), -һан (past participle) and -нхай (resultative). **See A1 for the
+   remaining question.**
+2. Reciprocal = -лда (*барилдаха* "wrestle"), cooperative = -лса (*ошолсохо* "go along with").
+3. Person endings on verbs (Person tab), including 3pl -д and the -ба past, and possessive
+   suffixes (Cases page). Built by rule but not seen in the corpus: *ябанаш*, *ябааш*,
+   *ябанат*, *ябаат*, *ябабаш*.
+4. Negatives *ябадаггүй, ябаагүй, ерэбэгүй, ябанагүй, ябахагүй*, and "not yet" *ябаадүй*.
+5. *эди-* "eat" is a regular и-stem: *эдихэ, эдинэ, эдидэг, эдижэ, эдеэ, эдеэд*. The engine
+   rule also gives *баряад, табяад, болёод*.
+6. Dative and accusative rules as in B5 and B6; case names as in C1.
 7. "Habitual / Progressive" relabelled "Habitual"; the progressive is *-жа байна*.
+8. Reflexive voice removed; passive -да/-та for *аба-, үгэ-, оло-*.
+9. Concessive: -ААшье һаа shown first, -башье as the bookish variant.
 
 ---
 

@@ -165,7 +165,7 @@ export interface GrammarCase {
 export const CASES: GrammarCase[] = [
   {
     id: 'nominative',
-    buryad: 'Нэрэ падеж',
+    buryad: 'Нэрын падеж',
     english: 'Nominative',
     russian: 'Именительный',
     semanticRole: 'Subject / citation form',
@@ -181,7 +181,7 @@ export const CASES: GrammarCase[] = [
   },
   {
     id: 'genitive',
-    buryad: 'Харьяалалай падеж',
+    buryad: 'Хамаанай падеж',
     english: 'Genitive',
     russian: 'Родительный',
     semanticRole: 'Possession / association',
@@ -202,13 +202,15 @@ export const CASES: GrammarCase[] = [
     russian: 'Дательно-местный',
     semanticRole: 'Direction / location / recipient',
     questions: ['Хэндэ? (To whom?)', 'Хаана? (Where?)'],
+    // Textbook p. 39: -да after л, м, н, ж, з, vowels and consonant clusters; -та after the rest.
     suffix: {
-      afterConsonant: '-да/-дэ/-до · -та/-тэ/-то after д, г, р',
+      afterConsonant: '-да after л, м, н, ж, з · -та after other consonants (б, г, д, р, с…)',
       afterVowel: '-да/-дэ/-до',
     },
     examples: [
       { stem: 'гэр', inflected: 'гэртэ', translation: 'in/to the house', note: '-тэ after р' },
       { stem: 'ажал', inflected: 'ажалда', translation: 'at/to work', note: '-да after л, м, н' },
+      { stem: 'класс', inflected: 'класста', translation: 'in/to the class', note: '-та after с' },
       { stem: 'Улаан-Үдэ', inflected: 'Улаан-Үдэдэ', translation: 'in Ulan-Ude' },
       { stem: 'аха', inflected: 'ахада', translation: 'to (my) brother' },
     ],
@@ -217,14 +219,16 @@ export const CASES: GrammarCase[] = [
   },
   {
     id: 'accusative',
-    buryad: 'Үйлэдэгдэхүүнэй падеж',
+    buryad: 'Үйлын падеж',
     english: 'Accusative',
     russian: 'Винительный',
     semanticRole: 'Direct object (definite)',
     questions: ['Хэниие? (Whom?)', 'Юуниие? (What?)'],
+    // Textbook pp. 33–34. A "stable" н stays (хүн → хүниие); an "unstable" one drops
+    // (модон → модые). Which nouns have which н is lexical.
     suffix: {
-      afterConsonant: '-ые · -иие after н',
-      afterVowel: '-ые (short final vowel drops) · -е after й',
+      afterConsonant: '-ые · -иие after stable н · -гые after back н (ан → ангые)',
+      afterVowel: '-ые (short final vowel drops) · -иие after и · -е after long vowels and й',
     },
     examples: [
       { stem: 'ном', inflected: 'номые', translation: 'the book (obj.)' },
@@ -232,6 +236,18 @@ export const CASES: GrammarCase[] = [
       { stem: 'гэр', inflected: 'гэрые', translation: 'the house (obj.)' },
       { stem: 'хүн', inflected: 'хүниие', translation: 'the person (obj.)', note: '-иие after н' },
       { stem: 'ой', inflected: 'ойе', translation: 'the anniversary (obj.)', note: '-е after й' },
+      {
+        stem: 'шанаа',
+        inflected: 'шанаае',
+        translation: 'the cheekbone (obj.)',
+        note: '-е after a long vowel',
+      },
+      {
+        stem: 'ан',
+        inflected: 'ангые',
+        translation: 'the wild animal (obj.)',
+        note: '-гые after back н',
+      },
     ],
     colorClass: 'bg-purple-50 border-purple-200 text-purple-900',
     analogy:
@@ -255,7 +271,7 @@ export const CASES: GrammarCase[] = [
   },
   {
     id: 'comitative',
-    buryad: 'Хамтаршалай падеж',
+    buryad: 'Хамтын падеж',
     english: 'Comitative',
     russian: 'Совместный',
     semanticRole: 'Accompaniment / having a quality',
@@ -271,7 +287,7 @@ export const CASES: GrammarCase[] = [
   },
   {
     id: 'ablative',
-    buryad: 'Холдолгын падеж',
+    buryad: 'Гаралай падеж',
     english: 'Ablative',
     russian: 'Исходный',
     semanticRole: 'Origin / separation / comparison',
@@ -284,7 +300,7 @@ export const CASES: GrammarCase[] = [
     ],
     colorClass: 'bg-teal-50 border-teal-200 text-teal-900',
     analogy:
-      'Like Russian из/от/чем or English "from/than". The suffix-initial һ is a glottal fricative from older *s (cf. Mongolian -аас).',
+      'Like Russian из/от/чем or English "from/than". The suffix-initial һ is a fricative from older *s (cf. Mongolian -аас); Buryat school grammars describe it as pharyngeal.',
   },
 ];
 
@@ -335,6 +351,12 @@ export const VERB_FORMS: VerbForm[] = [
     note: 'Modifies nouns (ябаһан хүн "the person who went") and also ends sentences as a past tense.',
   },
   {
+    label: 'Resultative',
+    suffix: '-нхай/-нхэй/-нхой',
+    example: { verb: 'ерэ-', form: 'ерэнхэй', translation: '(he/she) came long ago / is here' },
+    note: 'An action completed well before now whose result still holds (textbook p. 67). Often becomes an adjective: туранхай "thin, emaciated".',
+  },
+  {
     label: 'Imperative',
     suffix: '(bare stem) / -г / -гты',
     example: {
@@ -348,7 +370,7 @@ export const VERB_FORMS: VerbForm[] = [
     label: 'Negative',
     suffix: '-даггүй / -аагүй / -хагүй',
     example: { verb: 'яба-', form: 'ябадаггүй', translation: 'does not go (habitually)' },
-    note: 'The negator -гүй follows the habitual (ябадаггүй), the perfect (ябаагүй) or the infinitive (ябахагүй "will not go").',
+    note: 'The negator -гүй follows the habitual (ябадаггүй), the perfect (ябаагүй), the infinitive (ябахагүй "will not go"), the present (ябанагүй "is not going") or the past (ерэбэгүй "did not come"). -дүй on the perfect means "not yet": ябаадүй "hasn\'t gone yet (but will)".',
   },
   {
     label: 'Simultaneous Converb',
@@ -471,25 +493,27 @@ export const VERB_PARADIGMS: VerbParadigm[] = [
     },
   },
   {
-    root: 'эдеэ',
-    infinitive: 'эдеэхэ',
+    // и-stem: short suffixes attach as is (corpus эдихэ, эдидэг, эдижэ); long ones fuse
+    // и + ээ → еэ (эдеэ, эдеэд). Same pattern as бари → баряад.
+    root: 'эди',
+    infinitive: 'эдихэ',
     meaning: 'to eat',
     harmony: 'front',
     forms: {
-      presentFuture: 'эдеэнэ',
-      simplePast: 'эдеэбэ',
+      presentFuture: 'эдинэ',
+      simplePast: 'эдибэ',
       perfect: 'эдеэ',
-      pastParticiple: 'эдеэһэн',
+      pastParticiple: 'эдиһэн',
       habitual: 'эдидэг',
-      imperative: 'эдеэ!',
-      jussive: 'эдеэг!',
-      politeImperative: 'эдеэгты',
-      infinitive: 'эдеэхэ',
+      imperative: 'эди!',
+      jussive: 'эдиг!',
+      politeImperative: 'эдигты',
+      infinitive: 'эдихэ',
       negPresentFuture: 'эдидэггүй',
       negPast: 'эдеэгүй',
       simultConv: 'эдижэ',
       seqConv: 'эдеэд',
-      conditional: 'эдеэбэл',
+      conditional: 'эдибэл',
       verbalNoun: 'эдилгэ',
       participle: 'эдидэг',
     },
@@ -525,32 +549,18 @@ export const VERB_DERIVATIONS: VerbDerivation[] = [
   },
   {
     label: 'Passive',
-    suffix: '-гда/-гдэ',
+    suffix: '-гда/-гдэ/-гдо · -да · -та',
     buryad: 'Эдлүүлэгшэ',
     meaning: 'Action done to subject',
     english: 'be done (to)',
     color: 'bg-mongol-50 border-mongol-300 text-mongol-900',
-    description: 'The passive suffix demotes the agent; the patient becomes the subject.',
+    description:
+      'The passive suffix demotes the agent; the patient becomes the subject. Most stems take -гда; a few short stems take -да (оло → олдохо "be found") or -та (аба → абтаха "be taken", үгэ → үгтэхэ "be given").',
     example: {
       base: 'уншаха',
       derived: 'уншагдаха',
       baseGloss: 'to read',
       derivedGloss: 'to be read',
-    },
-  },
-  {
-    label: 'Reflexive',
-    suffix: '-да/-дэ',
-    buryad: 'Бэеэ үйлдэхэ',
-    meaning: 'Action directed at self',
-    english: 'do to oneself',
-    color: 'bg-green-50 border-green-300 text-green-900',
-    description: 'The reflexive marks that the subject acts on itself.',
-    example: {
-      base: 'угааха',
-      derived: 'угаадаха',
-      baseGloss: 'to wash (sth)',
-      derivedGloss: 'to wash oneself',
     },
   },
   {
@@ -561,7 +571,7 @@ export const VERB_DERIVATIONS: VerbDerivation[] = [
     english: 'do to each other',
     color: 'bg-purple-50 border-purple-300 text-purple-900',
     description:
-      'The reciprocal marks mutual action between two or more participants, often competitive: барилдаха "wrestle", заргалдаха "sue each other".',
+      'Two parties act on each other or as partners: Дамба Дашатай барилдаба "Damba wrestled with Dasha", хөөрэлдэбэ "(they) had a talk". With -лса it forms one "reciprocal-cooperative" voice (textbook p. 86).',
     example: {
       base: 'бариха',
       derived: 'барилдаха',
@@ -577,7 +587,7 @@ export const VERB_DERIVATIONS: VerbDerivation[] = [
     english: 'do together',
     color: 'bg-pink-50 border-pink-300 text-pink-900',
     description:
-      'Several agents take part in the same action jointly (not directed at each other): оролсохо "take part", хабаадалсаха "participate".',
+      'Someone joins another in the same action (not directed at each other): город ошолсобо "went to town with him", таиралсажа үгэбэ "helped (him) saw", оролсохо "take part".',
     example: {
       base: 'орохо',
       derived: 'оролсохо',
@@ -652,12 +662,19 @@ export const CONVERBS: ConverbEntry[] = [
   },
   {
     label: 'Concessive',
-    suffix: '-башье / -бэшье / -бошье',
+    suffix: '-ААшье һаа · -башье',
     semantics:
-      'Concedes a premise while asserting the main clause anyway. Built from the conditional -бал + the particle -шье "even".',
+      'Concedes a premise while asserting the main clause anyway; the particle -шье means "even". The common form is the perfect -аа + -шье + һаа "if": it allows any person and also "even if" readings. -башье is bookish, takes only a 3rd-person subject, and came into the standard from western and northern dialects (Darzhaeva 2019).',
     englishParallel: 'English "even though / even if"',
     color: 'bg-red-50 border-red-200',
     examples: [
+      {
+        buryad:
+          'Энэ ороолон шүдхэрэй эхэнэр шэнги хоолойгоор хашхараашье һаань, таанад бү ерээрэйгты!',
+        gloss: 'this ghoul-GEN woman like voice-INS shout-PERF-even if-3 you NEG come-IMP-POL',
+        translation:
+          'Even if this ghoul shouts in a woman’s voice, do not come! (Darzhaeva 2019, Buryat corpus)',
+      },
       {
         buryad: 'Тиигэбэшье хамтын ажахынууд байгуулагдажа…',
         gloss: 'do.so-CONC collective farm-PL be.founded-CVB.SIM',
@@ -698,7 +715,8 @@ export interface TenseEntry {
 
 // Past forms per the burunen.ru corpus (docs/verification-questions.md, A1): -аа and -һан
 // dominate written Buryad, -ба is much rarer. The earlier "evidential past -лай" is not
-// attested; how the three pasts differ in meaning is still to be verified.
+// attested anywhere. Glosses follow Skribnik & Darzhaeva (2020): -ба PST, -аа PC.PRS,
+// -һан PC.PST, -нхай PC.RES; the textbook (p. 67) counts -аа, -нхай, -һан as past participles.
 export const TENSE_ENTRIES: TenseEntry[] = [
   {
     label: 'Simple Past',
@@ -710,7 +728,7 @@ export const TENSE_ENTRIES: TenseEntry[] = [
       { form: 'ябаба', translation: '(he/she/I) went' },
       { form: 'бэлдэбэ', translation: '(he/she) prepared' },
     ],
-    note: 'Completed past action. Much rarer than -аа in written Buryad; how the two differ is under review.',
+    note: 'The plain past tense: a completed event in the past. Takes person endings (уншабаб "I read", уншабад "they read"). Much rarer than -аа in news text.',
   },
   {
     label: 'Past Participle',
@@ -734,7 +752,19 @@ export const TENSE_ENTRIES: TenseEntry[] = [
       { form: 'ябаа', translation: '(he/she) went / has gone' },
       { form: 'хүдэлөө', translation: '(he/she) worked' },
     ],
-    note: 'The most frequent finite past in the news corpus. Takes person endings (ябааб "I went", ябаабди "we went") and negates as ябаагүй.',
+    note: 'Grammatically a participle used as a finite past: a past event relevant now. The most frequent past in the news corpus. Takes person endings (ябааб "I went", ябаабди "we went") and negates as ябаагүй.',
+  },
+  {
+    label: 'Resultative',
+    buryad: '—',
+    suffix: { back: '-нхай', front: '-нхэй / -нхой' },
+    timelinePosition: -2,
+    aspectuality: 'perfective',
+    examples: [
+      { form: 'ерэнхэй', translation: '(he/she) came long ago' },
+      { form: 'болонхой', translation: 'has become' },
+    ],
+    note: 'An action finished well before now whose result still holds (textbook p. 67). Common in news text: болонхой, шагнагданхай "has been awarded".',
   },
   {
     label: 'Habitual',
@@ -765,14 +795,16 @@ export const TENSE_ENTRIES: TenseEntry[] = [
 // ─── Person & Possession ──────────────────────────────────────────────────
 // Unlike Khalkha Mongolian, Buryad marks the subject's person on the predicate and
 // the possessor's person on the noun. Every form in `attested` occurs in the
-// burunen.ru corpus (docs/verification-questions.md, A3/A4).
+// burunen.ru corpus (docs/verification-questions.md, A3/A4); the endings and the -ба
+// paradigm follow the textbook (pp. 28, 37).
 
 export interface PersonEnding {
   person: string;
   pronoun: string;
   suffix: string;
   present: string; // ябана + ending
-  perfect: string; // ябаа + ending
+  past: string; // ябаба + ending
+  perfect?: string; // ябаа + ending; 3pl ябаа-д would merge with the converb ябаад
   attested: string[];
 }
 
@@ -782,22 +814,25 @@ export const PERSON_ENDINGS: PersonEnding[] = [
     pronoun: 'би',
     suffix: '-б',
     present: 'ябанаб',
+    past: 'ябабаб',
     perfect: 'ябааб',
-    attested: ['байнаб', 'хүргэнэб', 'байгааб', 'ябааб'],
+    attested: ['байнаб', 'хүргэнэб', 'байгааб', 'ябааб', 'абтабаб'],
   },
   {
     person: '2sg',
     pronoun: 'ши',
     suffix: '-ш',
     present: 'ябанаш',
+    past: 'ябабаш',
     perfect: 'ябааш',
     attested: ['ойлгонош'],
   },
   {
-    person: '3',
+    person: '3sg',
     pronoun: 'тэрэ',
     suffix: '∅',
     present: 'ябана',
+    past: 'ябаба',
     perfect: 'ябаа',
     attested: ['ябана', 'ябаа'],
   },
@@ -806,6 +841,7 @@ export const PERSON_ENDINGS: PersonEnding[] = [
     pronoun: 'бидэ',
     suffix: '-бди',
     present: 'ябанабди',
+    past: 'ябабабди',
     perfect: 'ябаабди',
     attested: ['байнабди', 'мэдэнэбди', 'ябаабди', 'хэлэдэгбди', 'ябаагүйбди'],
   },
@@ -814,8 +850,17 @@ export const PERSON_ENDINGS: PersonEnding[] = [
     pronoun: 'та',
     suffix: '-т',
     present: 'ябанат',
+    past: 'ябабат',
     perfect: 'ябаат',
     attested: ['мэдэнэт', 'байгаат'],
+  },
+  {
+    person: '3pl',
+    pronoun: 'тэдэ',
+    suffix: '-д',
+    present: 'ябанад',
+    past: 'ябабад',
+    attested: ['ябанад', 'хүдэлнэд', 'тэмдэглэнэд'],
   },
 ];
 

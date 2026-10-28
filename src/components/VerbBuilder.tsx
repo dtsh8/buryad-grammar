@@ -51,6 +51,7 @@ function BaseParadigm({ root, meaning }: { root: string; meaning: string }) {
     ['Perfect', forms.perf, `→ ${ef.past} / has ${ef.pastPart}`],
     ['Past Participle', forms.pstPtcp, `→ (who) ${ef.past}`],
     ['Simple Past', forms.pst, `→ ${ef.past}`],
+    ['Resultative', forms.res, `→ has long since ${ef.pastPart}`],
     ['Habitual', forms.hab, `→ ${ef.thirdPerson} (habitually)`],
     ['Negative', forms.neg, `→ does not ${meaning}`],
     ['Negative Past', forms.negPst, `→ did not ${meaning}`],
@@ -240,7 +241,7 @@ export default function VerbBuilder() {
         <p className="text-sm text-stone-500">
           Enter any English verb. It will be translated to Буряад using the Google Translate
           <span className="font-mono text-xs ml-1 bg-stone-100 px-1 rounded">bxr</span> (Buryat
-          Russia) API, then the root is extracted and all five voice derivations are applied
+          Russia) API, then the root is extracted and all four voice derivations are applied
           automatically.
         </p>
 

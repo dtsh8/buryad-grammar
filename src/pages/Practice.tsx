@@ -2,6 +2,7 @@ import { useMemo, useRef, useState, type FormEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { Check, X, ArrowRight, Lightbulb } from 'lucide-react';
 import SayButton from '../components/SayButton';
+import AttestBadge from '../components/AttestBadge';
 import Tabs from '../components/Tabs';
 import { tabPanelProps, useTab, type TabDef } from '../hooks/useTab';
 import { useVocabulary } from '../hooks/useVocabulary';
@@ -92,6 +93,7 @@ function VerdictBanner({ verdict, answer }: { verdict: Verdict; answer: string }
         </span>
       </span>
       <SayButton word={answer} />
+      <AttestBadge form={answer} />
     </div>
   );
 }

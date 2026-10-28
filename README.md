@@ -47,7 +47,13 @@ Grammar claims are checked against the [Buryat National Corpus](https://buryat.w
 ```bash
 npm run corpus:bnc -- эдеэд эдеэгээд     # counts and documents per word form
 npm run corpus:bnc -- "*нхай" --sent 3   # * is a wildcard; --sent adds example sentences
+npm run attestation                      # count every form the app builds → public/data/attestation.json
 ```
+
+`attestation.json` holds corpus counts (no text) for every form the app generates for its
+vocabulary: verb paradigms, voices, person endings and noun cases. The app shows them as
+"✓ 240" / "not found" badges. Run `npm run attestation` after changing `vocabulary.json` or an
+engine rule; a test fails until the file covers every form.
 
 An earlier version also showed sentences from *Буряад үнэн* (burunen.ru). They were removed
 because the site allows republication, even partial, only with the editors' written permission.

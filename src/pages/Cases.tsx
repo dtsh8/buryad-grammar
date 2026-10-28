@@ -5,6 +5,7 @@ import CorpusLink from '../components/CorpusLink';
 import { useVocabulary } from '../hooks/useVocabulary';
 import { decline, type CaseId } from '../utils/nounMorphology';
 import SayButton from '../components/SayButton';
+import AttestBadge from '../components/AttestBadge';
 
 const fade = { hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } };
 
@@ -276,7 +277,7 @@ export default function Cases() {
                   <td className="py-2.5 pr-4 font-buryat text-stone-500">{CASES[i]?.buryad}</td>
                   <td className="py-2.5 font-buryat text-lg text-buryat-700 font-semibold">
                     {row.form}
-                    <SayButton word={row.form} className="ml-1" />
+                    <SayButton word={row.form} className="ml-1" /> <AttestBadge form={row.form} />
                   </td>
                 </tr>
               ))}

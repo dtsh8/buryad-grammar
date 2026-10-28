@@ -80,5 +80,8 @@ open the PNGs with the Read tool. Ask the user for the file path; don't search t
   evidence; vocabulary verbs must round-trip through the engine (`verbLexicon.test.ts`).
 - Docs: update the status table in `docs/verification-questions.md`; move answered questions
   out of the native-speaker list.
+- After changing `vocabulary.json` or an engine rule, run `npm run attestation` to update the
+  corpus counts behind the "found / not found" badges; `attestationForms.test.ts` fails until
+  you do. Look at newly "not found" forms: they are the likeliest errors.
 - Finish with `npm run validate`. On Windows run Prettier as
   `npx prettier --check --end-of-line auto "src/**/*.{ts,tsx,css}"` (the working copy has CRLF).

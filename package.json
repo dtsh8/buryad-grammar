@@ -17,7 +17,8 @@
     "test:watch": "vitest",
     "validate": "npm run typecheck && npm run lint && npm run format:check && npm run test",
     "corpus:bnc": "tsx scripts/bnc_search.ts",
-    "audio": "tsx scripts/audio.ts"
+    "audio": "tsx scripts/audio.ts",
+    "attestation": "tsx scripts/attestation.ts"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

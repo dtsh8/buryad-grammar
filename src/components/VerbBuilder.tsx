@@ -11,6 +11,7 @@ import {
 import { englishForms } from '../utils/englishForms';
 import { findVerb, isBuryad, isInfinitive, primarySense } from '../utils/verbLexicon';
 import { useVocabulary } from '../hooks/useVocabulary';
+import AttestBadge from './AttestBadge';
 import type { Lexeme } from '../data/vocabulary.types';
 
 const fade = { hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0 } };
@@ -113,7 +114,7 @@ function BaseParadigm({ root, meaning }: { root: string; meaning: string }) {
               <tr key={label} className="border-b border-stone-100">
                 <td className="py-1.5 pr-4 text-stone-500 w-44">{label}</td>
                 <td className="py-1.5 pr-4 font-buryat text-lg font-semibold text-stone-800">
-                  {form}
+                  {form} <AttestBadge form={form} />
                 </td>
                 <td className="py-1.5 text-xs text-stone-500 italic">{meaning && en}</td>
               </tr>
@@ -156,6 +157,7 @@ function DerivCard({
             built by rule
           </span>
           <span className="font-buryat text-xl font-bold text-stone-800">{d.inf}</span>
+          <AttestBadge form={d.inf} />
         </div>
         <div className="flex items-center gap-3 shrink-0 ml-2">
           <span className="text-xs text-stone-500 italic hidden sm:block">{d.englishRole}</span>
@@ -220,6 +222,7 @@ function DerivCard({
                   <div key={lbl} className="bg-white/70 rounded-lg p-2 text-center">
                     <p className="text-[10px] text-stone-500 font-mono uppercase">{lbl}</p>
                     <p className="font-buryat text-base font-bold text-stone-800">{frm}</p>
+                    <AttestBadge form={frm} />
                   </div>
                 ))}
               </div>

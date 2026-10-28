@@ -263,7 +263,7 @@ function TenseTimeline() {
             { form: 'ябаба', suffix: '-ба', label: 'Simple past', gloss: 'went' },
             { form: 'ябаа', suffix: '-аа', label: 'Perfect', gloss: 'went, has gone' },
             { form: 'ябаһан', suffix: '-һан', label: 'Past participle', gloss: 'went; who went' },
-            { form: 'ябанхай', suffix: '-нхай', label: 'Resultative', gloss: 'went long ago' },
+            { form: 'ябанхай', suffix: '-нхай', label: 'Resultative', gloss: 'has gone, is away' },
           ].map(p => (
             <div key={p.suffix} className="rounded-xl bg-stone-50 border border-stone-200 p-3">
               <p className="text-xs text-stone-500">

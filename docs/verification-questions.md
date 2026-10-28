@@ -132,6 +132,19 @@ think", *найданаб* "I hope", *бэлдэжэ байнаб* "I am prepari
 come of it"). The app now calls -на "Present" and -жа байна "Present Continuous"; the latter
 also has a past, *-жа байба* "was …-ing" (1,367 sentences).
 
+### -нхай is a state perfect, not a long-ago past (2026-10-28)
+
+The textbook (p. 67) calls -нхай "причастие давно прошедшего времени": *ерэнхэй* "давно пришел",
+*ошонхой* "давно ушел". Skribnik & Darzhaeva (2020) gloss it PC.RES, resultative. The corpus
+supports the second: two-word BNC searches find *мүнөө* "now" + *-нхай* in 101 sentences,
+*һаяхан* "just recently" + *-нхай* in 15, and *эртэ* "early, long ago" + *-нхай* in only 9.
+The common forms are states: *баринхай* "holding" 176, *һуунхай* "sitting" 73, *ерэнхэй* 133.
+The present-perfect reading shows in «Мягмар Хэшэгмаа хоёр Улаан-Үдэ ошонхой, Ешигмаа гастрольдо
+ябанхай» ("have gone to Ulan-Ude … is away on tour"). With a past auxiliary the state is in the
+past (*-нхай байба* 128 sentences, *үнинэй аяланхай һэн* "had long since gone"). The timeline now
+puts -нхай just before NOW with its result reaching NOW, and the glosses say "has gone, is away".
+The textbook wording is kept as a quotation in the note.
+
 ### Declension engine (2026-10-28)
 
 `src/utils/nounMorphology.ts` builds the six oblique cases from the textbook rules (pp. 31,

@@ -366,8 +366,8 @@ export const VERB_FORMS: VerbForm[] = [
   {
     label: 'Resultative',
     suffix: '-нхай/-нхэй/-нхой',
-    example: { verb: 'ерэ-', form: 'ерэнхэй', translation: '(he/she) came long ago / is here' },
-    note: 'An action completed well before now whose result still holds (textbook p. 67). Often becomes an adjective: туранхай "thin, emaciated".',
+    example: { verb: 'ерэ-', form: 'ерэнхэй', translation: '(he/she) has come, is here' },
+    note: 'The state left by a finished action: һуунхай "has sat down, is sitting". Often becomes an adjective: туранхай "thin, emaciated".',
   },
   {
     label: 'Imperative',
@@ -756,19 +756,6 @@ export interface TenseEntry {
 // -һан PC.PST, -нхай PC.RES; the textbook (p. 67) counts -аа, -нхай, -һан as past participles.
 export const TENSE_ENTRIES: TenseEntry[] = [
   {
-    label: 'Resultative',
-    corpusQuery: '*нхай',
-    buryad: '—',
-    suffix: { back: '-нхай', front: '-нхэй / -нхой' },
-    timeline: { kind: 'point', from: -2.6, reachesNow: true },
-    aspectuality: 'perfective',
-    examples: [
-      { form: 'ерэнхэй', translation: '(he/she) came long ago' },
-      { form: 'болонхой', translation: 'has become' },
-    ],
-    note: 'An action finished well before now whose result still holds (textbook p. 67). Common in news text: болонхой, шагнагданхай "has been awarded".',
-  },
-  {
     label: 'Simple Past',
     corpusQuery: '*ба',
     buryad: 'Үнгэрһэн сагай хэлбэри',
@@ -806,6 +793,20 @@ export const TENSE_ENTRIES: TenseEntry[] = [
       { form: 'хүдэлөө', translation: '(he/she) worked' },
     ],
     note: 'Grammatically a participle used as a finite past: a past event relevant now. The most frequent past in the news corpus. Takes person endings (ябааб "I went", ябаабди "we went") and negates as ябаагүй.',
+  },
+  {
+    label: 'Resultative',
+    corpusQuery: '*нхай',
+    buryad: '—',
+    suffix: { back: '-нхай', front: '-нхэй / -нхой' },
+    timeline: { kind: 'point', from: -0.5, reachesNow: true },
+    aspectuality: 'perfective',
+    examples: [
+      { form: 'ерэнхэй', translation: '(he/she) has come and is here' },
+      { form: 'һуунхай', translation: '(he/she) has sat down, is sitting' },
+      { form: 'баринхай', translation: 'holding (having taken hold)' },
+    ],
+    note: 'A state perfect: the action is over and its result is in place now, like "has sat down" = "is sitting". The textbook calls it the long-ago past (p. 67: ерэнхэй "давно пришел"), but in the Buryat National Corpus it occurs with мүнөө "now" (101 sentences) and һаяхан "just recently" (15) far more than with эртэ "long ago" (9). With a past auxiliary the state is in the past: эсэгэнь үнинэй аяланхай һэн "his father had long since gone away".',
   },
   {
     label: 'Present Continuous',

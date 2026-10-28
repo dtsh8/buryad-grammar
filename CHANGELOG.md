@@ -1,3 +1,9 @@
+## [1.8.1](https://github.com/dtsh8/buryad-grammar/compare/v1.8.0...v1.8.1) (2026-10-28)
+
+### 🐛 Bug Fixes
+
+* **vocabulary:** give ехэ its own id so search stops repeating its card ([39a01b8](https://github.com/dtsh8/buryad-grammar/commit/39a01b8054b9a8bb75511572455ecdd0e4c82ebe))
+
 ## [1.8.0](https://github.com/dtsh8/buryad-grammar/compare/v1.7.0...v1.8.0) (2026-10-28)
 
 ### ✨ New Features

@@ -39,14 +39,15 @@ Not answerable from a news corpus: A2 meanings beyond these examples, B4 (reflex
 | Textbook | *Учебник бурятского языка* (40 lessons, literary Buryad on the Khori base; Academia.edu 35182608) | Rules and paradigms; page numbers below refer to it |
 | S&D 2020 | Скрибник Е. К., Даржаева Н. Б. Семантика обстоятельственного сложного предложения в бурятском языке и языковая картина мира // Вестник БГУ. Язык. Литература. Культура. 2020. № 4. С. 58–69 | Morpheme-by-morpheme glosses of Buryat National Corpus examples |
 | D 2019 | Даржаева Н. Б. Квазисинонимические уступительные конструкции в бурятском языке // Oriental Studies. 2019. № 4. С. 682–690 | Concessive constructions |
+| BNC | Buryat National Corpus, https://buryat.web-corpora.net/buryat_corpus/search (fiction, folklore, press, 1950s–2010s) | Frequencies and sentences of word forms (`npm run corpus:bnc`); its automatic grammar tags are often wrong for verb forms |
 
 | Q   | Finding | Status |
 | --- | ------- | ------ |
-| A1  | -ба is the past tense and takes person endings: *уншабаб, уншабаш, уншабабди, уншабат, уншабад* (Textbook p. 37). -аа, -нхай, -һан are "past participles" (p. 67); S&D 2020 gloss -ба PST, -аа PC.PRS, -һан PC.PST, -нхай PC.RES. -лай appears in no source. | **Answered**, except evidentiality (see A1) |
+| A1  | -ба is the past tense and takes person endings: *уншабаб, уншабаш, уншабабди, уншабат, уншабад* (Textbook p. 37). -аа, -нхай, -һан are "past participles" (p. 67); S&D 2020 gloss -ба PST, -аа PC.PRS, -һан PC.PST, -нхай PC.RES. -лай is in neither the textbook nor the papers; the BNC has it only as a rare literary narrative past (see the BNC row). | **Answered**, except evidentiality (see A1) |
 | A2  | One "взаимно-совместный" voice: -лда = two parties with each other (*Дамба Дашатай барилдаба*, *хөөрэлдэбэ*); -лса = joining someone (*город ошолсобо*, *таиралсажа үгэбэ*) (p. 86). | **Answered** |
 | A3  | 1sg -б/-м, 2sg -ш, 1pl -бди/-мди, 2pl -т, **3pl -д** (*тэдэ бэшэнэд*) (p. 28); in questions the ending goes on the particle (*бэшэнэ гүш?*); also on nouns and pronouns (p. 74). Corpus 3pl: *ябанад, хүдэлнэд*. | **Answered** |
 | A4  | -мни, -шни, -нь/-иинь/-ынь, -мнай, -тнай; case before possessive (*мориндомни*); shortened in the instrumental (*мориёорни*) (pp. 47–49). | **Answered** |
-| B1  | и-stems: short suffixes attach as is (corpus *эдихэ, эдидэг, эдижэ; бариха, барижа*), long ones fuse into iotated vowels (*эдеэд, баряад, табяад, болёод*; S&D 2020 *үрдеэд, уряа*). The stem is *эди-*, not *эдеэ-*. | **Answered**: *эдеэд* by rule |
+| B1  | и-stems: short suffixes attach as is (corpus *эдихэ, эдидэг, эдижэ; бариха, барижа*), long ones fuse into iotated vowels (*эдеэд, баряад, табяа, болёод*; S&D 2020 *үрдеэд, уряа*; corpus *табяад* is the numeral "about fifty"). The stem is *эди-*, not *эдеэ-*. | **Answered**: *эдеэд* by rule |
 | B2  | *ябадаггүй*; also *ябанагүй* "is not going", *ерэбэгүй* "didn't come"; -дүй "not yet": *ябаадүй* (p. 54). Corpus: *алданагүй, мэдэнэгүй*. | **Answered** |
 | B4  | No reflexive voice in the textbook. -да occurs only as a passive variant: *оло → олдохо* (p. 84). | **Answered**: reflexive removed |
 | B5  | -да after л, м, н, ж, з, vowels and clusters; -та after other consonants: *эбтэ, бараста, богто, театрта, класста* (p. 39). | **Answered** |
@@ -54,6 +55,7 @@ Not answerable from a news corpus: A2 meanings beyond these examples, B4 (reflex
 | C1  | Нэрын, Хамаанай, Зүгэй, Үйлын, Зэбсэгэй, Хамтын, Гаралай падеж (p. 8). | **Answered** |
 | C3  | Seven cases (p. 8). | **Answered** |
 | C4  | ү "very close to Russian у"; у "between Russian о and у"; ө always long, "close to Russian о" (p. 2). | Supports у [ʊ], ү [u], ө [oː]; speaker to confirm |
+| BNC | Buryat National Corpus (buryat.web-corpora.net, `npm run corpus:bnc`): *эдихэ* 539, *эдижэ* 304, *эдеэд* 154, every *эдеэ-* infinitive/present/past form 0, *эдеэгээд* 0; 3pl *ябанад* 146, *ерэбэд* 163; *ябанагүй* 39, *ерэбэгүй* 44; *абтаа* 59, *үгтэхэ* 34, *олдохо* 174; *угаадаха* 0; *үзөөд* 240 vs *үзээд* 23, *үгөөд* 410 vs 0, *дүүргээд* 373 vs *дүүргөөд* 0, *бүтээгээд* 39 vs 0; *байнхай* 49. -лай as a verb: *ошолой* 13, *ерэлэй* 11, *ябалай* 1, almost all Д.-Д. Дугаров (1969–71), vivid narrative past. | Confirms the applied changes; -лай is a rare literary form, not an evidential |
 | C10 | -ААшье һаа is the common concessive (Khori, any person); -башье is bookish, 3rd person only, from western/northern dialects (D 2019, citing Poppe 1938). | **Answered** |
 
 Passive variants (p. 84): -гда after vowels (*тари → таригдаха*); -да after л + vowel
@@ -62,6 +64,7 @@ has *хара → харагдаха* and *бари → баригдаха*, so 
 engine instead of following a general rule.
 
 **Still open for the native speaker:** whether the past forms differ in evidentiality (A1);
+what the literary -лай past (*Тогоошо ябалай*) means and whether anyone says it (A1);
 the Buryad names of the voices (C2); IPA of у/ү/ө and ж (C4, C5); speaker numbers (C7); the
 "ergative tendencies" claim (C8); the years of the Latin script (C9); and whether the
 speaker's own dialect differs from the literary forms above.
@@ -71,7 +74,8 @@ speaker's own dialect differs from the literary forms above.
 These findings are now in the app. A native speaker's ✓ or correction is still wanted
 for each.
 
-1. The "evidential past -лай" is removed. The Tenses tab shows four past forms: -ба (past
+1. The "evidential past -лай" is removed (a rare literary -лай past exists; see the BNC row).
+   The Tenses tab shows four past forms: -ба (past
    tense), -аа (perfect), -һан (past participle) and -нхай (resultative). **See A1 for the
    remaining question.**
 2. Reciprocal = -лда (*барилдаха* "wrestle"), cooperative = -лса (*ошолсохо* "go along with").

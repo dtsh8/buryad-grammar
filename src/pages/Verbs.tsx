@@ -290,8 +290,11 @@ function TenseTimeline() {
         <div className="rounded-xl bg-amber-50 border border-amber-200 p-3 text-sm text-amber-800">
           🔎 <strong>Under review:</strong> whether these forms also differ in evidentiality
           (witnessed vs reported) is being checked with a native speaker. Neither the textbook nor
-          Skribnik &amp; Darzhaeva (2020) describe it. An earlier version of this page had an
-          "evidential past in -лай"; that form occurs in none of the sources and has been removed.
+          Skribnik &amp; Darzhaeva (2020) describe it. An earlier version of this page taught an
+          "evidential past in -лай". A narrative past in -лай does occur in literary prose (
+          <span className="font-buryat">Тогоошо ябалай</span> "Togoosho set off"), but it is rare (a
+          few dozen hits in the Buryat National Corpus, mostly one author) and no source describes
+          it as evidential, so it is not taught here.
         </div>
       </div>
 

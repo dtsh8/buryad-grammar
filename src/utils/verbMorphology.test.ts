@@ -294,7 +294,7 @@ describe('grammar data', () => {
     }
   });
 
-  it('no tense entry uses the unattested -лай past', () => {
+  it('no tense entry teaches the rare literary -лай past as a standard tense', () => {
     for (const t of TENSE_ENTRIES) expect(t.suffix.back).not.toMatch(/лай/);
   });
 });

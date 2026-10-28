@@ -109,6 +109,14 @@ export function conjugate(root: string) {
   const cls = getSufClass(root);
   const seqSuf = seqConvSuffix(root);
   const seqConv = needsEpentheticG(root) ? root + 'г' + seqSuf : attach(root, seqSuf);
+  // Peer imperative (same-age, requesting register): suffix -г
+  // Vowel-final and й-final roots: root + г  (яба→ябаг, бай→байг, оро→орог)
+  // Consonant-final roots: root + аг/эг      (хүдэл→хүдэлэг)
+  const peerImp =
+    endsInVowel(root) || root.endsWith('й')
+      ? root + 'г'
+      : root + suf(detectHarmony(root), 'аг', 'эг');
+
   return {
     inf: root + sufC(cls, 'ха', 'хо', 'хэ'),
     prs: root + sufC(cls, 'на', 'но', 'нэ'),
@@ -118,6 +126,7 @@ export function conjugate(root: string) {
     neg: root + sufC(cls, 'дагүй', 'догүй', 'дэгүй'),
     simConv: root + sufC(cls, 'жа', 'жо', 'жэ'),
     seqConv,
+    peerImp,
   };
 }
 
@@ -138,6 +147,7 @@ export interface DerivedForm {
   neg: string;
   simConv: string;
   seqConv: string;
+  peerImp: string;
   exampleSentence: { buryad: string; gloss: string; translation: string };
   color: string;
 }

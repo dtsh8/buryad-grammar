@@ -1,3 +1,9 @@
+## [1.12.0](https://github.com/dtsh8/buryad-grammar/compare/v1.11.0...v1.12.0) (2026-10-28)
+
+### ✨ New Features
+
+* **ui:** tooltips for SOV/SVO, S/O/V slots and C/V syllable patterns ([b285d75](https://github.com/dtsh8/buryad-grammar/commit/b285d758edc3f2daba593dbab916c361611b642f))
+
 ## [1.11.0](https://github.com/dtsh8/buryad-grammar/compare/v1.10.0...v1.11.0) (2026-10-28)
 
 ### ✨ New Features

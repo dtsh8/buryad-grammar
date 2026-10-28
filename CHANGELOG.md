@@ -1,3 +1,15 @@
+## [1.10.0](https://github.com/dtsh8/buryad-grammar/compare/v1.9.0...v1.10.0) (2026-10-28)
+
+### ✨ New Features
+
+* **verbs:** future tense in -ха, checked in the Buryat National Corpus ([217b5d0](https://github.com/dtsh8/buryad-grammar/commit/217b5d0cec5af2d65b0e4a4da6b5264cd9d1c522))
+* **verbs:** tense timeline placed in time, with the progressive at NOW ([29daa3e](https://github.com/dtsh8/buryad-grammar/commit/29daa3e45062a38f9a5457f26f60efeb2f278190))
+
+### 🐛 Bug Fixes
+
+* **verbs:** -на is the present, -жа байна the present continuous ([8be15c1](https://github.com/dtsh8/buryad-grammar/commit/8be15c145311eb11b0e6d7f550ba263b30067201))
+* **verbs:** -нхай is a state perfect, placed next to NOW ([18ab2b9](https://github.com/dtsh8/buryad-grammar/commit/18ab2b944d62c2d2c34dd6f64a83e741dc731987))
+
 ## [1.9.0](https://github.com/dtsh8/buryad-grammar/compare/v1.8.3...v1.9.0) (2026-10-28)
 
 ### ✨ New Features

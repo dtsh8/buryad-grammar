@@ -537,6 +537,7 @@ export interface VerbDerivation {
   description: string;
   example: { base: string; derived: string; baseGloss: string; derivedGloss: string };
   corpusQuery?: string; // word-form pattern for the Buryat National Corpus (* = any letters)
+  buryadUnverified?: boolean; // the Buryad term is not attested in any source (question C2)
 }
 
 export const VERB_DERIVATIONS: VerbDerivation[] = [
@@ -544,6 +545,7 @@ export const VERB_DERIVATIONS: VerbDerivation[] = [
     label: 'Causative',
     suffix: '-уул/-үүл · -лга/-лгэ · -га/-го',
     buryad: 'Үйлдүүлэгшэ',
+    buryadUnverified: true,
     meaning: 'Cause someone to do X',
     english: 'make/let someone do',
     color: 'bg-amber-50 border-amber-300 text-amber-900',
@@ -561,6 +563,7 @@ export const VERB_DERIVATIONS: VerbDerivation[] = [
     corpusQuery: '*гда*',
     suffix: '-гда/-гдэ/-гдо · -да · -та',
     buryad: 'Эдлүүлэгшэ',
+    buryadUnverified: true,
     meaning: 'Action done to subject',
     english: 'be done (to)',
     color: 'bg-mongol-50 border-mongol-300 text-mongol-900',
@@ -577,6 +580,7 @@ export const VERB_DERIVATIONS: VerbDerivation[] = [
     label: 'Reciprocal',
     suffix: '-лда/-лдэ/-лдо',
     buryad: 'Хэлсэлэй',
+    buryadUnverified: true,
     meaning: 'Mutual / each other',
     english: 'do to each other',
     color: 'bg-purple-50 border-purple-300 text-purple-900',
@@ -594,6 +598,7 @@ export const VERB_DERIVATIONS: VerbDerivation[] = [
     corpusQuery: '*лсажа',
     suffix: '-лса/-лсэ/-лсо',
     buryad: 'Хамтаршалай',
+    buryadUnverified: true,
     meaning: 'Joint action',
     english: 'do together',
     color: 'bg-pink-50 border-pink-300 text-pink-900',

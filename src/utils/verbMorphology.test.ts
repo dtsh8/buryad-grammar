@@ -329,6 +329,10 @@ describe('grammar data', () => {
     for (const q of queries) expect(q).toMatch(/^\*[а-яёөүһ]+\*?$/);
   });
 
+  it('voice names stay flagged as unverified until a source confirms them (question C2)', () => {
+    for (const d of VERB_DERIVATIONS) expect(d.buryadUnverified, d.label).toBe(true);
+  });
+
   it('no tense entry teaches the rare literary -лай past as a standard tense', () => {
     for (const t of TENSE_ENTRIES) expect(t.suffix.back).not.toMatch(/лай/);
   });

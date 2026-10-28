@@ -432,7 +432,17 @@ function VoiceDerivation() {
                   {d.suffix}
                 </code>
               </div>
-              <p className="text-sm font-buryat text-stone-500">{d.buryad}</p>
+              <p className="text-sm text-stone-500 flex flex-wrap items-baseline gap-2">
+                <span className="font-buryat">{d.buryad}</span>
+                {d.buryadUnverified && (
+                  <span
+                    className="text-xs rounded-full border border-amber-300 bg-amber-50 text-amber-800 px-2"
+                    title="This Buryad term does not occur in the Buryat National Corpus or the textbook. It is being checked with a native speaker."
+                  >
+                    unverified term
+                  </span>
+                )}
+              </p>
               <p className="text-sm text-stone-600 mt-1">{d.description}</p>
             </div>
             <div className="text-right">

@@ -149,6 +149,12 @@ function DerivCard({
         <div className="flex items-center gap-3 flex-wrap">
           <span className="font-bold text-stone-900">{d.label}</span>
           <code className="text-xs bg-white/70 px-2 py-0.5 rounded font-mono">{d.suffix}</code>
+          <span
+            className="text-[11px] rounded-full border border-stone-300 bg-white/70 text-stone-600 px-2"
+            title="Built by rule. This verb may not have this voice in real use."
+          >
+            built by rule
+          </span>
           <span className="font-buryat text-xl font-bold text-stone-800">{d.inf}</span>
         </div>
         <div className="flex items-center gap-3 shrink-0 ml-2">
@@ -404,6 +410,20 @@ export default function VerbBuilder() {
               <h3 className="text-sm font-semibold text-stone-500 uppercase tracking-wide">
                 Voice & Valency Derivations
               </h3>
+              <p className="text-sm text-stone-500">
+                These forms are built by rule, so the suffixes are right, but not every verb has
+                every voice. Some are never used: <span className="font-buryat">унтагдаха</span> "to
+                be slept" follows the rules but no text has it. Check a form in the{' '}
+                <a
+                  href="https://buryat.web-corpora.net/buryat_corpus/search"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-buryat-700 hover:underline underline-offset-2"
+                >
+                  Buryat National Corpus ↗
+                </a>{' '}
+                before relying on it.
+              </p>
               {derivations.map(d => (
                 <DerivCard
                   key={d.label}

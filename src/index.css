@@ -16,6 +16,16 @@
   }
 }
 
+@layer utilities {
+  /* Scrollable without a visible scrollbar (tab rows on narrow screens). */
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 @layer components {
   .cyrillic {
     @apply font-buryat text-buryat-700;

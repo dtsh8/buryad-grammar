@@ -16,9 +16,6 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "validate": "npm run typecheck && npm run lint && npm run format:check && npm run test",
-    "corpus:scrape": "tsx scripts/scrape.ts",
-    "corpus:build": "tsx scripts/build_corpus.ts",
-    "corpus:search": "tsx scripts/corpus_search.ts",
     "corpus:bnc": "tsx scripts/bnc_search.ts"
   },
   "devDependencies": {
@@ -28,7 +25,6 @@
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.1.2",
     "autoprefixer": "^10.6.2",
-    "cheerio": "^1.2.0",
     "eslint": "^10.13.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.7",

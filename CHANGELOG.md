@@ -1,3 +1,9 @@
+## [1.1.1](https://github.com/dtsh8/buryad-grammar/compare/v1.1.0...v1.1.1) (2026-10-28)
+
+### 📚 Documentation
+
+* **contributing:** title merge commits chore: merge … to avoid duplicate release notes ([9b1dd14](https://github.com/dtsh8/buryad-grammar/commit/9b1dd143bd22ab892709d4ba3461cc33082e7c24))
+
 ## [1.1.0](https://github.com/dtsh8/buryad-grammar/compare/v1.0.0...v1.1.0) (2026-10-28)
 
 ### ✨ New Features

@@ -1,3 +1,9 @@
+## [1.2.0](https://github.com/dtsh8/buryad-grammar/compare/v1.1.1...v1.2.0) (2026-10-28)
+
+### ✨ New Features
+
+* **corpus:** query the Buryat National Corpus; correct the -лай note ([de51dba](https://github.com/dtsh8/buryad-grammar/commit/de51dba9379443748aeecd84c80c94bbb0f3c606))
+
 ## [1.1.1](https://github.com/dtsh8/buryad-grammar/compare/v1.1.0...v1.1.1) (2026-10-28)
 
 ### 📚 Documentation

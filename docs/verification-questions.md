@@ -103,6 +103,28 @@ The Verb Builder applies every voice to every verb, so it also builds reciprocal
 and passives that no text uses (*унтагдаха* "be slept", *уншалдаха*). The suffixes are right;
 whether such a verb exists is lexical.
 
+### Declension engine (2026-10-28)
+
+`src/utils/nounMorphology.ts` builds the six oblique cases from the textbook rules (pp. 31,
+33–34, 36, 39, 41, 44; summary table p. 46). Nouns in н need a lexical type (`nStem` in
+`vocabulary.json`), decided from BNC counts:
+
+| Type | Behaviour | Evidence |
+| ---- | --------- | -------- |
+| stable | н stays everywhere | *хүниие* 1,473, *хүнөөр* 116, *хүнһөө* 298; *үнэниие* 46, *үнэнөөр* 110 |
+| unstable | н stays in gen/dat/abl, drops in acc/ins/com | *мориной* 464, *мориндо* 81, *моринһоо* 177; *мориие* 49, *морёор* 170, *моритой* 339; *модоной* 582, *модые* 24, *модоор* 129 |
+| velar | back н takes г | *ангай* 95, *ангые* 8, *ангаар* 4 (textbook *ангһаа*) |
+
+Of the 22 н-nouns in the vocabulary, *хүн* and *үнэн* are stable and the rest unstable;
+*наран* and *шулуун* show both, unstable being the majority. ю counts as ү in front words
+(*нюдөөр* 577, *нюдэнһөө* 195), which the verb engine now shares.
+
+All 372 forms generated for the vocabulary nouns were looked up: 362 occur. The ten that don't
+are regular but rare (instrumentals of people and animals: *эхээр, ахаар, миисгэйгээр*).
+Declining every noun also exposed four wrong lemmas, now fixed: *уул* → *уула* "mountain"
+(*уулын* 258, *уулада* 58); *зүрхэ* → *зүрхэн* "heart" (*зүрхэнэй* 123); *эдеэ* → *эдеэн*
+"food" (*эдеэнэй* 227); *дура* → *дуран* "love, wish" (*дуранай* 136, *дуратай* 1,146).
+
 **Still open for the native speaker:** whether the past forms differ in evidentiality (A1);
 what the literary -лай past (*Тогоошо ябалай*) means and whether anyone says it (A1);
 the Buryad names of the voices (C2); IPA of у/ү/ө and ж (C4, C5); speaker numbers (C7); the

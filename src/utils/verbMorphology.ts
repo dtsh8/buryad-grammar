@@ -18,11 +18,13 @@ function vowelOf(c: string): string | null {
   return IOTATED[c] ?? null;
 }
 
-// The vowel at position i for harmony purposes. The sequence юу (from и-stem + үү/уу, as in
-// эдюул-, барюул-) is spelled the same in front and back words, so it is transparent:
-// эдюулхэ, барюулха (Buryat National Corpus).
+// The vowel at position i for harmony purposes. Buryad writes ю for й + у in back words and
+// й + ү in front ones, and юу is the long vowel (эдюул-, барюул-), so the word decides:
+// нюдэн → нюдөөр (ү rounds), эдюулхэ but барюулха (Buryat National Corpus).
 function harmonyVowelAt(root: string, i: number): string | null {
-  if (root[i] === 'ю' || (root[i] === 'у' && root[i - 1] === 'ю')) return null;
+  if (root[i] === 'ю' || (root[i] === 'у' && root[i - 1] === 'ю')) {
+    return /[эөүе]/.test(root) ? 'ү' : 'у';
+  }
   return vowelOf(root[i]);
 }
 
@@ -53,14 +55,14 @@ export function extractRoot(infinitive: string): string {
 // Long suffix vowels (-аад, -аар, …) are a separate 4-way system (see longVowelClass).
 
 // SufClass: which suffix vowel template to use
-type SufClass = 'а' | 'о' | 'э';
+export type SufClass = 'а' | 'о' | 'э';
 
 // Scan RTL past transparent sounds to find the last significant vowel,
 // then map to a suffix class:
 //   у → а-class (у is back but uses а-variants, confirmed: һуу → һуугаад)
 //   о → о-class (confirmed: оро → ороно, оробо, etc.)
 //   э/ө/ү → э-class
-function getSufClass(root: string): SufClass {
+export function getSufClass(root: string): SufClass {
   for (let i = root.length - 1; i >= 0; i--) {
     const c = harmonyVowelAt(root, i);
     if (c === 'а' || c === 'у') return 'а'; // back unrounded + high back rounded
@@ -72,7 +74,7 @@ function getSufClass(root: string): SufClass {
 }
 
 // Pick the correct suffix variant for this class.
-function sufC(cls: SufClass, а: string, о: string, э: string): string {
+export function sufC(cls: SufClass, а: string, о: string, э: string): string {
   if (cls === 'о') return о;
   if (cls === 'э') return э;
   return а;
@@ -102,7 +104,7 @@ function attach(root: string, suffix: string): string {
 // Two environments (Skribnik 2003):
 //   • Long-vowel endings (аа оо уу ии ээ өө үү, also еэ яа): угаа → угаагаад, түлеэ → түлеэгээд
 //   • Semivowel й:                                   бай  → байгаад
-function needsEpentheticG(root: string): boolean {
+export function needsEpentheticG(root: string): boolean {
   if (root.endsWith('й')) return true;
   if (root.length >= 2) {
     const last = root[root.length - 1];
@@ -123,9 +125,9 @@ function needsEpentheticG(root: string): boolean {
 //   long ээ, later syllable→ ээ   бүтээгээд     (blocks rounding from ү)
 //   short э                → transparent; ээ if nothing else decides: ерээд, мэдээд
 // Scanned right-to-left by syllable nucleus; и and consonants are transparent.
-type LongVowel = 'аа' | 'оо' | 'ээ' | 'өө';
+export type LongVowel = 'аа' | 'оо' | 'ээ' | 'өө';
 
-function longVowelClass(root: string): LongVowel {
+export function longVowelClass(root: string): LongVowel {
   // Nuclei: runs of identical vowel letters count as one long vowel,
   // except a following я/е, which starts a new syllable (й + vowel).
   const nuclei: Array<{ v: string; long: boolean }> = [];
@@ -157,9 +159,9 @@ function longVowelClass(root: string): LongVowel {
 //   бари + аад → баряад, таби + аа → табяа, боли + оод → болёод, эди + ээд → эдеэд
 // Front stems always get еэ, even after ү (үрди → үрдеэд; Skribnik & Darzhaeva 2020).
 // Short suffixes attach unchanged: бариха, барижа, эдихэ, эдидэг (burunen.ru corpus).
-const IOTATED_LONG: Record<LongVowel, string> = { аа: 'яа', оо: 'ёо', ээ: 'еэ', өө: 'еэ' };
+export const IOTATED_LONG: Record<LongVowel, string> = { аа: 'яа', оо: 'ёо', ээ: 'еэ', өө: 'еэ' };
 
-function endsInShortI(root: string): boolean {
+export function endsInShortI(root: string): boolean {
   return root.endsWith('и') && !root.endsWith('ии');
 }
 

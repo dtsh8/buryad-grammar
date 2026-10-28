@@ -1,6 +1,6 @@
 ---
 name: buryat-evidence
-description: Check a Buryad grammar claim (a form, suffix, rule, case/voice name, or vocabulary entry) against the written sources and the Buryat National Corpus before changing the app, then record the evidence. Use whenever editing src/data/grammar.ts, src/utils/verbMorphology.ts or public/data/vocabulary.json, or when answering "is this form right?".
+description: Check a Buryad grammar claim (a form, suffix, rule, case/voice name, or vocabulary entry) against the written sources and the Buryat National Corpus before changing the app, then record the evidence. Use whenever editing src/data/grammar.ts, src/utils/verbMorphology.ts, src/utils/nounMorphology.ts or public/data/vocabulary.json, or when answering "is this form right?".
 ---
 
 # Verifying Buryad grammar
@@ -10,9 +10,14 @@ from Khalkha Mongolian analogy: find evidence first, then cite it in code and do
 
 ## 1. Find the claim
 
-Locate the form in `src/data/grammar.ts`, the engine (`src/utils/verbMorphology.ts`), its
-tests (`*.test.ts`, GOLD rows), and `docs/verification-questions.md`, which holds the
-status of every open question and the list of written sources.
+Locate the form in `src/data/grammar.ts`, the engines (`src/utils/verbMorphology.ts` for
+verbs, `src/utils/nounMorphology.ts` for cases), their tests (`*.test.ts`, GOLD rows), and
+`docs/verification-questions.md`, which holds the status of every open question and the list
+of written sources.
+
+A new noun ending in н needs `nStem` in `vocabulary.json`. Decide it from the corpus: compare
+the accusative and instrumental with the н kept, dropped, or + г (*хүниие/хүнөөр* = stable,
+*мориие/морёор* = unstable, *ангые/ангаар* = velar).
 
 ## 2. Evidence, strongest first
 

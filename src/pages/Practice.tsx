@@ -1,4 +1,4 @@
-import { useRef, useState, type FormEvent } from 'react';
+import { useMemo, useRef, useState, type FormEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { Check, X, ArrowRight, Lightbulb } from 'lucide-react';
 import SayButton from '../components/SayButton';
@@ -8,10 +8,12 @@ import { useVocabulary } from '../hooks/useVocabulary';
 import type { Lexeme } from '../data/vocabulary.types';
 import {
   caseItems,
+  generatedCaseItems,
   caseQuestion,
   checkAnswer,
   conjugationQuestion,
   drillVerbs,
+  type CaseItem,
   type CaseQuestion,
   type ConjugationQuestion,
   type Verdict,
@@ -263,17 +265,17 @@ function ConjugationDrill({ verbs }: { verbs: Lexeme[] }) {
 
 // ─── Case drill ───────────────────────────────────────────────────────────
 
-const ITEMS = caseItems();
+const CURATED = caseItems();
 
-function CaseDrill() {
-  const [q, setQ] = useState<CaseQuestion>(() => caseQuestion(ITEMS, rng));
+function CaseDrill({ items }: { items: CaseItem[] }) {
+  const [q, setQ] = useState<CaseQuestion>(() => caseQuestion(items, rng));
   const [verdict, setVerdict] = useState<Verdict | null>(null);
   const [chosen, setChosen] = useState<string | null>(null);
   const [score, record] = useScore();
   const { item } = q;
 
   function next() {
-    setQ(caseQuestion(ITEMS, rng));
+    setQ(caseQuestion(items, rng));
     setVerdict(null);
     setChosen(null);
   }
@@ -371,7 +373,7 @@ function CaseDrill() {
             <span lang="bua" className="font-buryat font-semibold">
               {item.form}
             </span>{' '}
-            = {item.caseName}, “{item.translation}”. Suffix:{' '}
+            = {item.caseName}, “{item.translation}”.{item.generated && ' Built by rule.'} Suffix:{' '}
             <span lang="bua" className="font-buryat">
               {item.rule}
             </span>
@@ -392,6 +394,8 @@ export default function Practice() {
   const [tab, setTab] = useTab(TABS);
   const { data, loading, error } = useVocabulary();
   const verbs = drillVerbs(data);
+  // Curated examples plus every vocabulary noun once the vocabulary has loaded.
+  const caseDrillItems = useMemo(() => [...CURATED, ...generatedCaseItems(data)], [data]);
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-10 space-y-6">
@@ -414,7 +418,7 @@ export default function Practice() {
           ) : (
             <ConjugationDrill verbs={verbs} />
           ))}
-        {tab === 'cases' && <CaseDrill />}
+        {tab === 'cases' && <CaseDrill items={caseDrillItems} />}
       </section>
     </div>
   );

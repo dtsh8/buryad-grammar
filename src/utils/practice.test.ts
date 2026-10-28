@@ -7,6 +7,7 @@ import {
   checkAnswer,
   conjugationQuestion,
   drillVerbs,
+  generatedCaseItems,
   type Rng,
 } from './practice';
 
@@ -105,5 +106,27 @@ describe('case drill', () => {
       expect(new Set(q.options).size).toBe(4);
       expect(q.options).toContain(q.item.caseName);
     }
+  });
+});
+
+describe('case drill with generated nouns', () => {
+  const generated = generatedCaseItems(lexicon);
+  const nouns = lexicon.filter(l => l.category === 'noun');
+
+  it('asks for all six cases of every vocabulary noun', () => {
+    expect(generated).toHaveLength(nouns.length * 6);
+    expect(generated.every(i => i.generated && i.form.length > 0)).toBe(true);
+  });
+
+  it('uses generated items only for "form the case" questions', () => {
+    const items = [...caseItems(), ...generated];
+    const rng = seeded(4);
+    let produced = 0;
+    for (let i = 0; i < 400; i++) {
+      const q = caseQuestion(items, rng);
+      if (q.kind === 'identify') expect(q.item.generated).toBeFalsy();
+      else if (q.item.generated) produced++;
+    }
+    expect(produced).toBeGreaterThan(0);
   });
 });

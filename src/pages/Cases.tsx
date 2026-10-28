@@ -2,7 +2,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { CASES, POSSESSIVE_SUFFIXES, type GrammarCase } from '../data/grammar';
 import CorpusLink from '../components/CorpusLink';
-import { PARADIGM_NOUN, PARADIGM_FORMS } from '../data/caseParadigm';
+import { useVocabulary } from '../hooks/useVocabulary';
+import { decline, type CaseId } from '../utils/nounMorphology';
 import SayButton from '../components/SayButton';
 
 const fade = { hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } };
@@ -161,6 +162,14 @@ export default function Cases() {
   const [selected, setSelected] = useState<string>(CASES[0].id);
   const activeCase = CASES.find(c => c.id === selected) ?? CASES[0];
   const detailRef = useRef<HTMLDivElement>(null);
+  const { data: lexicon } = useVocabulary();
+  const nouns = lexicon
+    .filter(l => l.category === 'noun')
+    .sort((a, b) => a.buryad.localeCompare(b.buryad, 'ru'));
+  const [nounId, setNounId] = useState('ger');
+  const noun = nouns.find(n => n.id === nounId);
+  // гэр until the vocabulary has loaded (or if its id ever changes)
+  const forms = decline(noun?.buryad ?? 'гэр', noun?.nStem);
 
   // Picking a case from the paradigm table further down brings its detail panel into view.
   function showFromTable(id: string) {
@@ -194,12 +203,42 @@ export default function Cases() {
 
       {/* Full declension table */}
       <div className="card space-y-4">
-        <h2 className="text-lg font-semibold text-stone-800">
-          Full Paradigm: <span className="font-buryat text-buryat-700">гэр</span>
-          <span className="text-stone-500 font-normal text-base ml-2">
-            ({PARADIGM_NOUN.meaning}, {PARADIGM_NOUN.harmony})
-          </span>
-        </h2>
+        <div className="flex flex-wrap items-baseline gap-x-3 gap-y-2">
+          <h2 className="text-lg font-semibold text-stone-800">Declension</h2>
+          <label htmlFor="declension-noun" className="text-sm text-stone-500">
+            Noun
+          </label>
+          <select
+            id="declension-noun"
+            value={noun ? nounId : 'ger'}
+            onChange={e => setNounId(e.target.value)}
+            className="rounded-lg border border-stone-300 bg-white px-2 py-1 font-buryat text-stone-800 max-w-full"
+          >
+            {nouns.length === 0 && <option value="ger">гэр — house</option>}
+            {nouns.map(n => (
+              <option key={n.id} value={n.id}>
+                {n.buryad} — {n.english}
+              </option>
+            ))}
+          </select>
+        </div>
+        <p className="text-sm text-stone-500">
+          Built by rule from the textbook's case endings; every form for these nouns was checked
+          against the Buryat National Corpus.
+          {noun?.nStem === 'unstable' && (
+            <>
+              {' '}
+              Its final <span className="font-buryat">н</span> drops in the accusative, instrumental
+              and comitative.
+            </>
+          )}
+          {noun?.nStem === 'stable' && (
+            <>
+              {' '}
+              Its final <span className="font-buryat">н</span> stays in every case.
+            </>
+          )}
+        </p>
         <div className="overflow-x-auto">
           <table className="text-sm w-full">
             <thead>
@@ -211,7 +250,7 @@ export default function Cases() {
               </tr>
             </thead>
             <tbody>
-              {PARADIGM_FORMS.map((row, i) => (
+              {CASES.map(c => ({ case_: c.english, form: forms[c.id as CaseId] })).map((row, i) => (
                 <tr
                   key={row.case_}
                   className={`border-b border-stone-100 cursor-pointer transition-colors ${

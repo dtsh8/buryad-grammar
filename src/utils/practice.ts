@@ -8,6 +8,7 @@ import { CASES, PERSON_ENDINGS } from '../data/grammar';
 import { PARADIGM_FORMS, PARADIGM_NOUN } from '../data/caseParadigm';
 import type { Lexeme } from '../data/vocabulary.types';
 import { conjugate, extractRoot } from './verbMorphology';
+import { decline, type CaseId } from './nounMorphology';
 import { isInfinitive, primarySense } from './verbLexicon';
 
 export type Rng = () => number;
@@ -110,6 +111,37 @@ export interface CaseItem {
   form: string;
   translation: string;
   rule: string; // the case's suffix summary, shown after an answer
+  generated?: boolean; // built by the declension engine, not a curated example
+}
+
+function caseRule(c: (typeof CASES)[number]): string {
+  return [c.suffix.afterConsonant, c.suffix.afterVowel]
+    .filter(Boolean)
+    .filter((r, i, all) => all.indexOf(r) === i)
+    .join('; ');
+}
+
+// Every case form of every vocabulary noun, from the declension engine (its output for
+// these nouns is checked against the Buryat National Corpus: nounMorphology.test.ts).
+export function generatedCaseItems(lexicon: Lexeme[]): CaseItem[] {
+  const items: CaseItem[] = [];
+  for (const n of lexicon.filter(l => l.category === 'noun')) {
+    const forms = decline(n.buryad, n.nStem);
+    const meaning = n.english.split('/')[0].trim();
+    for (const c of CASES) {
+      if (c.id === 'nominative') continue;
+      items.push({
+        caseId: c.id,
+        caseName: c.english,
+        stem: n.buryad,
+        form: forms[c.id as CaseId],
+        translation: `${meaning} (${c.english.toLowerCase()})`,
+        rule: caseRule(c),
+        generated: true,
+      });
+    }
+  }
+  return items;
 }
 
 // Every curated case form except the nominative, which has no suffix to practise.
@@ -124,10 +156,7 @@ export function caseItems(): CaseItem[] {
   };
   for (const c of CASES) {
     if (c.id === 'nominative') continue;
-    const rule = [c.suffix.afterConsonant, c.suffix.afterVowel]
-      .filter(Boolean)
-      .filter((r, i, all) => all.indexOf(r) === i)
-      .join('; ');
+    const rule = caseRule(c);
     for (const ex of c.examples) {
       add({
         caseId: c.id,
@@ -156,11 +185,13 @@ export function caseItems(): CaseItem[] {
 export type CaseQuestion =
   { kind: 'produce'; item: CaseItem } | { kind: 'identify'; item: CaseItem; options: string[] };
 
-// Alternates between typing the form and naming the case of a given form.
+// Alternates between typing the form and naming the case of a given form. "Name the case"
+// uses curated items only, where each form belongs to exactly one case (see the tests).
 export function caseQuestion(items: CaseItem[], rng: Rng): CaseQuestion {
-  const item = pick(items, rng);
-  if (rng() < 0.5) return { kind: 'produce', item };
-  const names = [...new Set(items.map(i => i.caseName))];
+  if (rng() < 0.5) return { kind: 'produce', item: pick(items, rng) };
+  const curated = items.filter(i => !i.generated);
+  const item = pick(curated, rng);
+  const names = [...new Set(curated.map(i => i.caseName))];
   const others = shuffle(
     names.filter(n => n !== item.caseName),
     rng

@@ -12,6 +12,10 @@ export interface Lexeme {
   category: LexemeCategory;
   tags?: string[];
   example?: { buryad: string; translation: string };
+  // Nouns ending in н: whether the н stays (хүн → хүниие), drops in the accusative,
+  // instrumental and comitative (морин → мориие), or is a back н (ан → ангые).
+  // Set from Buryat National Corpus counts; see src/utils/nounMorphology.ts.
+  nStem?: 'stable' | 'unstable' | 'velar';
 }
 
 export interface VocabularyData {

@@ -160,6 +160,7 @@ export interface GrammarCase {
   examples: Array<{ stem: string; inflected: string; translation: string; note?: string }>;
   colorClass: string;
   analogy: string; // comparison to English or Russian
+  corpusQuery?: string; // word-form pattern for the Buryat National Corpus (* = any letters)
 }
 
 export const CASES: GrammarCase[] = [
@@ -181,6 +182,7 @@ export const CASES: GrammarCase[] = [
   },
   {
     id: 'genitive',
+    corpusQuery: '*ын',
     buryad: 'Хамаанай падеж',
     english: 'Genitive',
     russian: 'Родительный',
@@ -197,6 +199,7 @@ export const CASES: GrammarCase[] = [
   },
   {
     id: 'dative',
+    corpusQuery: '*да',
     buryad: 'Зүгэй падеж',
     english: 'Dative-Locative',
     russian: 'Дательно-местный',
@@ -219,6 +222,7 @@ export const CASES: GrammarCase[] = [
   },
   {
     id: 'accusative',
+    corpusQuery: '*ые',
     buryad: 'Үйлын падеж',
     english: 'Accusative',
     russian: 'Винительный',
@@ -255,6 +259,7 @@ export const CASES: GrammarCase[] = [
   },
   {
     id: 'instrumental',
+    corpusQuery: '*аар',
     buryad: 'Зэбсэгэй падеж',
     english: 'Instrumental',
     russian: 'Орудный',
@@ -271,6 +276,7 @@ export const CASES: GrammarCase[] = [
   },
   {
     id: 'comitative',
+    corpusQuery: '*тай',
     buryad: 'Хамтын падеж',
     english: 'Comitative',
     russian: 'Совместный',
@@ -287,6 +293,7 @@ export const CASES: GrammarCase[] = [
   },
   {
     id: 'ablative',
+    corpusQuery: '*һаа',
     buryad: 'Гаралай падеж',
     english: 'Ablative',
     russian: 'Исходный',
@@ -529,7 +536,7 @@ export interface VerbDerivation {
   color: string;
   description: string;
   example: { base: string; derived: string; baseGloss: string; derivedGloss: string };
-  corpusFeature?: string; // id in public/data/corpus_examples.json
+  corpusQuery?: string; // word-form pattern for the Buryat National Corpus (* = any letters)
 }
 
 export const VERB_DERIVATIONS: VerbDerivation[] = [
@@ -550,7 +557,7 @@ export const VERB_DERIVATIONS: VerbDerivation[] = [
   },
   {
     label: 'Passive',
-    corpusFeature: 'deriv_passive',
+    corpusQuery: '*гда*',
     suffix: '-гда/-гдэ/-гдо · -да · -та',
     buryad: 'Эдлүүлэгшэ',
     meaning: 'Action done to subject',
@@ -583,7 +590,7 @@ export const VERB_DERIVATIONS: VerbDerivation[] = [
   },
   {
     label: 'Cooperative',
-    corpusFeature: 'deriv_cooperative',
+    corpusQuery: '*лсажа',
     suffix: '-лса/-лсэ/-лсо',
     buryad: 'Хамтаршалай',
     meaning: 'Joint action',
@@ -607,13 +614,13 @@ export interface ConverbEntry {
   englishParallel: string;
   color: string;
   examples: Array<{ buryad: string; gloss: string; translation: string }>;
-  corpusFeature?: string; // id in public/data/corpus_examples.json
+  corpusQuery?: string; // word-form pattern for the Buryat National Corpus (* = any letters)
 }
 
 export const CONVERBS: ConverbEntry[] = [
   {
     label: 'Simultaneous',
-    corpusFeature: 'converb_simultaneous',
+    corpusQuery: '*жа',
     suffix: '-жа / -жэ / -жо',
     semantics: 'Background action running at the same time as the main verb.',
     englishParallel: 'English "-ing" (while doing)',
@@ -633,7 +640,7 @@ export const CONVERBS: ConverbEntry[] = [
   },
   {
     label: 'Sequential (Anterior)',
-    corpusFeature: 'converb_sequential',
+    corpusQuery: '*аад',
     suffix: '-аад / -ээд / -оод / -өөд',
     semantics: 'Action fully completed before the main verb begins.',
     englishParallel: 'English "having done / after doing"',
@@ -649,7 +656,7 @@ export const CONVERBS: ConverbEntry[] = [
   },
   {
     label: 'Conditional',
-    corpusFeature: 'converb_conditional',
+    corpusQuery: '*бал',
     suffix: '-бал / -бол / -бэл',
     semantics: 'Marks the if-clause; the other clause is the consequence.',
     englishParallel: 'English "if…"',
@@ -669,7 +676,7 @@ export const CONVERBS: ConverbEntry[] = [
   },
   {
     label: 'Concessive',
-    corpusFeature: 'converb_concessive',
+    corpusQuery: '*башье',
     suffix: '-ААшье һаа · -башье',
     semantics:
       'Concedes a premise while asserting the main clause anyway; the particle -шье means "even". The common form is the perfect -аа + -шье + һаа "if": it allows any person and also "even if" readings. -башье is bookish, takes only a 3rd-person subject, and came into the standard from western and northern dialects (Darzhaeva 2019).',
@@ -684,14 +691,14 @@ export const CONVERBS: ConverbEntry[] = [
           'Even if this ghoul shouts in a woman’s voice, do not come! (Darzhaeva 2019, Buryat corpus)',
       },
       {
-        buryad: 'Тиигэбэшье хамтын ажахынууд байгуулагдажа…',
-        gloss: 'do.so-CONC collective farm-PL be.founded-CVB.SIM',
-        translation: 'Even so, collective farms were founded… (burunen.ru)',
+        buryad: 'Тиигэбэшье…',
+        gloss: 'do.so-CONC',
+        translation: 'Even so, … (Buryat National Corpus: 350 uses)',
       },
       {
-        buryad: 'Оросой ямар нэгэн хото городуудта ажаһуубашье, ажаллабашье һаа…',
-        gloss: 'Russia-GEN any town city-PL-DAT live-CONC work-CONC if',
-        translation: 'Whatever Russian town they may live or work in… (burunen.ru)',
+        buryad: 'Яабашье…',
+        gloss: 'do.how-CONC',
+        translation: 'No matter what, … / anyway (Buryat National Corpus: 207 uses)',
       },
     ],
   },
@@ -719,7 +726,7 @@ export interface TenseEntry {
   aspectuality: 'perfective' | 'imperfective' | 'habitual' | 'n/a';
   examples: Array<{ form: string; translation: string }>;
   note: string;
-  corpusFeature?: string; // id in public/data/corpus_examples.json
+  corpusQuery?: string; // word-form pattern for the Buryat National Corpus (* = any letters)
 }
 
 // Past forms per the burunen.ru corpus (docs/verification-questions.md, A1): -аа and -һан
@@ -730,7 +737,7 @@ export interface TenseEntry {
 export const TENSE_ENTRIES: TenseEntry[] = [
   {
     label: 'Simple Past',
-    corpusFeature: 'verb_past',
+    corpusQuery: '*ба',
     buryad: 'Үнгэрһэн сагай хэлбэри',
     suffix: { back: '-ба', front: '-бэ' },
     timelinePosition: -2,
@@ -743,7 +750,7 @@ export const TENSE_ENTRIES: TenseEntry[] = [
   },
   {
     label: 'Past Participle',
-    corpusFeature: 'verb_past_participle',
+    corpusQuery: '*һан',
     buryad: '—',
     suffix: { back: '-һан', front: '-һэн' },
     timelinePosition: -2,
@@ -756,7 +763,7 @@ export const TENSE_ENTRIES: TenseEntry[] = [
   },
   {
     label: 'Perfect',
-    corpusFeature: 'verb_perfect',
+    corpusQuery: '*аа',
     buryad: '—',
     suffix: { back: '-аа', front: '-ээ / -өө' },
     timelinePosition: -1,
@@ -769,7 +776,7 @@ export const TENSE_ENTRIES: TenseEntry[] = [
   },
   {
     label: 'Resultative',
-    corpusFeature: 'verb_resultative',
+    corpusQuery: '*нхай',
     buryad: '—',
     suffix: { back: '-нхай', front: '-нхэй / -нхой' },
     timelinePosition: -2,
@@ -782,7 +789,7 @@ export const TENSE_ENTRIES: TenseEntry[] = [
   },
   {
     label: 'Habitual',
-    corpusFeature: 'verb_habitual',
+    corpusQuery: '*даг',
     buryad: 'Заншалай хэлбэри',
     suffix: { back: '-даг', front: '-дэг' },
     timelinePosition: 0,
@@ -795,7 +802,7 @@ export const TENSE_ENTRIES: TenseEntry[] = [
   },
   {
     label: 'Present-Future',
-    corpusFeature: 'verb_present',
+    corpusQuery: '*на',
     buryad: 'Одоо / Ерээдүй сагай хэлбэри',
     suffix: { back: '-на', front: '-нэ' },
     timelinePosition: 1,

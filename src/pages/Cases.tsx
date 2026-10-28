@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import { CASES, POSSESSIVE_SUFFIXES, type GrammarCase } from '../data/grammar';
-import CorpusExamples from '../components/CorpusExamples';
+import CorpusLink from '../components/CorpusLink';
 
 const fade = { hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } };
 
@@ -105,7 +105,7 @@ function CaseDetail({ c }: { c: GrammarCase }) {
         </div>
       </div>
 
-      <CorpusExamples feature={`case_${c.id}`} />
+      {c.corpusQuery && <CorpusLink query={c.corpusQuery} />}
 
       {/* Analogy */}
       <div className="bg-white/60 rounded-xl p-3 text-sm text-stone-600">
@@ -230,7 +230,7 @@ export default function Cases() {
           </table>
         </div>
         <p className="text-xs text-stone-400">
-          All examples occur in the Буряад үнэн news corpus. The reflexive suffix refers back to the
+          All examples are attested in Buryad news texts. The reflexive suffix refers back to the
           subject: <span className="font-buryat">нютагтаа</span> "in one's own homeland".
         </p>
       </div>

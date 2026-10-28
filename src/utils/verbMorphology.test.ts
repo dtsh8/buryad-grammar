@@ -1,5 +1,12 @@
 import { describe, expect, it } from 'vitest';
-import { PERSON_ENDINGS, TENSE_ENTRIES, VERB_PARADIGMS } from '../data/grammar';
+import {
+  CASES,
+  CONVERBS,
+  PERSON_ENDINGS,
+  TENSE_ENTRIES,
+  VERB_DERIVATIONS,
+  VERB_PARADIGMS,
+} from '../data/grammar';
 import { conjugate, deriveAll, detectHarmony, endsInVowel, extractRoot } from './verbMorphology';
 
 // ─── Gold forms ────────────────────────────────────────────────────────────
@@ -292,6 +299,14 @@ describe('grammar data', () => {
       expect(p.past, p.person).toBe(pst + ending);
       if (p.perfect) expect(p.perfect, p.person).toBe(perf + ending);
     }
+  });
+
+  it('Buryat National Corpus links are word-form patterns (Cyrillic, * as wildcard)', () => {
+    const queries = [...CASES, ...TENSE_ENTRIES, ...CONVERBS, ...VERB_DERIVATIONS].flatMap(e =>
+      e.corpusQuery ? [e.corpusQuery] : []
+    );
+    expect(queries.length).toBeGreaterThan(15);
+    for (const q of queries) expect(q).toMatch(/^\*[а-яёөүһ]+\*?$/);
   });
 
   it('no tense entry teaches the rare literary -лай past as a standard tense', () => {

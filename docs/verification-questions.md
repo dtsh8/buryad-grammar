@@ -14,6 +14,10 @@ Searched the local burunen.ru corpus (`data/corpus/raw_articles.json`: 41 news a
 ~36,000 words, written standard Buryad). Counts are tokens. Usage shows which forms exist, but
 it can't settle meanings, names or IPA, and a small corpus can miss rare forms.
 
+The local burunen.ru corpus has since been removed: the site allows republication only with
+its editors' written permission. The counts below are kept as a research record; new checks
+use the Buryat National Corpus (`npm run corpus:bnc`, BNC row below).
+
 | Q   | Finding                                                                                                                                                                                                                                                  | Verdict                              |
 | --- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
 | A1  | No verb ends in *-лай*: all 582 *-лай/-лэй/-лой* tokens are genitives of л-stems (*жэлэй, соёлой, малай*) or the auxiliary *бэлэй*. Past tenses in news reports: *-аа/-ээ* (*хүдэлөө, хэлээ*), *-һан* (942), *-ба* (55), *… бэлэй*.                          | **App likely wrong.** Remove *-лай* past. |

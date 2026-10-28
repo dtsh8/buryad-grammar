@@ -608,7 +608,7 @@ export const CONVERBS: ConverbEntry[] = [
     color: 'bg-green-50 border-green-200',
     examples: [
       {
-        buryad: 'Бороо ороболь бидэ гэртэ байха.',
+        buryad: 'Бороо оробол бидэ гэртэ байха.',
         gloss: 'rain fall-COND we home stay-INF',
         translation: 'If it rains, we will stay home.',
       },

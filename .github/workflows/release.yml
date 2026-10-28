@@ -30,10 +30,13 @@ jobs:
       - name: Semantic Release
         uses: cycjimmy/semantic-release-action@v4
         with:
+          # Pinned together: the latest preset needs a newer changelog writer than
+          # semantic-release 24 ships. This set passes `semantic-release --dry-run`.
+          semantic_version: 24
           # .releaserc.json uses the "conventionalcommits" preset, which ships separately.
           extra_plugins: |
-            @semantic-release/changelog
-            @semantic-release/git
-            conventional-changelog-conventionalcommits
+            @semantic-release/changelog@6
+            @semantic-release/git@10
+            conventional-changelog-conventionalcommits@8
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

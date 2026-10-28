@@ -4,6 +4,8 @@ import AgglutinationDiagram from '../components/AgglutinationDiagram';
 import { POSTPOSITIONS } from '../data/grammar';
 import Tabs from '../components/Tabs';
 import { tabPanelProps, useTab, type TabDef } from '../hooks/useTab';
+import Tooltip from '../components/Tooltip';
+import { ABBR_CLASS, ORDER_TIP } from '../data/abbreviations';
 
 const fade = { hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } };
 type Tab = 'order' | 'postpositions' | 'agglutination';
@@ -22,7 +24,8 @@ export default function WordOrder() {
       <motion.div variants={fade} initial="hidden" animate="show" transition={{ duration: 0.4 }}>
         <h1 className="text-3xl font-bold text-stone-900">Syntax & Word Order</h1>
         <p className="text-stone-500 mt-1">
-          SOV order, postpositions, pre-nominal modifiers, and agglutinative morphology.
+          Subject–Object–Verb (SOV) order, postpositions, pre-nominal modifiers, and agglutinative
+          morphology.
         </p>
       </motion.div>
 
@@ -37,7 +40,12 @@ export default function WordOrder() {
           {...tabPanelProps(tab)}
         >
           <div className="card">
-            <h2 className="text-lg font-semibold text-stone-800 mb-4">SOV Word Order</h2>
+            <h2 className="text-lg font-semibold text-stone-800 mb-4">
+              <Tooltip text={ORDER_TIP.SOV} className={ABBR_CLASS}>
+                SOV
+              </Tooltip>{' '}
+              Word Order
+            </h2>
             <WordOrderDiagram />
           </div>
 

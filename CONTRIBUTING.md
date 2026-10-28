@@ -47,3 +47,15 @@ git commit -m "feat!: redesign data model for multi-dialect support
 
 BREAKING CHANGE: grammar.ts interface changed"
 ```
+
+## Merging branches
+
+Merge feature branches with `git merge --no-ff` and title the merge commit `chore: merge …`:
+
+```bash
+git merge --no-ff feat/verb-builder-lexicon -m "chore: merge feat/verb-builder-lexicon — vocabulary-first Verb Builder"
+```
+
+The branch's own commits carry the `feat`/`fix` types. A merge commit titled `feat(...)` makes
+the same feature appear twice in the release notes. After pushing to `main`, pull again: the
+Release workflow commits `chore(release): X.Y.Z [skip ci]` back to `main`.

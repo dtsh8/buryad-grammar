@@ -1,16 +1,27 @@
 import { describe, expect, it } from 'vitest';
-import { VERB_PARADIGMS } from '../data/grammar';
+import { PERSON_ENDINGS, TENSE_ENTRIES, VERB_PARADIGMS } from '../data/grammar';
 import { conjugate, deriveAll, detectHarmony, endsInVowel, extractRoot } from './verbMorphology';
 
 // ─── Gold forms ────────────────────────────────────────────────────────────
 // One row per harmony environment the engine has to handle.
-// Sources: Poppe (1960) §§ on vowel harmony; Skribnik (2003).
+// Sources: Poppe (1960) §§ on vowel harmony; Skribnik (2003); rows marked "corpus"
+// are attested in the burunen.ru corpus (docs/verification-questions.md).
 
 const GOLD: Array<{ root: string; note: string; forms: Partial<ReturnType<typeof conjugate>> }> = [
   {
     root: 'яба',
     note: 'а-class, short-vowel final',
-    forms: { inf: 'ябаха', prs: 'ябана', pst: 'ябаба', seqConv: 'ябаад', jussive: 'ябаг' },
+    forms: {
+      inf: 'ябаха',
+      prs: 'ябана',
+      pst: 'ябаба',
+      perf: 'ябаа',
+      pstPtcp: 'ябаһан',
+      neg: 'ябадаггүй',
+      negPst: 'ябаагүй',
+      seqConv: 'ябаад',
+      jussive: 'ябаг',
+    },
   },
   {
     root: 'унша',
@@ -25,7 +36,7 @@ const GOLD: Array<{ root: string; note: string; forms: Partial<ReturnType<typeof
   {
     root: 'бай',
     note: 'й-final takes epenthetic г',
-    forms: { inf: 'байха', prs: 'байна', seqConv: 'байгаад', jussive: 'байг' },
+    forms: { inf: 'байха', prs: 'байна', perf: 'байгаа', seqConv: 'байгаад', jussive: 'байг' },
   },
   {
     root: 'угаа',
@@ -73,9 +84,39 @@ const GOLD: Array<{ root: string; note: string; forms: Partial<ReturnType<typeof
     forms: { inf: 'уяха', prs: 'уяна', seqConv: 'уяад', jussive: 'уяг' },
   },
   {
+    root: 'түлеэ',
+    note: 'еэ spells long э: epenthetic г; non-initial long ээ blocks rounding (cf. corpus түлеэгээр)',
+    forms: { inf: 'түлеэхэ', seqConv: 'түлеэгээд' },
+  },
+  {
+    root: 'хүрэ',
+    note: 'corpus хүрөөд',
+    forms: { seqConv: 'хүрөөд' },
+  },
+  {
+    root: 'хүдэл',
+    note: 'corpus хүдэлөөд, хүдэлөө',
+    forms: { inf: 'хүдэлхэ', seqConv: 'хүдэлөөд', perf: 'хүдэлөө' },
+  },
+  {
+    root: 'хөөрэлдэ',
+    note: 'long өө in first syllable rounds (corpus хөөрэлдөөд)',
+    forms: { seqConv: 'хөөрэлдөөд' },
+  },
+  {
+    root: 'дүүргэ',
+    note: 'long үү in first syllable does not round (corpus дүүргээд ×25)',
+    forms: { seqConv: 'дүүргээд' },
+  },
+  {
+    root: 'бүтээ',
+    note: 'non-initial long ээ blocks rounding from ү (corpus бүтээгээд, бүтээһэн)',
+    forms: { seqConv: 'бүтээгээд', pstPtcp: 'бүтээһэн', neg: 'бүтээдэггүй' },
+  },
+  {
     root: 'эдеэ',
-    note: 'еэ spells long э: epenthetic г',
-    forms: { inf: 'эдеэхэ', prs: 'эдеэнэ', seqConv: 'эдеэгээд', jussive: 'эдеэг' },
+    note: 'irregular: эди- stem, ээ absorbs long suffixes (corpus эдеэд, эдидэг)',
+    forms: { inf: 'эдеэхэ', prs: 'эдеэнэ', seqConv: 'эдеэд', hab: 'эдидэг', jussive: 'эдеэг' },
   },
 ];
 
@@ -107,32 +148,27 @@ describe('conjugate — gold forms', () => {
 
 // ─── Static paradigm tables must agree with the engine ──────────────────────
 // VERB_PARADIGMS is hand-written; this keeps it and conjugate() in sync.
-// Known irregulars are listed explicitly rather than silently skipped.
+// Irregular stems are handled by the engine's IRREGULAR table, so no skips here.
 
 const KEY_MAP = {
   infinitive: 'inf',
   presentFuture: 'prs',
   simplePast: 'pst',
-  evidentialPast: 'evidPst',
+  perfect: 'perf',
+  pastParticiple: 'pstPtcp',
   habitual: 'hab',
+  negPresentFuture: 'neg',
+  negPast: 'negPst',
   simultConv: 'simConv',
   seqConv: 'seqConv',
   jussive: 'jussive',
 } as const;
 
-const KNOWN_IRREGULAR: Record<string, string[]> = {
-  // эдеэ- has a suppletive stem эди- before -дэг / -жэ
-  // seqConv: table has эдеэд, engine rule gives эдеэгээд — unverified, needs a source
-  эдеэ: ['habitual', 'simultConv', 'seqConv'],
-};
-
 describe('VERB_PARADIGMS agrees with conjugate()', () => {
   for (const vp of VERB_PARADIGMS) {
     it(vp.infinitive, () => {
       const actual = conjugate(vp.root);
-      const skip = KNOWN_IRREGULAR[vp.root] ?? [];
       for (const [tableKey, engineKey] of Object.entries(KEY_MAP)) {
-        if (skip.includes(tableKey)) continue;
         const expected = vp.forms[tableKey as keyof typeof vp.forms].replace(/!$/, '');
         expect(actual[engineKey], tableKey).toBe(expected);
       }
@@ -177,11 +213,33 @@ describe('deriveAll', () => {
     expect(byLabel('мэдэ').Passive.inf).toBe('мэдэгдэхэ');
   });
 
+  it('reciprocal is -лда, cooperative is -лса (corpus барилдаха, оролсохо)', () => {
+    expect(byLabel('бари').Reciprocal.inf).toBe('барилдаха');
+    expect(byLabel('оро').Cooperative.inf).toBe('оролсохо');
+  });
+
   it('о-class stems take о-variants of derivational suffixes', () => {
     const d = byLabel('оро');
     expect(d.Passive.root).toBe('орогдо');
     expect(d.Reflexive.root).toBe('оро' + 'до');
     expect(d.Reciprocal.root.endsWith('о')).toBe(true);
     expect(d.Cooperative.root.endsWith('о')).toBe(true);
+  });
+});
+
+// ─── Data tables built on the engine ───────────────────────────────────────
+
+describe('grammar data', () => {
+  it('person-ending table is the engine form plus the ending', () => {
+    const { prs, perf } = conjugate('яба');
+    for (const p of PERSON_ENDINGS) {
+      const ending = p.suffix === '∅' ? '' : p.suffix.replace(/^-/, '');
+      expect(p.present, p.person).toBe(prs + ending);
+      expect(p.perfect, p.person).toBe(perf + ending);
+    }
+  });
+
+  it('no tense entry uses the unattested -лай past', () => {
+    for (const t of TENSE_ENTRIES) expect(t.suffix.back).not.toMatch(/лай/);
   });
 });

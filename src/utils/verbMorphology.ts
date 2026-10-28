@@ -38,9 +38,9 @@ export function extractRoot(infinitive: string): string {
 
 // ─── Suffix helpers ────────────────────────────────────────────────────────
 // Buryad verbal suffixes are 3-way harmonic based on the last significant vowel:
-//   а-class (а, у roots) → а-variants: -ха -на -ба -лай -даг -жа
-//   о-class (о roots)       → о-variants: -хо -но -бо -лой -дог -жо   (орохо, ороно etc.)
-//   э-class (э, ө, ү roots) → э-variants: -хэ -нэ -бэ -лэй -дэг -жэ
+//   а-class (а, у roots) → а-variants: -ха -на -ба -һан -даг -жа
+//   о-class (о roots)       → о-variants: -хо -но -бо -һон -дог -жо   (орохо, ороно etc.)
+//   э-class (э, ө, ү roots) → э-variants: -хэ -нэ -бэ -һэн -дэг -жэ
 //
 // Long suffix vowels (-аад, -аар, …) are a separate 4-way system (see longVowelClass).
 
@@ -104,43 +104,84 @@ function needsEpentheticG(root: string): boolean {
   return false;
 }
 
-// Long suffix vowels — 4-way harmony with Buryad labial attraction (Poppe 1960):
-//   а / у        → аа   ябаад, уншаад, һуугаад
-//   о            → оо   ороод
-//   ө            → өө
-//   ү, 1st syll. → өө   үзөөд, үгөөд  (Buryad rounds after ү, unlike Khalkha)
-//   ү, later     → ээ   үзүүлээд      (non-initial уу/үү block rounding: оруулаад)
-//   э            → ээ   ерээд, мэдээд
-// Scanned right-to-left by syllable nucleus; э, и, consonants are transparent.
+// Long suffix vowels — 4-way harmony with Buryad labial attraction (Poppe 1960),
+// refined against the burunen.ru corpus (docs/verification-questions.md, B3):
+//   а / у                  → аа   ябаад, уншаад, һуугаад
+//   о                      → оо   ороод
+//   ө (short or long)      → өө   хөөрэлдөөд
+//   short ү, 1st syllable  → өө   үзөөд, үгөөд, хүрөөд  (Buryad rounds after ү, unlike Khalkha)
+//   long үү, 1st syllable  → ээ   дүүргээд
+//   ү, later syllable      → ээ   үзүүлээд      (as non-initial уу blocks: оруулаад)
+//   long ээ, later syllable→ ээ   бүтээгээд     (blocks rounding from ү)
+//   short э                → transparent; ээ if nothing else decides: ерээд, мэдээд
+// Scanned right-to-left by syllable nucleus; и and consonants are transparent.
 type LongVowel = 'аа' | 'оо' | 'ээ' | 'өө';
 
 function longVowelClass(root: string): LongVowel {
-  // Nuclei: runs of identical vowel letters count as one (long) vowel.
-  const nuclei: string[] = [];
+  // Nuclei: runs of identical vowel letters count as one long vowel,
+  // except a following я/е, which starts a new syllable (й + vowel).
+  const nuclei: Array<{ v: string; long: boolean }> = [];
   let prev: string | null = null; // vowel of the previous letter, null after a consonant
   for (const ch of root) {
     const v = vowelOf(ch);
-    // …except a following я/е, which starts a new syllable (й + vowel)
-    if (v !== null && v !== prev) nuclei.push(v);
-    else if (v !== null && (ch === 'я' || ch === 'е')) nuclei.push(v);
+    if (v !== null && v === prev && ch !== 'я' && ch !== 'е') {
+      nuclei[nuclei.length - 1].long = true;
+    } else if (v !== null) {
+      nuclei.push({ v, long: false });
+    }
     prev = v;
   }
   let sawFront = false;
   for (let i = nuclei.length - 1; i >= 0; i--) {
-    const v = nuclei[i];
+    const { v, long } = nuclei[i];
     if (v === 'а' || v === 'у') return 'аа';
     if (v === 'о') return 'оо';
     if (v === 'ө') return 'өө';
-    if (v === 'ү') return i === 0 ? 'өө' : 'ээ';
+    if (v === 'ү') return i === 0 && !long ? 'өө' : 'ээ';
+    if (v === 'э' && long && i > 0) return 'ээ';
     if (v === 'э') sawFront = true;
   }
   return sawFront ? 'ээ' : 'аа';
 }
 
-export function conjugate(root: string) {
+// Root + long-vowel-initial suffix (-аа, -аад, …), with epenthetic г after
+// long vowels and й (угаагаад, байгаа) and absorption otherwise (ябаад, үзөөд).
+function attachLong(root: string, rest: string): string {
+  const suffix = longVowelClass(root) + rest;
+  return needsEpentheticG(root) ? root + 'г' + suffix : attach(root, suffix);
+}
+
+export interface Conjugation {
+  inf: string;
+  prs: string;
+  pst: string;
+  perf: string;
+  pstPtcp: string;
+  hab: string;
+  neg: string;
+  negPst: string;
+  simConv: string;
+  seqConv: string;
+  jussive: string;
+}
+
+// Stems whose forms don't follow the rules. Each entry should cite its evidence.
+const IRREGULAR: Record<string, Partial<Conjugation>> = {
+  // эдеэ- 'eat': suppletive эди- before -дэг / -жэ (corpus: эдидэг); the final ээ
+  // absorbs long suffixes instead of taking г (corpus: "суглуулжа эдеэд").
+  // perf / negPst follow the same pattern but are unattested — see the verification doc.
+  эдеэ: {
+    hab: 'эдидэг',
+    neg: 'эдидэггүй',
+    simConv: 'эдижэ',
+    seqConv: 'эдеэд',
+    perf: 'эдеэ',
+    negPst: 'эдеэгүй',
+  },
+};
+
+export function conjugate(root: string): Conjugation {
   const cls = getSufClass(root);
-  const seqSuf = longVowelClass(root) + 'д';
-  const seqConv = needsEpentheticG(root) ? root + 'г' + seqSuf : attach(root, seqSuf);
   // Jussive / permissive mood: suffix -г
   // Expresses "Let him/her/you do X" (Пусть…) — 2nd or 3rd person.
   // Гэртээ байг! = "Let him stay home!" / "Just stay home!" (context-dependent)
@@ -149,37 +190,35 @@ export function conjugate(root: string) {
   const jussive =
     endsInVowel(root) || root.endsWith('й') ? root + 'г' : root + sufC(cls, 'аг', 'ог', 'эг');
 
+  // Perfect -аа (ябаа, хүдэлөө): the most frequent past form in the corpus.
+  const perf = attachLong(root, '');
+
   return {
     inf: root + sufC(cls, 'ха', 'хо', 'хэ'),
     prs: root + sufC(cls, 'на', 'но', 'нэ'),
     pst: root + sufC(cls, 'ба', 'бо', 'бэ'),
-    evidPst: root + sufC(cls, 'лай', 'лой', 'лэй'),
+    perf,
+    pstPtcp: root + sufC(cls, 'һан', 'һон', 'һэн'),
     hab: root + sufC(cls, 'даг', 'дог', 'дэг'),
-    neg: root + sufC(cls, 'дагүй', 'догүй', 'дэгүй'),
+    // Habitual + -гүй keeps both г: ябадаггүй (corpus: 26×, never *ябадагүй)
+    neg: root + sufC(cls, 'даггүй', 'доггүй', 'дэггүй'),
+    negPst: perf + 'гүй',
     simConv: root + sufC(cls, 'жа', 'жо', 'жэ'),
-    seqConv,
+    seqConv: attachLong(root, 'д'),
     jussive,
+    ...IRREGULAR[root],
   };
 }
 
 // ─── Derivation rules ──────────────────────────────────────────────────────
 
-export interface DerivedForm {
+export interface DerivedForm extends Conjugation {
   label: string;
   buryad: string;
   suffix: string;
   description: string;
   englishRole: string;
   root: string;
-  inf: string;
-  prs: string;
-  pst: string;
-  evidPst: string;
-  hab: string;
-  neg: string;
-  simConv: string;
-  seqConv: string;
-  jussive: string;
   exampleSentence: { buryad: string; gloss: string; translation: string };
   color: string;
 }
@@ -231,8 +270,11 @@ export function deriveAll(baseRoot: string, baseMeaning: string): DerivedForm[] 
   const passSuffix = v ? sufC(cls, 'гда', 'гдо', 'гдэ') : sufC(cls, 'агда', 'огдо', 'эгдэ');
   // Reflexive / reciprocal / cooperative: consonant-initial suffixes — no г needed.
   const reflSuffix = sufC(cls, 'да', 'до', 'дэ');
-  const recipSuffix = v ? sufC(cls, 'лса', 'лсо', 'лсэ') : sufC(cls, 'алса', 'олсо', 'элсэ');
-  const coopSuffix = v ? sufC(cls, 'лда', 'лдо', 'лдэ') : sufC(cls, 'алда', 'олдо', 'элдэ');
+  // Reciprocal -лда 'each other' (барилдаха 'wrestle', заргалдаха 'sue each other');
+  // cooperative -лса 'together' (оролсохо 'take part', хабаадалсаха 'participate').
+  // Corpus evidence — docs/verification-questions.md, A2.
+  const recipSuffix = v ? sufC(cls, 'лда', 'лдо', 'лдэ') : sufC(cls, 'алда', 'олдо', 'элдэ');
+  const coopSuffix = v ? sufC(cls, 'лса', 'лсо', 'лсэ') : sufC(cls, 'алса', 'олсо', 'элсэ');
   const passRoot = baseRoot + passSuffix;
   const reflRoot = baseRoot + reflSuffix;
   const recipRoot = baseRoot + recipSuffix;
@@ -251,8 +293,8 @@ export function deriveAll(baseRoot: string, baseMeaning: string): DerivedForm[] 
       'make / let someone do',
       'bg-amber-50 border-amber-300',
       {
-        buryad: `Би тэрэниие ${conjugate(causRoot).prs}.`,
-        gloss: `I him.ACC ${causRoot}-PRS`,
+        buryad: `Би тэрэниие ${conjugate(causRoot).prs}б.`,
+        gloss: `I him.ACC ${causRoot}-PRS-1SG`,
         translation: `I make him ${baseMeaning}.`,
       }
     ),
@@ -308,8 +350,8 @@ export function deriveAll(baseRoot: string, baseMeaning: string): DerivedForm[] 
       'do together',
       'bg-pink-50 border-pink-300',
       {
-        buryad: `Бидэ хамта ${conjugate(coopRoot).prs}.`,
-        gloss: `we together ${coopRoot}-PRS`,
+        buryad: `Бидэ хамта ${conjugate(coopRoot).prs}бди.`,
+        gloss: `we together ${coopRoot}-PRS-1PL`,
         translation: `We ${baseMeaning} together.`,
       }
     ),

@@ -48,10 +48,12 @@ function BaseParadigm({ root, meaning }: { root: string; meaning: string }) {
   const ef = englishForms(meaning);
   const rows: Array<[string, string, string]> = [
     ['Present-Future', forms.prs, `→ ${ef.thirdPerson} / will ${meaning}`],
-    ['Simple Past', forms.pst, `→ ${ef.past} (witnessed)`],
-    ['Evidential Past', forms.evidPst, `→ apparently ${ef.past}`],
+    ['Perfect', forms.perf, `→ ${ef.past} / has ${ef.pastPart}`],
+    ['Past Participle', forms.pstPtcp, `→ (who) ${ef.past}`],
+    ['Simple Past', forms.pst, `→ ${ef.past}`],
     ['Habitual', forms.hab, `→ ${ef.thirdPerson} (habitually)`],
     ['Negative', forms.neg, `→ does not ${meaning}`],
+    ['Negative Past', forms.negPst, `→ did not ${meaning}`],
     ['Infinitive', forms.inf, `→ to ${meaning}`],
     ['Simult. Converb', forms.simConv, `→ while ${ef.gerund}`],
     ['Seq. Converb', forms.seqConv, `→ having ${ef.pastPart}`],

@@ -88,7 +88,7 @@ const SIMILARITY_DATA = [
   { axis: 'Vowel harmony', buryad: 5, mongolian: 5, turkish: 5, english: 0 },
   { axis: 'Cases', buryad: 4, mongolian: 5, turkish: 4, english: 1 },
   { axis: 'Postpositions', buryad: 5, mongolian: 5, turkish: 5, english: 0 },
-  { axis: 'Evidentiality', buryad: 5, mongolian: 4, turkish: 3, english: 0 },
+  { axis: 'Person on verb', buryad: 4, mongolian: 0, turkish: 5, english: 2 },
   { axis: 'Agglutination', buryad: 5, mongolian: 5, turkish: 5, english: 1 },
 ];
 

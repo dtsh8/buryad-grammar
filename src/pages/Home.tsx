@@ -14,7 +14,7 @@ const navCards = [
     desc: 'Vowel harmony, consonants, long vowels',
   },
   { to: '/cases', emoji: '📐', title: 'Cases', desc: '7 nominal cases with endings and examples' },
-  { to: '/verbs', emoji: '⚡', title: 'Verbs', desc: 'Tense, converbs, evidentiality' },
+  { to: '/verbs', emoji: '⚡', title: 'Verbs', desc: 'Tense, person endings, converbs' },
   { to: '/word-order', emoji: '🔀', title: 'Word Order', desc: 'SOV, postpositions, modifiers' },
   { to: '/vocabulary', emoji: '📖', title: 'Vocabulary', desc: 'Core words, phrases and numerals' },
 ];
@@ -97,7 +97,7 @@ export default function Home() {
               '🔊 Vowel harmony — back vs. front vowels determine suffix shape',
               '🔚 Verb-final (SOV) — verb always last in clause',
               '📐 7 cases — replace prepositions and word-order signals',
-              '👁️ Evidentiality — grammar marks how you know something',
+              '👤 Person endings — verbs mark the subject (ябанаб "I go"), unlike Khalkha',
               '🚫 No grammatical gender — nouns are genderless',
               '↙️ Pre-nominal modifiers — adjectives and rel. clauses precede nouns',
             ].map(f => (

@@ -5,6 +5,7 @@ import {
   VERB_DERIVATIONS,
   CONVERBS,
   TENSE_ENTRIES,
+  PERSON_ENDINGS,
   type VerbParadigm,
 } from '../data/grammar';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
@@ -12,7 +13,7 @@ import VerbBuilder from '../components/VerbBuilder';
 
 const fade = { hidden: { opacity: 0, y: 14 }, show: { opacity: 1, y: 0 } };
 
-type Tab = 'anatomy' | 'tenses' | 'voice' | 'converbs' | 'conjugator' | 'builder';
+type Tab = 'anatomy' | 'tenses' | 'person' | 'voice' | 'converbs' | 'conjugator' | 'builder';
 
 // ─── Morpheme segment colors ─────────────────────────────────────────────
 
@@ -22,6 +23,7 @@ const SEG_COLOR: Record<string, string> = {
   tense: 'bg-mongol-600 text-white',
   negation: 'bg-red-600 text-white',
   aspect: 'bg-green-600 text-white',
+  person: 'bg-purple-600 text-white',
 };
 
 // ─── Verb Anatomy ─────────────────────────────────────────────────────────
@@ -73,9 +75,19 @@ function VerbAnatomy() {
       segments: [
         { text: 'яба', label: 'ROOT', cls: SEG_COLOR.root },
         { text: '-даг', label: 'HAB', cls: SEG_COLOR.aspect },
-        { text: '-үй', label: 'NEG', cls: SEG_COLOR.negation },
+        { text: '-гүй', label: 'NEG', cls: SEG_COLOR.negation },
       ],
-      translation: 'ябадагүй — does not go (habitually)',
+      translation: 'ябадаггүй — does not go (habitually)',
+    },
+    {
+      label: 'With person ending',
+      segments: [
+        { text: 'яба', label: 'ROOT', cls: SEG_COLOR.root },
+        { text: '-аа', label: 'PERF', cls: SEG_COLOR.tense },
+        { text: '-гүй', label: 'NEG', cls: SEG_COLOR.negation },
+        { text: '-бди', label: '1PL', cls: SEG_COLOR.person },
+      ],
+      translation: 'ябаагүйбди — we did not go',
     },
     {
       label: 'Causative passive',
@@ -153,19 +165,13 @@ function VerbAnatomy() {
 
 // ─── Tense Timeline ────────────────────────────────────────────────────────
 
-const EVID_COLOR: Record<string, string> = {
-  direct: 'bg-green-100 border-green-400 text-green-900',
-  indirect: 'bg-amber-100 border-amber-400 text-amber-900',
-  neutral: 'bg-stone-100 border-stone-300 text-stone-700',
-};
-const EVID_LABEL: Record<string, string> = {
-  direct: '👁️ Direct',
-  indirect: '📢 Indirect',
-  neutral: '⚪ Neutral',
-};
-
 function TenseTimeline() {
-  const [selected, setSelected] = useState<number>(3);
+  const [selected, setSelected] = useState<number>(() =>
+    Math.max(
+      0,
+      TENSE_ENTRIES.findIndex(t => t.label === 'Perfect')
+    )
+  );
   const t = TENSE_ENTRIES[selected];
 
   return (
@@ -193,12 +199,7 @@ function TenseTimeline() {
                 <div
                   className={`w-4 h-4 rounded-full border-2 transition-all ${
                     selected === i
-                      ? 'scale-150 ' +
-                        (te.evidentiality === 'direct'
-                          ? 'bg-green-500 border-green-600'
-                          : te.evidentiality === 'indirect'
-                            ? 'bg-amber-500 border-amber-600'
-                            : 'bg-mongol-500 border-mongol-600')
+                      ? 'scale-150 bg-mongol-500 border-mongol-600'
                       : 'bg-white border-stone-300 group-hover:border-stone-400'
                   }`}
                 />
@@ -220,7 +221,7 @@ function TenseTimeline() {
             initial="hidden"
             animate="show"
             transition={{ duration: 0.2 }}
-            className={`rounded-xl border-2 p-5 space-y-3 ${EVID_COLOR[t.evidentiality]}`}
+            className="rounded-xl border-2 p-5 space-y-3 bg-stone-100 border-stone-300 text-stone-700"
           >
             <div className="flex items-start justify-between gap-3 flex-wrap">
               <div>
@@ -228,9 +229,6 @@ function TenseTimeline() {
                 <p className="text-sm font-buryat text-stone-500">{t.buryad}</p>
               </div>
               <div className="flex gap-2">
-                <span className={`badge ${EVID_COLOR[t.evidentiality]}`}>
-                  {EVID_LABEL[t.evidentiality]}
-                </span>
                 <span className="badge bg-stone-100 border-stone-300 text-stone-700 capitalize">
                   {t.aspectuality}
                 </span>
@@ -262,57 +260,35 @@ function TenseTimeline() {
         </AnimatePresence>
       </div>
 
-      {/* Evidentiality deep-dive */}
+      {/* Past forms */}
       <div className="card space-y-4">
-        <h2 className="text-lg font-semibold text-stone-800">
-          Evidentiality — Grammaticalized Epistemics
-        </h2>
+        <h2 className="text-lg font-semibold text-stone-800">Three Past Forms</h2>
         <p className="text-sm text-stone-500">
-          Buryad grammatically encodes <em>how the speaker knows</em> what they are saying. This is
-          obligatory — every past-tense statement commits to an evidential source.
+          Written Buryad uses three past forms. In news text the perfect{' '}
+          <span className="font-buryat">-аа</span> and the participle{' '}
+          <span className="font-buryat">-һан</span> dominate;{' '}
+          <span className="font-buryat">-ба</span> is much rarer.
         </p>
-        <div className="grid md:grid-cols-2 gap-4">
-          <div className="rounded-xl bg-green-50 border border-green-200 p-4 space-y-3">
-            <div className="flex items-center gap-2">
-              <span className="text-2xl">👁️</span>
-              <div>
-                <p className="font-semibold text-green-800">
-                  Direct Evidence <span className="font-mono text-sm">-ба</span>
-                </p>
-                <p className="text-xs text-green-600">Speaker personally witnessed the event</p>
-              </div>
-            </div>
-            <div className="bg-white rounded-lg p-3 space-y-1">
-              <p className="font-buryat text-xl">Тэрэ ябаба.</p>
-              <p className="text-xs text-stone-400 font-mono">he go-PST.DIR</p>
-              <p className="text-sm italic text-stone-600">
-                "He went." <span className="text-green-600">(I saw it)</span>
+        <div className="grid sm:grid-cols-3 gap-3">
+          {[
+            { form: 'ябаа', suffix: '-аа', label: 'Perfect' },
+            { form: 'ябаһан', suffix: '-һан', label: 'Past participle' },
+            { form: 'ябаба', suffix: '-ба', label: 'Simple past' },
+          ].map(p => (
+            <div key={p.suffix} className="rounded-xl bg-stone-50 border border-stone-200 p-3">
+              <p className="text-xs text-stone-400">
+                {p.label} <span className="font-mono">{p.suffix}</span>
               </p>
+              <p className="font-buryat text-xl text-stone-800">{p.form}</p>
+              <p className="text-sm italic text-stone-500">'went'</p>
             </div>
-          </div>
-          <div className="rounded-xl bg-amber-50 border border-amber-200 p-4 space-y-3">
-            <div className="flex items-center gap-2">
-              <span className="text-2xl">📢</span>
-              <div>
-                <p className="font-semibold text-amber-800">
-                  Indirect Evidence <span className="font-mono text-sm">-лай</span>
-                </p>
-                <p className="text-xs text-amber-600">Speaker infers or reports hearsay</p>
-              </div>
-            </div>
-            <div className="bg-white rounded-lg p-3 space-y-1">
-              <p className="font-buryat text-xl">Тэрэ ябалай.</p>
-              <p className="text-xs text-stone-400 font-mono">he go-PST.INDIR</p>
-              <p className="text-sm italic text-stone-600">
-                "He (apparently) went." <span className="text-amber-600">(I infer / heard)</span>
-              </p>
-            </div>
-          </div>
+          ))}
         </div>
-        <div className="rounded-xl bg-stone-50 border border-stone-200 p-3 text-sm text-stone-500">
-          📌 English has NO grammatical equivalent — only lexical hedges like "apparently", "I heard
-          that", "it seems". In Buryad, the choice is <strong>obligatory every time</strong> you use
-          a past tense.
+        <div className="rounded-xl bg-amber-50 border border-amber-200 p-3 text-sm text-amber-800">
+          🔎 <strong>Under review:</strong> how these three differ in meaning (e.g. whether one
+          marks witnessed vs reported events) is being checked with a native speaker. An earlier
+          version of this page described an "evidential past in -лай"; that form does not occur in
+          the corpus and has been removed.
         </div>
       </div>
 
@@ -331,8 +307,8 @@ function TenseTimeline() {
             </thead>
             <tbody>
               {[
-                { pos: 'ябана', neg: 'ябадагүй', pat: 'HAB + -гүй', tr: 'does not go' },
-                { pos: 'ябаба', neg: 'ябаагүй', pat: 'root-aa + -гүй', tr: 'did not go' },
+                { pos: 'ябадаг', neg: 'ябадаггүй', pat: 'HAB + -гүй', tr: 'does not go' },
+                { pos: 'ябаа', neg: 'ябаагүй', pat: 'PERF + -гүй', tr: 'did not go' },
                 { pos: 'ябаха', neg: 'ябахагүй', pat: 'INF + -гүй', tr: 'will not go' },
                 {
                   pos: 'яба!',
@@ -353,8 +329,59 @@ function TenseTimeline() {
         </div>
         <p className="text-xs text-stone-400">
           The negator <span className="font-buryat font-bold text-red-700">-гүй</span> is a suffix
-          that attaches to the habitual stem for present negation, or directly to the verbal noun
-          for past/future.
+          that attaches to the habitual (keeping both г: ябадаггүй), the perfect (ябаагүй) or the
+          infinitive (ябахагүй). Person endings follow it: ябаагүйбди "we did not go".
+        </p>
+      </div>
+    </div>
+  );
+}
+
+// ─── Person Endings ───────────────────────────────────────────────────────
+
+function PersonEndings() {
+  return (
+    <div className="space-y-6">
+      <div className="card space-y-4">
+        <h2 className="text-lg font-semibold text-stone-800">Person Endings</h2>
+        <p className="text-sm text-stone-500">
+          Unlike Khalkha Mongolian, Buryad marks the subject's person on the verb. The ending goes
+          last, after tense and negation:{' '}
+          <span className="font-buryat text-stone-700">яба-аа-гүй-бди</span> "we did not go". The
+          pronoun can be dropped because the ending already identifies the subject.
+        </p>
+        <div className="overflow-x-auto">
+          <table className="text-sm w-full">
+            <thead>
+              <tr className="border-b-2 border-stone-200">
+                <th className="text-left py-2 pr-4 text-stone-500 font-normal">Person</th>
+                <th className="text-left py-2 pr-4 text-stone-500 font-normal">Pronoun</th>
+                <th className="text-left py-2 pr-4 text-stone-500 font-normal">Ending</th>
+                <th className="text-left py-2 pr-4 text-stone-500 font-normal">Present</th>
+                <th className="text-left py-2 pr-4 text-stone-500 font-normal">Perfect</th>
+                <th className="text-left py-2 text-stone-500 font-normal">In the corpus</th>
+              </tr>
+            </thead>
+            <tbody>
+              {PERSON_ENDINGS.map(p => (
+                <tr key={p.person} className="border-b border-stone-100">
+                  <td className="py-2.5 pr-4 text-stone-600 font-medium">{p.person}</td>
+                  <td className="py-2.5 pr-4 font-buryat text-stone-500">{p.pronoun}</td>
+                  <td className="py-2.5 pr-4 font-buryat font-bold text-purple-700">{p.suffix}</td>
+                  <td className="py-2.5 pr-4 font-buryat text-lg text-stone-800">{p.present}</td>
+                  <td className="py-2.5 pr-4 font-buryat text-lg text-stone-800">{p.perfect}</td>
+                  <td className="py-2.5 font-buryat text-xs text-stone-500">
+                    {p.attested.join(', ')}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-stone-400">
+          "In the corpus" lists real forms from burunen.ru news articles. The Present and Perfect
+          columns apply the same endings to <span className="font-buryat">яба-</span> "go"; forms
+          not listed in the corpus column are built by rule.
         </p>
       </div>
     </div>
@@ -559,11 +586,12 @@ const FORM_ROWS: Array<{
   color: string;
 }> = [
   { key: 'presentFuture', label: 'Present-Future', category: 'Finite', color: 'text-mongol-700' },
-  { key: 'simplePast', label: 'Simple Past (direct)', category: 'Finite', color: 'text-green-700' },
+  { key: 'simplePast', label: 'Simple Past (-ба)', category: 'Finite', color: 'text-green-700' },
+  { key: 'perfect', label: 'Perfect (-аа)', category: 'Finite', color: 'text-green-700' },
   {
-    key: 'evidentialPast',
-    label: 'Evid. Past (indirect)',
-    category: 'Finite',
+    key: 'pastParticiple',
+    label: 'Past Participle (-һан)',
+    category: 'Nominal',
     color: 'text-amber-700',
   },
   { key: 'habitual', label: 'Habitual', category: 'Finite', color: 'text-stone-700' },
@@ -719,7 +747,8 @@ function Conjugator() {
 const TABS: Array<{ id: Tab; label: string; icon: string }> = [
   { id: 'anatomy', label: 'Verb Anatomy', icon: '🧬' },
   { id: 'tenses', label: 'Tenses', icon: '⏱️' },
-  { id: 'voice', label: 'Voice & Voice', icon: '🔄' },
+  { id: 'person', label: 'Person', icon: '👤' },
+  { id: 'voice', label: 'Voice & Valency', icon: '🔄' },
   { id: 'converbs', label: 'Converbs', icon: '🔗' },
   { id: 'conjugator', label: 'Conjugator', icon: '⚡' },
   { id: 'builder', label: 'Verb Builder', icon: '🔤' },
@@ -733,7 +762,7 @@ export default function Verbs() {
       <motion.div variants={fade} initial="hidden" animate="show" transition={{ duration: 0.4 }}>
         <h1 className="text-3xl font-bold text-stone-900">Verb System</h1>
         <p className="text-stone-500 mt-1">
-          Morpheme anatomy, tense–evidentiality, voice derivation, converbs, and interactive
+          Morpheme anatomy, tense, person endings, voice derivation, converbs, and interactive
           conjugation.
         </p>
       </motion.div>
@@ -764,6 +793,7 @@ export default function Verbs() {
         >
           {tab === 'anatomy' && <VerbAnatomy />}
           {tab === 'tenses' && <TenseTimeline />}
+          {tab === 'person' && <PersonEndings />}
           {tab === 'voice' && <VoiceDerivation />}
           {tab === 'converbs' && <ConverbSection />}
           {tab === 'conjugator' && <Conjugator />}

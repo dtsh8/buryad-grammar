@@ -1,3 +1,9 @@
+## [1.8.3](https://github.com/dtsh8/buryad-grammar/compare/v1.8.2...v1.8.3) (2026-10-28)
+
+### 🐛 Bug Fixes
+
+* **tabs:** remove the stray vertical scrollbar beside tab rows ([a9047e9](https://github.com/dtsh8/buryad-grammar/commit/a9047e98f830cd52e4c2996ec865d335180e34fa))
+
 ## [1.8.2](https://github.com/dtsh8/buryad-grammar/compare/v1.8.1...v1.8.2) (2026-10-28)
 
 ### 🐛 Bug Fixes

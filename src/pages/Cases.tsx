@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
-import { CASES, type GrammarCase } from '../data/grammar';
+import { CASES, POSSESSIVE_SUFFIXES, type GrammarCase } from '../data/grammar';
 
 const fade = { hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } };
 
@@ -190,6 +190,46 @@ export default function Cases() {
             </tbody>
           </table>
         </div>
+      </div>
+
+      {/* Possessive suffixes */}
+      <div className="card space-y-4">
+        <h2 className="text-lg font-semibold text-stone-800">Possessive Suffixes</h2>
+        <p className="text-sm text-stone-500">
+          The possessor's person is a suffix on the noun. It comes <em>after</em> the case suffix:{' '}
+          <span className="font-buryat text-stone-700">нютаг-та-мнай</span> "in our homeland"
+          (homeland-DAT-1PL).
+        </p>
+        <div className="overflow-x-auto">
+          <table className="text-sm w-full">
+            <thead>
+              <tr className="border-b-2 border-stone-200">
+                <th className="text-left py-2 pr-4 text-stone-500 font-normal">Person</th>
+                <th className="text-left py-2 pr-4 text-stone-500 font-normal">Suffix</th>
+                <th className="text-left py-2 pr-4 text-stone-500 font-normal">Example</th>
+                <th className="text-left py-2 pr-4 text-stone-500 font-normal">Gloss</th>
+                <th className="text-left py-2 text-stone-500 font-normal">Translation</th>
+              </tr>
+            </thead>
+            <tbody>
+              {POSSESSIVE_SUFFIXES.map(p => (
+                <tr key={p.person} className="border-b border-stone-100">
+                  <td className="py-2.5 pr-4 text-stone-600 font-medium">{p.person}</td>
+                  <td className="py-2.5 pr-4 font-buryat text-stone-700">{p.suffix}</td>
+                  <td className="py-2.5 pr-4 font-buryat text-lg text-buryat-700 font-semibold">
+                    {p.example}
+                  </td>
+                  <td className="py-2.5 pr-4 font-mono text-xs text-stone-400">{p.gloss}</td>
+                  <td className="py-2.5 italic text-stone-500">'{p.translation}'</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-stone-400">
+          All examples occur in the burunen.ru news corpus. The reflexive suffix refers back to the
+          subject: <span className="font-buryat">нютагтаа</span> "in one's own homeland".
+        </p>
       </div>
 
       {/* Tip */}

@@ -321,8 +321,12 @@ export const VERB_FORMS: VerbForm[] = [
   {
     label: 'Imperative',
     suffix: '(bare stem) / -г / -гты',
-    example: { verb: 'яба-', form: 'яба! / ябаг! / ябагты', translation: 'Go! (3 registers)' },
-    note: 'Three registers: bare stem (direct/to children), -г (peer/same-age), -гты (formal/to elders).',
+    example: {
+      verb: 'яба-',
+      form: 'яба! / ябаг! / ябагты',
+      translation: 'Go! (3 imperative forms)',
+    },
+    note: 'Three imperative forms: bare stem (direct 2nd-person), -г (jussive/permissive — "Let him/her do", "Пусть…"), -гты (formal/to elders).',
   },
   {
     label: 'Negative',
@@ -362,9 +366,9 @@ export interface VerbParadigm {
     simplePast: string;
     evidentialPast: string;
     habitual: string;
-    imperative: string; // bare stem — very direct / to children
-    peerImperative: string; // suffix -г — to someone of same age
-    politeImperative: string; // suffix -гты — to elders / formal
+    imperative: string; // bare stem — direct 2nd-person command
+    jussive: string; // suffix -г — permissive/optative: "Let him/her…" / "Пусть…"
+    politeImperative: string; // suffix -гты — formal 2nd-person, to elders
     infinitive: string;
     negPresentFuture: string;
     negPast: string;
@@ -388,7 +392,7 @@ export const VERB_PARADIGMS: VerbParadigm[] = [
       evidentialPast: 'ябалай',
       habitual: 'ябадаг',
       imperative: 'яба!',
-      peerImperative: 'ябаг!',
+      jussive: 'ябаг!',
       politeImperative: 'ябагты',
       infinitive: 'ябаха',
       negPresentFuture: 'ябадагүй',
@@ -411,7 +415,7 @@ export const VERB_PARADIGMS: VerbParadigm[] = [
       evidentialPast: 'уншалай',
       habitual: 'уншадаг',
       imperative: 'унша!',
-      peerImperative: 'уншаг!',
+      jussive: 'уншаг!',
       politeImperative: 'уншагты',
       infinitive: 'уншаха',
       negPresentFuture: 'уншадагүй',
@@ -434,7 +438,7 @@ export const VERB_PARADIGMS: VerbParadigm[] = [
       evidentialPast: 'байлай',
       habitual: 'байдаг',
       imperative: 'бай!',
-      peerImperative: 'байг!',
+      jussive: 'байг!',
       politeImperative: 'байгты',
       infinitive: 'байха',
       negPresentFuture: 'байдагүй',
@@ -457,7 +461,7 @@ export const VERB_PARADIGMS: VerbParadigm[] = [
       evidentialPast: 'эдеэлэй',
       habitual: 'эдидэг',
       imperative: 'эдэ!',
-      peerImperative: 'эдэг!',
+      jussive: 'эдэг!',
       politeImperative: 'эдэгты',
       infinitive: 'эдеэхэ',
       negPresentFuture: 'эдидэгүй',

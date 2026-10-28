@@ -1,3 +1,9 @@
+## [1.5.0](https://github.com/dtsh8/buryad-grammar/compare/v1.4.2...v1.5.0) (2026-10-28)
+
+### ✨ New Features
+
+* **practice:** conjugation and case drills ([c43055a](https://github.com/dtsh8/buryad-grammar/commit/c43055a79d82bd4f19f203fd8e592d67ec785c75))
+
 ## [1.4.2](https://github.com/dtsh8/buryad-grammar/compare/v1.4.1...v1.4.2) (2026-10-28)
 
 ### 🐛 Bug Fixes

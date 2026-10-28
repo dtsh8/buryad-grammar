@@ -188,7 +188,9 @@ function TenseTimeline() {
         <p className="text-sm text-stone-500">
           Buryad has no suffix that means only “now”: <span className="font-buryat">-на</span>{' '}
           covers now and the future, and “right now, in progress” is the phrase{' '}
-          <span className="font-buryat">-жа байна</span>. Pick a row for details.
+          <span className="font-buryat">-жа байна</span>. The future alone is{' '}
+          <span className="font-buryat">-ха</span> (<span className="font-buryat">ябахаб</span> “I
+          will go”). Pick a row for details.
         </p>
 
         {/* Timeline: one row per tense, placed in time */}
@@ -212,11 +214,13 @@ function TenseTimeline() {
                 <h3 className="text-lg font-bold text-stone-900">{t.label}</h3>
                 <p className="text-sm font-buryat text-stone-500">{t.buryad}</p>
               </div>
-              <div className="flex gap-2">
-                <span className="badge bg-stone-100 border-stone-300 text-stone-700 capitalize">
-                  {t.aspectuality}
-                </span>
-              </div>
+              {t.aspectuality !== 'n/a' && (
+                <div className="flex gap-2">
+                  <span className="badge bg-stone-100 border-stone-300 text-stone-700 capitalize">
+                    {t.aspectuality}
+                  </span>
+                </div>
+              )}
             </div>
             <div className="grid sm:grid-cols-2 gap-2">
               {[
@@ -354,6 +358,7 @@ function PersonEndings() {
                 <th className="text-left py-2 pr-4 text-stone-500 font-normal">Present</th>
                 <th className="text-left py-2 pr-4 text-stone-500 font-normal">Past -ба</th>
                 <th className="text-left py-2 pr-4 text-stone-500 font-normal">Perfect</th>
+                <th className="text-left py-2 pr-4 text-stone-500 font-normal">Future -ха</th>
                 <th className="text-left py-2 text-stone-500 font-normal">Attested</th>
               </tr>
             </thead>
@@ -368,6 +373,9 @@ function PersonEndings() {
                   <td className="py-2.5 pr-4 font-buryat text-lg text-stone-800">
                     {p.perfect ?? '—'}
                   </td>
+                  <td className="py-2.5 pr-4 font-buryat text-lg text-stone-800">
+                    {p.future ?? '—'}
+                  </td>
                   <td className="py-2.5 font-buryat text-xs text-stone-500">
                     {p.attested.join(', ')}
                   </td>
@@ -381,7 +389,8 @@ function PersonEndings() {
           endings to <span className="font-buryat">яба-</span> "go"; forms not listed as attested
           are built by rule. The textbook also gives -м and -мди as variants of -б and -бди. The 3pl
           perfect is left blank because ябаа + -д would look like the converb ябаад; 3pl -д is shown
-          on the present and the -ба past, as in the textbook.
+          on the present and the -ба past, as in the textbook. The future has no 3pl -д at all: the
+          Buryat National Corpus has ябахаб 114 times but no ябахад.
         </p>
       </div>
     </div>

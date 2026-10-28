@@ -22,11 +22,12 @@ export function attestationForms(lexicon: Lexeme[]): string[] {
       const root = extractRoot(l.buryad);
       const c = conjugate(root);
       forms.push(...Object.values(c));
-      // Practice conjugation answers: present, -ба past and perfect + person ending
+      // Practice conjugation answers: present, -ба past, perfect and future + person ending
       for (const p of PERSON_ENDINGS) {
         const ending = p.suffix === '∅' ? '' : p.suffix.replace(/^-/, '');
         forms.push(c.prs + ending, c.pst + ending);
         if (p.perfect) forms.push(c.perf + ending);
+        if (p.future) forms.push(c.inf + ending);
       }
       for (const d of deriveAll(root, 'x')) forms.push(d.inf, d.prs, d.pst, d.neg);
     } else if (l.category === 'noun') {

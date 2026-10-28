@@ -64,6 +64,9 @@ describe('conjugation drill', () => {
       expect(answers).toContain(form);
     }
     expect(answers).not.toContain('ябаад');
+    // Future -ха + ending (BNC: ябахаб 114, ябахабди 60); no 3pl, and no bare 3sg question
+    for (const form of ['ябахаб', 'ябахаш', 'ябахабди', 'ябахат']) expect(answers).toContain(form);
+    expect(answers).not.toContain('ябахад');
   });
 
   it('builds answers as tense form + person ending', () => {

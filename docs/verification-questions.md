@@ -103,6 +103,17 @@ The Verb Builder applies every voice to every verb, so it also builds reciprocal
 and passives that no text uses (*унтагдаха* "be slept", *уншалдаха*). The suffixes are right;
 whether such a verb exists is lexical.
 
+### Future in -ха (2026-10-28)
+
+The textbook (p. 40, "Будущее время") gives *ерэхэ* "придёт", *уншаха* "будет читать": the
+infinitive form ending a sentence is a future. The Buryat National Corpus confirms it is finite,
+because it takes person endings: 1sg *-хаб/-хэб/-хоб* 6,901 tokens (*ерэхэб* 180, *ошохоб* 143,
+*ябахаб* 114), 1pl *-хабди* 2,260 (*ошохобди* 86, *ябахабди* 60), 2sg *ябахаш* 63, 2pl
+*ябахат* 14, negative 1sg *-хагүйб* 1,119 (*ошохогүйб* 90, *мартахагүйб* 51). No 3pl *-д*
+(*ябахад, ерэхэд, ошоход*: 0). Sentences: «Харин би ябахаб», «Ошохобди хоюулан», «Шамайе
+мартахагүйб». The app now has a Future tense, a Future column in the person table and a Future
+option in the conjugation drill.
+
 ### Declension engine (2026-10-28)
 
 `src/utils/nounMorphology.ts` builds the six oblique cases from the textbook rules (pp. 31,

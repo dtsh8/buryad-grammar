@@ -337,7 +337,7 @@ export const VERB_FORMS: VerbForm[] = [
     label: 'Infinitive',
     suffix: '-ха/-хэ/-хо',
     example: { verb: 'ябаха', form: 'ябаха', translation: 'to go' },
-    note: 'Citation form. Combines with auxiliary verbs.',
+    note: 'Citation form; with auxiliary verbs; and, ending a sentence, the future tense: ябахаб "I will go" (see Tenses).',
   },
   {
     label: 'Present-Future',
@@ -846,6 +846,20 @@ export const TENSE_ENTRIES: TenseEntry[] = [
     ],
     note: 'One form for present and future: ябана "goes, is going, will go". Context decides; for "right now, in progress" Buryad adds байна: ябажа байна.',
   },
+  {
+    label: 'Future',
+    corpusQuery: '*хаб',
+    buryad: '—',
+    suffix: { back: '-ха', front: '-хэ / -хо' },
+    timeline: { kind: 'span', from: 0.5, to: 2.4 },
+    aspectuality: 'n/a',
+    examples: [
+      { form: 'ябахаб', translation: 'I will go' },
+      { form: 'ошохобди', translation: 'we will go' },
+      { form: 'мартахагүйб', translation: "I won't forget" },
+    ],
+    note: 'The infinitive form ending a sentence is a future tense: Харин би ябахаб "But I will go" (textbook p. 40). It takes person endings (Buryat National Corpus: ябахаб 114, ошохобди 86, ябахаш 63; no 3pl -д) and negates as -хагүй: ошохогүйб "I won\'t go". Unlike -на it points only ahead. Grammars also call it the future participle (Skribnik & Darzhaeva 2020: PC.FUT).',
+  },
 ];
 
 // ─── Person & Possession ──────────────────────────────────────────────────
@@ -861,6 +875,9 @@ export interface PersonEnding {
   present: string; // ябана + ending
   past: string; // ябаба + ending
   perfect?: string; // ябаа + ending; 3pl ябаа-д would merge with the converb ябаад
+  // ябаха + ending. Buryat National Corpus: ябахаб 114, ябахаш 63, ябахабди 60, ябахат 14;
+  // no 3pl -д (ябахад, ерэхэд, ошоход: 0).
+  future?: string;
   attested: string[];
 }
 
@@ -870,6 +887,7 @@ export const PERSON_ENDINGS: PersonEnding[] = [
     pronoun: 'би',
     suffix: '-б',
     present: 'ябанаб',
+    future: 'ябахаб',
     past: 'ябабаб',
     perfect: 'ябааб',
     attested: ['байнаб', 'хүргэнэб', 'байгааб', 'ябааб', 'абтабаб'],
@@ -879,6 +897,7 @@ export const PERSON_ENDINGS: PersonEnding[] = [
     pronoun: 'ши',
     suffix: '-ш',
     present: 'ябанаш',
+    future: 'ябахаш',
     past: 'ябабаш',
     perfect: 'ябааш',
     attested: ['ойлгонош'],
@@ -888,6 +907,7 @@ export const PERSON_ENDINGS: PersonEnding[] = [
     pronoun: 'тэрэ',
     suffix: '∅',
     present: 'ябана',
+    future: 'ябаха',
     past: 'ябаба',
     perfect: 'ябаа',
     attested: ['ябана', 'ябаа'],
@@ -897,6 +917,7 @@ export const PERSON_ENDINGS: PersonEnding[] = [
     pronoun: 'бидэ',
     suffix: '-бди',
     present: 'ябанабди',
+    future: 'ябахабди',
     past: 'ябабабди',
     perfect: 'ябаабди',
     attested: ['байнабди', 'мэдэнэбди', 'ябаабди', 'хэлэдэгбди', 'ябаагүйбди'],
@@ -906,6 +927,7 @@ export const PERSON_ENDINGS: PersonEnding[] = [
     pronoun: 'та',
     suffix: '-т',
     present: 'ябанат',
+    future: 'ябахат',
     past: 'ябабат',
     perfect: 'ябаат',
     attested: ['мэдэнэт', 'байгаат'],

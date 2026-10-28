@@ -3,8 +3,13 @@
 @tailwind utilities;
 
 @layer base {
-  html {
-    scroll-behavior: smooth;
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+  :focus-visible {
+    @apply outline-none ring-2 ring-buryat-400 ring-offset-2 ring-offset-white;
   }
   body {
     @apply bg-stone-50 text-stone-800 font-sans;

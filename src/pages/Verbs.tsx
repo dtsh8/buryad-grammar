@@ -8,9 +8,10 @@ import {
   PERSON_ENDINGS,
   type VerbParadigm,
 } from '../data/grammar';
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import VerbBuilder from '../components/VerbBuilder';
 import CorpusLink from '../components/CorpusLink';
+import Tabs from '../components/Tabs';
+import { tabPanelProps, useTab, type TabDef } from '../hooks/useTab';
 
 const fade = { hidden: { opacity: 0, y: 14 }, show: { opacity: 1, y: 0 } };
 
@@ -45,7 +46,7 @@ function MorphemeBlock({
       >
         {text}
       </div>
-      <span className="text-[10px] text-stone-400 mt-1 font-mono uppercase tracking-wide">
+      <span className="text-[10px] text-stone-500 mt-1 font-mono uppercase tracking-wide">
         {label}
       </span>
     </div>
@@ -115,7 +116,7 @@ function VerbAnatomy() {
         <div className="space-y-5">
           {examples.map(ex => (
             <div key={ex.label} className="space-y-2">
-              <p className="text-xs font-semibold text-stone-400 uppercase tracking-wide">
+              <p className="text-xs font-semibold text-stone-500 uppercase tracking-wide">
                 {ex.label}
               </p>
               <div className="flex items-end gap-1 flex-wrap">
@@ -127,7 +128,7 @@ function VerbAnatomy() {
                     )}
                   </div>
                 ))}
-                <span className="text-stone-400 ml-2 mb-3 text-sm">
+                <span className="text-stone-500 ml-2 mb-3 text-sm">
                   → <span className="font-buryat text-stone-700 font-medium">{ex.translation}</span>
                 </span>
               </div>
@@ -185,7 +186,7 @@ function TenseTimeline() {
           <div className="absolute top-5 left-0 right-0 h-0.5 bg-stone-200" />
           <div className="flex justify-between">
             {(['PAST', 'NOW', 'FUTURE'] as const).map(l => (
-              <span key={l} className="text-xs text-stone-400 font-semibold">
+              <span key={l} className="text-xs text-stone-500 font-semibold">
                 {l}
               </span>
             ))}
@@ -195,7 +196,10 @@ function TenseTimeline() {
               <button
                 key={te.label}
                 onClick={() => setSelected(i)}
-                className={`flex flex-col items-center gap-1 group`}
+                aria-pressed={selected === i}
+                title={te.label}
+                aria-label={`${te.label} (${te.suffix.back})`}
+                className="flex flex-col items-center gap-1 group"
               >
                 <div
                   className={`w-4 h-4 rounded-full border-2 transition-all ${
@@ -205,7 +209,7 @@ function TenseTimeline() {
                   }`}
                 />
                 <span
-                  className={`text-xs font-medium transition-colors ${selected === i ? 'text-stone-800' : 'text-stone-400 group-hover:text-stone-600'}`}
+                  className={`text-xs font-medium transition-colors ${selected === i ? 'text-stone-800' : 'text-stone-500 group-hover:text-stone-600'}`}
                 >
                   {te.suffix.back}
                 </span>
@@ -241,7 +245,7 @@ function TenseTimeline() {
                 { label: 'Suffix (front)', val: t.suffix.front },
               ].map(row => (
                 <div key={row.label} className="bg-white/60 rounded-lg p-2">
-                  <p className="text-xs text-stone-400">{row.label}</p>
+                  <p className="text-xs text-stone-500">{row.label}</p>
                   <p className="font-mono font-bold text-stone-800">{row.val}</p>
                 </div>
               ))}
@@ -279,7 +283,7 @@ function TenseTimeline() {
             { form: 'ябанхай', suffix: '-нхай', label: 'Resultative', gloss: 'went long ago' },
           ].map(p => (
             <div key={p.suffix} className="rounded-xl bg-stone-50 border border-stone-200 p-3">
-              <p className="text-xs text-stone-400">
+              <p className="text-xs text-stone-500">
                 {p.label} <span className="font-mono">{p.suffix}</span>
               </p>
               <p className="font-buryat text-xl text-stone-800">{p.form}</p>
@@ -329,14 +333,14 @@ function TenseTimeline() {
                 <tr key={row.neg} className="border-b border-stone-100">
                   <td className="py-2.5 pr-4 font-buryat text-stone-700">{row.pos}</td>
                   <td className="py-2.5 pr-4 font-buryat font-bold text-red-700">{row.neg}</td>
-                  <td className="py-2.5 pr-4 font-mono text-xs text-stone-400">{row.pat}</td>
+                  <td className="py-2.5 pr-4 font-mono text-xs text-stone-500">{row.pat}</td>
                   <td className="py-2.5 italic text-stone-500">{row.tr}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-        <p className="text-xs text-stone-400">
+        <p className="text-xs text-stone-500">
           The negator <span className="font-buryat font-bold text-red-700">-гүй</span> is a suffix
           that attaches to the habitual (keeping both г: ябадаггүй), the perfect (ябаагүй), the past
           (ерэбэгүй), the present (ябанагүй) or the infinitive (ябахагүй). Person endings follow it:
@@ -393,7 +397,7 @@ function PersonEndings() {
             </tbody>
           </table>
         </div>
-        <p className="text-xs text-stone-400">
+        <p className="text-xs text-stone-500">
           "Attested" lists forms found in Buryad news texts. The other columns apply the same
           endings to <span className="font-buryat">яба-</span> "go"; forms not listed as attested
           are built by rule. The textbook also gives -м and -мди as variants of -б and -бди. The 3pl
@@ -431,7 +435,7 @@ function VoiceDerivation() {
               <p className="text-sm text-stone-600 mt-1">{d.description}</p>
             </div>
             <div className="text-right">
-              <p className="text-xs text-stone-400">English equivalent</p>
+              <p className="text-xs text-stone-500">English equivalent</p>
               <p className="text-sm font-medium text-stone-700 italic">{d.english}</p>
             </div>
           </div>
@@ -439,13 +443,13 @@ function VoiceDerivation() {
           {/* Before / After diagram */}
           <div className="flex items-center gap-3 flex-wrap">
             <div className="bg-white rounded-xl px-4 py-3 text-center border border-stone-200 min-w-[110px]">
-              <p className="text-xs text-stone-400 mb-0.5">Base</p>
+              <p className="text-xs text-stone-500 mb-0.5">Base</p>
               <p className="font-buryat text-lg font-bold text-stone-800">{d.example.base}</p>
               <p className="text-xs text-stone-500 italic">{d.example.baseGloss}</p>
             </div>
             <div className="flex flex-col items-center">
-              <span className="text-2xl text-stone-400">→</span>
-              <code className="text-xs text-stone-400 font-mono">
+              <span className="text-2xl text-stone-500">→</span>
+              <code className="text-xs text-stone-500 font-mono">
                 {d.suffix.split('/')[0].trim()}
               </code>
             </div>
@@ -479,7 +483,7 @@ function VoiceDerivation() {
           ))}
           <div className="ml-2 mb-1">
             <p className="font-buryat text-xl text-stone-800">= ябуулагдана</p>
-            <p className="text-xs text-stone-400 italic">"is (being) made to go"</p>
+            <p className="text-xs text-stone-500 italic">"is (being) made to go"</p>
           </div>
         </div>
       </div>
@@ -533,11 +537,11 @@ function ConverbSection() {
                   <p className="font-buryat font-bold">{s.text}</p>
                   <p className="text-xs font-mono opacity-70">{s.label}</p>
                 </div>
-                {i < arr.length - 1 && <span className="text-stone-400 font-bold">→</span>}
+                {i < arr.length - 1 && <span className="text-stone-500 font-bold">→</span>}
               </div>
             ))}
           </div>
-          <p className="text-xs text-stone-400 mt-2 italic">
+          <p className="text-xs text-stone-500 mt-2 italic">
             "Having got up, having washed, eating — (he) went."
           </p>
         </div>
@@ -549,6 +553,7 @@ function ConverbSection() {
           <div key={cv.label} className={`rounded-xl border-2 overflow-hidden ${cv.color}`}>
             <button
               onClick={() => setOpen(open === cv.label ? '' : cv.label)}
+              aria-expanded={open === cv.label}
               className="w-full flex items-center justify-between px-5 py-3"
             >
               <div className="flex items-center gap-3">
@@ -558,7 +563,8 @@ function ConverbSection() {
                 </code>
               </div>
               <span
-                className={`text-stone-400 transition-transform ${open === cv.label ? 'rotate-180' : ''}`}
+                aria-hidden="true"
+                className={`text-stone-500 transition-transform ${open === cv.label ? 'rotate-180' : ''}`}
               >
                 ▾
               </span>
@@ -574,13 +580,13 @@ function ConverbSection() {
                 >
                   <div className="px-5 pb-4 space-y-3 border-t border-stone-200/50">
                     <p className="text-sm text-stone-600 mt-3">{cv.semantics}</p>
-                    <p className="text-xs text-stone-400">
+                    <p className="text-xs text-stone-500">
                       <span className="font-semibold">English parallel:</span> {cv.englishParallel}
                     </p>
                     {cv.examples.map(ex => (
                       <div key={ex.buryad} className="bg-white rounded-xl p-3 space-y-1">
                         <p className="font-buryat text-base text-stone-800">{ex.buryad}</p>
-                        <p className="text-xs font-mono text-stone-400">{ex.gloss}</p>
+                        <p className="text-xs font-mono text-stone-500">{ex.gloss}</p>
                         <p className="text-sm italic text-stone-600">'{ex.translation}'</p>
                       </div>
                     ))}
@@ -625,7 +631,7 @@ const FORM_ROWS: Array<{
     key: 'politeImperative',
     label: 'Formal imperative (-гты)',
     category: 'Mood',
-    color: 'text-red-400',
+    color: 'text-rose-600',
   },
   { key: 'infinitive', label: 'Infinitive', category: 'Non-fin.', color: 'text-purple-700' },
   { key: 'negPresentFuture', label: 'Neg. Present', category: 'Negation', color: 'text-red-700' },
@@ -656,6 +662,7 @@ function Conjugator() {
             <button
               key={vp.infinitive}
               onClick={() => setVerbIdx(i)}
+              aria-pressed={verbIdx === i}
               className={`px-4 py-2 rounded-xl border-2 transition-all text-sm font-medium ${
                 verbIdx === i
                   ? 'border-buryat-500 bg-buryat-50 text-buryat-800'
@@ -663,7 +670,7 @@ function Conjugator() {
               }`}
             >
               <span className="font-buryat mr-1">{vp.infinitive}</span>
-              <span className="text-stone-400 text-xs">— {vp.meaning}</span>
+              <span className="text-stone-500 text-xs">— {vp.meaning}</span>
             </button>
           ))}
         </div>
@@ -674,6 +681,7 @@ function Conjugator() {
             <button
               key={cat}
               onClick={() => setFilter(cat)}
+              aria-pressed={filter === cat}
               className={`px-3 py-1 rounded-full text-xs font-medium transition-colors ${
                 filter === cat
                   ? 'bg-buryat-100 text-buryat-800'
@@ -699,7 +707,7 @@ function Conjugator() {
                 <span className="font-buryat text-2xl font-bold text-stone-800">
                   {vp.infinitive}
                 </span>
-                <span className="text-stone-400 ml-2 italic">'{vp.meaning}'</span>
+                <span className="text-stone-500 ml-2 italic">'{vp.meaning}'</span>
               </div>
               <span
                 className={`badge ${vp.harmony === 'back' ? 'badge-amber' : 'badge-blue'} ml-auto`}
@@ -707,55 +715,34 @@ function Conjugator() {
                 {vp.harmony} harmony
               </span>
             </div>
-            <table className="text-sm w-full">
-              <thead>
-                <tr className="border-b-2 border-stone-200">
-                  <th className="text-left py-2 pr-4 text-stone-400 font-normal">Form</th>
-                  <th className="text-left py-2 pr-4 text-stone-400 font-normal">Category</th>
-                  <th className="text-left py-2 text-stone-400 font-normal">Буряад</th>
-                </tr>
-              </thead>
-              <tbody>
-                {rows.map(row => (
-                  <tr key={row.key} className="border-b border-stone-100 hover:bg-stone-50">
-                    <td className="py-2.5 pr-4 text-stone-600 font-medium">{row.label}</td>
-                    <td className="py-2.5 pr-4">
-                      <span className="badge bg-stone-100 border-stone-200 text-stone-600 text-xs">
-                        {row.category}
-                      </span>
-                    </td>
-                    <td className={`py-2.5 font-buryat text-xl font-semibold ${row.color}`}>
-                      {vp.forms[row.key]}
-                    </td>
+            <div className="overflow-x-auto">
+              <table className="text-sm w-full">
+                <thead>
+                  <tr className="border-b-2 border-stone-200">
+                    <th className="text-left py-2 pr-4 text-stone-500 font-normal">Form</th>
+                    <th className="text-left py-2 pr-4 text-stone-500 font-normal">Category</th>
+                    <th className="text-left py-2 text-stone-500 font-normal">Буряад</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {rows.map(row => (
+                    <tr key={row.key} className="border-b border-stone-100 hover:bg-stone-50">
+                      <td className="py-2.5 pr-4 text-stone-600 font-medium">{row.label}</td>
+                      <td className="py-2.5 pr-4">
+                        <span className="badge bg-stone-100 border-stone-200 text-stone-600 text-xs">
+                          {row.category}
+                        </span>
+                      </td>
+                      <td className={`py-2.5 font-buryat text-xl font-semibold ${row.color}`}>
+                        {vp.forms[row.key]}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </motion.div>
         </AnimatePresence>
-      </div>
-
-      {/* Distribution chart */}
-      <div className="card">
-        <h3 className="text-sm font-semibold text-stone-500 uppercase tracking-wide mb-4">
-          Form Count by Category
-        </h3>
-        <ResponsiveContainer width="100%" height={160}>
-          <BarChart
-            data={categories
-              .filter(c => c !== 'All')
-              .map(cat => ({
-                cat,
-                count: FORM_ROWS.filter(r => r.category === cat).length,
-              }))}
-            margin={{ left: -20 }}
-          >
-            <XAxis dataKey="cat" tick={{ fontSize: 11 }} />
-            <YAxis allowDecimals={false} tick={{ fontSize: 11 }} />
-            <Tooltip />
-            <Bar dataKey="count" radius={[4, 4, 0, 0]} fill="#c8851a" />
-          </BarChart>
-        </ResponsiveContainer>
       </div>
     </div>
   );
@@ -763,7 +750,7 @@ function Conjugator() {
 
 // ─── Main Page ─────────────────────────────────────────────────────────────
 
-const TABS: Array<{ id: Tab; label: string; icon: string }> = [
+const TABS: Array<TabDef<Tab>> = [
   { id: 'anatomy', label: 'Verb Anatomy', icon: '🧬' },
   { id: 'tenses', label: 'Tenses', icon: '⏱️' },
   { id: 'person', label: 'Person', icon: '👤' },
@@ -774,7 +761,7 @@ const TABS: Array<{ id: Tab; label: string; icon: string }> = [
 ];
 
 export default function Verbs() {
-  const [tab, setTab] = useState<Tab>('anatomy');
+  const [tab, setTab] = useTab(TABS);
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-10 space-y-8">
@@ -786,21 +773,7 @@ export default function Verbs() {
         </p>
       </motion.div>
 
-      {/* Tabs */}
-      <div className="border-b border-stone-200 flex gap-1 overflow-x-auto">
-        {TABS.map(({ id, label, icon }) => (
-          <button
-            key={id}
-            onClick={() => setTab(id)}
-            className={`flex items-center gap-1.5 pb-3 px-3 text-sm font-medium whitespace-nowrap transition-colors ${
-              tab === id ? 'tab-active' : 'tab-inactive'
-            }`}
-          >
-            <span>{icon}</span>
-            {label}
-          </button>
-        ))}
-      </div>
+      <Tabs tabs={TABS} active={tab} onChange={setTab} label="Verb sections" />
 
       <AnimatePresence mode="wait">
         <motion.div
@@ -809,6 +782,7 @@ export default function Verbs() {
           initial="hidden"
           animate="show"
           transition={{ duration: 0.25 }}
+          {...tabPanelProps(tab)}
         >
           {tab === 'anatomy' && <VerbAnatomy />}
           {tab === 'tenses' && <TenseTimeline />}

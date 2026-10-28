@@ -2,22 +2,10 @@ import { motion } from 'framer-motion';
 import { NavLink } from 'react-router-dom';
 import { LANGUAGE_META } from '../data/grammar';
 import ComparisonTable, { TypologyRadar } from '../components/ComparisonTable';
-import { Globe2, Users, BookMarked, Mic2 } from 'lucide-react';
+import { Globe2, Users, BookMarked, Mic2, ArrowRight } from 'lucide-react';
+import { SECTIONS } from '../sections';
 
 const fade = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } };
-
-const navCards = [
-  {
-    to: '/phonology',
-    emoji: '🔊',
-    title: 'Phonology',
-    desc: 'Vowel harmony, consonants, long vowels',
-  },
-  { to: '/cases', emoji: '📐', title: 'Cases', desc: '7 nominal cases with endings and examples' },
-  { to: '/verbs', emoji: '⚡', title: 'Verbs', desc: 'Tense, person endings, converbs' },
-  { to: '/word-order', emoji: '🔀', title: 'Word Order', desc: 'SOV, postpositions, modifiers' },
-  { to: '/vocabulary', emoji: '📖', title: 'Vocabulary', desc: 'Core words, phrases and numerals' },
-];
 
 export default function Home() {
   return (
@@ -35,7 +23,10 @@ export default function Home() {
           <span className="opacity-40">|</span>
           <span>Mongolic family</span>
         </div>
-        <h1 className="text-5xl sm:text-6xl font-buryat font-bold text-stone-900 leading-tight">
+        <h1
+          lang="bua"
+          className="text-5xl sm:text-6xl font-buryat font-bold text-stone-900 leading-tight"
+        >
           Буряад хэлэн
         </h1>
         <p className="text-xl text-stone-500 max-w-2xl mx-auto">
@@ -61,7 +52,7 @@ export default function Home() {
           <div key={label} className="card text-center py-5">
             <Icon size={22} className="mx-auto text-buryat-400 mb-2" />
             <p className="text-xl font-bold text-stone-800">{value}</p>
-            <p className="text-xs text-stone-400 mt-0.5">{label}</p>
+            <p className="text-xs text-stone-500 mt-0.5">{label}</p>
           </div>
         ))}
       </motion.section>
@@ -84,7 +75,7 @@ export default function Home() {
             Alignment: LANGUAGE_META.typology.caseMarking,
           }).map(([k, v]) => (
             <div key={k} className="flex gap-2 text-sm">
-              <span className="text-stone-400 w-24 shrink-0">{k}</span>
+              <span className="text-stone-500 w-24 shrink-0">{k}</span>
               <span className="text-stone-700">{v}</span>
             </div>
           ))}
@@ -116,17 +107,26 @@ export default function Home() {
       >
         <h2 className="text-xl font-semibold text-stone-800 mb-4">Explore the Grammar</h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {navCards.map(({ to, emoji, title, desc }) => (
+          {SECTIONS.filter(s => s.to !== '/').map(({ to, icon: Icon, label, desc }) => (
             <NavLink
               key={to}
               to={to}
-              className="card group hover:shadow-md hover:border-buryat-200 transition-all border cursor-pointer"
+              className="card group flex gap-4 items-start hover:shadow-md hover:border-buryat-200 transition-all"
             >
-              <span className="text-3xl mb-2 block">{emoji}</span>
-              <h3 className="font-semibold text-stone-800 group-hover:text-buryat-700 transition-colors">
-                {title}
-              </h3>
-              <p className="text-sm text-stone-400 mt-1">{desc}</p>
+              <span className="shrink-0 rounded-xl bg-buryat-50 text-buryat-600 p-2.5 group-hover:bg-buryat-100 transition-colors">
+                <Icon size={22} aria-hidden="true" />
+              </span>
+              <span className="min-w-0 flex-1">
+                <span className="flex items-center gap-1 font-semibold text-stone-800 group-hover:text-buryat-700 transition-colors">
+                  {label}
+                  <ArrowRight
+                    size={15}
+                    aria-hidden="true"
+                    className="opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all"
+                  />
+                </span>
+                <span className="block text-sm text-stone-500 mt-1">{desc}</span>
+              </span>
             </NavLink>
           ))}
         </div>

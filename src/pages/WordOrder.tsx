@@ -2,13 +2,20 @@ import { motion } from 'framer-motion';
 import WordOrderDiagram from '../components/WordOrderDiagram';
 import AgglutinationDiagram from '../components/AgglutinationDiagram';
 import { POSTPOSITIONS } from '../data/grammar';
-import { useState } from 'react';
+import Tabs from '../components/Tabs';
+import { tabPanelProps, useTab, type TabDef } from '../hooks/useTab';
 
 const fade = { hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } };
 type Tab = 'order' | 'postpositions' | 'agglutination';
 
+const TABS: Array<TabDef<Tab>> = [
+  { id: 'order', label: 'Word Order' },
+  { id: 'postpositions', label: 'Postpositions' },
+  { id: 'agglutination', label: 'Agglutination' },
+];
+
 export default function WordOrder() {
-  const [tab, setTab] = useState<Tab>('order');
+  const [tab, setTab] = useTab(TABS);
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-10 space-y-8">
@@ -19,27 +26,16 @@ export default function WordOrder() {
         </p>
       </motion.div>
 
-      {/* Tabs */}
-      <div className="border-b border-stone-200 flex gap-6">
-        {(
-          [
-            ['order', 'Word Order'],
-            ['postpositions', 'Postpositions'],
-            ['agglutination', 'Agglutination'],
-          ] as [Tab, string][]
-        ).map(([id, label]) => (
-          <button
-            key={id}
-            onClick={() => setTab(id)}
-            className={`pb-3 text-sm font-medium transition-colors ${tab === id ? 'tab-active' : 'tab-inactive'}`}
-          >
-            {label}
-          </button>
-        ))}
-      </div>
+      <Tabs tabs={TABS} active={tab} onChange={setTab} label="Syntax sections" />
 
       {tab === 'order' && (
-        <motion.div variants={fade} initial="hidden" animate="show" className="space-y-6">
+        <motion.div
+          variants={fade}
+          initial="hidden"
+          animate="show"
+          className="space-y-6"
+          {...tabPanelProps(tab)}
+        >
           <div className="card">
             <h2 className="text-lg font-semibold text-stone-800 mb-4">SOV Word Order</h2>
             <WordOrderDiagram />
@@ -54,38 +50,38 @@ export default function WordOrder() {
             </p>
             <div className="grid sm:grid-cols-2 gap-4">
               <div className="bg-stone-50 rounded-xl p-4 space-y-2">
-                <p className="text-xs font-semibold text-stone-400 uppercase tracking-wide">
+                <p className="text-xs font-semibold text-stone-500 uppercase tracking-wide">
                   Buryad
                 </p>
                 <div className="flex items-baseline gap-1 flex-wrap">
                   <span className="bg-mongol-100 border border-mongol-200 rounded-lg px-2 py-1 font-buryat text-mongol-800">
                     томо
                   </span>
-                  <span className="text-stone-400 text-sm">+</span>
+                  <span className="text-stone-500 text-sm">+</span>
                   <span className="bg-amber-100 border border-amber-200 rounded-lg px-2 py-1 font-buryat text-amber-800">
                     гэр
                   </span>
                 </div>
-                <div className="flex gap-2 text-xs text-stone-400">
+                <div className="flex gap-2 text-xs text-stone-500">
                   <span>big</span>
                   <span>house</span>
                 </div>
                 <p className="text-sm italic text-stone-600">'big house'</p>
               </div>
               <div className="bg-stone-50 rounded-xl p-4 space-y-2">
-                <p className="text-xs font-semibold text-stone-400 uppercase tracking-wide">
+                <p className="text-xs font-semibold text-stone-500 uppercase tracking-wide">
                   English
                 </p>
                 <div className="flex items-baseline gap-1 flex-wrap">
                   <span className="bg-mongol-100 border border-mongol-200 rounded-lg px-2 py-1 text-mongol-800">
                     big
                   </span>
-                  <span className="text-stone-400 text-sm">+</span>
+                  <span className="text-stone-500 text-sm">+</span>
                   <span className="bg-amber-100 border border-amber-200 rounded-lg px-2 py-1 text-amber-800">
                     house
                   </span>
                 </div>
-                <div className="flex gap-2 text-xs text-stone-400">
+                <div className="flex gap-2 text-xs text-stone-500">
                   <span>big</span>
                   <span>house</span>
                 </div>
@@ -102,23 +98,23 @@ export default function WordOrder() {
               </p>
               <div className="grid sm:grid-cols-2 gap-3 text-sm">
                 <div>
-                  <p className="text-xs text-stone-400 font-semibold uppercase mb-1">
+                  <p className="text-xs text-stone-500 font-semibold uppercase mb-1">
                     English (post-nominal)
                   </p>
                   <p className="italic text-stone-700">
                     "the man <u>who reads books</u>"
                   </p>
-                  <p className="text-xs text-stone-400 mt-0.5">→ relative clause AFTER noun</p>
+                  <p className="text-xs text-stone-500 mt-0.5">→ relative clause AFTER noun</p>
                 </div>
                 <div>
-                  <p className="text-xs text-stone-400 font-semibold uppercase mb-1">
+                  <p className="text-xs text-stone-500 font-semibold uppercase mb-1">
                     Buryad (pre-nominal)
                   </p>
                   <p className="font-buryat text-buryat-700">
                     "<u>ном уншадаг</u> хүн"
                   </p>
-                  <p className="text-xs text-stone-400 font-mono mt-0.5">book read-PTCP man</p>
-                  <p className="text-xs text-stone-400">→ relative clause BEFORE noun</p>
+                  <p className="text-xs text-stone-500 font-mono mt-0.5">book read-PTCP man</p>
+                  <p className="text-xs text-stone-500">→ relative clause BEFORE noun</p>
                 </div>
               </div>
             </div>
@@ -127,7 +123,13 @@ export default function WordOrder() {
       )}
 
       {tab === 'postpositions' && (
-        <motion.div variants={fade} initial="hidden" animate="show" className="space-y-6">
+        <motion.div
+          variants={fade}
+          initial="hidden"
+          animate="show"
+          className="space-y-6"
+          {...tabPanelProps(tab)}
+        >
           <div className="card space-y-4">
             <h2 className="text-lg font-semibold text-stone-800">Postpositions vs. Prepositions</h2>
             <p className="text-sm text-stone-500">
@@ -168,7 +170,7 @@ export default function WordOrder() {
               <thead>
                 <tr className="border-b-2 border-stone-200">
                   {['Postposition', 'Meaning', 'Case required', 'Example'].map(h => (
-                    <th key={h} className="text-left py-2 pr-4 text-stone-400 font-normal">
+                    <th key={h} className="text-left py-2 pr-4 text-stone-500 font-normal">
                       {h}
                     </th>
                   ))}
@@ -186,7 +188,7 @@ export default function WordOrder() {
                     </td>
                     <td className="py-2.5">
                       <span className="font-buryat text-stone-700">{p.example.phrase}</span>
-                      <span className="text-stone-400 text-xs ml-2">'{p.example.translation}'</span>
+                      <span className="text-stone-500 text-xs ml-2">'{p.example.translation}'</span>
                     </td>
                   </tr>
                 ))}
@@ -197,7 +199,13 @@ export default function WordOrder() {
       )}
 
       {tab === 'agglutination' && (
-        <motion.div variants={fade} initial="hidden" animate="show" className="space-y-6">
+        <motion.div
+          variants={fade}
+          initial="hidden"
+          animate="show"
+          className="space-y-6"
+          {...tabPanelProps(tab)}
+        >
           <div className="card">
             <h2 className="text-lg font-semibold text-stone-800 mb-1">Agglutination in Depth</h2>
             <p className="text-sm text-stone-500 mb-4">

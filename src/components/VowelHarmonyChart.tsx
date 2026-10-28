@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import { VOWELS, VOWEL_HARMONY_PAIRS } from '../data/grammar';
 
 const HARMONY_COLOR: Record<string, string> = {
@@ -23,21 +24,21 @@ export default function VowelHarmonyChart() {
             <div key={b} className="flex items-center gap-2">
               <div className="flex flex-col items-center">
                 <span className="text-3xl font-buryat text-amber-700">{b}</span>
-                <span className="text-xs text-stone-400">back</span>
+                <span className="text-xs text-stone-500">back</span>
               </div>
-              <div className="flex flex-col items-center text-stone-400">
+              <div className="flex flex-col items-center text-stone-500">
                 <span className="text-lg">⇄</span>
               </div>
               <div className="flex flex-col items-center">
                 <span className="text-3xl font-buryat text-mongol-700">{f}</span>
-                <span className="text-xs text-stone-400">front</span>
+                <span className="text-xs text-stone-500">front</span>
               </div>
             </div>
           ))}
           <div className="flex items-center gap-2">
             <div className="flex flex-col items-center">
               <span className="text-3xl font-buryat text-stone-600">и</span>
-              <span className="text-xs text-stone-400">neutral</span>
+              <span className="text-xs text-stone-500">neutral</span>
             </div>
           </div>
         </div>
@@ -48,24 +49,24 @@ export default function VowelHarmonyChart() {
         <table className="w-full text-sm">
           <thead>
             <tr>
-              <th className="text-left text-stone-400 font-normal pb-2 pr-4">Group</th>
-              <th className="text-center text-stone-400 font-normal pb-2 px-3">Letter</th>
-              <th className="text-center text-stone-400 font-normal pb-2 px-3">Long</th>
-              <th className="text-center text-stone-400 font-normal pb-2 px-3">IPA</th>
-              <th className="text-left text-stone-400 font-normal pb-2 pl-4">Example</th>
+              <th className="text-left text-stone-500 font-normal pb-2 pr-4">Group</th>
+              <th className="text-center text-stone-500 font-normal pb-2 px-3">Letter</th>
+              <th className="text-center text-stone-500 font-normal pb-2 px-3">Long</th>
+              <th className="text-center text-stone-500 font-normal pb-2 px-3">IPA</th>
+              <th className="text-left text-stone-500 font-normal pb-2 pl-4">Example</th>
             </tr>
           </thead>
           <tbody>
             {[...back, ...front, ...neutral].map((v, i, arr) => {
               const prevGroup = i > 0 ? arr[i - 1].harmony : null;
               return (
-                <>
+                <Fragment key={v.letter}>
                   {prevGroup !== v.harmony && i > 0 && (
-                    <tr key={`sep-${v.letter}`}>
+                    <tr>
                       <td colSpan={5} className="py-1" />
                     </tr>
                   )}
-                  <tr key={v.letter} className="border-t border-stone-100">
+                  <tr className="border-t border-stone-100">
                     <td className="py-2 pr-4">
                       {prevGroup !== v.harmony || i === 0 ? (
                         <span
@@ -96,10 +97,10 @@ export default function VowelHarmonyChart() {
                     </td>
                     <td className="py-2 pl-4">
                       <span className="font-buryat text-buryat-700">{v.example.word}</span>
-                      <span className="text-stone-400 ml-2">'{v.example.meaning}'</span>
+                      <span className="text-stone-500 ml-2">'{v.example.meaning}'</span>
                     </td>
                   </tr>
-                </>
+                </Fragment>
               );
             })}
           </tbody>

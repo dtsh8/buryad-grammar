@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { CASES, POSSESSIVE_SUFFIXES, type GrammarCase } from '../data/grammar';
 import CorpusLink from '../components/CorpusLink';
 
@@ -54,13 +54,14 @@ function CaseCard({
   return (
     <button
       onClick={onClick}
+      aria-pressed={active}
       className={`text-left w-full rounded-xl border-2 p-4 transition-all ${
         active ? c.colorClass + ' shadow-md' : 'bg-white border-stone-200 hover:border-stone-300'
       }`}
     >
       <p className="font-semibold text-stone-800">{c.english}</p>
       <p className="text-sm font-buryat text-stone-500">{c.buryad}</p>
-      <p className="mt-1 font-buryat text-sm text-stone-400 break-words">
+      <p className="mt-1 font-buryat text-sm text-stone-500 break-words">
         {c.suffix.afterConsonant === '—' ? 'no suffix' : suffixForms(c.suffix.afterConsonant)}
       </p>
       <p className="text-xs text-stone-500 mt-2">{c.semanticRole}</p>
@@ -120,10 +121,10 @@ function CaseDetail({ c }: { c: GrammarCase }) {
           <table className="text-sm w-full">
             <thead>
               <tr className="border-b border-stone-200/50">
-                <th className="text-left py-1.5 pr-4 text-stone-400 font-normal">Stem</th>
-                <th className="text-left py-1.5 pr-4 text-stone-400 font-normal">Inflected</th>
-                <th className="text-left py-1.5 pr-4 text-stone-400 font-normal">Translation</th>
-                <th className="text-left py-1.5 text-stone-400 font-normal">Note</th>
+                <th className="text-left py-1.5 pr-4 text-stone-500 font-normal">Stem</th>
+                <th className="text-left py-1.5 pr-4 text-stone-500 font-normal">Inflected</th>
+                <th className="text-left py-1.5 pr-4 text-stone-500 font-normal">Translation</th>
+                <th className="text-left py-1.5 text-stone-500 font-normal">Note</th>
               </tr>
             </thead>
             <tbody>
@@ -134,7 +135,7 @@ function CaseDetail({ c }: { c: GrammarCase }) {
                     {ex.inflected}
                   </td>
                   <td className="py-2 pr-4 text-stone-600 italic">'{ex.translation}'</td>
-                  <td className="py-2 text-xs text-stone-400">{ex.note ?? ''}</td>
+                  <td className="py-2 text-xs text-stone-500">{ex.note ?? ''}</td>
                 </tr>
               ))}
             </tbody>
@@ -169,6 +170,13 @@ const PARADIGM_FORMS: Array<{ case_: string; form: string }> = [
 export default function Cases() {
   const [selected, setSelected] = useState<string>(CASES[0].id);
   const activeCase = CASES.find(c => c.id === selected) ?? CASES[0];
+  const detailRef = useRef<HTMLDivElement>(null);
+
+  // Picking a case from the paradigm table further down brings its detail panel into view.
+  function showFromTable(id: string) {
+    setSelected(id);
+    detailRef.current?.scrollIntoView({ block: 'start' });
+  }
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-10 space-y-10">
@@ -188,15 +196,17 @@ export default function Cases() {
       </div>
 
       {/* Detail panel */}
-      <AnimatePresence mode="wait">
-        <CaseDetail key={selected} c={activeCase} />
-      </AnimatePresence>
+      <div ref={detailRef} className="scroll-mt-20" aria-live="polite">
+        <AnimatePresence mode="wait">
+          <CaseDetail key={selected} c={activeCase} />
+        </AnimatePresence>
+      </div>
 
       {/* Full declension table */}
       <div className="card space-y-4">
         <h2 className="text-lg font-semibold text-stone-800">
           Full Paradigm: <span className="font-buryat text-buryat-700">гэр</span>
-          <span className="text-stone-400 font-normal text-base ml-2">
+          <span className="text-stone-500 font-normal text-base ml-2">
             ({PARADIGM_NOUN.meaning}, {PARADIGM_NOUN.harmony})
           </span>
         </h2>
@@ -217,10 +227,23 @@ export default function Cases() {
                   className={`border-b border-stone-100 cursor-pointer transition-colors ${
                     CASES[i]?.id === selected ? 'bg-buryat-50' : 'hover:bg-stone-50'
                   }`}
-                  onClick={() => setSelected(CASES[i]?.id ?? selected)}
+                  onClick={() => CASES[i] && showFromTable(CASES[i].id)}
                 >
-                  <td className="py-2.5 pr-4 text-stone-400 font-mono text-xs">{i + 1}</td>
-                  <td className="py-2.5 pr-4 font-medium text-stone-700">{row.case_}</td>
+                  <td className="py-2.5 pr-4 text-stone-500 font-mono text-xs">{i + 1}</td>
+                  <td className="py-2.5 pr-4 font-medium text-stone-700">
+                    {/* The button gives keyboard users the row's click target. */}
+                    <button
+                      type="button"
+                      aria-pressed={CASES[i]?.id === selected}
+                      onClick={e => {
+                        e.stopPropagation();
+                        if (CASES[i]) showFromTable(CASES[i].id);
+                      }}
+                      className="text-left hover:text-buryat-700"
+                    >
+                      {row.case_}
+                    </button>
+                  </td>
                   <td className="py-2.5 pr-4 font-buryat text-stone-500">{CASES[i]?.buryad}</td>
                   <td className="py-2.5 font-buryat text-lg text-buryat-700 font-semibold">
                     {row.form}
@@ -259,14 +282,14 @@ export default function Cases() {
                   <td className="py-2.5 pr-4 font-buryat text-lg text-buryat-700 font-semibold">
                     {p.example}
                   </td>
-                  <td className="py-2.5 pr-4 font-mono text-xs text-stone-400">{p.gloss}</td>
+                  <td className="py-2.5 pr-4 font-mono text-xs text-stone-500">{p.gloss}</td>
                   <td className="py-2.5 italic text-stone-500">'{p.translation}'</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-        <p className="text-xs text-stone-400">
+        <p className="text-xs text-stone-500">
           All examples are attested in Buryad news texts. The reflexive suffix refers back to the
           subject: <span className="font-buryat">нютагтаа</span> "in one's own homeland".
         </p>

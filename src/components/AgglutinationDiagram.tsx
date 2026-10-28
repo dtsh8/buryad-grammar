@@ -5,7 +5,7 @@ export default function AgglutinationDiagram() {
     <div className="space-y-8">
       {AGGLUTINATION_EXAMPLES.map((chain, ci) => (
         <div key={ci} className="card">
-          <p className="text-xs text-stone-400 uppercase tracking-wide font-semibold mb-4">
+          <p className="text-xs text-stone-500 uppercase tracking-wide font-semibold mb-4">
             Example {ci + 1}: <span className="normal-case text-stone-600">{chain.gloss}</span>
           </p>
           <div className="overflow-x-auto">
@@ -29,7 +29,7 @@ export default function AgglutinationDiagram() {
                         </div>
                       )}
                     </div>
-                    <p className="text-xs text-stone-400 mt-2 text-center max-w-[120px] leading-tight">
+                    <p className="text-xs text-stone-500 mt-2 text-center max-w-[120px] leading-tight">
                       {step.meaning}
                     </p>
                   </div>
@@ -39,7 +39,7 @@ export default function AgglutinationDiagram() {
             </div>
           </div>
           <div className="mt-4 pt-4 border-t border-stone-100 flex items-center gap-3">
-            <span className="text-stone-400 text-sm">Result:</span>
+            <span className="text-stone-500 text-sm">Result:</span>
             <span className="font-buryat text-xl text-buryat-700 font-bold">{chain.final}</span>
             <span className="text-stone-500 text-sm">'{chain.translation}'</span>
           </div>

@@ -1,3 +1,9 @@
+## [1.6.0](https://github.com/dtsh8/buryad-grammar/compare/v1.5.0...v1.6.0) (2026-10-28)
+
+### ✨ New Features
+
+* **cases:** noun declension engine, any-noun case table, generated case drills ([af5c688](https://github.com/dtsh8/buryad-grammar/commit/af5c688d79aedf816b7c5d4434560fb2c6d9611d))
+
 ## [1.5.0](https://github.com/dtsh8/buryad-grammar/compare/v1.4.2...v1.5.0) (2026-10-28)
 
 ### ✨ New Features

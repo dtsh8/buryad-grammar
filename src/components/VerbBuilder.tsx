@@ -36,7 +36,7 @@ const QUICK_VERBS = [
 function HarmonyBadge({ harmony }: { harmony: 'back' | 'front' }) {
   return (
     <span className={`badge ${harmony === 'back' ? 'badge-amber' : 'badge-blue'}`}>
-      {harmony === 'back' ? '🔴 Back harmony (а/о/у)' : '🔵 Front harmony (э/ø/ü)'}
+      {harmony === 'back' ? '🔴 Back harmony (а/о/у)' : '🔵 Front harmony (э/ө/ү)'}
     </span>
   );
 }
@@ -47,10 +47,10 @@ function BaseParadigm({ root, meaning }: { root: string; meaning: string }) {
   const forms = conjugate(root);
   const ef = englishForms(meaning);
   const rows: Array<[string, string, string]> = [
-    ['Present-Future', forms.prs, `→ ${meaning}s / will ${meaning}`],
+    ['Present-Future', forms.prs, `→ ${ef.thirdPerson} / will ${meaning}`],
     ['Simple Past', forms.pst, `→ ${ef.past} (witnessed)`],
     ['Evidential Past', forms.evidPst, `→ apparently ${ef.past}`],
-    ['Habitual', forms.hab, `→ ${meaning}s (habitually)`],
+    ['Habitual', forms.hab, `→ ${ef.thirdPerson} (habitually)`],
     ['Negative', forms.neg, `→ does not ${meaning}`],
     ['Infinitive', forms.inf, `→ to ${meaning}`],
     ['Simult. Converb', forms.simConv, `→ while ${ef.gerund}`],
@@ -134,14 +134,14 @@ function DerivCard({
                 <div className="flex flex-col items-center">
                   <div className="bg-stone-700 text-white px-3 py-2 rounded-lg font-buryat text-base font-bold">
                     {/* show the base root inside derived root */}
-                    {d.root.slice(0, d.root.length - d.suffix.replace(/^-/, '').length)}
+                    {d.root.slice(0, d.root.length - d.suffix.replace(/^[-+]/, '').length)}
                   </div>
                   <span className="text-[10px] text-stone-400 mt-0.5 uppercase">ROOT</span>
                 </div>
                 <span className="text-stone-300 text-lg mb-4">+</span>
                 <div className="flex flex-col items-center">
                   <div className="bg-amber-500 text-white px-3 py-2 rounded-lg font-buryat text-base font-bold">
-                    {d.suffix.replace(/^-/, '')}
+                    {d.suffix.replace(/^[-+]/, '')}
                   </div>
                   <span className="text-[10px] text-stone-400 mt-0.5 uppercase">DERIV</span>
                 </div>
@@ -199,16 +199,21 @@ export default function VerbBuilder() {
   const [expanded, setExpanded] = useState<string>('Causative');
   const [errorMsg, setErrorMsg] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
+  // Incremented per request; a response is applied only if it is still the latest,
+  // so a slow earlier lookup can't overwrite a newer one.
+  const requestId = useRef(0);
 
   async function handleTranslate(verb?: string) {
     const query = (verb ?? input).trim();
     if (!query) return;
     if (verb) setInput(verb);
 
+    const id = ++requestId.current;
     setStatus('loading');
     setErrorMsg('');
     try {
       const buryad = await translateToBuryad(query);
+      if (id !== requestId.current) return;
       const r = extractRoot(buryad);
       const d = deriveAll(r, query.replace(/^to\s+/i, ''));
       setInfinitive(buryad);
@@ -217,6 +222,7 @@ export default function VerbBuilder() {
       setDerivations(d);
       setStatus('done');
     } catch (e) {
+      if (id !== requestId.current) return;
       setErrorMsg(e instanceof Error ? e.message : 'Translation failed — check your connection.');
       setStatus('error');
     }
@@ -326,7 +332,7 @@ export default function VerbBuilder() {
                 </span>
                 <span className="text-stone-500">+</span>
                 <span className="bg-buryat-500 text-white px-2 py-0.5 rounded font-mono">
-                  {harmony === 'back' ? '-ха' : '-хэ'}
+                  -{conjugate(root).inf.slice(root.length)}
                 </span>
                 <span className="text-stone-400 text-xs">(infinitive suffix)</span>
               </div>

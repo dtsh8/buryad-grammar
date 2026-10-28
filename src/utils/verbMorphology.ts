@@ -8,16 +8,27 @@ export type Harmony = 'back' | 'front';
 const BACK_VOWELS = /[аоу]/;
 const FRONT_VOWELS = /[эөү]/;
 
+// Iotated letters spell й + vowel; ы is a variant of и after hard consonants.
+// Harmony and absorption care only about the vowel, so normalise them here.
+const IOTATED: Record<string, string> = { я: 'а', е: 'э', ё: 'о', ю: 'у', ы: 'и' };
+
+// The vowel a letter represents, or null for consonants (incl. й).
+function vowelOf(c: string): string | null {
+  if (/[аоуэөүи]/.test(c)) return c;
+  return IOTATED[c] ?? null;
+}
+
 export function detectHarmony(root: string): Harmony {
   for (let i = root.length - 1; i >= 0; i--) {
-    if (BACK_VOWELS.test(root[i])) return 'back';
-    if (FRONT_VOWELS.test(root[i])) return 'front';
+    const v = vowelOf(root[i]) ?? '';
+    if (BACK_VOWELS.test(v)) return 'back';
+    if (FRONT_VOWELS.test(v)) return 'front';
   }
   return 'back';
 }
 
 export function endsInVowel(root: string): boolean {
-  return /[аоуэөүи]$/.test(root);
+  return vowelOf(root[root.length - 1] ?? '') !== null;
 }
 
 // Strip infinitive suffix -ха / -хэ / -хо to get root
@@ -31,7 +42,7 @@ export function extractRoot(infinitive: string): string {
 //   о-class (о roots)       → о-variants: -хо -но -бо -лой -дог -жо   (орохо, ороно etc.)
 //   э-class (э, ө, ү roots) → э-variants: -хэ -нэ -бэ -лэй -дэг -жэ
 //
-// Sequential converb is a separate 4-way system (see seqConvSuffix).
+// Long suffix vowels (-аад, -аар, …) are a separate 4-way system (see longVowelClass).
 
 // SufClass: which suffix vowel template to use
 type SufClass = 'а' | 'о' | 'э';
@@ -43,10 +54,10 @@ type SufClass = 'а' | 'о' | 'э';
 //   э/ө/ү → э-class
 function getSufClass(root: string): SufClass {
   for (let i = root.length - 1; i >= 0; i--) {
-    const c = root[i];
+    const c = vowelOf(root[i]);
     if (c === 'а' || c === 'у') return 'а'; // back unrounded + high back rounded
     if (c === 'о') return 'о'; // back rounded mid
-    if (FRONT_VOWELS.test(c)) return 'э'; // any front vowel
+    if (c && FRONT_VOWELS.test(c)) return 'э'; // any front vowel
     // и, й, consonants are transparent
   }
   return 'а'; // default
@@ -64,60 +75,79 @@ function suf(harmony: Harmony, back: string, front: string): string {
   return harmony === 'back' ? back : front;
 }
 
-// Vowel absorption: drop the duplicate leading vowel when root ends in the
-// same character as the suffix starts (яба + аад → ябаад, үлэ + ээд → үлээд, оро + оод → ороод).
+// Vowel absorption: a short stem-final vowel is replaced by a vowel-initial suffix
+// (яба + аад → ябаад, оро + оод → ороод, үзэ + өөд → үзөөд).
+// Iotated finals keep their й, so the suffix's first vowel is dropped instead
+// (уя + аад → уяад since я = й + а).
+// Callers handle long-vowel and й finals separately (epenthetic г).
 function attach(root: string, suffix: string): string {
-  if (suffix.length > 0 && root[root.length - 1] === suffix[0]) {
-    return root + suffix.slice(1);
+  const last = root[root.length - 1] ?? '';
+  const lastVowel = vowelOf(last);
+  if (lastVowel === null || vowelOf(suffix[0] ?? '') === null) return root + suffix;
+  if (last in IOTATED) {
+    return lastVowel === suffix[0] ? root + suffix.slice(1) : root + suffix;
   }
-  return root + suffix;
+  return root.slice(0, -1) + suffix;
 }
 
 // Returns true when epenthetic г must be inserted before the suffix.
 // Two environments (Skribnik 2003):
-//   • Long-vowel endings (аа оо уу ии ээ өө үү): угаа → угаагаад
+//   • Long-vowel endings (аа оо уу ии ээ өө үү, also еэ яа): угаа → угаагаад, эдеэ → эдеэгээд
 //   • Semivowel й:                                   бай  → байгаад
 function needsEpentheticG(root: string): boolean {
   if (root.endsWith('й')) return true;
   if (root.length >= 2) {
     const last = root[root.length - 1];
-    const prev = root[root.length - 2];
-    if (last === prev && /[аоуэөүи]/.test(last)) return true;
+    const prev = vowelOf(root[root.length - 2]);
+    if (!(last in IOTATED) && prev !== null && prev === vowelOf(last)) return true;
   }
   return false;
 }
 
-// Sequential converb — 4-way harmony (the seq.conv suffix is more specific than
-// other suffixes because its vowel directly mirrors the root vowel):
-//   а/у → -аад   ябаад, һуугаад ✓
-//   о    → -оод   ороод ✓  (attachment absorbs duplicate о)
-//   э    → -ээд   үлээд ✓  (attachment absorbs duplicate э)
-//   ө/ү → -өөд
-// и / й / consonants are transparent.
-function seqConvSuffix(root: string): string {
-  for (let i = root.length - 1; i >= 0; i--) {
-    const c = root[i];
-    if (c === 'а' || c === 'у') return 'аад'; // а / у → аад
-    if (c === 'о') return 'оод'; // о → оод
-    if (c === 'э') return 'ээд'; // э → ээд
-    if (FRONT_VOWELS.test(c)) return 'өөд'; // ө/ү → өөд
+// Long suffix vowels — 4-way harmony with Buryad labial attraction (Poppe 1960):
+//   а / у        → аа   ябаад, уншаад, һуугаад
+//   о            → оо   ороод
+//   ө            → өө
+//   ү, 1st syll. → өө   үзөөд, үгөөд  (Buryad rounds after ү, unlike Khalkha)
+//   ү, later     → ээ   үзүүлээд      (non-initial уу/үү block rounding: оруулаад)
+//   э            → ээ   ерээд, мэдээд
+// Scanned right-to-left by syllable nucleus; э, и, consonants are transparent.
+type LongVowel = 'аа' | 'оо' | 'ээ' | 'өө';
+
+function longVowelClass(root: string): LongVowel {
+  // Nuclei: runs of identical vowel letters count as one (long) vowel.
+  const nuclei: string[] = [];
+  let prev: string | null = null; // vowel of the previous letter, null after a consonant
+  for (const ch of root) {
+    const v = vowelOf(ch);
+    // …except a following я/е, which starts a new syllable (й + vowel)
+    if (v !== null && v !== prev) nuclei.push(v);
+    else if (v !== null && (ch === 'я' || ch === 'е')) nuclei.push(v);
+    prev = v;
   }
-  return 'аад';
+  let sawFront = false;
+  for (let i = nuclei.length - 1; i >= 0; i--) {
+    const v = nuclei[i];
+    if (v === 'а' || v === 'у') return 'аа';
+    if (v === 'о') return 'оо';
+    if (v === 'ө') return 'өө';
+    if (v === 'ү') return i === 0 ? 'өө' : 'ээ';
+    if (v === 'э') sawFront = true;
+  }
+  return sawFront ? 'ээ' : 'аа';
 }
 
 export function conjugate(root: string) {
   const cls = getSufClass(root);
-  const seqSuf = seqConvSuffix(root);
+  const seqSuf = longVowelClass(root) + 'д';
   const seqConv = needsEpentheticG(root) ? root + 'г' + seqSuf : attach(root, seqSuf);
   // Jussive / permissive mood: suffix -г
   // Expresses "Let him/her/you do X" (Пусть…) — 2nd or 3rd person.
   // Гэртээ байг! = "Let him stay home!" / "Just stay home!" (context-dependent)
   // Vowel-final and й-final roots: root + г  (яба→ябаг, бай→байг, оро→орог)
-  // Consonant-final roots: root + аг/эг      (хүдэл→хүдэлэг)
+  // Consonant-final roots: root + аг/ог/эг   (хүдэл→хүдэлэг, бол→болог)
   const jussive =
-    endsInVowel(root) || root.endsWith('й')
-      ? root + 'г'
-      : root + suf(detectHarmony(root), 'аг', 'эг');
+    endsInVowel(root) || root.endsWith('й') ? root + 'г' : root + sufC(cls, 'аг', 'ог', 'эг');
 
   return {
     inf: root + sufC(cls, 'ха', 'хо', 'хэ'),
@@ -156,6 +186,7 @@ export interface DerivedForm {
 
 export function deriveAll(baseRoot: string, baseMeaning: string): DerivedForm[] {
   const h = detectHarmony(baseRoot);
+  const cls = getSufClass(baseRoot);
   const v = endsInVowel(baseRoot);
   const needsG = needsEpentheticG(baseRoot);
 
@@ -194,12 +225,18 @@ export function deriveAll(baseRoot: string, baseMeaning: string): DerivedForm[] 
     : v
       ? baseRoot.slice(0, -1) + causVoiceSuffix // short vowel: drop theme vowel
       : baseRoot + causVoiceSuffix; // consonant final: direct
+  // The remaining suffixes have short non-high vowels, so they follow the
+  // same 3-way а/о/э class as inflection (оро → орогдо, not *орогда).
   // Passive: г-initial suffix гда/гдэ already provides the buffer consonant.
-  const passRoot = v ? baseRoot + suf(h, 'гда', 'гдэ') : baseRoot + suf(h, 'агда', 'эгдэ');
+  const passSuffix = v ? sufC(cls, 'гда', 'гдо', 'гдэ') : sufC(cls, 'агда', 'огдо', 'эгдэ');
   // Reflexive / reciprocal / cooperative: consonant-initial suffixes — no г needed.
-  const reflRoot = baseRoot + suf(h, 'да', 'дэ');
-  const recipRoot = v ? baseRoot + suf(h, 'лса', 'лсэ') : baseRoot + suf(h, 'алса', 'элсэ');
-  const coopRoot = v ? baseRoot + suf(h, 'лда', 'лдэ') : baseRoot + suf(h, 'алда', 'элдэ');
+  const reflSuffix = sufC(cls, 'да', 'до', 'дэ');
+  const recipSuffix = v ? sufC(cls, 'лса', 'лсо', 'лсэ') : sufC(cls, 'алса', 'олсо', 'элсэ');
+  const coopSuffix = v ? sufC(cls, 'лда', 'лдо', 'лдэ') : sufC(cls, 'алда', 'олдо', 'элдэ');
+  const passRoot = baseRoot + passSuffix;
+  const reflRoot = baseRoot + reflSuffix;
+  const recipRoot = baseRoot + recipSuffix;
+  const coopRoot = baseRoot + coopSuffix;
 
   // Pre-compute correct English forms once — shared across all 5 example sentences
   const ef = englishForms(baseMeaning);
@@ -223,7 +260,7 @@ export function deriveAll(baseRoot: string, baseMeaning: string): DerivedForm[] 
       'Passive',
       'Эдлүүлэгшэ',
       passRoot,
-      v ? suf(h, '-гда', '-гдэ') : suf(h, '-агда', '-эгдэ'),
+      '-' + passSuffix,
       `Subject undergoes "${baseMeaning}" — agent demoted or absent.`,
       'be done (to)',
       'bg-mongol-50 border-mongol-300',
@@ -238,21 +275,21 @@ export function deriveAll(baseRoot: string, baseMeaning: string): DerivedForm[] 
       'Reflexive',
       'Бэеэ үйлдэхэ',
       reflRoot,
-      suf(h, '-да', '-дэ'),
-      `Subject "${baseMeaning}s" on itself.`,
+      '-' + reflSuffix,
+      `Subject "${ef.thirdPerson}" on itself.`,
       'do to oneself',
       'bg-green-50 border-green-300',
       {
         buryad: `Тэрэ ${conjugate(reflRoot).prs}.`,
         gloss: `he/she ${reflRoot}-PRS`,
-        translation: `He/She ${baseMeaning}s himself/herself.`,
+        translation: `He/She ${ef.thirdPerson} himself/herself.`,
       }
     ),
     make(
       'Reciprocal',
       'Хэлсэлэй',
       recipRoot,
-      v ? suf(h, '-лса', '-лсэ') : suf(h, '-алса', '-элсэ'),
+      '-' + recipSuffix,
       `Two or more subjects "${baseMeaning}" each other mutually.`,
       'do to each other',
       'bg-purple-50 border-purple-300',
@@ -266,7 +303,7 @@ export function deriveAll(baseRoot: string, baseMeaning: string): DerivedForm[] 
       'Cooperative',
       'Хамтаршалай',
       coopRoot,
-      v ? suf(h, '-лда', '-лдэ') : suf(h, '-алда', '-элдэ'),
+      '-' + coopSuffix,
       `Several subjects jointly "${baseMeaning}" (not directed at each other).`,
       'do together',
       'bg-pink-50 border-pink-300',

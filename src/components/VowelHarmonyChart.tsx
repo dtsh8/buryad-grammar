@@ -1,5 +1,6 @@
 import { Fragment } from 'react';
 import { VOWELS, VOWEL_HARMONY_PAIRS } from '../data/grammar';
+import SayButton from './SayButton';
 
 const HARMONY_COLOR: Record<string, string> = {
   back: 'bg-amber-100 border-amber-300 text-amber-900',
@@ -97,6 +98,7 @@ export default function VowelHarmonyChart() {
                     </td>
                     <td className="py-2 pl-4">
                       <span className="font-buryat text-buryat-700">{v.example.word}</span>
+                      <SayButton word={v.example.word} className="ml-1" />
                       <span className="text-stone-500 ml-2">'{v.example.meaning}'</span>
                     </td>
                   </tr>

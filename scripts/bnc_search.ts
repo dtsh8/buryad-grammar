@@ -13,11 +13,7 @@
 // (эдеэд is tagged as the plural of эдеэн "food"); trust counts and sentences, not tags.
 // Requests are sequential with a 1.5 s pause, to be gentle on the server.
 
-const BASE = 'https://buryat.web-corpora.net/buryat_corpus';
-const HEADERS = {
-  'User-Agent': 'BuryaadGrammarBot/1.0 (educational; github.com/dtsh8/buryad-grammar)',
-};
-const DELAY_MS = 1500;
+import { BNC_BASE, parseWords, query, session, text } from './lib/bnc.ts';
 
 const args = process.argv.slice(2);
 const flag = (name: string, fallback: number) => {
@@ -31,59 +27,6 @@ const patterns = args.filter((a, i) => !a.startsWith('--') && !args[i - 1]?.star
 if (!patterns.length) {
   console.error('Usage: npm run corpus:bnc -- <form> [<form>…] [--top N] [--sent N]');
   process.exit(1);
-}
-
-const sleep = (ms: number) => new Promise(r => setTimeout(r, ms));
-
-// Text content of an HTML fragment.
-const text = (html: string) =>
-  html
-    .replace(/<[^>]+>/g, ' ')
-    .replace(/&nbsp;/g, ' ')
-    .replace(/\s+/g, ' ')
-    .replace(/\s+([.,!?;:»)])/g, '$1')
-    .trim();
-
-async function session(): Promise<string> {
-  const res = await fetch(`${BASE}/search`, { headers: HEADERS });
-  return res.headers.get('set-cookie')?.split(';')[0] ?? '';
-}
-
-async function query(cookie: string, endpoint: string, wf: string): Promise<string> {
-  const params = new URLSearchParams({
-    n_words: '1',
-    wf1: wf,
-    lex1: '',
-    gr1: '',
-    lang1: 'buryat',
-    precise: 'on',
-    page_size: '50',
-    sort: 'freq',
-  });
-  await sleep(DELAY_MS);
-  const res = await fetch(`${BASE}/${endpoint}?${params}`, {
-    headers: { ...HEADERS, Cookie: cookie },
-  });
-  if (!res.ok) throw new Error(`HTTP ${res.status} from ${endpoint}`);
-  return res.text();
-}
-
-interface WordRow {
-  form: string;
-  freq: number;
-  docs: number;
-}
-
-function parseWords(html: string): { summary: string; rows: WordRow[] } {
-  const summary = text(html.match(/Результат поиска:([\s\S]*?)<\/p>/)?.[1] ?? 'no results');
-  const rows = [...html.matchAll(/<tr>([\s\S]*?)<\/tr>/g)].flatMap(([, tr]) => {
-    const cells = [...tr.matchAll(/<td>([\s\S]*?)<\/td>/g)].map(m => text(m[1]));
-    // слово, лемма, грамм., частотность, ранг, предл., док.
-    return cells.length >= 7
-      ? [{ form: cells[0], freq: Number(cells[3]), docs: Number(cells[6]) }]
-      : [];
-  });
-  return { summary, rows };
 }
 
 function parseSentences(html: string, n: number): string[] {
@@ -104,9 +47,9 @@ function parseSentences(html: string, n: number): string[] {
 
 async function main() {
   const cookie = await session();
-  console.log(`Buryat National Corpus — ${BASE}`);
+  console.log(`Buryat National Corpus — ${BNC_BASE}`);
   for (const p of patterns) {
-    const { summary, rows } = parseWords(await query(cookie, 'search_word', p));
+    const { summary, rows } = parseWords(await (await query(cookie, 'search_word', p)).text());
     console.log(`\n## ${p} — ${summary}`);
     console.log(
       '  ' +
@@ -116,7 +59,7 @@ async function main() {
           .join(' ') || '(none)')
     );
     if (SENT > 0) {
-      for (const s of parseSentences(await query(cookie, 'search_sent', p), SENT))
+      for (const s of parseSentences(await (await query(cookie, 'search_sent', p)).text(), SENT))
         console.log('    ' + s);
     }
   }

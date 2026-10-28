@@ -513,7 +513,7 @@ function ConverbSection() {
           <div className="flex items-center gap-2 min-w-max text-sm">
             {[
               {
-                text: 'Босоод',
+                text: 'Бодоод',
                 label: 'rise-SEQ',
                 cls: 'bg-amber-100 border-amber-300 text-amber-900',
               },

@@ -46,7 +46,7 @@ How to add a recording:
 | ⬜ | шанаае | `шанаае` | the cheekbone (obj.) | Cases · Accusative |
 | ⬜ | ангые | `ангые` | the wild animal (obj.) | Cases · Accusative |
 | ⬜ | гараар | `гараар` | by hand | Cases · Instrumental |
-| ⬜ | галта тэрэгээр | `галта_тэрэгээр` | by train | Cases · Instrumental |
+| ⬜ | галта тэргээр | `галта_тэргээр` | by train | Cases · Instrumental |
 | ⬜ | замаар | `замаар` | along the road | Cases · Instrumental |
 | ⬜ | ахатай | `ахатай` | with (my) brother | Cases · Comitative |
 | ⬜ | нохойтой | `нохойтой` | with a dog | Cases · Comitative |
@@ -132,7 +132,7 @@ How to add a recording:
 | ⬜ | би | `би` | I | Vocabulary |
 | ⬜ | ши | `ши` | you (singular) | Vocabulary |
 | ⬜ | тэрэ | `тэрэ` | he / she / it | Vocabulary |
-| ⬜ | бид | `бид` | we | Vocabulary |
+| ⬜ | бидэ | `бидэ` | we | Vocabulary |
 | ⬜ | та | `та` | you (plural / formal) | Vocabulary |
 | ⬜ | тэдэнэр | `тэдэнэр` | they | Vocabulary |
 | ⬜ | нэгэн | `нэгэн` | one | Vocabulary |
@@ -169,9 +169,9 @@ How to add a recording:
 | ⬜ | тала | `тала` | steppe / plain | Vocabulary |
 | ⬜ | бороо | `бороо` | rain | Vocabulary |
 | ⬜ | саһан | `саһан` | snow | Vocabulary |
-| ⬜ | шальһин | `шальһин` | wind | Vocabulary |
+| ⬜ | һалхин | `һалхин` | wind | Vocabulary |
 | ⬜ | морин | `морин` | horse | Vocabulary |
-| ⬜ | муур | `муур` | cat | Vocabulary |
+| ⬜ | миисгэй | `миисгэй` | cat | Vocabulary |
 | ⬜ | шубуун | `шубуун` | bird | Vocabulary |
 | ⬜ | загаһан | `загаһан` | fish | Vocabulary |
 | ⬜ | үнэгэн | `үнэгэн` | fox | Vocabulary |
@@ -191,7 +191,7 @@ How to add a recording:
 | ⬜ | хото | `хото` | city / town | Vocabulary |
 | ⬜ | зам | `зам` | road / way / path | Vocabulary |
 | ⬜ | шэрээ | `шэрээ` | table | Vocabulary |
-| ⬜ | өрөө | `өрөө` | room | Vocabulary |
+| ⬜ | таһалга | `таһалга` | room | Vocabulary |
 | ⬜ | мяхан | `мяхан` | meat | Vocabulary |
 | ⬜ | талхан | `талхан` | bread | Vocabulary |
 | ⬜ | сай | `сай` | tea | Vocabulary |
@@ -207,7 +207,7 @@ How to add a recording:
 | ⬜ | бэшэхэ | `бэшэхэ` | to write | Vocabulary |
 | ⬜ | хэлэхэ | `хэлэхэ` | to speak / to say | Vocabulary |
 | ⬜ | хараха | `хараха` | to see / to look | Vocabulary |
-| ⬜ | сонсохо | `сонсохо` | to hear / to listen | Vocabulary |
+| ⬜ | шагнаха | `шагнаха` | to listen | Vocabulary |
 | ⬜ | ууха | `ууха` | to drink | Vocabulary |
 | ⬜ | унтаха | `унтаха` | to sleep | Vocabulary |
 | ⬜ | бодохо | `бодохо` | to think | Vocabulary |
@@ -252,9 +252,9 @@ How to add a recording:
 | ⬜ | Баярлаа | `баярлаа` | Thank you | Vocabulary |
 | ⬜ | Тиимэ | `тиимэ` | Yes | Vocabulary |
 | ⬜ | Үгы | `үгы` | No | Vocabulary |
-| ⬜ | Уучлаарай | `уучлаарай` | Sorry / Excuse me | Vocabulary |
-| ⬜ | Таны нэрэн хэн бэ? | `таны_нэрэн_хэн_бэ` | What is your name? | Vocabulary |
-| ⬜ | Минии нэрэн… | `минии_нэрэн` | My name is… | Vocabulary |
+| ⬜ | Хүлисэгты | `хүлисэгты` | Sorry / Excuse me | Vocabulary |
+| ⬜ | Танай нэрэ хэн бэ? | `танай_нэрэ_хэн_бэ` | What is your name? | Vocabulary |
+| ⬜ | Минии нэрэ… | `минии_нэрэ` | My name is… | Vocabulary |
 | ⬜ | Дахин хэлыт | `дахин_хэлыт` | Please say it again | Vocabulary |
-| ⬜ | Би ойлгохогүйб | `би_ойлгохогүйб` | I do not understand | Vocabulary |
+| ⬜ | Би ойлгоногүйб | `би_ойлгоногүйб` | I do not understand | Vocabulary |
 | ⬜ | Хаана байна? | `хаана_байна` | Where is it? | Vocabulary |

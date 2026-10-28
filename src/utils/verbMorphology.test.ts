@@ -258,6 +258,26 @@ describe('deriveAll', () => {
     expect(byLabel('оро').Causative.inf).toBe('оруулха');
   });
 
+  it('causative allomorphs (Buryat National Corpus counts)', () => {
+    expect(byLabel('һуу').Causative.inf).toBe('һуулгаха'); // 38
+    expect(byLabel('уу').Causative.inf).toBe('уулгаха'); // 16
+    expect(byLabel('угаа').Causative.inf).toBe('угаалгаха'); // 3
+    expect(byLabel('бай').Causative.inf).toBe('байлгаха'); // 68
+    expect(byLabel('гүй').Causative.inf).toBe('гүйлгэхэ'); // 14
+    expect(byLabel('эди').Causative.inf).toBe('эдюулхэ'); // 33
+    expect(byLabel('эди').Causative.perf).toBe('эдюулээ'); // 11
+    expect(byLabel('бари').Causative.inf).toBe('барюулха'); // 43
+    expect(byLabel('гара').Causative.inf).toBe('гаргаха'); // 284
+    expect(byLabel('боло').Causative.inf).toBe('болгохо'); // 300
+    expect(byLabel('гара').Causative.suffix).toBe('-га');
+    expect(byLabel('һуу').Causative.suffix).toBe('+лга');
+  });
+
+  it('й-final stems take consonant-initial suffixes directly (BNC гүйлдэхэ 29)', () => {
+    expect(byLabel('гүй').Reciprocal.inf).toBe('гүйлдэхэ');
+    expect(byLabel('гүй').Passive.root).toBe('гүйгдэ');
+  });
+
   it('passive', () => {
     expect(byLabel('унша').Passive.inf).toBe('уншагдаха');
     expect(byLabel('мэдэ').Passive.inf).toBe('мэдэгдэхэ');

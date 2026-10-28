@@ -126,7 +126,7 @@
     { "id": "muu",     "buryad": "муу",    "ipa": "muː",     "english": "bad / evil",       "russian": "плохой",   "category": "adjective", "tags": ["basic","quality"] },
     { "id": "tomo",    "buryad": "томо",   "ipa": "tomo",    "english": "big / large",      "russian": "большой",  "category": "adjective", "tags": ["size"] },
     { "id": "baga",    "buryad": "бага",   "ipa": "baɡa",    "english": "small / little",   "russian": "маленький","category": "adjective", "tags": ["size"] },
-    { "id": "ekhe",    "buryad": "ехэ",    "ipa": "jexe",    "english": "great / very big", "russian": "большой/великий", "category": "adjective", "tags": ["size","intensity"] },
+    { "id": "yekhe",   "buryad": "ехэ",    "ipa": "jexe",    "english": "great / very big", "russian": "большой/великий", "category": "adjective", "tags": ["size","intensity"] },
     { "id": "khurdan", "buryad": "хурдан", "ipa": "xurdan",  "english": "fast / quick",     "russian": "быстрый",  "category": "adjective", "tags": ["quality"] },
     { "id": "udaan",   "buryad": "удаан",  "ipa": "udaːn",   "english": "slow / long (time)","russian": "медленный/долгий", "category": "adjective", "tags": ["quality","time"] },
     { "id": "goyo",    "buryad": "гоё",    "ipa": "ɡojo",    "english": "beautiful / pretty","russian": "красивый", "category": "adjective", "tags": ["quality"] },

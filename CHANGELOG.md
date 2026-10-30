@@ -1,3 +1,9 @@
+## [1.14.0](https://github.com/dtsh8/buryad-grammar/compare/v1.13.3...v1.14.0) (2026-10-30)
+
+### ✨ New Features
+
+* **word-order:** add Questions tab with textbook question structures ([02b1036](https://github.com/dtsh8/buryad-grammar/commit/02b103613c2fb8f321d2d21c9eb7eaf354907046))
+
 ## [1.13.3](https://github.com/dtsh8/buryad-grammar/compare/v1.13.2...v1.13.3) (2026-10-30)
 
 ### 🐛 Bug Fixes

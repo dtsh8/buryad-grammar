@@ -43,6 +43,7 @@ Not answerable from a news corpus: A2 meanings beyond these examples, B4 (reflex
 | Textbook | *Учебник бурятского языка* (40 lessons, literary Buryad on the Khori base; Academia.edu 35182608) | Rules and paradigms; page numbers below refer to it |
 | S&D 2020 | Скрибник Е. К., Даржаева Н. Б. Семантика обстоятельственного сложного предложения в бурятском языке и языковая картина мира // Вестник БГУ. Язык. Литература. Культура. 2020. № 4. С. 58–69 | Morpheme-by-morpheme glosses of Buryat National Corpus examples |
 | D 2019 | Даржаева Н. Б. Квазисинонимические уступительные конструкции в бурятском языке // Oriental Studies. 2019. № 4. С. 682–690 | Concessive constructions |
+| Sampilova 2003 | Сампилова С. Ц., Бальжинимаева Ц. Ц. Буряад хэлэн: 3-дахи класс. Улаан-Үдэ: Бэлиг, 2003 (school textbook, no answer key) | Question sentences in `QUESTION_EXAMPLES`, cited by printed page; the glosses and structure labels are ours |
 | BNC | Buryat National Corpus, https://buryat.web-corpora.net/buryat_corpus/search (fiction, folklore, press, 1950s–2010s) | Frequencies and sentences of word forms (`npm run corpus:bnc`); its automatic grammar tags are often wrong for verb forms |
 
 | Q   | Finding | Status |
@@ -350,6 +351,7 @@ through and correct anything unnatural, in particular:
 | D3  | Нэрлэгшэ — нэмэлтэ — хэлэгшэ (subject — object — predicate)  | Standard terms for подлежащее, дополнение, сказуемое?                          |
 | D4  | Тойм, Фонетикэ, Падежнүүд, Үйлэ үгэ, Үгын дараалал, Үгын сан, Дасхал | Natural menu names for Overview, Phonology, Cases, Verbs, Word order, Vocabulary, Practice? |
 | D5  | хэнэй? юугээр? хэнтэй? (cues before the genitive, instrumental, comitative of the word of the day) | Natural case questions, and is *юугээр* the right form?                 |
+| D6  | Асуудалай янзанууд, асуудалай үгэ, асуудалай тэмдэг, and the rest of `wordOrder.questions` | Natural terms and wording for "question structures", "question word" and "question marker"? |
 | D6  | Imperatives: үргэлжэлүүлыт, эхилыт, шэлэгты, бүтээгыт         | Right polite imperative endings?                                               |
 
 Only the app shell, the Home page, page titles and tabs, and the Vocabulary page are translated.

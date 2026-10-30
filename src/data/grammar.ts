@@ -1042,6 +1042,133 @@ export const WORD_ORDER_EXAMPLES: WordOrderExample[] = [
   },
 ];
 
+// ─── Question structures ──────────────────────────────────────────────────
+
+export interface QuestionWord {
+  buryad: string;
+  gloss: string;
+  role?: 'question' | 'marker';
+}
+
+export interface QuestionExample {
+  structure: string;
+  note: string;
+  words: QuestionWord[];
+  translation: string;
+  page: number; // printed page in Сампилова & Бальжинимаева 2003
+}
+
+// Sentences from Сампилова & Бальжинимаева 2003; glosses and translations are ours.
+// BNC: -өөбта 13, -өөбтэ 0, so the 2pl question ending does not harmonise.
+export const QUESTION_EXAMPLES: QuestionExample[] = [
+  {
+    structure: 'Yes/no question with гү',
+    note: 'The book’s answer repeats the sentence without гү: Манайхин центрһээ холо байдаг.',
+    words: [
+      { buryad: 'Танайхин', gloss: 'you.PL.GEN-family' },
+      { buryad: 'центрһээ', gloss: 'centre-ABL' },
+      { buryad: 'холо', gloss: 'far' },
+      { buryad: 'байдаг', gloss: 'be-HAB' },
+      { buryad: 'гү', gloss: 'Q', role: 'marker' },
+    ],
+    translation: 'Does your family live far from the centre?',
+    page: 49,
+  },
+  {
+    structure: 'Yes/no question, person ending on the particle',
+    note: 'A second-person subject puts its ending on the particle: гү + -т.',
+    words: [
+      { buryad: 'Зунай', gloss: 'summer-GEN' },
+      { buryad: 'һайхан', gloss: 'fine' },
+      { buryad: 'үдэр', gloss: 'day' },
+      { buryad: 'хүдөө', gloss: 'countryside' },
+      { buryad: 'талада', gloss: 'steppe-DAT' },
+      { buryad: 'ябажа', gloss: 'go-CVB' },
+      { buryad: 'үзөө', gloss: 'try-PC.PRS' },
+      { buryad: 'һэн', gloss: 'be.PST' },
+      { buryad: 'гүт', gloss: 'Q-2PL', role: 'marker' },
+    ],
+    translation: 'Have you ever been out in the countryside on a fine summer day?',
+    page: 3,
+  },
+  {
+    structure: 'Question word with separate бэ',
+    note: 'ямар stands directly before its noun, and бэ follows the verb as its own word.',
+    words: [
+      { buryad: 'Танай', gloss: 'you.PL.GEN' },
+      { buryad: 'ошоһон', gloss: 'go-PC.PST' },
+      { buryad: 'нютагта', gloss: 'place-DAT' },
+      { buryad: 'ямар', gloss: 'what.kind', role: 'question' },
+      { buryad: 'сэсэгүүд', gloss: 'flower-PL' },
+      { buryad: 'ургадаг', gloss: 'grow-HAB' },
+      { buryad: 'бэ', gloss: 'Q', role: 'marker' },
+    ],
+    translation: 'What flowers grow in the place you went to?',
+    page: 3,
+  },
+  {
+    structure: 'No verb: noun predicate with бэ',
+    note: 'With no verb in the sentence, бэ closes the noun predicate.',
+    words: [
+      { buryad: '«Гал дүлэн үнгэтэй»', gloss: 'fire.flame colour-COM' },
+      { buryad: 'гээшэнь', gloss: 'say-NMLZ-POSS.3' },
+      { buryad: 'ямар', gloss: 'what.kind', role: 'question' },
+      { buryad: 'модон', gloss: 'tree' },
+      { buryad: 'бэ', gloss: 'Q', role: 'marker' },
+    ],
+    translation: 'Which tree is the “fire-coloured” one?',
+    page: 12,
+  },
+  {
+    structure: 'Question word with -б on the verb',
+    note: 'The subject is third person, so this -б marks the question, not first person.',
+    words: [
+      { buryad: 'Үхибүүд', gloss: 'child.PL' },
+      { buryad: 'юу', gloss: 'what', role: 'question' },
+      { buryad: 'хэнэб', gloss: 'do-PRS-Q', role: 'marker' },
+    ],
+    translation: 'What are the children doing?',
+    page: 6,
+  },
+  {
+    structure: 'Question word with a person ending on the verb',
+    note: 'хаана stays directly before the verb, which ends in -б + 2pl -та.',
+    words: [
+      { buryad: 'Таанар', gloss: 'you.PL' },
+      { buryad: 'зунайнгаа', gloss: 'summer-GEN-REFL' },
+      { buryad: 'амаралта', gloss: 'holiday' },
+      { buryad: 'хаана', gloss: 'where', role: 'question' },
+      { buryad: 'үнгэргөөбта', gloss: 'spend-PC.PRS-Q-2PL', role: 'marker' },
+    ],
+    translation: 'Where did you spend your summer holiday?',
+    page: 3,
+  },
+  {
+    structure: 'Question word in a case',
+    note: 'хэн takes the case of the word that answers it: хэнһээ → ахайһаа in the book’s reply.',
+    words: [
+      { buryad: 'Хэнһээ', gloss: 'who-ABL', role: 'question' },
+      { buryad: 'бэшэг', gloss: 'letter' },
+      { buryad: 'абаабши', gloss: 'get-PC.PRS-Q-2SG', role: 'marker' },
+    ],
+    translation: 'Who did you get a letter from?',
+    page: 49,
+  },
+  {
+    structure: '“Why” with юундэ',
+    note: 'юундэ is the dative of юун “what”.',
+    words: [
+      { buryad: 'Нүхэнэйнгөө', gloss: 'den-GEN-REFL' },
+      { buryad: 'амһарта', gloss: 'entrance-DAT' },
+      { buryad: 'юундэ', gloss: 'what-DAT', role: 'question' },
+      { buryad: 'мүшэр', gloss: 'branch' },
+      { buryad: 'обоолооб', gloss: 'pile.up-PC.PRS-Q', role: 'marker' },
+    ],
+    translation: 'Why did it pile up branches at the entrance to its den?',
+    page: 17,
+  },
+];
+
 // ─── Postpositions ────────────────────────────────────────────────────────
 
 export interface Postposition {

@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import WordOrderDiagram from '../components/WordOrderDiagram';
 import AgglutinationDiagram from '../components/AgglutinationDiagram';
+import QuestionPatterns from '../components/QuestionPatterns';
 import { POSTPOSITIONS } from '../data/grammar';
 import Tabs from '../components/Tabs';
 import { tabPanelProps, useTab, type TabDef } from '../hooks/useTab';
@@ -9,11 +10,12 @@ import Tooltip from '../components/Tooltip';
 import { ABBR_CLASS, ORDER_TIP } from '../data/abbreviations';
 
 const fade = { hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } };
-type Tab = 'order' | 'postpositions' | 'agglutination';
+type Tab = 'order' | 'questions' | 'postpositions' | 'agglutination';
 
 // Labels come from the i18n messages under `wordOrder.tabs`.
 const TAB_IDS: ReadonlyArray<Omit<TabDef<Tab>, 'label'>> = [
   { id: 'order' },
+  { id: 'questions' },
   { id: 'postpositions' },
   { id: 'agglutination' },
 ];
@@ -128,6 +130,22 @@ export default function WordOrder() {
               </div>
             </div>
           </div>
+        </motion.div>
+      )}
+
+      {tab === 'questions' && (
+        <motion.div
+          variants={fade}
+          initial="hidden"
+          animate="show"
+          className="space-y-6"
+          {...tabPanelProps(tab)}
+        >
+          <div>
+            <h2 className="text-lg font-semibold text-stone-800">{t.wordOrder.questions.title}</h2>
+            <p className="text-sm text-stone-500 mt-1">{t.wordOrder.questions.intro}</p>
+          </div>
+          <QuestionPatterns />
         </motion.div>
       )}
 

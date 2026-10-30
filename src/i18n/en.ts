@@ -152,8 +152,21 @@ export const en = {
     tabsLabel: 'Syntax sections',
     tabs: {
       order: 'Word Order',
+      questions: 'Questions',
       postpositions: 'Postpositions',
       agglutination: 'Agglutination',
+    },
+    questions: {
+      title: 'Question Structures',
+      intro:
+        'Questions keep the verb last. The question word need not move to the front, and a particle or ending closes the sentence.',
+      questionWord: 'Question word',
+      marker: 'Question marker',
+      page: (n: number) => `p. ${n}`,
+      glossKey:
+        'Q question marker · HAB habitual · CVB converb · PC participle · NMLZ nominaliser · COM comitative · REFL reflexive possessive',
+      source:
+        'Sentences from С. Ц. Сампилова, Ц. Ц. Бальжинимаева, Буряад хэлэн, 3 класс (Улаан-Үдэ: Бэлиг, 2003). Glosses and translations added for this app.',
     },
   },
 

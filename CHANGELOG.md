@@ -1,3 +1,9 @@
+## [1.13.0](https://github.com/dtsh8/buryad-grammar/compare/v1.12.0...v1.13.0) (2026-10-30)
+
+### ✨ New Features
+
+* **ui:** Buryad / English / Russian interface language switcher ([a191187](https://github.com/dtsh8/buryad-grammar/commit/a1911878b7fbb26e83dc6ba86a6457d1a7411845))
+
 ## [1.12.0](https://github.com/dtsh8/buryad-grammar/compare/v1.11.0...v1.12.0) (2026-10-28)
 
 ### ✨ New Features

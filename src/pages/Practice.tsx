@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { useEffect, useMemo, useRef, useState, type FormEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { Check, X, ArrowRight, Lightbulb } from 'lucide-react';
@@ -27,6 +28,8 @@ type Tab = 'conjugation' | 'cases';
 
 // Labels come from the i18n messages under `practice.tabs`.
 const TAB_IDS: ReadonlyArray<Omit<TabDef<Tab>, 'label'>> = [{ id: 'conjugation' }, { id: 'cases' }];
+
+const fade = { hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } };
 
 // Letters missing from a Russian keyboard.
 const SPECIAL_LETTERS = ['һ', 'ү', 'ө'];
@@ -413,13 +416,13 @@ export default function Practice() {
   const caseDrillItems = useMemo(() => [...CURATED, ...generatedCaseItems(data)], [data]);
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-10 space-y-6">
-      <header>
+    <div className="max-w-5xl mx-auto px-4 py-10 space-y-8">
+      <motion.div variants={fade} initial="hidden" animate="show" transition={{ duration: 0.4 }}>
         <h1 className="text-3xl font-bold text-stone-900">{t.practice.title}</h1>
-        <p className="mt-1 text-stone-600">
+        <p className="text-stone-500 mt-1">
           {t.practice.intro} <span className="font-buryat">һ ү ө</span>.
         </p>
-      </header>
+      </motion.div>
 
       <Tabs tabs={TABS} active={tab} onChange={setTab} label={t.practice.tabsLabel} />
 

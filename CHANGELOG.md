@@ -1,3 +1,9 @@
+## [1.13.3](https://github.com/dtsh8/buryad-grammar/compare/v1.13.2...v1.13.3) (2026-10-30)
+
+### 🐛 Bug Fixes
+
+* **ui:** give Practice the same page layout as the other pages ([52c7a94](https://github.com/dtsh8/buryad-grammar/commit/52c7a945829f61d3de0955d636639645df71c813))
+
 ## [1.13.2](https://github.com/dtsh8/buryad-grammar/compare/v1.13.1...v1.13.2) (2026-10-30)
 
 ### 🐛 Bug Fixes

@@ -329,3 +329,25 @@ Also: does the same rule apply to the instrumental case (*үнэнөөр*, *гэ
 | C9  | Latin script 1929–1939                                               | [grammar.ts:10](../src/data/grammar.ts#L10)                  | Correct years for the Latin alphabet?                                                |
 | C10 | Concessive example *Ябашьегүй үзэгдэнэ*                              | grammar.ts, `CONVERBS`                                       | Is this natural? Is the concessive *-башье* (*ябабашье*)?                            |
 | C11 | Agglutination demo: дура → дурла- → дурлалса- (reciprocal)           | [grammar.ts:904](../src/data/grammar.ts#L904)                | Depends on A2.                                                                       |
+
+C7–C9 also appear on the Home page, whose text now lives in the interface translations
+([en.ts](../src/i18n/en.ts), [ru.ts](../src/i18n/ru.ts), [bua.ts](../src/i18n/bua.ts),
+`home.profile` and `home.stats`): a correction there needs all three files.
+
+## D. Interface translation
+
+The interface has a Buryad / English / Russian switcher. The Buryad strings in
+[bua.ts](../src/i18n/bua.ts) are a draft written without a native speaker. Please read them
+through and correct anything unnatural, in particular:
+
+| #   | App says                                                     | Question                                                                       |
+| --- | ------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| D1  | Эгшэгүүдэй зохилдоон / Эгшэгэй зохилдоон (vowel harmony)     | What is the school-grammar term for сингармонизм?                              |
+| D2  | Дайбар үйлэ үгэ (converb), хойто үгэ (postposition)          | Standard terms for деепричастие and послелог?                                  |
+| D3  | Нэрлэгшэ — нэмэлтэ — хэлэгшэ (subject — object — predicate)  | Standard terms for подлежащее, дополнение, сказуемое?                          |
+| D4  | Тойм, Фонетикэ, Падежнүүд, Үйлэ үгэ, Үгын дараалал, Үгын сан, Дасхал | Natural menu names for Overview, Phonology, Cases, Verbs, Word order, Vocabulary, Practice? |
+| D5  | хэнэй? юугээр? хэнтэй? (cues before the genitive, instrumental, comitative of the word of the day) | Natural case questions, and is *юугээр* the right form?                 |
+| D6  | Imperatives: үргэлжэлүүлыт, эхилыт, шэлэгты, бүтээгыт         | Right polite imperative endings?                                               |
+
+Only the app shell, the Home page, page titles and tabs, and the Vocabulary page are translated.
+The grammar explanations inside each page are still English in every interface language.

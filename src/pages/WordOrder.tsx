@@ -4,32 +4,33 @@ import AgglutinationDiagram from '../components/AgglutinationDiagram';
 import { POSTPOSITIONS } from '../data/grammar';
 import Tabs from '../components/Tabs';
 import { tabPanelProps, useTab, type TabDef } from '../hooks/useTab';
+import { useI18n } from '../i18n/context';
 import Tooltip from '../components/Tooltip';
 import { ABBR_CLASS, ORDER_TIP } from '../data/abbreviations';
 
 const fade = { hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } };
 type Tab = 'order' | 'postpositions' | 'agglutination';
 
-const TABS: Array<TabDef<Tab>> = [
-  { id: 'order', label: 'Word Order' },
-  { id: 'postpositions', label: 'Postpositions' },
-  { id: 'agglutination', label: 'Agglutination' },
+// Labels come from the i18n messages under `wordOrder.tabs`.
+const TAB_IDS: ReadonlyArray<Omit<TabDef<Tab>, 'label'>> = [
+  { id: 'order' },
+  { id: 'postpositions' },
+  { id: 'agglutination' },
 ];
 
 export default function WordOrder() {
+  const { t } = useI18n();
+  const TABS = TAB_IDS.map(d => ({ ...d, label: t.wordOrder.tabs[d.id] }));
   const [tab, setTab] = useTab(TABS);
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-10 space-y-8">
       <motion.div variants={fade} initial="hidden" animate="show" transition={{ duration: 0.4 }}>
-        <h1 className="text-3xl font-bold text-stone-900">Syntax & Word Order</h1>
-        <p className="text-stone-500 mt-1">
-          Subject–Object–Verb (SOV) order, postpositions, pre-nominal modifiers, and agglutinative
-          morphology.
-        </p>
+        <h1 className="text-3xl font-bold text-stone-900">{t.wordOrder.title}</h1>
+        <p className="text-stone-500 mt-1">{t.wordOrder.intro}</p>
       </motion.div>
 
-      <Tabs tabs={TABS} active={tab} onChange={setTab} label="Syntax sections" />
+      <Tabs tabs={TABS} active={tab} onChange={setTab} label={t.wordOrder.tabsLabel} />
 
       {tab === 'order' && (
         <motion.div

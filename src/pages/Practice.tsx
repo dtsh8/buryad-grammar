@@ -7,6 +7,7 @@ import Suffixed from '../components/Suffixed';
 import { saveLastPractice } from '../utils/lastPractice';
 import Tabs from '../components/Tabs';
 import { tabPanelProps, useTab, type TabDef } from '../hooks/useTab';
+import { useI18n } from '../i18n/context';
 import { useVocabulary } from '../hooks/useVocabulary';
 import type { Lexeme } from '../data/vocabulary.types';
 import {
@@ -24,10 +25,8 @@ import {
 
 type Tab = 'conjugation' | 'cases';
 
-const TABS: ReadonlyArray<TabDef<Tab>> = [
-  { id: 'conjugation', label: 'Conjugation' },
-  { id: 'cases', label: 'Cases' },
-];
+// Labels come from the i18n messages under `practice.tabs`.
+const TAB_IDS: ReadonlyArray<Omit<TabDef<Tab>, 'label'>> = [{ id: 'conjugation' }, { id: 'cases' }];
 
 // Letters missing from a Russian keyboard.
 const SPECIAL_LETTERS = ['һ', 'ү', 'ө'];
@@ -403,6 +402,8 @@ function CaseDrill({ items }: { items: CaseItem[] }) {
 // ─── Page ─────────────────────────────────────────────────────────────────
 
 export default function Practice() {
+  const { t } = useI18n();
+  const TABS = TAB_IDS.map(d => ({ ...d, label: t.practice.tabs[d.id] }));
   const [tab, setTab] = useTab(TABS);
   // Remembered for the Continue card on the Today page
   useEffect(() => saveLastPractice(tab), [tab]);
@@ -414,21 +415,22 @@ export default function Practice() {
   return (
     <div className="max-w-3xl mx-auto px-4 py-10 space-y-6">
       <header>
-        <h1 className="text-3xl font-bold text-stone-900">Practice</h1>
+        <h1 className="text-3xl font-bold text-stone-900">{t.practice.title}</h1>
         <p className="mt-1 text-stone-600">
-          Build the forms yourself. Answers come from the same rules and examples as the reference
-          pages; the buttons insert <span className="font-buryat">һ ү ө</span>.
+          {t.practice.intro} <span className="font-buryat">һ ү ө</span>.
         </p>
       </header>
 
-      <Tabs tabs={TABS} active={tab} onChange={setTab} label="Practice drills" />
+      <Tabs tabs={TABS} active={tab} onChange={setTab} label={t.practice.tabsLabel} />
 
       <section {...tabPanelProps(tab)}>
         {tab === 'conjugation' &&
           (error ? (
-            <p className="text-red-700">Could not load vocabulary: {error}</p>
+            <p className="text-red-700">
+              {t.loadError} {error}
+            </p>
           ) : loading || verbs.length === 0 ? (
-            <p className="text-stone-500">Loading verbs…</p>
+            <p className="text-stone-500">{t.practice.loadingVerbs}</p>
           ) : (
             <ConjugationDrill verbs={verbs} />
           ))}

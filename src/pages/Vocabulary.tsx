@@ -3,6 +3,8 @@ import { useState, useMemo } from 'react';
 import { useVocabulary } from '../hooks/useVocabulary';
 import type { Lexeme, LexemeCategory } from '../data/vocabulary.types';
 import SayButton from '../components/SayButton';
+import { useI18n } from '../i18n/context';
+import { gloss } from '../i18n/lang';
 
 const fade = { hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } };
 
@@ -29,6 +31,11 @@ const CAT_COLORS: Record<LexemeCategory, string> = {
 };
 
 function LexemeCard({ l }: { l: Lexeme }) {
+  const { t, lang } = useI18n();
+  // The gloss in the interface language first; English readers also see the Russian one.
+  const main = gloss(l, lang);
+  const second = lang === 'en' ? l.russian : l.english;
+
   return (
     <div className="border border-stone-200 rounded-xl p-4 hover:border-buryat-200 hover:shadow-sm transition-all group">
       <div className="flex items-start justify-between gap-2">
@@ -37,12 +44,12 @@ function LexemeCard({ l }: { l: Lexeme }) {
           <SayButton word={l.buryad} className="ml-1" />
         </p>
         <span className={`${CAT_COLORS[l.category] ?? 'badge'} shrink-0 text-xs`}>
-          {l.category}
+          {t.vocabulary.categories[l.category]}
         </span>
       </div>
       <p className="text-xs text-stone-500 font-mono mt-0.5">/{l.ipa}/</p>
-      <p className="text-sm text-stone-700 mt-1 font-medium">{l.english}</p>
-      {l.russian && <p className="text-xs text-stone-500 mt-0.5">{l.russian}</p>}
+      <p className="text-sm text-stone-700 mt-1 font-medium">{main}</p>
+      {second && second !== main && <p className="text-xs text-stone-500 mt-0.5">{second}</p>}
       {l.tags && (
         <div className="flex flex-wrap gap-1 mt-2">
           {l.tags.map(t => (
@@ -68,6 +75,8 @@ function SkeletonGrid() {
 
 export default function Vocabulary() {
   const { data, loading, error } = useVocabulary();
+  const { t } = useI18n();
+  const v = t.vocabulary;
   const [activeCats, setActiveCats] = useState<Set<LexemeCategory>>(new Set());
   const [query, setQuery] = useState('');
   const [sort, setSort] = useState<'alpha' | 'category'>('alpha');
@@ -116,12 +125,10 @@ export default function Vocabulary() {
     <div className="max-w-5xl mx-auto px-4 py-10 space-y-8">
       <motion.div variants={fade} initial="hidden" animate="show" transition={{ duration: 0.4 }}>
         <div className="flex items-baseline gap-3">
-          <h1 className="text-3xl font-bold text-stone-900">Vocabulary</h1>
-          {!loading && <span className="text-stone-500 text-sm">{data.length} entries</span>}
+          <h1 className="text-3xl font-bold text-stone-900">{v.title}</h1>
+          {!loading && <span className="text-stone-500 text-sm">{v.count(data.length)}</span>}
         </div>
-        <p className="text-stone-500 mt-1">
-          Core Buryad lexicon — searchable by Буряад, English, or Russian.
-        </p>
+        <p className="text-stone-500 mt-1">{v.intro}</p>
       </motion.div>
 
       {/* Search + filter bar */}
@@ -129,7 +136,7 @@ export default function Vocabulary() {
         <div className="flex flex-wrap gap-2 items-center">
           <input
             type="search"
-            aria-label="Search vocabulary"
+            aria-label={v.search}
             placeholder="буряад / English / русский…"
             value={query}
             onChange={e => setQuery(e.target.value)}
@@ -138,18 +145,18 @@ export default function Vocabulary() {
           <select
             value={sort}
             onChange={e => setSort(e.target.value as typeof sort)}
-            aria-label="Sort order"
+            aria-label={v.sort}
             className="border border-stone-200 rounded-lg px-2 py-1.5 text-sm text-stone-600 outline-none focus:border-buryat-400"
           >
-            <option value="alpha">A–Я alphabetical</option>
-            <option value="category">By category</option>
+            <option value="alpha">{v.sortAlpha}</option>
+            <option value="category">{v.sortCategory}</option>
           </select>
           {activeCats.size > 0 && (
             <button
               onClick={() => setActiveCats(new Set())}
               className="text-xs text-stone-500 hover:text-stone-700 underline"
             >
-              clear filters
+              {v.clear}
             </button>
           )}
         </div>
@@ -167,7 +174,7 @@ export default function Vocabulary() {
                   : 'bg-stone-100 text-stone-500 hover:bg-stone-200'
               }`}
             >
-              {c}
+              {v.categories[c]}
               {!loading && (
                 <span className="ml-1 opacity-60">{data.filter(l => l.category === c).length}</span>
               )}
@@ -179,7 +186,7 @@ export default function Vocabulary() {
       {/* Error */}
       {error && (
         <div className="rounded-xl bg-red-50 border border-red-200 p-4 text-sm text-red-700">
-          ⚠️ Could not load vocabulary: {error}
+          ⚠️ {t.loadError} {error}
         </div>
       )}
 
@@ -194,13 +201,11 @@ export default function Vocabulary() {
               <LexemeCard key={l.id} l={l} />
             ))}
             {filtered.length === 0 && (
-              <p className="text-stone-500 text-sm col-span-3 py-8 text-center">
-                No words match your search.
-              </p>
+              <p className="text-stone-500 text-sm col-span-3 py-8 text-center">{v.empty}</p>
             )}
           </div>
           <p className="text-xs text-stone-500 text-right mt-3">
-            {filtered.length} of {data.length} entries
+            {v.shown(filtered.length, data.length)}
           </p>
         </motion.div>
       )}

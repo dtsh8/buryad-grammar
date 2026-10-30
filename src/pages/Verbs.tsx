@@ -16,6 +16,7 @@ import { HARMONY_TIP } from '../data/harmonyTerms';
 import SayButton from '../components/SayButton';
 import Tabs from '../components/Tabs';
 import { tabPanelProps, useTab, type TabDef } from '../hooks/useTab';
+import { useI18n } from '../i18n/context';
 
 const fade = { hidden: { opacity: 0, y: 14 }, show: { opacity: 1, y: 0 } };
 
@@ -752,30 +753,30 @@ function Conjugator() {
 
 // ─── Main Page ─────────────────────────────────────────────────────────────
 
-const TABS: Array<TabDef<Tab>> = [
-  { id: 'anatomy', label: 'Verb Anatomy', icon: '🧬' },
-  { id: 'tenses', label: 'Tenses', icon: '⏱️' },
-  { id: 'person', label: 'Person', icon: '👤' },
-  { id: 'voice', label: 'Voice & Valency', icon: '🔄' },
-  { id: 'converbs', label: 'Converbs', icon: '🔗' },
-  { id: 'conjugator', label: 'Conjugator', icon: '⚡' },
-  { id: 'builder', label: 'Verb Builder', icon: '🔤' },
+// Labels come from the i18n messages under `verbs.tabs`.
+const TAB_IDS: ReadonlyArray<Omit<TabDef<Tab>, 'label'>> = [
+  { id: 'anatomy', icon: '🧬' },
+  { id: 'tenses', icon: '⏱️' },
+  { id: 'person', icon: '👤' },
+  { id: 'voice', icon: '🔄' },
+  { id: 'converbs', icon: '🔗' },
+  { id: 'conjugator', icon: '⚡' },
+  { id: 'builder', icon: '🔤' },
 ];
 
 export default function Verbs() {
+  const { t } = useI18n();
+  const TABS = TAB_IDS.map(d => ({ ...d, label: t.verbs.tabs[d.id] }));
   const [tab, setTab] = useTab(TABS);
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-10 space-y-8">
       <motion.div variants={fade} initial="hidden" animate="show" transition={{ duration: 0.4 }}>
-        <h1 className="text-3xl font-bold text-stone-900">Verb System</h1>
-        <p className="text-stone-500 mt-1">
-          Morpheme anatomy, tense, person endings, voice derivation, converbs, and interactive
-          conjugation.
-        </p>
+        <h1 className="text-3xl font-bold text-stone-900">{t.verbs.title}</h1>
+        <p className="text-stone-500 mt-1">{t.verbs.intro}</p>
       </motion.div>
 
-      <Tabs tabs={TABS} active={tab} onChange={setTab} label="Verb sections" />
+      <Tabs tabs={TABS} active={tab} onChange={setTab} label={t.verbs.tabsLabel} />
 
       <AnimatePresence mode="wait">
         <motion.div

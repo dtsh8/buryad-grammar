@@ -6,6 +6,7 @@ import HintTooltip from '../components/Tooltip';
 import { HARMONY_TIP } from '../data/harmonyTerms';
 import { ABBR_CLASS, SYLLABLE_TIP } from '../data/abbreviations';
 import { tabPanelProps, useTab, type TabDef } from '../hooks/useTab';
+import { useI18n } from '../i18n/context';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from 'recharts';
 
 const fade = { hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0 } };
@@ -28,25 +29,26 @@ const placeCounts = Object.entries(
 
 type Tab = 'harmony' | 'consonants' | 'structure';
 
-const TABS: Array<TabDef<Tab>> = [
-  { id: 'harmony', label: 'Vowel Harmony' },
-  { id: 'consonants', label: 'Consonants' },
-  { id: 'structure', label: 'Syllable Structure' },
+// Labels come from the i18n messages under `phonology.tabs`.
+const TAB_IDS: ReadonlyArray<Omit<TabDef<Tab>, 'label'>> = [
+  { id: 'harmony' },
+  { id: 'consonants' },
+  { id: 'structure' },
 ];
 
 export default function Phonology() {
+  const { t } = useI18n();
+  const TABS = TAB_IDS.map(d => ({ ...d, label: t.phonology.tabs[d.id] }));
   const [tab, setTab] = useTab(TABS);
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-10 space-y-8">
       <motion.div variants={fade} initial="hidden" animate="show" transition={{ duration: 0.4 }}>
-        <h1 className="text-3xl font-bold text-stone-900">Phonology</h1>
-        <p className="text-stone-500 mt-1">
-          Sound system of Буряад хэлэн — vowels, harmony, and consonants.
-        </p>
+        <h1 className="text-3xl font-bold text-stone-900">{t.phonology.title}</h1>
+        <p className="text-stone-500 mt-1">{t.phonology.intro}</p>
       </motion.div>
 
-      <Tabs tabs={TABS} active={tab} onChange={setTab} label="Phonology sections" />
+      <Tabs tabs={TABS} active={tab} onChange={setTab} label={t.phonology.tabsLabel} />
 
       {/* Vowel Harmony panel */}
       {tab === 'harmony' && (

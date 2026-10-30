@@ -25,6 +25,21 @@ function idFor(buryad: string): string {
 }
 
 describe('vocabulary.json', () => {
+  // х was once written h, which made хара "black" and һара "moon" look like the same sound.
+  it('transcribes х as x and һ as h', () => {
+    for (const e of vocab.entries) {
+      const count = (s: string, c: string) => s.toLowerCase().split(c).length - 1;
+      expect(count(e.ipa, 'x'), e.buryad).toBe(count(e.buryad, 'х'));
+      expect(count(e.ipa, 'h'), e.buryad).toBe(count(e.buryad, 'һ'));
+    }
+  });
+
+  it('marks long vowels with ː, not by doubling the letter', () => {
+    for (const e of vocab.entries) {
+      expect(e.ipa, e.buryad).not.toMatch(/([aeiouyø])\1/);
+    }
+  });
+
   // Ids once went stale when a headword was replaced: наадаха kept "bülüükhe".
   it('spells every id from its Buryad headword', () => {
     for (const e of vocab.entries) {

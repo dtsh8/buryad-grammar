@@ -61,6 +61,7 @@ Not answerable from a news corpus: A2 meanings beyond these examples, B4 (reflex
 | C4  | ү "very close to Russian у"; у "between Russian о and у"; ө always long, "close to Russian о" (p. 2). | Supports у [ʊ], ү [u], ө [oː]; speaker to confirm |
 | BNC | Buryat National Corpus (buryat.web-corpora.net, `npm run corpus:bnc`): *эдихэ* 539, *эдижэ* 304, *эдеэд* 154, every *эдеэ-* infinitive/present/past form 0, *эдеэгээд* 0; 3pl *ябанад* 146, *ерэбэд* 163; *ябанагүй* 39, *ерэбэгүй* 44; *абтаа* 59, *үгтэхэ* 34, *олдохо* 174; *угаадаха* 0; *үзөөд* 240 vs *үзээд* 23, *үгөөд* 410 vs 0, *дүүргээд* 373 vs *дүүргөөд* 0, *бүтээгээд* 39 vs 0; *байнхай* 49. -лай as a verb: *ошолой* 13, *ерэлэй* 11, *ябалай* 1, almost all Д.-Д. Дугаров (1969–71), vivid narrative past. | Confirms the applied changes; -лай is a rare literary form, not an evidential |
 | C10 | -ААшье һаа is the common concessive (Khori, any person); -башье is bookish, 3rd person only, from western/northern dialects (D 2019, citing Poppe 1938). | **Answered** |
+| IPA | Vocabulary `ipa` now follows the sound table in `grammar.ts`: х /x/, һ /h/, word-initial е /je/ (ябаха [jaβaxa], ерэбэ [jɛrɛbɛ]), long vowels with ː. *хүдэлхэ* 214 vs *хүдэхэ* 0 in the BNC. | **Applied** (2026-10-30); ы and о/э still open (C12, C13) |
 
 Passive variants (p. 84): -гда after vowels (*тари → таригдаха*); -да after л + vowel
 (*оло → олдохо*); -та after р, г, б + short vowel (*аба → абтаха*, *үгэ → үгтэхэ*). The same page
@@ -329,6 +330,8 @@ Also: does the same rule apply to the instrumental case (*үнэнөөр*, *гэ
 | C9  | Latin script 1929–1939                                               | [grammar.ts:10](../src/data/grammar.ts#L10)                  | Correct years for the Latin alphabet?                                                |
 | C10 | Concessive example *Ябашьегүй үзэгдэнэ*                              | grammar.ts, `CONVERBS`                                       | Is this natural? Is the concessive *-башье* (*ябабашье*)?                            |
 | C11 | Agglutination demo: дура → дурла- → дурлалса- (reciprocal)           | [grammar.ts:904](../src/data/grammar.ts#L904)                | Depends on A2.                                                                       |
+| C12 | ы has no sound in the table; vocabulary has *Үгы* /yɡy/, *хэлыт* /xelit/, *Хүлисэгты* /xylisəɡtə/ | [grammar.ts](../src/data/grammar.ts), `vocabulary.json` | What is the IPA of ы, and is it long? These three stay as they are until answered. |
+| C13 | Vowel table: о [ɔ]; *ерэбэ* [jɛrɛbɛ]. Vocabulary `ipa`: о /o/ (23 entries), э /e/ (43 entries) | [grammar.ts:35-106](../src/data/grammar.ts#L35-L106) | Which symbols are right, ɔ or o, e or ɛ? Decide with C4; then change both places together. |
 
 C7–C9 also appear on the Home page, whose text now lives in the interface translations
 ([en.ts](../src/i18n/en.ts), [ru.ts](../src/i18n/ru.ts), [bua.ts](../src/i18n/bua.ts),

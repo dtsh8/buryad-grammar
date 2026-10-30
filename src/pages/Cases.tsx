@@ -8,6 +8,7 @@ import { decline, type CaseId } from '../utils/nounMorphology';
 import SayButton from '../components/SayButton';
 import AttestBadge from '../components/AttestBadge';
 import Suffixed from '../components/Suffixed';
+import { useI18n } from '../i18n/context';
 
 const fade = { hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } };
 
@@ -167,6 +168,7 @@ function CaseDetail({ c }: { c: GrammarCase }) {
 }
 
 export default function Cases() {
+  const { t } = useI18n();
   const [selected, setSelected] = useState<string>(CASES[0].id);
   const activeCase = CASES.find(c => c.id === selected) ?? CASES[0];
   const detailRef = useRef<HTMLDivElement>(null);
@@ -191,11 +193,8 @@ export default function Cases() {
   return (
     <div className="max-w-6xl mx-auto px-4 py-10 space-y-10">
       <motion.div variants={fade} initial="hidden" animate="show" transition={{ duration: 0.4 }}>
-        <h1 className="text-3xl font-bold text-stone-900">Nominal Case System</h1>
-        <p className="text-stone-500 mt-1">
-          Buryad has <strong>7 cases</strong> — suffixes on the noun that replace prepositions and
-          encode grammatical role.
-        </p>
+        <h1 className="text-3xl font-bold text-stone-900">{t.cases.title}</h1>
+        <p className="text-stone-500 mt-1">{t.cases.intro}</p>
       </motion.div>
 
       {/* Case selector grid */}

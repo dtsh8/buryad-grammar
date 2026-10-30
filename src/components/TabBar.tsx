@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { House, BookOpen, Dumbbell, LayoutList } from 'lucide-react';
 import { SECTIONS } from '../sections';
+import { useI18n } from '../i18n/context';
 
 // The reference pages the "Grammar" tab opens.
 const GRAMMAR = ['/phonology', '/cases', '/verbs', '/word-order'];
@@ -11,10 +12,11 @@ const tabClass = (active: boolean) =>
     active ? 'text-buryat-700 font-semibold' : 'text-stone-500'
   }`;
 
-// Bottom navigation for phones: four destinations within thumb reach.
-// Desktop keeps the top navbar (md and up), so this is hidden there.
+// Bottom navigation for phones and tablets: four destinations within thumb reach.
+// Desktop keeps the top navbar (lg and up), so this is hidden there.
 export default function TabBar() {
   const { pathname } = useLocation();
+  const { t } = useI18n();
   // The path the Grammar menu was opened on: any navigation closes it.
   const [openedOn, setOpenedOn] = useState<string | null>(null);
   const open = openedOn === pathname;
@@ -22,8 +24,8 @@ export default function TabBar() {
 
   return (
     <nav
-      aria-label="Main"
-      className="md:hidden fixed inset-x-0 bottom-0 z-50 border-t border-stone-200 bg-white/95 backdrop-blur"
+      aria-label={t.nav.main}
+      className="lg:hidden fixed inset-x-0 bottom-0 z-50 border-t border-stone-200 bg-white/95 backdrop-blur"
       style={{
         paddingBottom: 'env(safe-area-inset-bottom, 0px)',
         paddingLeft: 'env(safe-area-inset-left, 0px)',
@@ -35,7 +37,7 @@ export default function TabBar() {
           id="grammar-menu"
           className="border-b border-stone-200 bg-white px-3 py-2 grid grid-cols-2 gap-1"
         >
-          {SECTIONS.filter(s => GRAMMAR.includes(s.to)).map(({ to, label, icon: Icon }) => (
+          {SECTIONS.filter(s => GRAMMAR.includes(s.to)).map(({ to, key, icon: Icon }) => (
             <NavLink
               key={to}
               to={to}
@@ -46,7 +48,7 @@ export default function TabBar() {
               }
             >
               <Icon size={18} aria-hidden="true" />
-              {label}
+              {t.sections[key].label}
             </NavLink>
           ))}
         </div>
@@ -54,7 +56,7 @@ export default function TabBar() {
       <div className="grid grid-cols-4 px-1">
         <NavLink to="/" end className={({ isActive }) => tabClass(isActive)}>
           <House size={22} aria-hidden="true" />
-          Today
+          {t.nav.today}
         </NavLink>
         <button
           type="button"
@@ -64,15 +66,15 @@ export default function TabBar() {
           className={tabClass(inGrammar || open)}
         >
           <BookOpen size={22} aria-hidden="true" />
-          Grammar
+          {t.nav.grammar}
         </button>
         <NavLink to="/practice" className={({ isActive }) => tabClass(isActive)}>
           <Dumbbell size={22} aria-hidden="true" />
-          Practice
+          {t.nav.practice}
         </NavLink>
         <NavLink to="/vocabulary" className={({ isActive }) => tabClass(isActive)}>
           <LayoutList size={22} aria-hidden="true" />
-          Words
+          {t.nav.words}
         </NavLink>
       </div>
     </nav>

@@ -1,3 +1,9 @@
+## [1.13.2](https://github.com/dtsh8/buryad-grammar/compare/v1.13.1...v1.13.2) (2026-10-30)
+
+### 🐛 Bug Fixes
+
+* **vocabulary:** correct IPA against the app's sound table ([82f37b2](https://github.com/dtsh8/buryad-grammar/commit/82f37b206ff24f18194e9c3266c657d5c9890b28))
+
 ## [1.13.1](https://github.com/dtsh8/buryad-grammar/compare/v1.13.0...v1.13.1) (2026-10-30)
 
 ### 🐛 Bug Fixes

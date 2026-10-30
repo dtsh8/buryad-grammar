@@ -1,3 +1,9 @@
+## [1.13.1](https://github.com/dtsh8/buryad-grammar/compare/v1.13.0...v1.13.1) (2026-10-30)
+
+### 🐛 Bug Fixes
+
+* **vocabulary:** make every id match its Buryad headword ([c238ed7](https://github.com/dtsh8/buryad-grammar/commit/c238ed705574cc32b762bda7b7640c8283e3a273))
+
 ## [1.13.0](https://github.com/dtsh8/buryad-grammar/compare/v1.12.0...v1.13.0) (2026-10-30)
 
 ### ✨ New Features

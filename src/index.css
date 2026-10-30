@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+  /* Short pages have no scrollbar; keep its space so the centred header doesn't shift. */
+  html {
+    scrollbar-gutter: stable;
+  }
   @media (prefers-reduced-motion: no-preference) {
     html {
       scroll-behavior: smooth;

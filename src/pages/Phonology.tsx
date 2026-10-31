@@ -163,7 +163,7 @@ export default function Phonology() {
                           </code>
                           {c.allophone && (
                             <HintTooltip
-                              text={`${c.allophone.note} Reported by a native speaker; not yet confirmed in a written source.`}
+                              text={c.allophone.note}
                               className="ml-1.5 whitespace-nowrap text-xs rounded-full border border-amber-300 bg-amber-50 text-amber-800 px-2"
                             >
                               ~[{c.allophone.ipa}]

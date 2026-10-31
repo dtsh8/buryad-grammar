@@ -1,3 +1,9 @@
+## [1.20.0](https://github.com/dtsh8/buryad-grammar/compare/v1.19.0...v1.20.0) (2026-10-31)
+
+### ✨ New Features
+
+* **reader:** translate phrases and whole sentences on hover ([10794b5](https://github.com/dtsh8/buryad-grammar/commit/10794b5bd6e29e746c41fa4260ec9f2a39da3cf0))
+
 ## [1.19.0](https://github.com/dtsh8/buryad-grammar/compare/v1.18.0...v1.19.0) (2026-10-31)
 
 ### ✨ New Features

@@ -1,11 +1,8 @@
 import { useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { House, BookOpen, Dumbbell, LayoutList } from 'lucide-react';
-import { SECTIONS } from '../sections';
+import { GRAMMAR_SECTIONS } from '../sections';
 import { useI18n } from '../i18n/context';
-
-// The reference pages the "Grammar" tab opens.
-const GRAMMAR = ['/phonology', '/cases', '/verbs', '/modals', '/word-order'];
 
 const tabClass = (active: boolean) =>
   `flex flex-col items-center justify-center gap-0.5 min-h-12 pt-1.5 text-[11px] transition-colors ${
@@ -20,7 +17,7 @@ export default function TabBar() {
   // The path the Grammar menu was opened on: any navigation closes it.
   const [openedOn, setOpenedOn] = useState<string | null>(null);
   const open = openedOn === pathname;
-  const inGrammar = GRAMMAR.some(p => pathname.startsWith(p));
+  const inGrammar = GRAMMAR_SECTIONS.some(s => pathname.startsWith(s.to));
 
   return (
     <nav
@@ -37,7 +34,7 @@ export default function TabBar() {
           id="grammar-menu"
           className="border-b border-stone-200 bg-white px-3 py-2 grid grid-cols-2 gap-1"
         >
-          {SECTIONS.filter(s => GRAMMAR.includes(s.to)).map(({ to, key, icon: Icon }) => (
+          {GRAMMAR_SECTIONS.map(({ to, key, icon: Icon }) => (
             <NavLink
               key={to}
               to={to}

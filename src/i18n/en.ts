@@ -133,7 +133,7 @@ export const en = {
         bilabial: { name: 'bilabial', how: 'Both lips touch.' },
         alveolar: {
           name: 'alveolar',
-          how: 'The tongue tip touches or nears the upper front teeth, as in Russian т, д, н.',
+          how: 'The tongue touches or nears the upper teeth and the ridge behind them.',
         },
         postalveolar: {
           name: 'postalveolar',
@@ -156,13 +156,13 @@ export const en = {
     vowelGuide: {
       title: 'What the vowel groups mean',
       groups:
-        'Back (эрэ), front (эмэ) and neutral (эрсэ) are traditional names. They tell you which suffixes a word takes, and are a poor guide to the tongue: ү, a front vowel, sounds close to Russian у. Learn each vowel from its own note below.',
+        'Back or male (эрэ), front or female (эмэ) and neutral (эрсэ) are traditional names. They tell you which suffixes a word takes, and are a poor guide to the tongue: ү, a front vowel, sounds close to Russian у. Learn each vowel from its own note below.',
       lips: 'Labial vowels are said with rounded lips: о, у, өө, ү. Unrounded: а, э, и.',
       reduced: 'Short vowels after the first syllable are very brief and unclear.',
-      ipa: "The IPA for у, ү and ө is under review: the textbook's comparisons point to other symbols.",
+      ipa: 'The IPA for у, ү, ө and э is under review: the sources point to other symbols.',
     },
     sources:
-      'Notes follow Учебник бурятского языка, pp. 1–4, and Khabtagaeva & Kempf 2011, pp. 27–28.',
+      "Notes follow Учебник бурятского языка, pp. 1–4, Khabtagaeva & Kempf 2011, pp. 27–28, and Жаргал Бадагаров's lesson Буряадаар дуугараял, episode 1.",
   },
 
   cases: {

@@ -35,7 +35,8 @@ export interface Vowel {
 
 // `how` notes: the textbook says letters shared with Russian keep their Russian sound (p. 1) and
 // describes у, ү, өө itself (p. 2); wide/narrow and rounding from p. 3. Its comparisons to
-// Russian disagree with the [u], [y], [ø] below: see question C4.
+// Russian disagree with the [u], [y], [ø] below: see question C4. Tips for о, у, э, өө, ү come
+// from Бадагаров, 02:03-06:27 and 17:37; э as [ɘ] from Staroverov 2020, p. 45.
 export const VOWELS: Vowel[] = [
   {
     letter: 'а',
@@ -57,7 +58,7 @@ export const VOWELS: Vowel[] = [
     backness: 'back',
     rounded: true,
     example: { word: 'ном', meaning: 'book' },
-    how: 'Lips rounded, mouth wide open. As Russian о.',
+    how: 'Lips rounded, mouth wide open. Like Russian о, without the slight у-like glide it has in очень.',
   },
   {
     letter: 'у',
@@ -68,7 +69,7 @@ export const VOWELS: Vowel[] = [
     backness: 'back',
     rounded: true,
     example: { word: 'уһан', meaning: 'water' },
-    how: 'Lips come close together and push forward a little, leaving a narrow slit, while the back of the tongue rises and pulls back. Sounds between Russian о and у.',
+    how: 'Get ready to say о, then push the lips forward and round them more, leaving a narrow slit, with the back of the tongue raised and pulled back. Neither Russian nor English has this sound; it lies between Russian о and у.',
   },
   {
     letter: 'э',
@@ -79,7 +80,7 @@ export const VOWELS: Vowel[] = [
     backness: 'front',
     rounded: false,
     example: { word: 'эхэ', meaning: 'mother' },
-    how: 'Mouth wide open, lips unrounded. As Russian э.',
+    how: 'Called э in the alphabet, but inside words it is not Russian э: it is a more central sound, written [ɘ] in recent descriptions. Lips unrounded.',
   },
   {
     letter: 'ө',
@@ -90,7 +91,7 @@ export const VOWELS: Vowel[] = [
     backness: 'front',
     rounded: true,
     example: { word: 'өөдэ', meaning: 'upward' },
-    how: 'Always long, so always written өө. Lips rounded, wider than for ү; tongue slightly raised and pulled back. Close to Russian о.',
+    how: 'Always long, so always written өө. Start from Russian ы, keep that feeling in the tongue, and round the lips, wider than for ү.',
   },
   {
     letter: 'ү',
@@ -101,7 +102,7 @@ export const VOWELS: Vowel[] = [
     backness: 'front',
     rounded: true,
     example: { word: 'үнэн', meaning: 'truth' },
-    how: 'Lips rounded, tongue high: the tip draws back from the teeth and the root moves forward. Very close to Russian у, as in улица.',
+    how: 'Start from Russian и, keep the tongue in that shape, and round the lips. Close to Russian у, as in улица, with the tongue further forward.',
   },
   {
     letter: 'и',
@@ -139,7 +140,8 @@ export interface Consonant {
 // `how` notes: letters shared with Russian keep their Russian sound (textbook p. 1); һ is
 // pharyngeal, voiceless at the start of a word and voiced inside it (p. 2); н has a front and a
 // back sound with one letter (p. 3); к, п only in loanwords, й only inside a word (K&K p. 27).
-// г and х shift with harmony: Staroverov 2020, p. 46; Radnaeva 2006, p. 582.
+// г and х shift with harmony: Staroverov 2020, p. 46; Radnaeva 2006, p. 582. т, д, н differ
+// from Russian and һ's breath tip: Бадагаров, 11:40 and 04:01.
 export const CONSONANTS: Consonant[] = [
   {
     letter: 'б',
@@ -150,7 +152,7 @@ export const CONSONANTS: Consonant[] = [
     how: 'Both lips close, with voice. As Russian б at the start of a word; lighter later in the word.',
     allophone: {
       ipa: 'β',
-      note: 'Vowel harmony plays no part: it depends on the neighbouring sounds. б is a full [b] at the start of a word, as in Russian and English. Later in a word it lightens to [β], close to English w: before г in баабгай, and between vowels in ябаха and ябаба. So баабгай has both sounds. A native speaker reports this; Radnaeva (2006) also writes [β] in хабар and ябадаг, and [p] before т in добтолдог.',
+      note: 'Vowel harmony plays no part: it depends on the neighbouring sounds. б is a full [b] at the start of a word, as in Russian and English. Later in a word it lightens to [β], close to English w: before г in баабгай, and between vowels in ябаха and ябаба. So баабгай has both sounds. Between vowels the lips close only weakly (Бадагаров: not аба but ава). A native speaker reports the case before г; Radnaeva (2006) also writes [β] in хабар and ябадаг, and [p] before т in добтолдог.',
     },
   },
   {
@@ -167,7 +169,7 @@ export const CONSONANTS: Consonant[] = [
     place: 'alveolar',
     manner: 'plosive',
     voiced: true,
-    how: 'Tongue tip at the upper front teeth, with voice. As Russian д.',
+    how: 'Tongue touches the upper teeth and the ridge behind them, with voice. Lighter than Russian д, and further forward than English d.',
   },
   {
     letter: 'т',
@@ -175,7 +177,7 @@ export const CONSONANTS: Consonant[] = [
     place: 'alveolar',
     manner: 'plosive',
     voiced: false,
-    how: 'Tongue tip at the upper front teeth, no voice. As Russian т.',
+    how: 'Tongue touches the upper teeth and the ridge behind them, no voice. Lighter than Russian т, and further forward than English t.',
   },
   {
     letter: 'г',
@@ -183,10 +185,10 @@ export const CONSONANTS: Consonant[] = [
     place: 'velar',
     manner: 'plosive',
     voiced: true,
-    how: 'Back of the tongue against the palate, with voice. In front-vowel words as Russian г; in back-vowel words made much further back.',
+    how: 'Back of the tongue against the palate, with voice. In front-vowel words as Russian г; in back-vowel words the back of the tongue closes against the uvula, much further back.',
     allophone: {
       ipa: 'ɢ, ʁ',
-      note: 'г follows the vowel harmony of the word (Staroverov 2020, p. 46). In back-vowel words it is uvular [ɢ], as in гараад and газарта, and between vowels it often softens to the fricative [ʁ]; Radnaeva (2006) has [ʁ] after р in гаргаад. In front-vowel words it is [g], as in гээшэ, and sometimes softens to [ɣ], as in гүлгэ.',
+      note: 'г follows the vowel harmony of the word (Staroverov 2020, p. 46). In back-vowel words it is uvular [ɢ], as in гараад and газарта, and between vowels it often softens to the fricative [ʁ]; Radnaeva (2006) has [ʁ] after р in гаргаад. In front-vowel words it is [g], as in гээшэ, and sometimes softens to [ɣ], as in гүлгэ. Before и it softens.',
     },
   },
   {
@@ -243,7 +245,7 @@ export const CONSONANTS: Consonant[] = [
     place: 'pharyngeal',
     manner: 'fricative',
     voiced: false,
-    how: 'Made deep in the throat, between the tongue root and the back wall. Voiceless at the start of a word (һайн, һанаан). Voiced inside a word (уһан), close to Ukrainian г in гопак.',
+    how: 'Made deep in the throat, between the tongue root and the back wall: find that spot, then breathe out with a small effort. Voiceless at the start of a word (һайн, һанаан). Voiced inside a word (уһан), close to Ukrainian г in гопак.',
   },
   {
     letter: 'м',
@@ -259,7 +261,7 @@ export const CONSONANTS: Consonant[] = [
     place: 'alveolar',
     manner: 'nasal',
     voiced: true,
-    how: 'Tongue tip at the upper front teeth, air through the nose. As Russian н.',
+    how: 'Tongue touches the upper teeth and the ridge behind them, air through the nose. Lighter than Russian н, and further forward than English n.',
   },
   {
     letter: 'нг',

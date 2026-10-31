@@ -276,14 +276,89 @@ function TenseTimeline() {
           ))}
         </div>
         <div className="rounded-xl bg-amber-50 border border-amber-200 p-3 text-sm text-amber-800">
-          🔎 <strong>Under review:</strong> whether these forms also differ in evidentiality
-          (witnessed vs reported) is being checked with a native speaker. Neither the textbook nor
-          Skribnik &amp; Darzhaeva (2020) describe it. An earlier version of this page taught an
-          "evidential past in -лай". A narrative past in -лай does occur in literary prose (
+          🔎 <strong>How the speaker knows:</strong> unlike Khalkha Mongolian, Buryat does not mark
+          this on its past forms (Brosig &amp; Skribnik 2018; Skribnik &amp; Aikhenvald 2024).{' '}
+          <span className="font-buryat">-ба</span> is neutral, although Khabtagaeva &amp; Kempf
+          (2011) call it the eyewitness past. Constructions do this work instead:{' '}
+          <span className="font-buryat">ошоһон байна</span> "has gone, it turns out",{' '}
+          <span className="font-buryat">ошоһон гэхэ</span> "has gone, they say". A native speaker is
+          checking how this works in speech. The old firsthand past in -лай (an earlier version of
+          this page taught it) is obsolete in the standard language (Skribnik 2003). A narrative
+          past in -лай still occurs in literary prose (
           <span className="font-buryat">Тогоошо ябалай</span> "Togoosho set off"), but it is rare (a
-          few dozen hits in the Buryat National Corpus, mostly one author) and no source describes
-          it as evidential, so it is not taught here.
+          few dozen hits in the Buryat National Corpus, mostly one author), so it is not taught
+          here.
         </div>
+      </div>
+
+      {/* Simple, continuous and completed forms (Badmaeva 2011, pp. 15, 17) */}
+      <div className="card space-y-4">
+        <h2 className="text-lg font-semibold text-stone-800">Simple, Continuous, Completed</h2>
+        <p className="text-sm text-stone-500">
+          Badmaeva (2011) sorts these forms into a grid. The first word shows whether the action is
+          stated as a fact, in progress or finished with a result. The auxiliary{' '}
+          <span className="font-buryat">бай-</span> shows when.
+        </p>
+        <div className="overflow-x-auto">
+          <table className="text-sm w-full">
+            <thead>
+              <tr className="border-b-2 border-stone-200">
+                <th className="text-left py-2 pr-4 text-stone-500 font-normal" />
+                <th className="text-left py-2 pr-4 text-stone-500 font-normal">Past</th>
+                <th className="text-left py-2 pr-4 text-stone-500 font-normal">Present</th>
+                <th className="text-left py-2 text-stone-500 font-normal">Future</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                {
+                  row: 'Simple',
+                  cells: [
+                    { form: 'ерэбэ', tr: 'came' },
+                    { form: 'ерэнэ', tr: 'comes' },
+                    { form: 'ерэхэ', tr: 'will come' },
+                  ],
+                },
+                {
+                  row: 'Continuous',
+                  cells: [
+                    { form: 'ерэжэ байба', tr: 'was coming' },
+                    { form: 'ерэжэ байна', tr: 'is coming' },
+                    { form: 'ерэжэ байха', tr: 'will be coming' },
+                  ],
+                },
+                {
+                  row: 'Completed',
+                  cells: [
+                    { form: 'ерээд байба', tr: 'had arrived' },
+                    { form: 'ерээд байна', tr: 'has arrived, is here' },
+                    { form: 'ерээд байха', tr: 'will have arrived' },
+                  ],
+                },
+              ].map(r => (
+                <tr key={r.row} className="border-b border-stone-100">
+                  <td className="py-2.5 pr-4 text-stone-500">{r.row}</td>
+                  {r.cells.map(c => (
+                    <td key={c.form} className="py-2.5 pr-4">
+                      <p className="font-buryat text-stone-800 whitespace-nowrap">{c.form}</p>
+                      <p className="italic text-stone-500">{c.tr}</p>
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="text-sm text-stone-500">
+          Completed forms can also use <span className="font-buryat">-һан</span> or{' '}
+          <span className="font-buryat">-нхай</span> with <span className="font-buryat">бай-</span>:{' '}
+          <span className="font-buryat">ерэһэн байна</span> "has come",{' '}
+          <span className="font-buryat">ерэһэн байгаа</span> "had come". The negative of{' '}
+          <span className="font-buryat">ерээд байна</span> is{' '}
+          <span className="font-buryat">ерээдүй байна</span> "has not arrived yet". Forms with{' '}
+          <span className="font-buryat">бай-</span> often imply that the speaker worked the fact out
+          from its result (Skribnik 2003).
+        </p>
       </div>
 
       {/* Negation */}

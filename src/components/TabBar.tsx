@@ -5,7 +5,7 @@ import { SECTIONS } from '../sections';
 import { useI18n } from '../i18n/context';
 
 // The reference pages the "Grammar" tab opens.
-const GRAMMAR = ['/phonology', '/cases', '/verbs', '/word-order'];
+const GRAMMAR = ['/phonology', '/cases', '/verbs', '/modals', '/word-order'];
 
 const tabClass = (active: boolean) =>
   `flex flex-col items-center justify-center gap-0.5 min-h-12 pt-1.5 text-[11px] transition-colors ${

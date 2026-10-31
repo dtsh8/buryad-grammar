@@ -1321,3 +1321,627 @@ export const AGGLUTINATION_EXAMPLES: AgglutinationChain[] = [
     translation: 'we wrestle',
   },
 ];
+
+// ─── Modal words ──────────────────────────────────────────────────────────
+// Evidence: docs/verification-questions.md → "Modal words". Dambueva 2020 (pp. 646–647) lists
+// хэрэгтэй, ёһотой, аргатай and their kin as one class of modal words.
+// Sentences are from the textbook, K&K 2011 or ТСБЯ, cited by printed page, or constructed.
+
+export interface ModalText {
+  english: string;
+  russian: string;
+}
+
+export interface ModalExample {
+  buryad: string;
+  translation: ModalText;
+  source: string;
+}
+
+export interface ModalEntry {
+  id: string;
+  word: string;
+  pattern: string;
+  meaning: ModalText;
+  subject: ModalText;
+  example: ModalExample;
+  negatives: Array<ModalExample & { pattern: string; meaning: ModalText }>;
+  past?: ModalExample;
+  note: ModalText;
+  corpusQuery: string;
+}
+
+export const MODAL_ENTRIES: ModalEntry[] = [
+  {
+    id: 'hereg',
+    word: 'хэрэгтэй',
+    pattern: '-ха + хэрэгтэй',
+    meaning: {
+      english: 'need to, should: a general need or advice',
+      russian: 'нужно, надо: общая необходимость или совет',
+    },
+    subject: {
+      english: 'The person who needs to act is often in the dative (намда) or left out.',
+      russian: 'Тот, кому нужно действовать, часто стоит в дательном падеже (намда) или опущен.',
+    },
+    example: {
+      buryad: 'Намда суглаанда орохо хэрэгтэй гү?',
+      translation: {
+        english: 'Do I need to go in to the meeting?',
+        russian: 'Нужно ли мне идти на собрание?',
+      },
+      source: 'K&K p. 215',
+    },
+    negatives: [
+      {
+        pattern: '-ха хэрэггүй',
+        buryad: 'Намайе хүлеэхэ хэрэггүй, би сагтаа ерэхэб.',
+        translation: {
+          english: 'No need to wait for me, I will come on time.',
+          russian: 'Не нужно меня ждать, я приду вовремя.',
+        },
+        meaning: { english: 'no need to; do not', russian: 'не нужно; не надо' },
+        source: 'K&K p. 103',
+      },
+      {
+        pattern: '-һанай хэрэггүй',
+        buryad: 'Мүнөө ошоһонойшни хэрэггүй бшуу.',
+        translation: {
+          english: 'There is no use your going now.',
+          russian: 'Теперь тебе незачем идти.',
+        },
+        meaning: { english: 'no point in doing', russian: 'незачем, нет смысла' },
+        source: 'Textbook p. 69',
+      },
+    ],
+    past: {
+      buryad: 'Намда ном уншаха хэрэгтэй байгаа.',
+      translation: { english: 'I needed to read a book.', russian: 'Мне нужно было читать книгу.' },
+      source: 'constructed; BNC has -ха хэрэгтэй байгаа',
+    },
+    note: {
+      english:
+        'A nominative subject also occurs in fiction, with the person ending on һэн: би … -ха хэрэгтэй һэм. хэрэгтэй also works with a noun: Америкэдэ ошохын тулада заабол виза хэрэгтэй "to go to America you definitely need a visa" (K&K p. 203).',
+      russian:
+        'В художественных текстах встречается и подлежащее в именительном падеже, с личным окончанием на һэн: би … -ха хэрэгтэй һэм. Хэрэгтэй сочетается и с именем: Америкэдэ ошохын тулада заабол виза хэрэгтэй «чтобы поехать в Америку, обязательно нужна виза» (K&K, с. 203).',
+    },
+    corpusQuery: 'хэрэгтэй*',
+  },
+  {
+    id: 'yoho',
+    word: 'ёһотой',
+    pattern: '-ха + ёһотой',
+    meaning: {
+      english: 'must, is obliged to: a duty, stronger than хэрэгтэй',
+      russian: 'должен, обязан: долг, сильнее, чем хэрэгтэй',
+    },
+    subject: {
+      english:
+        'The subject is in the nominative and the person ending goes on ёһотой: ёһотойб, ёһотойш, ёһотойбди.',
+      russian:
+        'Подлежащее стоит в именительном падеже, личное окончание принимает ёһотой: ёһотойб, ёһотойш, ёһотойбди.',
+    },
+    example: {
+      buryad: 'Хүн бүри бага наһатайһаа эхилжэ, спорт эрхилхэ ёһотой.',
+      translation: {
+        english: 'Everyone should take up sport from a young age.',
+        russian: 'Каждый должен заниматься спортом с юных лет.',
+      },
+      source: 'K&K p. 132',
+    },
+    negatives: [
+      {
+        pattern: '-ха ёһогүй',
+        buryad: 'Инаг дурамнай иигээд лэ унтарха ёһогүй.',
+        translation: {
+          english: 'Our love must not go out like this.',
+          russian: 'Наша любовь не должна так угаснуть.',
+        },
+        meaning: { english: 'must not', russian: 'не должен' },
+        source: 'М. Осодоев, in ТСБЯ 2:37',
+      },
+      {
+        pattern: '-хагүй ёһотой',
+        buryad: 'Тэрэ ерэхэгүй ёһотой.',
+        translation: {
+          english: 'That person is surely not coming. / That person must not come.',
+          russian: 'Он наверняка не придёт. / Он не должен приходить.',
+        },
+        meaning: { english: 'surely will not; must not', russian: 'наверняка не; не должен' },
+        source: 'constructed; BNC has -хагүй ёһотой',
+      },
+    ],
+    past: {
+      buryad: 'Тэрээндэ һургаха ёһотой байгаа һэн.',
+      translation: {
+        english: 'People had to be trained in it.',
+        russian: 'Этому должны были обучать.',
+      },
+      source: 'Textbook p. 83',
+    },
+    note: {
+      english:
+        'After a participle or -жа байгаа it means "must be, apparently": Багша хүлеэжэ байгаа ёһотой "the teacher must be waiting" (constructed; ТСБЯ 2:41 sense 2).',
+      russian:
+        'После причастия или -жа байгаа значит «должно быть, видимо»: Багша хүлеэжэ байгаа ёһотой «учитель, должно быть, ждёт» (пример составлен; ТСБЯ 2:41, значение 2).',
+    },
+    corpusQuery: 'ёһотой*',
+  },
+  {
+    id: 'arga',
+    word: 'аргатай',
+    pattern: '-ха + аргатай',
+    meaning: {
+      english: 'can, has a way to: the means or chance exists',
+      russian: 'может, имеет возможность: есть способ или случай',
+    },
+    subject: {
+      english: 'Nominative subject; the person ending goes on аргатай: аргатайб, аргатайбди.',
+      russian:
+        'Подлежащее в именительном падеже; личное окончание принимает аргатай: аргатайб, аргатайбди.',
+    },
+    example: {
+      buryad: 'Гансал уһанай ашаар элүүр, арюун сэбэр ябаха аргатайбди.',
+      translation: {
+        english: 'Only thanks to water can we stay healthy and clean.',
+        russian: 'Только благодаря воде мы можем оставаться здоровыми и чистыми.',
+      },
+      source: 'Textbook p. 80',
+    },
+    negatives: [
+      {
+        pattern: '-ха аргагүй',
+        buryad: 'Гараха аргагүй.',
+        translation: { english: 'There is no way to go out.', russian: 'Выйти невозможно.' },
+        meaning: { english: 'impossible to', russian: 'невозможно' },
+        source: 'Textbook p. 106',
+      },
+      {
+        pattern: '-хын аргагүй',
+        buryad: 'Тэсэхын аргагүй.',
+        translation: { english: 'It is unbearable.', russian: 'Нестерпимо.' },
+        meaning: { english: 'impossible to', russian: 'невозможно' },
+        source: 'ТСБЯ 1:137',
+      },
+    ],
+    past: {
+      buryad: 'Оймоод ошохо аргагүй байба.',
+      translation: {
+        english: 'It was impossible to wade across.',
+        russian: 'Перейти вброд было невозможно.',
+      },
+      source: 'Textbook p. 38',
+    },
+    note: {
+      english:
+        'The negative is far more common: аргагүй 1,616 vs аргатай 184 in the corpus, though many аргагүй are the adverb "extremely" (see Negation).',
+      russian:
+        'Отрицание встречается гораздо чаще: в корпусе аргагүй 1616, аргатай 184, хотя часть случаев аргагүй — наречие «чрезвычайно» (см. вкладку «Отрицание»).',
+    },
+    corpusQuery: 'аргагүй',
+  },
+  {
+    id: 'boloho',
+    word: 'болохо',
+    pattern: '-жа + болохо',
+    meaning: {
+      english: 'may, it is allowed; it may happen',
+      russian: 'можно, разрешено; может случиться',
+    },
+    subject: {
+      english: 'Usually impersonal: болохо stays in the -ха form with no person ending.',
+      russian: 'Обычно безлично: болохо остаётся в форме на -ха без личного окончания.',
+    },
+    example: {
+      buryad: 'Наашаа орожо болохо гү? Тиимэ, болохо.',
+      translation: {
+        english: 'May I come in here? Yes, you may.',
+        russian: 'Сюда можно войти? Да, можно.',
+      },
+      source: 'K&K p. 201',
+    },
+    negatives: [
+      {
+        pattern: '-жа болохогүй',
+        buryad: 'Хилээмэ хаяжа болохогүй.',
+        translation: {
+          english: 'Bread must not be thrown away.',
+          russian: 'Хлеб нельзя выбрасывать.',
+        },
+        meaning: { english: 'not allowed, must not', russian: 'нельзя' },
+        source: 'Textbook p. 68',
+      },
+      {
+        pattern: '-жа болохогүй',
+        buryad: 'Эндэ шангаар хөөрэлдэжэ болохогүй.',
+        translation: {
+          english: 'You must not talk loudly here.',
+          russian: 'Здесь нельзя громко разговаривать.',
+        },
+        meaning: { english: 'not allowed, must not', russian: 'нельзя' },
+        source: 'K&K p. 201',
+      },
+    ],
+    note: {
+      english:
+        'It also states a likelihood: бороо орожо болохо "it may rain" (ТСБЯ 1:270). K&K limit the "may" sense to the -ха form, but -жа болоно and -жа болоногүй also occur (ажаглажа болоно, Textbook p. 104). -жа болоо can be a guess about the past: "may have".',
+      russian:
+        'Выражает и вероятность: бороо орожо болохо «может пойти дождь» (ТСБЯ 1:270). K&K допускают значение «можно» только в форме на -ха, но встречаются и -жа болоно, -жа болоногүй (ажаглажа болоно, учебник, с. 104). -жа болоо бывает предположением о прошлом: «возможно, было».',
+    },
+    corpusQuery: 'болохогүй',
+  },
+  {
+    id: 'shadaha',
+    word: 'шадаха',
+    pattern: '-жа + шадаха',
+    meaning: {
+      english: 'can, is able to: skill or strength',
+      russian: 'мочь, уметь: умение или сила',
+    },
+    subject: {
+      english: 'An ordinary verb: шада- takes tense and person endings itself.',
+      russian: 'Обычный глагол: шада- сам принимает окончания времени и лица.',
+    },
+    example: {
+      buryad: 'Намда хэншье туһалжа шадаха.',
+      translation: { english: 'Anyone can help me.', russian: 'Мне может помочь кто угодно.' },
+      source: 'K&K p. 147',
+    },
+    negatives: [
+      {
+        pattern: '-жа шадахагүй',
+        buryad: 'Ямаршье амитан уһагүйгөөр байжа шадахагүй.',
+        translation: {
+          english: 'No living creature can live without water.',
+          russian: 'Ни одно живое существо не может жить без воды.',
+        },
+        meaning: { english: 'cannot, will not be able', russian: 'не может, не сможет' },
+        source: 'Textbook p. 80',
+      },
+      {
+        pattern: '-жа шадаагүй',
+        buryad: 'Энэ сүүмхэ ехэ үнэтэй байһанһаа, абажа шадаагүйб.',
+        translation: {
+          english: 'This bag was very expensive, so I could not buy it.',
+          russian: 'Эта сумка была очень дорогой, поэтому я не смог её купить.',
+        },
+        meaning: { english: 'could not', russian: 'не смог' },
+        source: 'K&K p. 165',
+      },
+    ],
+    note: {
+      english:
+        'The negative also makes a polite request: Та намда туһалжа шадахагүй гүт? "Could you help me?" (K&K p. 155). Corpus: шадахагүй 692, шадаагүй 244, шадабагүй 180, шаданагүй 82.',
+      russian:
+        'Отрицание служит и вежливой просьбой: Та намда туһалжа шадахагүй гүт? «Вы не могли бы мне помочь?» (K&K, с. 155). В корпусе: шадахагүй 692, шадаагүй 244, шадабагүй 180, шаданагүй 82.',
+    },
+    corpusQuery: 'шада*гүй*',
+  },
+];
+
+// One sentence with both words, K&K's own pair (p. 215).
+export const MODAL_PAIR = {
+  stem: 'Даарахагүйн тула дулаанаар хубсалха',
+  advice: 'хэрэгтэй',
+  duty: 'ёһотойбди',
+  translation: {
+    english: 'To avoid getting cold, one should dress warmly.',
+    russian: 'Чтобы не замёрзнуть, нужно одеваться тепло.',
+  },
+  source: 'K&K p. 215',
+};
+
+export interface ModalRelative {
+  word: string;
+  meaning: ModalText;
+  example: ModalExample;
+}
+
+export const MODAL_RELATIVES: ModalRelative[] = [
+  {
+    word: '-ха болоо',
+    meaning: {
+      english: 'ended up having to; it was decided that',
+      russian: 'пришлось; решено, что',
+    },
+    example: {
+      buryad: 'Нюргамни үбдэнэ, тиимэһээ эмшэндэ ябаха болооб.',
+      translation: {
+        english: 'My back hurts, so I have to go to the doctor.',
+        russian: 'У меня болит спина, поэтому мне придётся пойти к врачу.',
+      },
+      source: 'K&K p. 201; ТСБЯ 1:270',
+    },
+  },
+  {
+    word: '-ха һанаатай',
+    meaning: { english: 'intends to', russian: 'намерен' },
+    example: {
+      buryad: 'Би багша болохо һанаатайб.',
+      translation: { english: 'I intend to become a teacher.', russian: 'Я хочу стать учителем.' },
+      source: 'K&K p. 201',
+    },
+  },
+  {
+    word: '-ха дуратай',
+    meaning: { english: 'likes to', russian: 'любит' },
+    example: {
+      buryad: 'Би хоолоо эдингээ, халуун сай ууха дуратайб.',
+      translation: {
+        english: 'While eating, I like to drink hot tea.',
+        russian: 'Во время еды я люблю пить горячий чай.',
+      },
+      source: 'K&K p. 203',
+    },
+  },
+  {
+    word: '-бал зүйтэй',
+    meaning: { english: 'it is right to, one ought to', russian: 'следует, надлежит' },
+    example: {
+      buryad: 'Аба эжыгээ хүндэлбэлтнай зүйтэй байна.',
+      translation: {
+        english: 'You ought to respect your parents.',
+        russian: 'Вам следует уважать родителей.',
+      },
+      source: 'ТСБЯ 2:193',
+    },
+  },
+];
+
+export type ModalChipRole = 'subject' | 'verb' | 'modal' | 'ending' | 'plain';
+
+export interface ModalFrame {
+  family: 'ха' | 'жа';
+  words: Array<{ buryad: string; gloss: string; role?: ModalChipRole }>;
+  translation: ModalText;
+  source: string;
+}
+
+// The two families: -ха + a predicate word, -жа + a verb that inflects.
+export const MODAL_FRAMES: ModalFrame[] = [
+  {
+    family: 'ха',
+    words: [
+      { buryad: 'энэ ном', gloss: 'this book' },
+      { buryad: 'намда', gloss: 'I-DAT', role: 'subject' },
+      { buryad: 'уншаха', gloss: 'read-INF', role: 'verb' },
+      { buryad: 'хэрэгтэй', gloss: 'necessary', role: 'modal' },
+    ],
+    translation: {
+      english: 'I need to read this book.',
+      russian: 'Мне нужно прочитать эту книгу.',
+    },
+    source: 'K&K p. 215, shortened',
+  },
+  {
+    family: 'ха',
+    words: [
+      { buryad: 'энэ ном', gloss: 'this book' },
+      { buryad: 'уншаха', gloss: 'read-INF', role: 'verb' },
+      { buryad: 'ёһотой', gloss: 'obliged', role: 'modal' },
+      { buryad: '-б', gloss: '1SG', role: 'ending' },
+    ],
+    translation: {
+      english: 'I am obliged to read this book.',
+      russian: 'Я обязан прочитать эту книгу.',
+    },
+    source: 'K&K p. 215, shortened',
+  },
+  {
+    family: 'жа',
+    words: [
+      { buryad: 'Эндэ', gloss: 'here' },
+      { buryad: 'шангаар', gloss: 'loudly' },
+      { buryad: 'хөөрэлдэжэ', gloss: 'talk-CVB', role: 'verb' },
+      { buryad: 'болохогүй', gloss: 'be.allowed-INF-NEG', role: 'modal' },
+    ],
+    translation: {
+      english: 'You must not talk loudly here.',
+      russian: 'Здесь нельзя громко разговаривать.',
+    },
+    source: 'K&K p. 201',
+  },
+  {
+    family: 'жа',
+    words: [
+      { buryad: 'абажа', gloss: 'take-CVB', role: 'verb' },
+      { buryad: 'шадаагүй', gloss: 'be.able-PERF-NEG', role: 'modal' },
+      { buryad: '-б', gloss: '1SG', role: 'ending' },
+    ],
+    translation: { english: 'I could not buy it.', russian: 'Я не смог купить.' },
+    source: 'K&K p. 165, shortened',
+  },
+];
+
+export type ModalCorner = 'must' | 'mustNot' | 'may' | 'needNot';
+
+export interface ModalCornerEntry {
+  id: ModalCorner;
+  forms: string[];
+  example: ModalExample;
+  opposite: ModalCorner;
+}
+
+// The square of opposition: each corner is the exact negation of the corner across the diagonal.
+export const MODAL_CORNERS: ModalCornerEntry[] = [
+  {
+    id: 'must',
+    forms: ['-ха ёһотой', '-ха хэрэгтэй'],
+    opposite: 'needNot',
+    example: {
+      buryad: 'Спорт эрхилхэ ёһотой.',
+      translation: { english: 'One must do sport.', russian: 'Нужно заниматься спортом.' },
+      source: 'K&K p. 132, shortened',
+    },
+  },
+  {
+    id: 'mustNot',
+    forms: ['-жа болохогүй', '-ха ёһогүй', '-хагүй ёһотой'],
+    opposite: 'may',
+    example: {
+      buryad: 'Галдаа уһа адхажа болохогүй.',
+      translation: {
+        english: 'Water must not be poured on your fire.',
+        russian: 'Нельзя лить воду в огонь.',
+      },
+      source: 'Textbook p. 81',
+    },
+  },
+  {
+    id: 'may',
+    forms: ['-жа болохо', '-ха аргатай', '-жа шадаха'],
+    opposite: 'mustNot',
+    example: {
+      buryad: 'Сай уужа болохо гү?',
+      translation: { english: 'May I have some tea?', russian: 'Можно выпить чаю?' },
+      source: 'Textbook p. 103',
+    },
+  },
+  {
+    id: 'needNot',
+    forms: ['-ха хэрэггүй', '-һанай хэрэггүй'],
+    opposite: 'must',
+    example: {
+      buryad: 'Айха хэрэггүй.',
+      translation: { english: 'There is no need to be afraid.', russian: 'Не нужно бояться.' },
+      source: 'K&K p. 119',
+    },
+  },
+];
+
+// Where the negation can go. `share` sums up the BNC check in the verification notes.
+export interface ModalNegationRow {
+  word: string;
+  onModal: string;
+  onVerb?: string;
+  withBeshe?: string;
+  share: ModalText;
+}
+
+export const MODAL_NEGATION: ModalNegationRow[] = [
+  {
+    word: '-ха хэрэгтэй',
+    onModal: '-ха хэрэггүй, -һанай хэрэггүй',
+    onVerb: '-хагүй хэрэгтэй',
+    withBeshe: 'хэрэгтэй бэшэ',
+    share: {
+      english:
+        '-һанай хэрэггүй is the more frequent (about 170 sentences vs 70 for -ха хэрэггүй). -хагүй хэрэгтэй is rare. хэрэгтэй бэшэ goes with nouns: in 44 samples, none had a verb in -ха.',
+      russian:
+        '-һанай хэрэггүй встречается чаще (около 170 предложений против 70 у -ха хэрэггүй). -хагүй хэрэгтэй редко. хэрэгтэй бэшэ употребляется с именами: в 44 примерах ни одного глагола на -ха.',
+    },
+  },
+  {
+    word: '-ха ёһотой',
+    onModal: '-ха ёһогүй',
+    onVerb: '-хагүй ёһотой',
+    withBeshe: '-ха ёһотой бэшэ',
+    share: {
+      english:
+        '-ха ёһогүй is the plain "must not" (95 of 100 sampled ёһогүй follow -ха). -хагүй ёһотой often predicts: "surely won\'t". -ха ёһотой бэшэ is mostly rhetorical: 7 of 9 samples mean "shouldn\'t I…?"',
+      russian:
+        '-ха ёһогүй — обычное «не должен» (95 из 100 примеров ёһогүй стоят после -ха). -хагүй ёһотой часто предсказывает: «наверняка не». -ха ёһотой бэшэ в основном риторично: 7 из 9 примеров значат «разве я не должен…?»',
+    },
+  },
+  {
+    word: '-ха аргатай',
+    onModal: '-ха аргагүй, -хын аргагүй',
+    withBeshe: 'аргатай бэшэ',
+    share: {
+      english: 'Use аргагүй. аргатай бэшэ is marginal: 1 of the 8 sentences checked.',
+      russian: 'Используйте аргагүй. аргатай бэшэ маргинально: 1 из 8 проверенных предложений.',
+    },
+  },
+  {
+    word: '-жа болохо',
+    onModal: '-жа болохогүй',
+    share: {
+      english: 'The standard way to forbid something.',
+      russian: 'Обычное выражение запрета.',
+    },
+  },
+  {
+    word: '-жа шадаха',
+    onModal: '-жа шадахагүй, шадаагүй, шадабагүй, шаданагүй',
+    share: {
+      english: 'The verb negates like any other, in every tense.',
+      russian: 'Глагол отрицается как любой другой, во всех временах.',
+    },
+  },
+];
+
+// Double negation, peeled from the inside out. ТСБЯ 1:270 quotes this from Ц. Шагжин.
+// BNC: 6 of the 28 sentences with байжа болохогүй have a -нгүй verb before them.
+export const MODAL_DOUBLE_NEGATION = {
+  buryad: 'Хэлэһэн үгэдөө хүрэнгүй байжа болохогүй.',
+  translation: {
+    english: 'You cannot fail to keep your word.',
+    russian: 'Нельзя не сдержать данное слово.',
+  },
+  source: 'Ц. Шагжин, in ТСБЯ 1:270',
+  layers: [
+    {
+      buryad: 'хүрэ-',
+      meaning: { english: 'keep (one’s word)', russian: 'сдержать (слово)' },
+    },
+    {
+      buryad: 'хүрэнгүй байжа',
+      meaning: { english: 'NOT keep it', russian: 'НЕ сдержать' },
+    },
+    {
+      buryad: 'хүрэнгүй байжа болохогүй',
+      meaning: {
+        english: 'NOT allowed to NOT keep it = you must keep it',
+        russian: 'НЕЛЬЗЯ НЕ сдержать = обязательно нужно сдержать',
+      },
+    },
+  ],
+};
+
+export interface ModalTrap {
+  title: ModalText;
+  text: ModalText;
+  source: string;
+}
+
+export const MODAL_TRAPS: ModalTrap[] = [
+  {
+    title: {
+      english: 'аргагүй + adjective = "extremely"',
+      russian: 'аргагүй + прилагательное = «чрезвычайно»',
+    },
+    text: {
+      english:
+        'Before an adjective, аргагүй intensifies; it does not mean "impossible": аргагүй сэсэн мэргэн "exceptionally wise". In a sample of 100, 55 followed a verb in -ха or -хын; most others were this adverb.',
+      russian:
+        'Перед прилагательным аргагүй усиливает значение, а не значит «невозможно»: аргагүй сэсэн мэргэн «исключительно мудрый». Из 100 примеров 55 стояли после глагола на -ха или -хын, большинство остальных — такое наречие.',
+    },
+    source: 'Textbook p. 97; ТСБЯ 1:137',
+  },
+  {
+    title: {
+      english: '-б may be a question, not "I"',
+      russian: '-б может быть вопросом, а не «я»',
+    },
+    text: {
+      english:
+        'After a question word, -б is the question ending: Энэ бэшэгые хэндэ үгэхэ хэрэгтэйб? "Who should this letter be given to?", Яаха ёһотойб? "What is to be done?". Without one, ёһотойб means "I must".',
+      russian:
+        'После вопросительного слова -б — вопросительное окончание: Энэ бэшэгые хэндэ үгэхэ хэрэгтэйб? «Кому надо отдать это письмо?», Яаха ёһотойб? «Что делать?». Без него ёһотойб значит «я должен».',
+    },
+    source: 'K&K pp. 97, 215; Textbook p. 38',
+  },
+  {
+    title: {
+      english: 'ёһотой also means "real"',
+      russian: 'ёһотой значит и «настоящий»',
+    },
+    text: {
+      english:
+        'Before a noun it is an adjective: ёһотой нүхэд "true friends", ёһотой үбэл "real winter". It is modal only after a verb.',
+      russian:
+        'Перед именем это прилагательное: ёһотой нүхэд «настоящие друзья», ёһотой үбэл «настоящая зима». Модальным оно бывает только после глагола.',
+    },
+    source: 'ТСБЯ 2:41; K&K p. 215',
+  },
+];

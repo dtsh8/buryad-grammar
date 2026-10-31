@@ -6,6 +6,7 @@ import {
   GitBranch,
   LayoutList,
   Dumbbell,
+  Scale,
   type LucideIcon,
 } from 'lucide-react';
 import type { Messages } from './i18n/en';
@@ -17,6 +18,7 @@ export const SECTIONS: Array<{ to: string; key: keyof Messages['sections']; icon
   { to: '/phonology', key: 'phonology', icon: Mic },
   { to: '/cases', key: 'cases', icon: Grid },
   { to: '/verbs', key: 'verbs', icon: Code2 },
+  { to: '/modals', key: 'modals', icon: Scale },
   { to: '/word-order', key: 'wordOrder', icon: GitBranch },
   { to: '/vocabulary', key: 'vocabulary', icon: LayoutList },
   { to: '/practice', key: 'practice', icon: Dumbbell },

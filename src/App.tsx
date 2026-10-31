@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import Phonology from './pages/Phonology';
 import Cases from './pages/Cases';
 import Verbs from './pages/Verbs';
+import Modals from './pages/Modals';
 import WordOrder from './pages/WordOrder';
 import Vocabulary from './pages/Vocabulary';
 import Practice from './pages/Practice';
@@ -52,6 +53,7 @@ export default function App() {
                 <Route path="/phonology" element={<Phonology />} />
                 <Route path="/cases" element={<Cases />} />
                 <Route path="/verbs" element={<Verbs />} />
+                <Route path="/modals" element={<Modals />} />
                 <Route path="/word-order" element={<WordOrder />} />
                 <Route path="/vocabulary" element={<Vocabulary />} />
                 <Route path="/practice" element={<Practice />} />

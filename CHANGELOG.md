@@ -1,3 +1,9 @@
+## [1.18.0](https://github.com/dtsh8/buryad-grammar/compare/v1.17.0...v1.18.0) (2026-10-31)
+
+### ✨ New Features
+
+* **reader:** look up unknown words in the Burlang dictionary ([dbb04d3](https://github.com/dtsh8/buryad-grammar/commit/dbb04d3134ebdf8229f4f035adffb3b3f941ac63))
+
 ## [1.17.0](https://github.com/dtsh8/buryad-grammar/compare/v1.16.0...v1.17.0) (2026-10-31)
 
 ### ✨ New Features

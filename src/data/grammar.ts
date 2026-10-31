@@ -141,7 +141,7 @@ export interface Consonant {
 // pharyngeal, voiceless at the start of a word and voiced inside it (p. 2); н has a front and a
 // back sound with one letter (p. 3); к, п only in loanwords, й only inside a word (K&K p. 27).
 // г and х shift with harmony: Staroverov 2020, p. 46; Radnaeva 2006, p. 582. т, д, н differ
-// from Russian and һ's breath tip: Бадагаров, 11:40 and 04:01.
+// from Russian and һ's breath tip: Бадагаров ep. 1, 11:40 and 04:01. нх as нт: ep. 15, 17:04.
 export const CONSONANTS: Consonant[] = [
   {
     letter: 'б',
@@ -237,7 +237,7 @@ export const CONSONANTS: Consonant[] = [
     place: 'velar',
     manner: 'fricative',
     voiced: false,
-    how: 'Air rasps between the back of the tongue and the palate, no voice. As Russian х in front-vowel words; further back and harsher in back-vowel words.',
+    how: 'Air rasps between the back of the tongue and the palate, no voice. As Russian х in front-vowel words; further back and harsher in back-vowel words. After н it often sounds like т: сэнхир sounds like сэнтир.',
   },
   {
     letter: 'һ',

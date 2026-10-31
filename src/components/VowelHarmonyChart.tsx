@@ -26,6 +26,7 @@ export default function VowelHarmonyChart() {
         <p className="text-sm text-stone-600">{guide.groups}</p>
         <p className="text-sm text-stone-600">{guide.lips}</p>
         <p className="text-sm text-stone-600">{guide.reduced}</p>
+        <p className="text-sm text-stone-600">{guide.stress}</p>
         <p className="text-xs text-stone-500">
           {guide.ipa} {t.phonology.sources}
         </p>

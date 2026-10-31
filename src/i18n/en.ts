@@ -158,11 +158,13 @@ export const en = {
       groups:
         'Back or male (эрэ), front or female (эмэ) and neutral (эрсэ) are traditional names. They tell you which suffixes a word takes, and are a poor guide to the tongue: ү, a front vowel, sounds close to Russian у. Learn each vowel from its own note below.',
       lips: 'Labial vowels are said with rounded lips: о, у, өө, ү. Unrounded: а, э, и.',
-      reduced: 'Short vowels after the first syllable are very brief and unclear.',
+      reduced:
+        'Short vowels after the first syllable are very brief and unclear, and in the middle of a word can drop out: дуратай sounds close to дуртай.',
+      stress: 'The stress falls on the syllable before -гүй, not on -гүй itself: ябаха-гүй.',
       ipa: 'The IPA for у, ү, ө and э is under review: the sources point to other symbols.',
     },
     sources:
-      "Notes follow Учебник бурятского языка, pp. 1–4, Khabtagaeva & Kempf 2011, pp. 27–28, and Жаргал Бадагаров's lesson Буряадаар дуугараял, episode 1.",
+      "Notes follow Учебник бурятского языка, pp. 1–4, Khabtagaeva & Kempf 2011, pp. 27–28, and Жаргал Бадагаров's lessons Буряадаар дуугараял.",
   },
 
   cases: {

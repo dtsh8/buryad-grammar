@@ -2,7 +2,14 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import type { VocabularyData } from '../data/vocabulary.types';
 import { readerGloss } from '../i18n/lang';
 import vocabJson from '../../public/data/vocabulary.json';
-import { buildIndex, describe as describeHits, lookup, tokenise, translateWord } from './reader';
+import {
+  buildIndex,
+  describe as describeHits,
+  firstSense,
+  lookup,
+  tokenise,
+  translateWord,
+} from './reader';
 
 const index = buildIndex((vocabJson as VocabularyData).entries);
 
@@ -85,30 +92,91 @@ describe('readerGloss', () => {
   });
 });
 
+describe('firstSense', () => {
+  it('keeps the first sense of a dictionary entry', () => {
+    expect(firstSense('собака, пёс.')).toBe('собака, пёс');
+    expect(firstSense('1) книга; 2) грамота; ном заалгаха обучаться грамоте.')).toBe('книга');
+    expect(firstSense('1. 1) спокойный, благополучный; 2) лёгкий')).toBe(
+      'спокойный, благополучный'
+    );
+    expect(firstSense('1 1) здоровье; 2) приветствие')).toBe('здоровье');
+  });
+});
+
 describe('translateWord', () => {
   afterEach(() => vi.unstubAllGlobals());
 
-  const respond = (translated: string) =>
-    vi.fn().mockResolvedValue({ ok: true, json: () => Promise.resolve([[[translated, 'x']]]) });
+  // Answers by service; a word Burlang doesn't have is a 404, as on the real API.
+  function services({ burlang, google }: { burlang?: string; google?: string }) {
+    return vi.fn((url: string) => {
+      const answer = url.includes('burlang.ru') ? burlang : google;
+      if (answer === undefined) return Promise.resolve({ ok: false, status: 404 });
+      const body = url.includes('burlang.ru')
+        ? { translations: [{ value: answer }] }
+        : [[[answer, 'x']]];
+      return Promise.resolve({ ok: true, json: () => Promise.resolve(body) });
+    });
+  }
 
-  it('asks for Buryad to the target language and remembers the answer', async () => {
-    const fetchMock = respond('software');
+  it('asks Burlang first and shows its Russian as is', async () => {
+    const fetchMock = services({ burlang: '1) обеспечивать; 2) удовлетворять', google: 'x' });
     vi.stubGlobal('fetch', fetchMock);
-    expect(await translateWord('хангамжа', 'en')).toBe('software');
-    expect(await translateWord('хангамжа', 'en')).toBe('software');
+    expect(await translateWord('бурлангру', 'ru')).toEqual({
+      text: 'обеспечивать',
+      source: 'burlang',
+    });
     expect(fetchMock).toHaveBeenCalledTimes(1);
-    expect(fetchMock.mock.calls[0][0]).toContain('sl=bxr&tl=en');
+    expect(fetchMock.mock.calls[0][0]).toContain('burlang.ru/api/v1/buryat-word/translate?q=');
+  });
+
+  it("puts Burlang's Russian into English, and says so", async () => {
+    const fetchMock = services({ burlang: 'собака', google: 'dog' });
+    vi.stubGlobal('fetch', fetchMock);
+    expect(await translateWord('бурлангэн', 'en')).toEqual({
+      text: 'dog',
+      source: 'burlangMachine',
+    });
+    expect(fetchMock.mock.calls[1][0]).toContain('sl=ru&tl=en');
+  });
+
+  it('keeps the Russian gloss when it cannot be put into English', async () => {
+    vi.stubGlobal('fetch', services({ burlang: 'собака' }));
+    expect(await translateWord('бурлангтолько', 'en')).toEqual({
+      text: 'собака',
+      source: 'burlang',
+    });
+  });
+
+  it('falls back to machine translation and remembers the answer', async () => {
+    const fetchMock = services({ google: 'software' });
+    vi.stubGlobal('fetch', fetchMock);
+    const expected = { text: 'software', source: 'machine' };
+    expect(await translateWord('хангамжа', 'en')).toEqual(expected);
+    expect(await translateWord('хангамжа', 'en')).toEqual(expected);
+    expect(fetchMock).toHaveBeenCalledTimes(2); // Burlang, Google, then the cache
+    expect(fetchMock.mock.calls[1][0]).toContain('sl=bxr&tl=en');
+  });
+
+  it('survives Burlang being unreachable', async () => {
+    const google = services({ google: 'word' });
+    vi.stubGlobal(
+      'fetch',
+      vi.fn((url: string) =>
+        url.includes('burlang.ru') ? Promise.reject(new Error('offline')) : google(url)
+      )
+    );
+    expect((await translateWord('офлайн', 'en'))?.source).toBe('machine');
   });
 
   it('treats the word handed back unchanged as no translation', async () => {
-    vi.stubGlobal('fetch', respond('ТЕСТЭЭ'));
+    vi.stubGlobal('fetch', services({ google: 'ТЕСТЭЭ' }));
     expect(await translateWord('тестээ', 'ru')).toBeNull();
   });
 
   it('retries after a failure', async () => {
-    vi.stubGlobal('fetch', vi.fn().mockResolvedValue({ ok: false, status: 429 }));
+    vi.stubGlobal('fetch', services({}));
     expect(await translateWord('алдаа', 'en')).toBeNull();
-    vi.stubGlobal('fetch', respond('error'));
-    expect(await translateWord('алдаа', 'en')).toBe('error');
+    vi.stubGlobal('fetch', services({ google: 'error' }));
+    expect((await translateWord('алдаа', 'en'))?.text).toBe('error');
   });
 });

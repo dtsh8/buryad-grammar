@@ -1,3 +1,9 @@
+## [1.17.0](https://github.com/dtsh8/buryad-grammar/compare/v1.16.0...v1.17.0) (2026-10-31)
+
+### ✨ New Features
+
+* **reader:** translate Buryad words on hover ([cf4cefd](https://github.com/dtsh8/buryad-grammar/commit/cf4cefd4d6ba6562c8a831921400459f07b65711))
+
 ## [1.16.0](https://github.com/dtsh8/buryad-grammar/compare/v1.15.0...v1.16.0) (2026-10-31)
 
 ### ✨ New Features

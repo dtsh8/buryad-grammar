@@ -1,3 +1,9 @@
+## [1.21.0](https://github.com/dtsh8/buryad-grammar/compare/v1.20.0...v1.21.0) (2026-10-31)
+
+### ✨ New Features
+
+* **reader:** reveal each sentence's translation beside it ([5df4fc6](https://github.com/dtsh8/buryad-grammar/commit/5df4fc6f10cad97f5b2e64acff2188003530ec4e))
+
 ## [1.20.0](https://github.com/dtsh8/buryad-grammar/compare/v1.19.0...v1.20.0) (2026-10-31)
 
 ### ✨ New Features

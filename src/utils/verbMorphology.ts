@@ -406,8 +406,8 @@ async function googleTranslate(from: string, to: string, query: string): Promise
     `&sl=${from}&tl=${to}&dt=t&q=${encodeURIComponent(query)}`;
   const resp = await fetch(url);
   if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-  // Shape: [[["translated text", "source text", ...], ...], null, "en", ...]
-  const data = (await resp.json()) as [[[string, ...unknown[]], ...unknown[]], ...unknown[]];
-  const raw = data[0][0][0];
+  // Shape: [[["translated text", "source text", ...], ...], null, "en", ...], one row per segment
+  const data = (await resp.json()) as [Array<[string, ...unknown[]]>, ...unknown[]];
+  const raw = data[0].map(segment => segment[0]).join('');
   return raw.replace(/[;،.。\s]+$/, '').trim();
 }

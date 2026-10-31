@@ -306,7 +306,9 @@ vocabulary. Its glosses are not evidence for this file, and none are stored in t
 states no licence, and the site is marked © Burlang (checked 2026-10-31). Burlang lists headwords,
 so the Reader also asks for the infinitives the verb engine can derive from a word (*хэлэжэ* →
 *хэлэхэ*). That is a lookup aid only: it uses the engine's forms plus the conditional -бал
-(BNC: *ябабал*, *хүдэлбэл*) and adds no forms to the app.
+(BNC: *ябабал*, *хүдэлбэл*) and adds no forms to the app. Its phrase rules
+([phrases.ts](../src/utils/phrases.ts)) only choose what to machine-translate as a unit; the
+phrases and sentences shown are unchecked Google output, labelled as such.
 
 ## Already applied to the app: please confirm
 

@@ -261,8 +261,10 @@ export const en = {
     intro: 'Paste Buryad text, then hover over a word (or tap it) to see its translation.',
     inputLabel: 'Buryad text',
     legend:
-      'Words with a solid underline are in the checked vocabulary, so inflected forms are traced back to their headword. Dotted words are looked up online and are not checked: first in the Burlang dictionary, then with Google Translate, so the word is sent to those services. Burlang gives Russian, which Google puts into English.',
+      'Words with a solid underline are in the checked vocabulary, so inflected forms are traced back to their headword. Dotted words are looked up online and are not checked: first in the Burlang dictionary, then with Google Translate, so the word is sent to those services. Burlang gives Russian, which Google puts into English. Shaded words form a phrase. Hovering also translates the phrase and the whole sentence with Google, so that text is sent there too; the sentence is usually the most reliable.',
     looking: 'Translating…',
+    phrase: 'Phrase',
+    sentence: 'Sentence',
     sources: {
       burlang: 'Burlang dictionary',
       burlangMachine: 'Burlang, machine-translated',

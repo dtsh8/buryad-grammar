@@ -97,7 +97,7 @@ export default function Tooltip({
               left: pos?.left ?? -9999,
               visibility: pos ? 'visible' : 'hidden',
             }}
-            className="z-[60] max-w-64 rounded-lg bg-stone-800 px-3 py-2 text-xs leading-snug text-white shadow-lg pointer-events-none font-sans font-normal normal-case tracking-normal text-left"
+            className="z-[60] max-w-64 whitespace-pre-line rounded-lg bg-stone-800 px-3 py-2 text-xs leading-snug text-white shadow-lg pointer-events-none font-sans font-normal normal-case tracking-normal text-left"
           >
             {text}
           </div>,

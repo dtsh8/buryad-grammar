@@ -1,3 +1,9 @@
+## [1.22.1](https://github.com/dtsh8/buryad-grammar/compare/v1.22.0...v1.22.1) (2026-10-31)
+
+### 🐛 Bug Fixes
+
+* **phonology:** show how г and х vary with vowel harmony ([4c5524b](https://github.com/dtsh8/buryad-grammar/commit/4c5524b361c2ee3c814c0f641a21acebc1896765))
+
 ## [1.22.0](https://github.com/dtsh8/buryad-grammar/compare/v1.21.0...v1.22.0) (2026-10-31)
 
 ### ✨ New Features

@@ -33,6 +33,10 @@ GitHub Pages: no backend, and it should stay that way.
 ## Git
 
 - Conventional Commits, types and scopes in `CONTRIBUTING.md`. Branch off `main`.
+- Every task gets its own branch, created before the first file change; sessions that change
+  nothing need none. A session with unrelated tasks uses one branch per task.
+- When a task is done and `npm run validate` passes, commit, push and merge to `main` without
+  asking. If validation fails, or a Buryad form is still unverified, stop and report instead.
 - Merge with `git merge --no-ff <branch> -m "chore: merge <branch> — <summary>"`.
 - Use `git pull --rebase=merges` before pushing: the Release workflow commits to `main` after
   each release.

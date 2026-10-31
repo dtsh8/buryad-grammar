@@ -11,6 +11,7 @@ import Modals from './pages/Modals';
 import WordOrder from './pages/WordOrder';
 import Vocabulary from './pages/Vocabulary';
 import Practice from './pages/Practice';
+import Reader from './pages/Reader';
 import NotFound from './pages/NotFound';
 import LanguageProvider from './i18n/LanguageProvider';
 import { useI18n } from './i18n/context';
@@ -56,6 +57,7 @@ export default function App() {
                 <Route path="/modals" element={<Modals />} />
                 <Route path="/word-order" element={<WordOrder />} />
                 <Route path="/vocabulary" element={<Vocabulary />} />
+                <Route path="/reader" element={<Reader />} />
                 <Route path="/practice" element={<Practice />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>

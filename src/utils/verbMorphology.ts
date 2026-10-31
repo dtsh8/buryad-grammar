@@ -387,10 +387,18 @@ export function deriveAll(baseRoot: string, baseMeaning: string): DerivedForm[] 
 export async function translateToBuryad(englishInput: string): Promise<string> {
   // Always use "to [verb]" form — forces Google Translate to return the infinitive
   const cleaned = englishInput.trim().replace(/^to\s+/i, '');
-  const query = `to ${cleaned}`;
+  return googleTranslate('en', 'bxr', `to ${cleaned}`);
+}
+
+// Buryad to English or Russian, for words the curated vocabulary doesn't have.
+export function translateFromBuryad(word: string, target: 'en' | 'ru'): Promise<string> {
+  return googleTranslate('bxr', target, word);
+}
+
+async function googleTranslate(from: string, to: string, query: string): Promise<string> {
   const url =
     `https://translate.googleapis.com/translate_a/single?client=gtx` +
-    `&sl=en&tl=bxr&dt=t&q=${encodeURIComponent(query)}`;
+    `&sl=${from}&tl=${to}&dt=t&q=${encodeURIComponent(query)}`;
   const resp = await fetch(url);
   if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
   // Shape: [[["translated text", "source text", ...], ...], null, "en", ...]

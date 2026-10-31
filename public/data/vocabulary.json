@@ -152,6 +152,24 @@
     { "id": "minii-nere",     "buryad": "Минии нэрэ…",    "ipa": "miniː nere",      "english": "My name is…",           "russian": "Меня зовут…", "category": "phrase", "tags": ["basic"] },
     { "id": "dakhin-khelyt",  "buryad": "Дахин хэлыт",    "ipa": "daxin xelit",     "english": "Please say it again",   "russian": "Повторите пожалуйста", "category": "phrase", "tags": ["learning"] },
     { "id": "bi-oylgonoguyb", "buryad": "Би ойлгоногүйб", "ipa": "bi ojlɡonoɡyjb",  "english": "I do not understand",  "russian": "Я не понимаю","category": "phrase", "tags": ["learning"] },
-    { "id": "khaana-bayna",   "buryad": "Хаана байна?",   "ipa": "xaːna bajna",     "english": "Where is it?",          "russian": "Где это?",    "category": "phrase", "tags": ["basic"] }
+    { "id": "khaana-bayna",   "buryad": "Хаана байна?",   "ipa": "xaːna bajna",     "english": "Where is it?",          "russian": "Где это?",    "category": "phrase", "tags": ["basic"] },
+
+    { "id": "amar", "buryad": "амар", "ipa": "amar", "english": "calm / peaceful", "russian": "спокойный, благополучный", "category": "adjective", "tags": ["quality"] },
+    { "id": "mende", "buryad": "мэндэ", "ipa": "mende", "english": "health / greeting", "russian": "здоровье, привет", "category": "noun", "tags": ["basic"] },
+    { "id": "amar-mende", "buryad": "Амар мэндэ", "ipa": "amar mende", "english": "Hello / Greetings", "russian": "Здравствуйте", "category": "phrase", "tags": ["greeting","basic"] },
+    { "id": "durshel", "buryad": "дүршэл", "ipa": "dyrʃel", "english": "experience / skill", "russian": "опыт, навык", "category": "noun", "tags": ["work"] },
+    { "id": "zokhyoogsho", "buryad": "зохёогшо", "ipa": "zoxjoːɡʃo", "english": "author / creator", "russian": "автор, создатель", "category": "noun", "tags": ["work"] },
+    { "id": "neretey", "buryad": "нэрэтэй", "ipa": "neretej", "english": "named / called", "russian": "по имени, называемый", "category": "adjective", "tags": ["basic"] },
+    { "id": "bukhy", "buryad": "бүхы", "ipa": "byxy", "english": "all / whole", "russian": "весь, всё, все", "category": "pronoun", "tags": ["basic","pronoun"] },
+    { "id": "minii", "buryad": "минии", "ipa": "miniː", "english": "my", "russian": "мой", "category": "pronoun", "tags": ["basic","pronoun"] },
+    { "id": "namaye", "buryad": "намайе", "ipa": "namaje", "english": "me", "russian": "меня", "category": "pronoun", "tags": ["basic","pronoun"] },
+    { "id": "udanguy", "buryad": "удангүй", "ipa": "udanɡyj", "english": "soon", "russian": "вскоре", "category": "adverb", "tags": ["time"] },
+    { "id": "tiimehee", "buryad": "тиимэһээ", "ipa": "tiːmeheː", "english": "therefore", "russian": "поэтому", "category": "adverb", "tags": ["basic"] },
+    { "id": "khereg", "buryad": "хэрэг", "ipa": "xereɡ", "english": "matter / need", "russian": "дело, надобность", "category": "noun", "tags": ["basic"] },
+    { "id": "kheregguy", "buryad": "хэрэггүй", "ipa": "xereɡɡyj", "english": "unnecessary / useless", "russian": "ненужный, бесполезный", "category": "adjective", "tags": ["quality"] },
+    { "id": "gekhe", "buryad": "гэхэ", "ipa": "ɡexe", "english": "to say so / to call", "russian": "говорить, сказать", "category": "verb", "tags": ["basic"] },
+    { "id": "zokhyookho", "buryad": "зохёохо", "ipa": "zoxjoːxo", "english": "to create / to compose", "russian": "создавать, творить", "category": "verb", "tags": ["activity"] },
+    { "id": "olokho", "buryad": "олохо", "ipa": "oloxo", "english": "to find / to obtain", "russian": "находить, получать", "category": "verb", "tags": ["basic"] },
+    { "id": "helgekhe", "buryad": "һэлгэхэ", "ipa": "helɡexe", "english": "to change / to replace", "russian": "менять, обменивать", "category": "verb", "tags": ["activity"] }
   ]
 }

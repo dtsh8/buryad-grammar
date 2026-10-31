@@ -19,10 +19,12 @@ export default function Tooltip({
   text,
   children,
   className = '',
+  onOpenChange,
 }: {
   text: string;
   children: ReactNode;
   className?: string; // classes for the trigger (the badge itself)
+  onOpenChange?: (open: boolean) => void;
 }) {
   const id = useId();
   const trigger = useRef<HTMLButtonElement>(null);
@@ -41,7 +43,9 @@ export default function Tooltip({
     const centred = t.left + t.width / 2 - b.width / 2;
     const left = Math.min(Math.max(centred, MARGIN), window.innerWidth - b.width - MARGIN);
     setPos({ top, left });
-  }, [open]);
+  }, [open, text]);
+
+  useEffect(() => onOpenChange?.(open), [open, onOpenChange]);
 
   // A fixed bubble would drift away from its badge when the page scrolls, so close it.
   useEffect(() => {

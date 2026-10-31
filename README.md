@@ -15,6 +15,7 @@
 - 🔎 **Corpus links** — Each case, tense, converb and voice points to real examples in the Buryat National Corpus
 - 🔀 **Word Order** — SOV diagrams, postpositions, pre-nominal modifiers
 - 📖 **Vocabulary** — Core lexicon with IPA, searchable and filterable
+- 🔤 **Reader** — Paste Buryad text and hover over a word to translate it into English or Russian
 - 📊 **Comparison** — Radar chart vs. Mongolian, Turkish, English
 - 🧩 **Agglutination** — Step-by-step morpheme stacking diagrams
 

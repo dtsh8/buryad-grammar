@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import type { VocabularyData } from '../data/vocabulary.types';
 import vocabJson from '../../public/data/vocabulary.json';
-import { findPhrases, sentenceOf } from './phrases';
+import { findPhrases, splitSentences } from './phrases';
 import { buildIndex, tokenise } from './reader';
 
 const index = buildIndex((vocabJson as VocabularyData).entries);
@@ -48,12 +48,17 @@ describe('findPhrases', () => {
   });
 });
 
-describe('sentenceOf', () => {
-  it('gives every token its sentence', () => {
-    const tokens = tokenise('Би ябанаб. Ши ерэбэш!\nТиимэ', index);
-    const sentences = sentenceOf(tokens);
-    expect(sentences).toHaveLength(tokens.length);
-    expect([...new Set(sentences)].filter(Boolean)).toEqual(['Би ябанаб.', 'Ши ерэбэш!', 'Тиимэ']);
-    expect(sentences[tokens.findIndex(t => t.text === 'ерэбэш')]).toBe('Ши ерэбэш!');
+describe('splitSentences', () => {
+  it('splits at sentence ends and line breaks, covering every word', () => {
+    const tokens = tokenise('Би ябанаб. Ши ерэбэш!\n\nТиимэ', index);
+    const sentences = splitSentences(tokens);
+    expect(sentences.map(s => s.text)).toEqual(['Би ябанаб.', 'Ши ерэбэш!', 'Тиимэ']);
+    const covered = sentences.flatMap(s => tokens.slice(s.start, s.end + 1));
+    expect(covered.filter(t => t.key)).toEqual(tokens.filter(t => t.key));
+  });
+
+  it('gives nothing for text with no words', () => {
+    expect(splitSentences(tokenise('...\n', index))).toEqual([]);
+    expect(splitSentences([])).toEqual([]);
   });
 });

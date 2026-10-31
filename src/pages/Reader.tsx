@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from 'react';
 import Tooltip from '../components/Tooltip';
 import { useVocabulary } from '../hooks/useVocabulary';
 import { useI18n } from '../i18n/context';
+import type { Messages } from '../i18n/en';
 import {
   buildIndex,
   describe,
@@ -20,6 +21,12 @@ const SAMPLE = 'Хэлэжэ байһан үгэдэ харюусалгатай 
 
 // Long enough that moving the mouse across a line doesn't send every word to the service.
 const LOOKUP_DELAY = 300; // ms
+
+// "to speak (хэлэхэ, Burlang, machine-translated)": the verb is named when the page has a form of it.
+function onlineText(gloss: OnlineGloss, sources: Messages['reader']['sources']): string {
+  const source = sources[gloss.source];
+  return `${gloss.text} (${gloss.lemma ? `${gloss.lemma}, ${source}` : source})`;
+}
 
 function Word({ token, index }: { token: Token; index: ReaderIndex }) {
   const { lang, t } = useI18n();
@@ -49,9 +56,7 @@ function Word({ token, index }: { token: Token; index: ReaderIndex }) {
   let text = t.reader.looking;
   if (hits.length > 0) text = describe(key, hits, lang);
   else if (answered)
-    text = online.gloss
-      ? `${online.gloss.text} (${t.reader.sources[online.gloss.source]})`
-      : t.reader.notFound;
+    text = online.gloss ? onlineText(online.gloss, t.reader.sources) : t.reader.notFound;
 
   return (
     <Tooltip

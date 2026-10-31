@@ -303,7 +303,10 @@ Not added, because no source supports them: *программна* (BNC 0; *пр
 
 The Reader queries the [Burlang](https://burlang.ru) dictionary API live for words outside the
 vocabulary. Its glosses are not evidence for this file, and none are stored in the repo: the API
-states no licence, and the site is marked © Burlang (checked 2026-10-31).
+states no licence, and the site is marked © Burlang (checked 2026-10-31). Burlang lists headwords,
+so the Reader also asks for the infinitives the verb engine can derive from a word (*хэлэжэ* →
+*хэлэхэ*). That is a lookup aid only: it uses the engine's forms plus the conditional -бал
+(BNC: *ябабал*, *хүдэлбэл*) and adds no forms to the app.
 
 ## Already applied to the app: please confirm
 

@@ -9,6 +9,7 @@ import {
   lookup,
   tokenise,
   translateWord,
+  verbInfinitives,
 } from './reader';
 
 const index = buildIndex((vocabJson as VocabularyData).entries);
@@ -92,6 +93,33 @@ describe('readerGloss', () => {
   });
 });
 
+describe('verbInfinitives', () => {
+  const GOLD: Array<[string, string]> = [
+    ['хэлэжэ', 'хэлэхэ'], // -жа converb
+    ['хангажа', 'хангаха'],
+    ['хангаад', 'хангаха'], // -аад converb
+    ['хангабал', 'хангаха'], // conditional
+    ['хэрэглэһэн', 'хэрэглэхэ'], // -һан participle
+    ['хангадаг', 'хангаха'], // -даг participle
+    ['хангадаггүй', 'хангаха'],
+    ['хүдэлнэб', 'хүдэлхэ'], // present + person ending
+    ['оронхой', 'орохо'], // -нхай participle
+  ];
+
+  it.each(GOLD)('%s comes from %s', (form, infinitive) => {
+    expect(verbInfinitives(form)).toContain(infinitive);
+  });
+
+  it('finds nothing in a word no verb form ends like', () => {
+    expect(verbInfinitives('харюусалгатай')).toEqual([]);
+    expect(verbInfinitives('ном')).toEqual([]);
+  });
+
+  it('does not offer an infinitive as a form of itself', () => {
+    expect(verbInfinitives('хангаха')).toEqual([]);
+  });
+});
+
 describe('firstSense', () => {
   it('keeps the first sense of a dictionary entry', () => {
     expect(firstSense('собака, пёс.')).toBe('собака, пёс');
@@ -151,10 +179,38 @@ describe('translateWord', () => {
     const fetchMock = services({ google: 'software' });
     vi.stubGlobal('fetch', fetchMock);
     const expected = { text: 'software', source: 'machine' };
-    expect(await translateWord('хангамжа', 'en')).toEqual(expected);
-    expect(await translateWord('хангамжа', 'en')).toEqual(expected);
+    expect(await translateWord('компьютер', 'en')).toEqual(expected);
+    expect(await translateWord('компьютер', 'en')).toEqual(expected);
     expect(fetchMock).toHaveBeenCalledTimes(2); // Burlang, Google, then the cache
     expect(fetchMock.mock.calls[1][0]).toContain('sl=bxr&tl=en');
+  });
+
+  it('tries the infinitive when Burlang lacks the form on the page', async () => {
+    const fetchMock = vi.fn((url: string) =>
+      url.includes(encodeURIComponent('хангаха'))
+        ? Promise.resolve({
+            ok: true,
+            json: () => Promise.resolve({ translations: [{ value: '1) обеспечивать; 2) …' }] }),
+          })
+        : Promise.resolve({ ok: false, status: 404 })
+    );
+    vi.stubGlobal('fetch', fetchMock);
+    expect(await translateWord('хангажа', 'ru')).toEqual({
+      text: 'обеспечивать',
+      source: 'burlang',
+      lemma: 'хангаха',
+    });
+  });
+
+  it('gives up on verb guesses after one failed request', async () => {
+    const fetchMock = vi.fn((url: string) =>
+      url.includes('burlang.ru')
+        ? Promise.reject(new Error('offline'))
+        : Promise.resolve({ ok: true, json: () => Promise.resolve([[['tried', 'x']]]) })
+    );
+    vi.stubGlobal('fetch', fetchMock);
+    await translateWord('хангабал', 'en');
+    expect(fetchMock.mock.calls.filter(([url]) => url.includes('burlang.ru'))).toHaveLength(1);
   });
 
   it('survives Burlang being unreachable', async () => {

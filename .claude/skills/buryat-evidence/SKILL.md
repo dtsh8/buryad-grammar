@@ -21,10 +21,19 @@ the accusative and instrumental with the н kept, dropped, or + г (*хүнии�
 
 ## 2. Evidence, strongest first
 
-1. **Written sources** (listed in `docs/verification-questions.md` → "Written sources"):
+1. **Written sources** (`docs/verification-questions.md` → "Written sources" has the full table
+   and short names; add new ones there):
    - *Учебник бурятского языка*: rules and paradigms; cite printed page numbers.
-   - Skribnik & Darzhaeva 2020: morpheme-by-morpheme glosses of Buryat National Corpus examples.
-   - Darzhaeva 2019: concessive constructions. Poppe 1960, Skribnik 2003.
+   - ТСБЯ (explanatory dictionary, vols I–II, А–Р only): headwords and grammatical terms; cite
+     volume:page.
+   - Skribnik 2003, Badmaeva 2011, K&K 2011, S&A 2024: names, meanings and evidentiality of the
+     tense forms.
+   - S&D 2020: morpheme-by-morpheme glosses of Buryat National Corpus examples.
+   - D 2019: concessive constructions. Dambueva 2020: modal words. Sampilova 2003: questions.
+
+   Poppe 1960 and Бураев 1959 are still wanted, not checked; don't cite them from memory. Sources
+   that copy each other count as one (Burlang.Nom repeats the textbook). Note when only an
+   abstract or a summary was read, and when sources disagree, record both.
 2. **Buryat National Corpus** (below): which forms exist, how often, and in whose texts.
 3. **Engine output**: only shows what the rules produce, never evidence by itself.
 4. **Native speaker**: meaning, evidentiality, dialect and naturalness. Add these to
@@ -63,7 +72,12 @@ the app are constructed, from the textbook, or quoted with attribution from a sc
 
 ## 5. Read a PDF source
 
-PDF text layers of Soviet-era books are usually garbled, so read rendered page images:
+Local copies of the textbook, ТСБЯ and K&K are recorded in Claude's memory. For anything else,
+ask the user for the file path; don't search their drives.
+
+Try the text layer first, with PyMuPDF (`page.get_text()`): the textbook, ТСБЯ and K&K are all
+clean. Mingw `pdftotext` can't open Cyrillic paths and drops Cyrillic text. If a text layer is
+garbled, as in some Soviet-era books, read rendered page images instead:
 
 ```bash
 python -m pip install --quiet --target "<scratchpad>/pylib" pymupdf
@@ -71,13 +85,17 @@ python -I render.py "<scratchpad>/pylib" book.pdf "<scratchpad>/pages/tb" 1 110
 ```
 
 where `render.py` does `fitz.open(pdf)[i].get_pixmap(dpi=110).save(...)` for each page. Then
-open the PNGs with the Read tool. Ask the user for the file path; don't search their drives.
+open the PNGs with the Read tool.
+
+Cite the printed page from the footer: the offset from the PDF page can change within a book
+(K&K is + 3, later + 4). K&K writes һ as Latin h, so normalise before searching or citing.
 
 ## 6. Record what you found
 
 - Code: a short comment citing the source (`// textbook p. 84`, `// BNC: абтаа 59, үгтэхэ 34`).
 - Tests: add or adjust a GOLD row in `src/utils/verbMorphology.test.ts` whose `note` names the
-  evidence; vocabulary verbs must round-trip through the engine (`verbLexicon.test.ts`).
+  evidence; vocabulary verbs must round-trip through the engine (`verbLexicon.test.ts`). Noun
+  forms go in `src/utils/nounMorphology.test.ts`.
 - Docs: update the status table in `docs/verification-questions.md`; move answered questions
   out of the native-speaker list.
 - After changing `vocabulary.json` or an engine rule, run `npm run attestation` to update the

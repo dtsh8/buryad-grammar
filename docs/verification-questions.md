@@ -50,6 +50,7 @@ Not answerable from a news corpus: A2 meanings beyond these examples, B4 (reflex
 | B&S 2018 | Brosig B., Skribnik E. Evidentiality in Mongolic // Aikhenvald A. Y. (ed.). *The Oxford Handbook of Evidentiality*. OUP, 2018. P. 554–579 | Only the abstract and S&A's summary read: Buryat lacks paradigmatic evidentiality. Full text not available |
 | Badmaeva 2011 | Бадмаева Ю. Д. О системе видовременных форм в бурятском языке (новейшая категоризация) // Филологические науки. Вопросы теории и практики. 2011. № 3 (10). С. 13–18 | Definitions of the tenses; nine-form grid of simple, continuous and completed forms; examples from fiction |
 | ТСБЯ | Сундуева и др. *Толковый словарь бурятского языка*. Улан-Батор: Нандир, 2022– (vols I–II checked) | Headwords and grammatical terms, cited as volume:page |
+| Dambueva 2020 | Дамбуева П. П. О расширении круга модальной лексики в разговорном бурятском языке: функционально-модальные слова // Монголоведение. 2020. Т. 12. № 4. С. 644–651. https://doi.org/10.22162/2500-1523-2020-4-644-651 | The class of modal words: *аргатай* is possibility; *ёһотой, хэрэгтэй, ушартай, зэргэтэй* are necessity (pp. 646–647) |
 | BNC | Buryat National Corpus, https://buryat.web-corpora.net/buryat_corpus/search (fiction, folklore, press, 1950s–2010s) | Frequencies and sentences of word forms (`npm run corpus:bnc`); its automatic grammar tags are often wrong for verb forms |
 
 | Q   | Finding | Status |
@@ -222,6 +223,35 @@ Her grid (pp. 15, 17): simple, continuous (converb + *бай-*), completed (-а�
 "will have become" confirmed in sentences); *ерэһэн байгаа* 113; *ерэдэг байгаа* 16. Now a table on
 the Tenses tab. Her paradigm lists contain slips (*ерэхэ* as present, p. 15), so the table uses
 regular forms. She pairs *-даг байна* with progressives; the app keeps -даг as habitual.
+
+### Modal words (2026-10-31)
+
+The Modals page (`/modals`, data in `src/data/grammar.ts` → "Modal words") rests on these checks.
+Example sentences come from the textbook, K&K 2011 or ТСБЯ by printed page, or are marked
+"constructed". No corpus sentence is copied into the app.
+
+| Claim | Evidence |
+| ----- | -------- |
+| хэрэгтэй is often dative, ёһотой nominative with the person ending; ёһотой is stronger (advice vs duty) | K&K p. 215, with minimal pairs |
+| *-жа болохо* means "may"; K&K limit that sense to the -ха form | K&K pp. 200–201; ТСБЯ 1:270 (sense 5). The limit is too strict: *-жа болоно* and *-жа болоногүй* occur (Textbook p. 104; BNC), and *-жа болоо* can be "may have" |
+| *-ха ёһогүй* means "must not", not "need not" | ТСБЯ 2:37 "не должен"; 95 of 100 sampled *ёһогүй* follow -ха. BNC *ёһогүй\** 234 |
+| *-хагүй ёһотой* is both "must not" and "surely will not" | ТСБЯ 2:41 gives the "должно быть" sense; our reading of 24 BNC sentences splits about evenly, and context decides |
+| *-ха ёһотой бэшэ* is mostly rhetorical | 9 of 100 sampled sentences have the sequence; 7 are questions of the "shouldn't I…?" type |
+| Epistemic ёһотой follows participles and *-жа байгаа* | ТСБЯ 2:41; 16 of 100 sampled sentences |
+| "need not" is *-һанай хэрэггүй* or *-ха хэрэггүй* | K&K pp. 103, 119; Textbook p. 69. BNC sentences: *-һанай хэрэггүй* 178 (97 of 100 sampled are adjacent, so about 170); *-ха хэрэггүй* 287 (25 of 100, so about 70) |
+| *хэрэгтэй бэшэ* goes with nouns | 44 of 100 sampled sentences have the sequence; none has a verb in -ха |
+| *-хагүй хэрэгтэй* is rare | 5 of 83 sentences |
+| *-ха аргагүй*, *-хын аргагүй*; *аргагүй* + adjective = "extremely" | ТСБЯ 1:137; Textbook pp. 38, 97, 106. BNC *аргагүй* 1,616, *аргатай* 184. Of 100 sampled *аргагүй*, 34 follow -ха, 21 -хын |
+| *аргатай бэшэ* is marginal | 1 of 8 sentences |
+| шадаха negates in every tense | BNC *шадахагүй* 692, *шадаагүй* 244, *шадабагүй* 180, *шаданагүй* 82 |
+| *-нгүй байжа болохогүй* = "must" (double negation) | ТСБЯ 1:270 quotes Ц. Шагжин; 6 of 28 BNC sentences with *байжа болохогүй* |
+
+Sample figures are from `search_sent` with random order and at most 100 sentences per query. The
+server ignores word-distance settings, so sequences were found by filtering the sentence text.
+
+Not shown as main forms because the evidence is thin: *хабатай* (Textbook p. 75 *ойлгохо хабатай*,
+but most BNC hits are the adjective "strong"), *зэргэтэй* (ТСБЯ 2:217, BNC 157, also the noun
+"rank"), *баатай* (ТСБЯ 1:183).
 
 ### Declension engine (2026-10-28)
 
@@ -397,6 +427,19 @@ Also: does the same rule apply to the instrumental case (*үнэнөөр*, *гэ
   н-stems (*-иие*, as in *тэрэниие*).
 
 ---
+
+### B7. Modal words: how do these differ in speech?
+
+- **App now says:** see the Modals page and "Modal words" above.
+- **Please answer:**
+  1. *Би ябаха ёһогүйб* and *Би ябахагүй ёһотойб*: same meaning, or different?
+  2. Does *Тэрэ ерэхэгүй ёһотой* sound like "surely won't come" or "must not come"?
+  3. *Намда ябаха хэрэгтэй* and *Би ябаха хэрэгтэй*: are both natural? Do they differ?
+  4. *Хэлэхэ хэрэггүй* and *Хэлэһэнэй хэрэггүй*: does the second mean "no point in saying" or
+     simply "don't say"?
+  5. Are the constructed examples natural: *Намда ном уншаха хэрэгтэй байгаа*, *Тэрэ ерэхэгүй
+     ёһотой*, *Багша хүлеэжэ байгаа ёһотой*?
+  6. Is *-ха һанаатай* still "intend", or more "want"?
 
 ## C. Labels and facts
 

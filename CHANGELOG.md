@@ -1,3 +1,13 @@
+## [1.14.1](https://github.com/dtsh8/buryad-grammar/compare/v1.14.0...v1.14.1) (2026-10-31)
+
+### 📚 Documentation
+
+* **verbs:** record past tense sources and open questions ([50f5ab1](https://github.com/dtsh8/buryad-grammar/commit/50f5ab156ac291465a26f3834f942bbabf0d74b6))
+
+### 📖 Content Updates
+
+* **verbs:** redefine past tenses from specialist sources ([24491e1](https://github.com/dtsh8/buryad-grammar/commit/24491e1a563464b7c2bc2e4e0e3a4c438a511b12))
+
 ## [1.14.0](https://github.com/dtsh8/buryad-grammar/compare/v1.13.3...v1.14.0) (2026-10-30)
 
 ### ✨ New Features

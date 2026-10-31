@@ -124,6 +124,45 @@ export const en = {
       consonants: 'Consonants',
       structure: 'Syllable Structure',
     },
+    guide: {
+      title: 'How to make the sounds',
+      intro: 'Consonants differ by where the air is blocked. Choose a place to see it.',
+      diagramLabel: 'Side view of the mouth',
+      placesLabel: 'Places of articulation',
+      places: {
+        bilabial: { name: 'bilabial', how: 'Both lips touch.' },
+        alveolar: {
+          name: 'alveolar',
+          how: 'The tongue tip touches or nears the upper front teeth, as in Russian т, д, н.',
+        },
+        postalveolar: {
+          name: 'postalveolar',
+          how: 'The front of the tongue rises just behind the ridge of the upper teeth.',
+        },
+        palatal: {
+          name: 'palatal',
+          how: 'The middle of the tongue rises towards the hard palate.',
+        },
+        velar: {
+          name: 'velar',
+          how: 'The back of the tongue rises towards the roof of the mouth, further back.',
+        },
+        pharyngeal: {
+          name: 'pharyngeal',
+          how: 'The root of the tongue narrows the throat against its back wall.',
+        },
+      },
+    },
+    vowelGuide: {
+      title: 'What the vowel groups mean',
+      groups:
+        'Back (эрэ), front (эмэ) and neutral (эрсэ) are traditional names. They tell you which suffixes a word takes, and are a poor guide to the tongue: ү, a front vowel, sounds close to Russian у. Learn each vowel from its own note below.',
+      lips: 'Labial vowels are said with rounded lips: о, у, өө, ү. Unrounded: а, э, и.',
+      reduced: 'Short vowels after the first syllable are very brief and unclear.',
+      ipa: "The IPA for у, ү and ө is under review: the textbook's comparisons point to other symbols.",
+    },
+    sources:
+      'Notes follow Учебник бурятского языка, pp. 1–4, and Khabtagaeva & Kempf 2011, pp. 27–28.',
   },
 
   cases: {

@@ -3,6 +3,7 @@ import { VOWELS, VOWEL_HARMONY_PAIRS } from '../data/grammar';
 import SayButton from './SayButton';
 import Tooltip from './Tooltip';
 import { HARMONY_TIP } from '../data/harmonyTerms';
+import { useI18n } from '../i18n/context';
 
 const HARMONY_COLOR: Record<string, string> = {
   back: 'bg-amber-100 border-amber-300 text-amber-900',
@@ -11,12 +12,25 @@ const HARMONY_COLOR: Record<string, string> = {
 };
 
 export default function VowelHarmonyChart() {
+  const { t } = useI18n();
+  const guide = t.phonology.vowelGuide;
   const back = VOWELS.filter(v => v.harmony === 'back');
   const front = VOWELS.filter(v => v.harmony === 'front');
   const neutral = VOWELS.filter(v => v.harmony === 'neutral');
 
   return (
     <div className="space-y-6">
+      {/* What the group names mean */}
+      <div className="rounded-xl bg-stone-50 border border-stone-200 p-4 space-y-2">
+        <h3 className="text-sm font-semibold text-stone-700">{guide.title}</h3>
+        <p className="text-sm text-stone-600">{guide.groups}</p>
+        <p className="text-sm text-stone-600">{guide.lips}</p>
+        <p className="text-sm text-stone-600">{guide.reduced}</p>
+        <p className="text-xs text-stone-500">
+          {guide.ipa} {t.phonology.sources}
+        </p>
+      </div>
+
       {/* Harmony pair diagram */}
       <div>
         <h3 className="text-sm font-semibold text-stone-500 uppercase tracking-wide mb-3">
@@ -85,7 +99,7 @@ export default function VowelHarmonyChart() {
                     </tr>
                   )}
                   <tr className="border-t border-stone-100">
-                    <td className="py-2 pr-4">
+                    <td className="pt-2 pr-4 align-top" rowSpan={2}>
                       {prevGroup !== v.harmony || i === 0 ? (
                         <span
                           className={`badge ${
@@ -100,23 +114,28 @@ export default function VowelHarmonyChart() {
                         </span>
                       ) : null}
                     </td>
-                    <td className="py-2 px-3 text-center">
+                    <td className="pt-2 px-3 text-center">
                       <span
                         className={`inline-flex w-10 h-10 items-center justify-center rounded-lg border text-xl font-buryat font-bold ${HARMONY_COLOR[v.harmony]}`}
                       >
                         {v.letter}
                       </span>
                     </td>
-                    <td className="py-2 px-3 text-center">
+                    <td className="pt-2 px-3 text-center">
                       <span className="font-buryat text-stone-600">{v.long}</span>
                     </td>
-                    <td className="py-2 px-3 text-center">
+                    <td className="pt-2 px-3 text-center">
                       <code className="text-xs bg-stone-100 px-1.5 py-0.5 rounded">/{v.ipa}/</code>
                     </td>
-                    <td className="py-2 pl-4">
+                    <td className="pt-2 pl-4">
                       <span className="font-buryat text-buryat-700">{v.example.word}</span>
                       <SayButton word={v.example.word} className="ml-1" />
                       <span className="text-stone-500 ml-2">'{v.example.meaning}'</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colSpan={4} className="pb-2 pt-1 px-3 text-xs text-stone-600">
+                      {v.how}
                     </td>
                   </tr>
                 </Fragment>

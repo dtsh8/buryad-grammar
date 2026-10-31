@@ -52,6 +52,11 @@ export function gloss(l: Pick<Lexeme, 'english' | 'russian'>, lang: Lang): strin
   return lang === 'en' ? l.english : (l.russian ?? l.english);
 }
 
+// The translation the Reader shows: Russian for a Russian interface, English otherwise.
+export function readerGloss(l: Pick<Lexeme, 'english' | 'russian'>, lang: Lang): string {
+  return lang === 'ru' ? (l.russian ?? l.english) : l.english;
+}
+
 // Russian noun form for a count: 1 запись, 2 записи, 5 записей.
 export function ruPlural(n: number, [one, few, many]: [string, string, string]): string {
   const mod10 = n % 10;

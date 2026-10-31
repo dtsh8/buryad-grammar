@@ -13,6 +13,7 @@ export const en = {
     grammar: 'Grammar',
     practice: 'Practice',
     words: 'Words',
+    reader: 'Reader',
   },
 
   sections: {
@@ -23,6 +24,7 @@ export const en = {
     modals: { label: 'Modals', desc: 'Must, can, may and their negatives' },
     wordOrder: { label: 'Word Order', desc: 'SOV, postpositions, modifiers' },
     vocabulary: { label: 'Vocabulary', desc: 'Core words, phrases and numerals' },
+    reader: { label: 'Reader', desc: 'Hover over Buryad words to translate them' },
     practice: { label: 'Practice', desc: 'Conjugation and case drills' },
   },
 
@@ -252,6 +254,17 @@ export const en = {
       adverb: 'adverb',
       particle: 'particle',
     },
+  },
+
+  reader: {
+    title: 'Reader',
+    intro: 'Paste Buryad text, then hover over a word (or tap it) to see its translation.',
+    inputLabel: 'Buryad text',
+    legend:
+      'Words with a solid underline are in the checked vocabulary, so inflected forms are traced back to their headword. Dotted words are looked up by machine translation, which sends the word to Google and may be wrong.',
+    looking: 'Translating…',
+    machine: 'machine translation',
+    notFound: 'No translation found',
   },
 
   practice: {

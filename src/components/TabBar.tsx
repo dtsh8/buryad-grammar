@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import { House, BookOpen, Dumbbell, LayoutList } from 'lucide-react';
+import { House, BookOpen, Dumbbell, Languages, LayoutList } from 'lucide-react';
 import { GRAMMAR_SECTIONS } from '../sections';
 import { useI18n } from '../i18n/context';
 
@@ -9,7 +9,7 @@ const tabClass = (active: boolean) =>
     active ? 'text-buryat-700 font-semibold' : 'text-stone-500'
   }`;
 
-// Bottom navigation for phones and tablets: four destinations within thumb reach.
+// Bottom navigation for phones and tablets: five destinations within thumb reach.
 // Desktop keeps the top navbar (lg and up), so this is hidden there.
 export default function TabBar() {
   const { pathname } = useLocation();
@@ -50,7 +50,7 @@ export default function TabBar() {
           ))}
         </div>
       )}
-      <div className="grid grid-cols-4 px-1">
+      <div className="grid grid-cols-5 px-1">
         <NavLink to="/" end className={({ isActive }) => tabClass(isActive)}>
           <House size={22} aria-hidden="true" />
           {t.nav.today}
@@ -72,6 +72,10 @@ export default function TabBar() {
         <NavLink to="/vocabulary" className={({ isActive }) => tabClass(isActive)}>
           <LayoutList size={22} aria-hidden="true" />
           {t.nav.words}
+        </NavLink>
+        <NavLink to="/reader" className={({ isActive }) => tabClass(isActive)}>
+          <Languages size={22} aria-hidden="true" />
+          {t.nav.reader}
         </NavLink>
       </div>
     </nav>

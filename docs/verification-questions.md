@@ -281,6 +281,26 @@ the Buryad names of the voices (C2); IPA of у/ү/ө and ж (C4, C5); speaker nu
 "ergative tendencies" claim (C8); the years of the Latin script (C9); and whether the
 speaker's own dialect differs from the literary forms above.
 
+### Reader vocabulary (2026-10-31)
+
+Added so the Reader page can gloss ordinary text. K&K pages are printed pages.
+
+| Entry | Evidence |
+| --- | --- |
+| *амар*, *мэндэ*, *Амар мэндэ* | ТСБЯ I:107 (спокойный, благополучный), II:368 (здоровье; привет); K&K p. 56 *Амар мэндэ!* as a greeting; BNC 634, 606 |
+| *гэхэ*, *олохо*, *зохёохо* | ТСБЯ I:543, II:593, II:154, with "obtain" from *дүршэл олохо* (I:675); textbook p. 69 lists the stem *зохёо*; BNC *гэжэ* 50209, *олоһон* 309, *зохёохо* 65 |
+| *зохёогшо* | ТСБЯ II:153 (автор, создатель); K&K p. 58 *хүгжэм зохёогшо*; BNC 8. *зохёогшоор* is 0, but the same -оор is regular on such nouns: *багшаар* 20, *орлогшоор* 5 |
+| *нэрэтэй* | ТСБЯ II:519; BNC 624, *нэрэтэйб* 29 |
+| *бүхы*, *минии*, *дүршэл* | ТСБЯ I:359, II:291, I:675; BNC 2860, 3764, 125 |
+| *намайе*, *удангүй* | Textbook pp. 14, 33; K&K p. 196 *удангүй*; BNC 2529, 554 |
+| *тиимэһээ* | K&K p. 61 (*emiatt*, "therefore"); textbook p. 30 in context; BNC 1108 |
+| *хэрэг*, *хэрэггүй* | Textbook pp. 21, 69; K&K p. 222 *үйлэ хэрэг* (matter, affair); ТСБЯ I:42 *хэрэггүй* (бесполезный) in a definition, since the Х volume isn't available; K&K p. 103 *хүлеэхэ хэрэггүй*; BNC 1621, 846 |
+| *һэлгэхэ* | ТСБЯ I:55, in a definition (менять, обменивать), since the Һ volume isn't available; BNC 39 |
+
+Not added, because no source supports them: *программна* (BNC 0; *программа* 13, *программын* 5),
+*хангамжа* (BNC 0, not in the checked sources; *хангаха* 38, *хангалта* 2) and the abbreviation
+*ИИ*. See B8.
+
 ## Already applied to the app: please confirm
 
 These findings are now in the app. A native speaker's ✓ or correction is still wanted
@@ -440,6 +460,13 @@ Also: does the same rule apply to the instrumental case (*үнэнөөр*, *гэ
   5. Are the constructed examples natural: *Намда ном уншаха хэрэгтэй байгаа*, *Тэрэ ерэхэгүй
      ёһотой*, *Багша хүлеэжэ байгаа ёһотой*?
   6. Is *-ха һанаатай* still "intend", or more "want"?
+
+### B8. "Software" in Buryad
+
+- **App now says:** nothing. The Reader's example text has *программна хангамжа* ("software"),
+  but neither word is in the corpus or the written sources, so neither is in the vocabulary.
+- **Please answer:** Is *программна хангамжа* the usual term? Is *хангамжа* literary Buryad or a
+  borrowing from Khalkha *хангамж*? Is *ИИ* used for "artificial intelligence"?
 
 ## C. Labels and facts
 

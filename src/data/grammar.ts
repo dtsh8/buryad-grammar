@@ -147,10 +147,10 @@ export const CONSONANTS: Consonant[] = [
     place: 'bilabial',
     manner: 'plosive',
     voiced: true,
-    how: 'Both lips close, with voice. As Russian б.',
+    how: 'Both lips close, with voice. As Russian б at the start of a word; lighter later in the word.',
     allophone: {
       ipa: 'β',
-      note: 'Between vowels in back-vowel words (а, о, у) б softens to a sound like English w: ябаха [jaβaxa], ябаба [jaβaβa]. Radnaeva (2006) transcribes [β] in хабар and ябадаг. A native speaker reports that it stays [b] in front-vowel words, as in ерэбэ [jɛrɛbɛ]; no written source confirms this yet.',
+      note: 'Vowel harmony plays no part: it depends on the neighbouring sounds. б is a full [b] at the start of a word, as in Russian and English. Later in a word it lightens to [β], close to English w: before г in баабгай, and between vowels in ябаха and ябаба. So баабгай has both sounds. A native speaker reports this; Radnaeva (2006) also writes [β] in хабар and ябадаг, and [p] before т in добтолдог.',
     },
   },
   {

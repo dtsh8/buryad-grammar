@@ -30,7 +30,7 @@ export default function Navbar() {
                   to={to}
                   end={to === '/'}
                   className={({ isActive }) =>
-                    `flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium whitespace-nowrap transition-colors ${
+                    `flex items-center gap-1.5 px-2 xl:px-3 py-1.5 rounded-lg text-sm font-medium whitespace-nowrap transition-colors ${
                       isActive
                         ? 'bg-buryat-50 text-buryat-700'
                         : 'text-stone-600 hover:text-stone-900 hover:bg-stone-100'

@@ -20,6 +20,7 @@ export const en = {
     phonology: { label: 'Phonology', desc: 'Vowel harmony, consonants, long vowels' },
     cases: { label: 'Cases', desc: '7 nominal cases with endings and examples' },
     verbs: { label: 'Verbs', desc: 'Tense, person endings, converbs' },
+    modals: { label: 'Modals', desc: 'Must, can, may and their negatives' },
     wordOrder: { label: 'Word Order', desc: 'SOV, postpositions, modifiers' },
     vocabulary: { label: 'Vocabulary', desc: 'Core words, phrases and numerals' },
     practice: { label: 'Practice', desc: 'Conjugation and case drills' },
@@ -168,6 +169,66 @@ export const en = {
       source:
         'Sentences from С. Ц. Сампилова, Ц. Ц. Бальжинимаева, Буряад хэлэн, 3 класс (Улаан-Үдэ: Бэлиг, 2003). Glosses and translations added for this app.',
     },
+  },
+
+  modals: {
+    title: 'Modal Words',
+    intro:
+      'How to say must, need, can and may: хэрэгтэй, ёһотой, аргатай, болохо, шадаха, and what happens when you negate them.',
+    tabsLabel: 'Modal word sections',
+    tabs: { map: 'The map', forms: 'The words', negation: 'Negation' },
+    square: {
+      title: 'The four corners',
+      intro:
+        'Every modal meaning sits in one of four corners. Each corner is the exact negation of the corner across from it. Choose a corner to see its opposite.',
+      corners: { must: 'Must', mustNot: 'Must not', may: 'Can, may', needNot: 'Need not' },
+      opposite: 'exact opposite:',
+      warning:
+        'Trap: “not obliged to go” is хэрэггүй. ёһогүй looks like the negative of ёһотой, but it means “must not go”.',
+    },
+    frames: {
+      title: 'Two sentence patterns',
+      intro:
+        'Check the form of the main verb first. It decides how the modal behaves and where the person ending goes.',
+      familyHa: '-ха + a predicate word',
+      familyHaText: 'хэрэгтэй, ёһотой, аргатай: the word itself is the predicate.',
+      familyZha: '-жа + a verb',
+      familyZhaText: 'болохо, шадаха: an auxiliary verb carries negation and tense.',
+      roles: { subject: 'Who', verb: 'Main verb', modal: 'Modal', ending: 'Person ending' },
+    },
+    pair: {
+      title: 'хэрэгтэй or ёһотой?',
+      intro:
+        'One sentence, two words. хэрэгтэй is advice or a need; ёһотой is a duty and is stronger.',
+      advice: 'Advice',
+      duty: 'Duty',
+    },
+    entry: {
+      meaning: 'Meaning',
+      who: 'Who acts',
+      example: 'Example',
+      negative: 'Negative',
+      past: 'Past',
+    },
+    relatives: { title: 'Related forms', word: 'Form', meaning: 'Meaning', example: 'Example' },
+    negation: {
+      tableTitle: 'Where the negation goes',
+      tableIntro:
+        'The negation can land in up to three places, and they do not all mean the same thing.',
+      word: 'Positive',
+      onModal: 'On the modal',
+      onVerb: 'On the main verb',
+      withBeshe: 'With бэшэ',
+      usage: 'In use',
+      doubleTitle: 'Two negatives make a must',
+      doubleIntro:
+        'Read from the inside out. Each box negates everything inside it, so the sentence ends up as a strong obligation.',
+      trapsTitle: 'Traps',
+    },
+    glossKey:
+      'INF -ха form · CVB -жа converb · PERF -аа form · NEG negative · DAT dative · 1SG first person',
+    source:
+      'Sources: Textbook; Khabtagaeva & Kempf 2011 (K&K); ТСБЯ 2022 (volume:page); Дамбуева 2020; Buryat National Corpus. Sample figures come from random samples of up to 100 sentences.',
   },
 
   vocabulary: {

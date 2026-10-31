@@ -1,3 +1,9 @@
+## [1.22.2](https://github.com/dtsh8/buryad-grammar/compare/v1.22.1...v1.22.2) (2026-10-31)
+
+### 🐛 Bug Fixes
+
+* **phonology:** tie б softening to neighbouring sounds, not harmony ([2e0579b](https://github.com/dtsh8/buryad-grammar/commit/2e0579bfccdfee3ee362700793b4546ed3cd297b))
+
 ## [1.22.1](https://github.com/dtsh8/buryad-grammar/compare/v1.22.0...v1.22.1) (2026-10-31)
 
 ### 🐛 Bug Fixes

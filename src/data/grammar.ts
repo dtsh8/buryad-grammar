@@ -30,8 +30,12 @@ export interface Vowel {
   backness: 'front' | 'central' | 'back';
   rounded: boolean;
   example: { word: string; meaning: string };
+  how: string; // how to say it, for the Phonology page
 }
 
+// `how` notes: the textbook says letters shared with Russian keep their Russian sound (p. 1) and
+// describes у, ү, өө itself (p. 2); wide/narrow and rounding from p. 3. Its comparisons to
+// Russian disagree with the [u], [y], [ø] below: see question C4.
 export const VOWELS: Vowel[] = [
   {
     letter: 'а',
@@ -42,6 +46,7 @@ export const VOWELS: Vowel[] = [
     backness: 'back',
     rounded: false,
     example: { word: 'аха', meaning: 'elder brother' },
+    how: 'Mouth wide open, lips relaxed. As Russian а.',
   },
   {
     letter: 'о',
@@ -52,6 +57,7 @@ export const VOWELS: Vowel[] = [
     backness: 'back',
     rounded: true,
     example: { word: 'ном', meaning: 'book' },
+    how: 'Lips rounded, mouth wide open. As Russian о.',
   },
   {
     letter: 'у',
@@ -62,6 +68,7 @@ export const VOWELS: Vowel[] = [
     backness: 'back',
     rounded: true,
     example: { word: 'уһан', meaning: 'water' },
+    how: 'Lips come close together and push forward a little, leaving a narrow slit, while the back of the tongue rises and pulls back. Sounds between Russian о and у.',
   },
   {
     letter: 'э',
@@ -72,6 +79,7 @@ export const VOWELS: Vowel[] = [
     backness: 'front',
     rounded: false,
     example: { word: 'эхэ', meaning: 'mother' },
+    how: 'Mouth wide open, lips unrounded. As Russian э.',
   },
   {
     letter: 'ө',
@@ -82,6 +90,7 @@ export const VOWELS: Vowel[] = [
     backness: 'front',
     rounded: true,
     example: { word: 'өөдэ', meaning: 'upward' },
+    how: 'Always long, so always written өө. Lips rounded, wider than for ү; tongue slightly raised and pulled back. Close to Russian о.',
   },
   {
     letter: 'ү',
@@ -92,6 +101,7 @@ export const VOWELS: Vowel[] = [
     backness: 'front',
     rounded: true,
     example: { word: 'үнэн', meaning: 'truth' },
+    how: 'Lips rounded, tongue high: the tip draws back from the teeth and the root moves forward. Very close to Russian у, as in улица.',
   },
   {
     letter: 'и',
@@ -101,7 +111,8 @@ export const VOWELS: Vowel[] = [
     height: 'high',
     backness: 'central',
     rounded: false,
-    example: { word: 'ном', meaning: 'book (various)' },
+    example: { word: 'иимэ', meaning: 'such' }, // textbook p. 4
+    how: 'Lips unrounded, mouth narrow. As Russian и. Long и is written ии or, without softening the consonant before it, ы.', // ы: K&K p. 28
   },
 ];
 
@@ -111,16 +122,23 @@ export const VOWEL_HARMONY_PAIRS: Array<[string, string]> = [
   ['у', 'ү'],
 ];
 
+export type ConsonantPlace =
+  'bilabial' | 'alveolar' | 'postalveolar' | 'palatal' | 'velar' | 'pharyngeal';
+
 export interface Consonant {
   letter: string;
   ipa: string;
-  place: string;
+  place: ConsonantPlace;
   manner: string;
   voiced: boolean;
+  how: string; // how to say it, for the Phonology page
   // A positional pronunciation reported by a native speaker, not yet found in a written source.
   allophone?: { ipa: string; note: string };
 }
 
+// `how` notes: letters shared with Russian keep their Russian sound (textbook p. 1); һ is
+// pharyngeal, voiceless at the start of a word and voiced inside it (p. 2); н has a front and a
+// back sound with one letter (p. 3); к, п only in loanwords, й only inside a word (K&K p. 27).
 export const CONSONANTS: Consonant[] = [
   {
     letter: 'б',
@@ -128,28 +146,148 @@ export const CONSONANTS: Consonant[] = [
     place: 'bilabial',
     manner: 'plosive',
     voiced: true,
+    how: 'Both lips close, with voice. As Russian б.',
     allophone: {
       ipa: 'β',
       note: 'Between vowels in back-vowel words (а, о, у) б softens to a sound like English w: ябаха [jaβaxa], ябаба [jaβaβa]. In front-vowel words it stays [b]: ерэбэ [jɛrɛbɛ].',
     },
   },
-  { letter: 'п', ipa: 'p', place: 'bilabial', manner: 'plosive', voiced: false },
-  { letter: 'д', ipa: 'd', place: 'alveolar', manner: 'plosive', voiced: true },
-  { letter: 'т', ipa: 't', place: 'alveolar', manner: 'plosive', voiced: false },
-  { letter: 'г', ipa: 'ɡ', place: 'velar', manner: 'plosive', voiced: true },
-  { letter: 'к', ipa: 'k', place: 'velar', manner: 'plosive', voiced: false },
-  { letter: 'з', ipa: 'z', place: 'alveolar', manner: 'fricative', voiced: true },
-  { letter: 'с', ipa: 's', place: 'alveolar', manner: 'fricative', voiced: false },
-  { letter: 'ж', ipa: 'dʒ', place: 'postalveolar', manner: 'affricate', voiced: true },
-  { letter: 'ш', ipa: 'ʃ', place: 'postalveolar', manner: 'fricative', voiced: false },
-  { letter: 'х', ipa: 'x', place: 'velar', manner: 'fricative', voiced: false },
-  { letter: 'һ', ipa: 'h', place: 'glottal', manner: 'fricative', voiced: false },
-  { letter: 'м', ipa: 'm', place: 'bilabial', manner: 'nasal', voiced: true },
-  { letter: 'н', ipa: 'n', place: 'alveolar', manner: 'nasal', voiced: true },
-  { letter: 'нг', ipa: 'ŋ', place: 'velar', manner: 'nasal', voiced: true },
-  { letter: 'л', ipa: 'l', place: 'alveolar', manner: 'lateral', voiced: true },
-  { letter: 'р', ipa: 'r', place: 'alveolar', manner: 'trill', voiced: true },
-  { letter: 'й', ipa: 'j', place: 'palatal', manner: 'approximant', voiced: true },
+  {
+    letter: 'п',
+    ipa: 'p',
+    place: 'bilabial',
+    manner: 'plosive',
+    voiced: false,
+    how: 'Both lips close, no voice. As Russian п. Found in loanwords.',
+  },
+  {
+    letter: 'д',
+    ipa: 'd',
+    place: 'alveolar',
+    manner: 'plosive',
+    voiced: true,
+    how: 'Tongue tip at the upper front teeth, with voice. As Russian д.',
+  },
+  {
+    letter: 'т',
+    ipa: 't',
+    place: 'alveolar',
+    manner: 'plosive',
+    voiced: false,
+    how: 'Tongue tip at the upper front teeth, no voice. As Russian т.',
+  },
+  {
+    letter: 'г',
+    ipa: 'ɡ',
+    place: 'velar',
+    manner: 'plosive',
+    voiced: true,
+    how: 'Back of the tongue against the palate, with voice. As Russian г.',
+  },
+  {
+    letter: 'к',
+    ipa: 'k',
+    place: 'velar',
+    manner: 'plosive',
+    voiced: false,
+    how: 'Back of the tongue against the palate, no voice. As Russian к. Found in loanwords.',
+  },
+  {
+    letter: 'з',
+    ipa: 'z',
+    place: 'alveolar',
+    manner: 'fricative',
+    voiced: true,
+    how: 'Air hisses past the tongue tip, with voice. As Russian з.',
+  },
+  {
+    letter: 'с',
+    ipa: 's',
+    place: 'alveolar',
+    manner: 'fricative',
+    voiced: false,
+    how: 'Air hisses past the tongue tip, no voice. As Russian с.',
+  },
+  {
+    letter: 'ж',
+    ipa: 'dʒ',
+    place: 'postalveolar',
+    manner: 'affricate',
+    voiced: true,
+    how: 'The textbook gives it the sound of Russian ж. The /dʒ/ shown here, like English j, is unconfirmed.',
+  },
+  {
+    letter: 'ш',
+    ipa: 'ʃ',
+    place: 'postalveolar',
+    manner: 'fricative',
+    voiced: false,
+    how: 'Tongue raised just behind the teeth ridge, no voice. As Russian ш.',
+  },
+  {
+    letter: 'х',
+    ipa: 'x',
+    place: 'velar',
+    manner: 'fricative',
+    voiced: false,
+    how: 'Air rasps between the back of the tongue and the palate, no voice. As Russian х.',
+  },
+  {
+    letter: 'һ',
+    ipa: 'h',
+    place: 'pharyngeal',
+    manner: 'fricative',
+    voiced: false,
+    how: 'Made deep in the throat, between the tongue root and the back wall. Voiceless at the start of a word (һайн, һанаан). Voiced inside a word (уһан), close to Ukrainian г in гопак.',
+  },
+  {
+    letter: 'м',
+    ipa: 'm',
+    place: 'bilabial',
+    manner: 'nasal',
+    voiced: true,
+    how: 'Both lips close, air through the nose. As Russian м.',
+  },
+  {
+    letter: 'н',
+    ipa: 'n',
+    place: 'alveolar',
+    manner: 'nasal',
+    voiced: true,
+    how: 'Tongue tip at the upper front teeth, air through the nose. As Russian н.',
+  },
+  {
+    letter: 'нг',
+    ipa: 'ŋ',
+    place: 'velar',
+    manner: 'nasal',
+    voiced: true,
+    how: 'Back of the tongue against the palate, air through the nose. Has no letter of its own: it is written н at the end of a word (зон, хуһан) and before х or г (анха, анги).',
+  },
+  {
+    letter: 'л',
+    ipa: 'l',
+    place: 'alveolar',
+    manner: 'lateral',
+    voiced: true,
+    how: 'Tongue tip up, air passes at the sides. As Russian л.',
+  },
+  {
+    letter: 'р',
+    ipa: 'r',
+    place: 'alveolar',
+    manner: 'trill',
+    voiced: true,
+    how: 'Tongue tip vibrates. As Russian р.',
+  },
+  {
+    letter: 'й',
+    ipa: 'j',
+    place: 'palatal',
+    manner: 'approximant',
+    voiced: true,
+    how: 'Middle of the tongue rises towards the palate. As Russian й. Found only inside a word.',
+  },
 ];
 
 // ─── Nominal Cases ─────────────────────────────────────────────────────────

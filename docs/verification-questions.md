@@ -484,8 +484,8 @@ Also: does the same rule apply to the instrumental case (*үнэнөөр*, *гэ
 | C1  | Case names: Харьяалалай, Зүгэй, Үйлэдэгдэхүүнэй, Холдолгын…          | [grammar.ts:168-265](../src/data/grammar.ts#L168-L265)       | What are the standard Buryad-language case names used in school grammars?            |
 | C2  | Voice names: Үйлдүүлэгшэ, Эдлүүлэгшэ, Хэлсэлэй, Хамтаршалай           | [grammar.ts:494-554](../src/data/grammar.ts#L494-L554)       | Standard Buryad terms for causative / passive / reciprocal / cooperative?            |
 | C3  | "7 cases"                                                            | [grammar.ts:836](../src/data/grammar.ts#L836)                | 7 or 8? Is the directive (-руу/-рүү) a case or a postposition?                       |
-| C4  | Vowel IPA: у [u], ү [y], ө [ø]                                       | [grammar.ts:59-89](../src/data/grammar.ts#L59-L89)           | Likely у [ʊ], ү [u], ө [ɵ]. Correct?                                                 |
-| C5  | ж = [dʒ] affricate                                                   | [grammar.ts:131](../src/data/grammar.ts#L131)                | Likely [ʒ] fricative in Buryad. Correct?                                             |
+| C4  | Vowel IPA: у [u], ү [y], ө [ø]                                       | grammar.ts, `VOWELS`                                         | Likely у [ʊ], ү [u], ө [ɵ]. Correct? The Phonology page says these symbols are under review and gives the textbook's description (p. 2). |
+| C5  | ж = [dʒ] affricate                                                   | grammar.ts, `CONSONANTS`                                     | Likely [ʒ] fricative in Buryad. Correct? The textbook (p. 1) says letters shared with Russian keep the Russian sound, but says nothing about ж itself; the Phonology page marks /dʒ/ as unconfirmed. |
 | C6  | "Habitual / Progressive" for -даг                                    | [grammar.ts:701](../src/data/grammar.ts#L701)                | Habitual only? What expresses the progressive (*ябажа байна*)?                       |
 | C7  | Speakers: 461,000                                                    | [grammar.ts:9](../src/data/grammar.ts#L9)                    | That's roughly the ethnic population. What speaker figure should we cite, from which census? |
 | C8  | "Nominative–Accusative (with ergative tendencies)"                   | [grammar.ts:15](../src/data/grammar.ts#L15)                  | Any basis for "ergative tendencies"? Otherwise remove.                               |
@@ -493,6 +493,8 @@ Also: does the same rule apply to the instrumental case (*үнэнөөр*, *гэ
 | C10 | Concessive example *Ябашьегүй үзэгдэнэ*                              | grammar.ts, `CONVERBS`                                       | Is this natural? Is the concessive *-башье* (*ябабашье*)?                            |
 | C11 | Agglutination demo: дура → дурла- → дурлалса- (reciprocal)           | [grammar.ts:904](../src/data/grammar.ts#L904)                | Depends on A2.                                                                       |
 | C12 | ы has no sound in the table; vocabulary has *Үгы* /yɡy/, *хэлыт* /xelit/, *Хүлисэгты* /xylisəɡtə/ | [grammar.ts](../src/data/grammar.ts), `vocabulary.json` | What is the IPA of ы, and is it long? These three stay as they are until answered. |
+| C14 | һ = pharyngeal fricative, voiceless at the start of a word and voiced inside one (textbook p. 2); the table had glottal, and its place is now pharyngeal | grammar.ts, `CONSONANTS` | The IPA stays /h/ here and in `vocabulary.json`. Which symbols fit: [ħ] and [ɦ], [ʕ], or something else? Is the voiced sound right for speech? |
+| C15 | "How to say it" notes on the Phonology page rest on the textbook's general statement that shared letters sound as in Russian (p. 1). Placing д, т, н at the teeth comes from its note on н (p. 3) | grammar.ts, `how` | Is any consonant noticeably unlike Russian, for example р, л or х? |
 | C13 | Vowel table: о [ɔ]; *ерэбэ* [jɛrɛbɛ]. Vocabulary `ipa`: о /o/ (23 entries), э /e/ (43 entries) | [grammar.ts:35-106](../src/data/grammar.ts#L35-L106) | Which symbols are right, ɔ or o, e or ɛ? Decide with C4; then change both places together. |
 
 C7–C9 also appear on the Home page, whose text now lives in the interface translations
@@ -513,6 +515,7 @@ through and correct anything unnatural, in particular:
 | D4  | Тойм, Фонетикэ, Падежнүүд, Үйлэ үгэ, Үгын дараалал, Үгын сан, Дасхал | Natural menu names for Overview, Phonology, Cases, Verbs, Word order, Vocabulary, Practice? |
 | D5  | хэнэй? юугээр? хэнтэй? (cues before the genitive, instrumental, comitative of the word of the day) | Natural case questions, and is *юугээр* the right form?                 |
 | D6  | Асуудалай янзанууд, асуудалай үгэ, асуудалай тэмдэг, and the rest of `wordOrder.questions` | Natural terms and wording for "question structures", "question word" and "question marker"? |
+| D7  | Phonology guide: хоёр уруулай, шүдэнэй, таглайн, хойто таглайн, хоолойн (bilabial … pharyngeal). BNC: уруул 3, таглай 1, хоолой 403, шүдэн 40 | Standard terms for the places of articulation? Do уруул and таглай mean lip and palate here? Please also read the guide's sentences in `phonology.guide` and `phonology.vowelGuide`. |
 | D6  | Imperatives: үргэлжэлүүлыт, эхилыт, шэлэгты, бүтээгыт         | Right polite imperative endings?                                               |
 
 Only the app shell, the Home page, page titles and tabs, and the Vocabulary page are translated.

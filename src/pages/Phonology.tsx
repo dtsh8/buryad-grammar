@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
-import { CONSONANTS } from '../data/grammar';
+import { Fragment, useRef, useState } from 'react';
+import { CONSONANTS, type ConsonantPlace } from '../data/grammar';
+import ArticulationGuide, { PLACE_COLORS } from '../components/ArticulationGuide';
 import VowelHarmonyChart from '../components/VowelHarmonyChart';
 import Tabs from '../components/Tabs';
 import HintTooltip from '../components/Tooltip';
@@ -7,25 +9,8 @@ import { HARMONY_TIP } from '../data/harmonyTerms';
 import { ABBR_CLASS, SYLLABLE_TIP } from '../data/abbreviations';
 import { tabPanelProps, useTab, type TabDef } from '../hooks/useTab';
 import { useI18n } from '../i18n/context';
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from 'recharts';
 
 const fade = { hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0 } };
-
-const PLACE_COLORS: Record<string, string> = {
-  bilabial: '#c8851a',
-  alveolar: '#0e88ea',
-  velar: '#16a34a',
-  postalveolar: '#9333ea',
-  palatal: '#db2777',
-  glottal: '#6b7280',
-};
-
-const placeCounts = Object.entries(
-  CONSONANTS.reduce<Record<string, number>>((acc, c) => {
-    acc[c.place] = (acc[c.place] || 0) + 1;
-    return acc;
-  }, {})
-).map(([place, count]) => ({ place, count }));
 
 type Tab = 'harmony' | 'consonants' | 'structure';
 
@@ -40,6 +25,14 @@ export default function Phonology() {
   const { t } = useI18n();
   const TABS = TAB_IDS.map(d => ({ ...d, label: t.phonology.tabs[d.id] }));
   const [tab, setTab] = useTab(TABS);
+  const [place, setPlace] = useState<ConsonantPlace>('bilabial');
+  const guideRef = useRef<HTMLDivElement>(null);
+
+  // Below lg the guide sits above the table, so bring it back into view.
+  function showPlace(next: ConsonantPlace) {
+    setPlace(next);
+    guideRef.current?.scrollIntoView({ block: 'nearest' });
+  }
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-10 space-y-8">
@@ -134,10 +127,15 @@ export default function Phonology() {
           initial="hidden"
           animate="show"
           transition={{ duration: 0.3 }}
-          className="space-y-6"
+          className="grid lg:grid-cols-[minmax(0,1fr)_20rem] gap-6 items-start"
           {...tabPanelProps(tab)}
         >
-          <div className="card">
+          <div className="lg:order-2 lg:sticky lg:top-20 space-y-3">
+            <ArticulationGuide ref={guideRef} place={place} onSelect={setPlace} />
+            <p className="text-xs text-stone-500">{t.phonology.sources}</p>
+          </div>
+
+          <div className="card lg:order-1 min-w-0">
             <h2 className="text-lg font-semibold text-stone-800 mb-4">
               Consonant Inventory ({CONSONANTS.length} phonemes)
             </h2>
@@ -154,57 +152,50 @@ export default function Phonology() {
                 </thead>
                 <tbody>
                   {CONSONANTS.map(c => (
-                    <tr key={c.letter} className="border-b border-stone-100 hover:bg-stone-50">
-                      <td className="py-2 pr-4 font-buryat text-2xl text-stone-800 w-10">
-                        {c.letter}
-                      </td>
-                      <td className="py-2 pr-4 whitespace-nowrap">
-                        <code className="text-xs bg-stone-100 px-1.5 py-0.5 rounded">
-                          /{c.ipa}/
-                        </code>
-                        {c.allophone && (
-                          <HintTooltip
-                            text={`${c.allophone.note} Reported by a native speaker; not yet confirmed in a written source.`}
-                            className="ml-1.5 whitespace-nowrap text-xs rounded-full border border-amber-300 bg-amber-50 text-amber-800 px-2"
+                    <Fragment key={c.letter}>
+                      <tr className={c.place === place ? 'bg-stone-50' : undefined}>
+                        <td className="pt-2 pr-4 font-buryat text-2xl text-stone-800 w-10">
+                          {c.letter}
+                        </td>
+                        <td className="pt-2 pr-4 whitespace-nowrap">
+                          <code className="text-xs bg-stone-100 px-1.5 py-0.5 rounded">
+                            /{c.ipa}/
+                          </code>
+                          {c.allophone && (
+                            <HintTooltip
+                              text={`${c.allophone.note} Reported by a native speaker; not yet confirmed in a written source.`}
+                              className="ml-1.5 whitespace-nowrap text-xs rounded-full border border-amber-300 bg-amber-50 text-amber-800 px-2"
+                            >
+                              ~[{c.allophone.ipa}]
+                            </HintTooltip>
+                          )}
+                        </td>
+                        <td className="pt-2 pr-4">
+                          <button
+                            type="button"
+                            onClick={() => showPlace(c.place)}
+                            aria-pressed={c.place === place}
+                            className="text-xs font-medium px-2 py-0.5 rounded-full text-white whitespace-nowrap"
+                            style={{ background: PLACE_COLORS[c.place] }}
                           >
-                            ~[{c.allophone.ipa}]
-                          </HintTooltip>
-                        )}
-                      </td>
-                      <td className="py-2 pr-4">
-                        <span
-                          className="text-xs font-medium px-2 py-0.5 rounded-full text-white"
-                          style={{ background: PLACE_COLORS[c.place] ?? '#888' }}
-                        >
-                          {c.place}
-                        </span>
-                      </td>
-                      <td className="py-2 pr-4 text-stone-600 capitalize">{c.manner}</td>
-                      <td className="py-2 pr-4">{c.voiced ? '✓' : '—'}</td>
-                    </tr>
+                            {t.phonology.guide.places[c.place].name}
+                          </button>
+                        </td>
+                        <td className="pt-2 pr-4 text-stone-600 capitalize">{c.manner}</td>
+                        <td className="pt-2 pr-4">{c.voiced ? '✓' : '—'}</td>
+                      </tr>
+                      <tr
+                        className={`border-b border-stone-100 ${c.place === place ? 'bg-stone-50' : ''}`}
+                      >
+                        <td colSpan={5} className="pb-2 pt-0.5 text-xs text-stone-600">
+                          {c.how}
+                        </td>
+                      </tr>
+                    </Fragment>
                   ))}
                 </tbody>
               </table>
             </div>
-          </div>
-
-          {/* Bar chart by place of articulation */}
-          <div className="card">
-            <h2 className="text-lg font-semibold text-stone-800 mb-4">
-              Consonants by Place of Articulation
-            </h2>
-            <ResponsiveContainer width="100%" height={200}>
-              <BarChart data={placeCounts} margin={{ left: -10 }}>
-                <XAxis dataKey="place" tick={{ fontSize: 11 }} />
-                <YAxis allowDecimals={false} tick={{ fontSize: 11 }} />
-                <Tooltip />
-                <Bar dataKey="count" radius={[4, 4, 0, 0]}>
-                  {placeCounts.map(entry => (
-                    <Cell key={entry.place} fill={PLACE_COLORS[entry.place] ?? '#aaa'} />
-                  ))}
-                </Bar>
-              </BarChart>
-            </ResponsiveContainer>
           </div>
         </motion.div>
       )}

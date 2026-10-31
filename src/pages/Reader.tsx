@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import Tooltip from '../components/Tooltip';
 import { useVocabulary } from '../hooks/useVocabulary';
 import { useI18n } from '../i18n/context';
 import type { Messages } from '../i18n/en';
-import { findPhrases, sentenceOf } from '../utils/phrases';
+import { findPhrases, splitSentences } from '../utils/phrases';
 import {
   buildIndex,
   describe,
@@ -33,27 +33,21 @@ function onlineText(gloss: OnlineGloss, sources: Messages['reader']['sources']):
   return `${gloss.text} (${gloss.lemma ? `${gloss.lemma}, ${source}` : source})`;
 }
 
-interface Context {
-  phrase?: string;
-  sentence: string;
-}
-
 interface Found {
   id: string;
   word: OnlineGloss | null;
   phrase: string | null;
-  sentence: string | null;
 }
 
 function Word({
   token,
   index,
-  context,
+  phrase,
   tone,
 }: {
   token: Token;
   index: ReaderIndex;
-  context: Context;
+  phrase?: string;
   tone: string;
 }) {
   const { lang, t } = useI18n();
@@ -61,10 +55,7 @@ function Word({
   const hits = lookup(key, index);
   const known = hits.length > 0;
   const target = lang === 'ru' ? 'ru' : 'en';
-  const whole = context.sentence.replace(/[.!?…]+$/, '');
-  const phrase = context.phrase !== whole ? context.phrase : undefined;
-  const sentence = whole !== token.text ? context.sentence : undefined;
-  const id = `${target}:${key}:${phrase}:${sentence}`;
+  const id = `${target}:${key}:${phrase}`;
   const [open, setOpen] = useState(false);
   const [found, setFound] = useState<Found | null>(null);
   const answer = found?.id === id ? found : null;
@@ -77,26 +68,23 @@ function Word({
       void Promise.all([
         known ? null : translateWord(key, target),
         phrase ? translateText(phrase, target) : null,
-        sentence ? translateText(sentence, target) : null,
-      ]).then(([word, phrase, sentence]) => {
-        if (!cancelled) setFound({ id, word, phrase, sentence });
+      ]).then(([word, phrase]) => {
+        if (!cancelled) setFound({ id, word, phrase });
       });
     }, LOOKUP_DELAY);
     return () => {
       cancelled = true;
       clearTimeout(timer);
     };
-  }, [needed, known, key, target, phrase, sentence, id]);
+  }, [needed, known, key, target, phrase, id]);
 
   const lines: string[] = [];
   if (known) lines.push(describe(key, hits, lang));
   else if (answer)
     lines.push(answer.word ? onlineText(answer.word, t.reader.sources) : t.reader.notFound);
-  if (answer) {
-    const machine = t.reader.sources.machine;
-    if (answer.phrase) lines.push(`${t.reader.phrase}: ${answer.phrase} (${machine})`);
-    if (answer.sentence) lines.push(`${t.reader.sentence}: ${answer.sentence} (${machine})`);
-  } else if (!known || phrase || sentence) {
+  if (answer?.phrase) {
+    lines.push(`${t.reader.phrase}: ${answer.phrase} (${t.reader.sources.machine})`);
+  } else if (!answer && (!known || phrase)) {
     lines.push(t.reader.looking);
   }
 
@@ -113,13 +101,69 @@ function Word({
   );
 }
 
+// A sentence with its translation beside it, hidden so the reader can work it out first. Nothing
+// is sent to the translation service until they ask.
+function SentenceRow({ sentence, children }: { sentence: string; children: ReactNode }) {
+  const { lang, t } = useI18n();
+  const target = lang === 'ru' ? 'ru' : 'en';
+  const id = `${target}:${sentence}`;
+  const [shown, setShown] = useState(false);
+  const [result, setResult] = useState<{ id: string; text: string | null } | null>(null);
+  const answer = result?.id === id ? result : null;
+  const needed = shown && !answer;
+
+  useEffect(() => {
+    if (!needed) return;
+    let cancelled = false;
+    void translateText(sentence, target).then(text => {
+      if (!cancelled) setResult({ id, text });
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [needed, sentence, target, id]);
+
+  function toggle() {
+    setShown(s => !s);
+    setResult(null); // so a failed translation is tried again next time
+  }
+
+  let translation = t.reader.looking;
+  if (answer) {
+    translation = answer.text ? `${answer.text} (${t.reader.sources.machine})` : t.reader.notFound;
+  }
+
+  return (
+    <div className="grid md:grid-cols-2 gap-x-8 gap-y-2 py-4 first:pt-0 border-b border-stone-100 last:border-b-0">
+      <p lang="bua" data-testid="reader-sentence" className="font-buryat text-lg leading-loose">
+        {children}
+      </p>
+      <div className="text-sm space-y-1 md:pt-2">
+        <button
+          type="button"
+          aria-expanded={shown}
+          onClick={toggle}
+          className="font-medium text-buryat-700 underline underline-offset-2"
+        >
+          {shown ? t.reader.hideTranslation : t.reader.showTranslation}
+        </button>
+        {shown && (
+          <p aria-live="polite" className="text-stone-700">
+            {translation}
+          </p>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export default function Reader() {
   const { t } = useI18n();
   const { data, error } = useVocabulary();
   const [text, setText] = useState(SAMPLE);
   const index = useMemo(() => buildIndex(data), [data]);
   const tokens = useMemo(() => tokenise(text, index), [text, index]);
-  const sentences = useMemo(() => sentenceOf(tokens), [tokens]);
+  const sentences = useMemo(() => splitSentences(tokens), [tokens]);
   const phraseAt = useMemo(() => {
     const at = new Map<number, { text: string; tone: string }>();
     findPhrases(tokens, index).forEach(({ start, end, text }, n) => {
@@ -143,27 +187,32 @@ export default function Reader() {
       )}
 
       <div className="card space-y-4">
-        <p
-          lang="bua"
-          data-testid="reader-text"
-          className="font-buryat text-lg leading-loose whitespace-pre-wrap break-words min-h-16"
-        >
-          {tokens.map((token, i) =>
-            token.key ? (
-              <Word
-                key={`${i}:${token.key}`}
-                token={token}
-                index={index}
-                context={{ phrase: phraseAt.get(i)?.text, sentence: sentences[i] }}
-                tone={phraseAt.get(i)?.tone ?? ''}
-              />
-            ) : (
-              <span key={i} className={phraseAt.get(i)?.tone}>
-                {token.text}
-              </span>
-            )
-          )}
-        </p>
+        <div data-testid="reader-text" className="min-h-16">
+          {sentences.map(({ start, end, text: sentence }) => (
+            <SentenceRow key={`${start}:${sentence}`} sentence={sentence}>
+              {tokens.slice(start, end + 1).map((token, offset) => {
+                const i = start + offset;
+                const phrase = phraseAt.get(i);
+                return token.key ? (
+                  <Word
+                    key={`${i}:${token.key}`}
+                    token={token}
+                    index={index}
+                    // A phrase that is the whole sentence would give the answer away.
+                    phrase={
+                      phrase?.text !== sentence.replace(/[.!?…]+$/, '') ? phrase?.text : undefined
+                    }
+                    tone={phrase?.tone ?? ''}
+                  />
+                ) : (
+                  <span key={i} className={phrase?.tone}>
+                    {token.text}
+                  </span>
+                );
+              })}
+            </SentenceRow>
+          ))}
+        </div>
         <p className="text-xs text-stone-500">
           {t.reader.legend}{' '}
           <a

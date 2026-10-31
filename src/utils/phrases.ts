@@ -87,22 +87,24 @@ export function findPhrases(tokens: Token[], index: ReaderIndex): Phrase[] {
   );
 }
 
-// The sentence each token belongs to.
-export function sentenceOf(tokens: Token[]): string[] {
-  const sentences = new Array<string>(tokens.length).fill('');
+// Sentences end at . ! ? … or a line break. Stretches with no words in them are left out.
+export function splitSentences(tokens: Token[]): Phrase[] {
+  const sentences: Phrase[] = [];
   let start = 0;
   const close = (end: number) => {
-    const text = tokens
-      .slice(start, end)
-      .map(t => t.text)
-      .join('')
-      .trim();
-    sentences.fill(text, start, end);
-    start = end;
+    const part = tokens.slice(start, end + 1);
+    if (part.some(t => t.key)) {
+      const text = part
+        .map(t => t.text)
+        .join('')
+        .trim();
+      sentences.push({ start, end, text });
+    }
+    start = end + 1;
   };
   tokens.forEach((token, i) => {
-    if (!token.key && /[.!?…\n]/.test(token.text)) close(i + 1);
+    if (!token.key && /[.!?…\n]/.test(token.text)) close(i);
   });
-  close(tokens.length);
+  close(tokens.length - 1);
   return sentences;
 }

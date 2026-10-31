@@ -1,3 +1,9 @@
+## [1.19.0](https://github.com/dtsh8/buryad-grammar/compare/v1.18.0...v1.19.0) (2026-10-31)
+
+### ✨ New Features
+
+* **reader:** find the verb behind an inflected word ([3a2eff8](https://github.com/dtsh8/buryad-grammar/commit/3a2eff87459f8de2a422c4a3326061fd0dd4296c))
+
 ## [1.18.0](https://github.com/dtsh8/buryad-grammar/compare/v1.17.0...v1.18.0) (2026-10-31)
 
 ### ✨ New Features

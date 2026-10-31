@@ -1,3 +1,9 @@
+## [1.22.4](https://github.com/dtsh8/buryad-grammar/compare/v1.22.3...v1.22.4) (2026-10-31)
+
+### 🐛 Bug Fixes
+
+* **phonology:** add stress, dropped vowels and нх from Бадагаров's series ([288c2c7](https://github.com/dtsh8/buryad-grammar/commit/288c2c7932ad50fc32ac4649a7b4edbca220ae2e))
+
 ## [1.22.3](https://github.com/dtsh8/buryad-grammar/compare/v1.22.2...v1.22.3) (2026-10-31)
 
 ### 🐛 Bug Fixes

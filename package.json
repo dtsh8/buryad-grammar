@@ -1,7 +1,7 @@
 {
   "name": "buryad-grammar",
   "private": true,
-  "version": "1.22.3",
+  "version": "1.22.4",
   "description": "Interactive grammar reference for the Buryad (Буряад) language",
   "type": "module",
   "scripts": {

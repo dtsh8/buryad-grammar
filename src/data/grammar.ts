@@ -132,13 +132,14 @@ export interface Consonant {
   manner: string;
   voiced: boolean;
   how: string; // how to say it, for the Phonology page
-  // A positional pronunciation reported by a native speaker, not yet found in a written source.
+  // A positional pronunciation; `note` says where it is reported.
   allophone?: { ipa: string; note: string };
 }
 
 // `how` notes: letters shared with Russian keep their Russian sound (textbook p. 1); һ is
 // pharyngeal, voiceless at the start of a word and voiced inside it (p. 2); н has a front and a
 // back sound with one letter (p. 3); к, п only in loanwords, й only inside a word (K&K p. 27).
+// г and х shift with harmony: Staroverov 2020, p. 46; Radnaeva 2006, p. 582.
 export const CONSONANTS: Consonant[] = [
   {
     letter: 'б',
@@ -149,7 +150,7 @@ export const CONSONANTS: Consonant[] = [
     how: 'Both lips close, with voice. As Russian б.',
     allophone: {
       ipa: 'β',
-      note: 'Between vowels in back-vowel words (а, о, у) б softens to a sound like English w: ябаха [jaβaxa], ябаба [jaβaβa]. In front-vowel words it stays [b]: ерэбэ [jɛrɛbɛ].',
+      note: 'Between vowels in back-vowel words (а, о, у) б softens to a sound like English w: ябаха [jaβaxa], ябаба [jaβaβa]. Radnaeva (2006) transcribes [β] in хабар and ябадаг. A native speaker reports that it stays [b] in front-vowel words, as in ерэбэ [jɛrɛbɛ]; no written source confirms this yet.',
     },
   },
   {
@@ -182,7 +183,11 @@ export const CONSONANTS: Consonant[] = [
     place: 'velar',
     manner: 'plosive',
     voiced: true,
-    how: 'Back of the tongue against the palate, with voice. As Russian г.',
+    how: 'Back of the tongue against the palate, with voice. In front-vowel words as Russian г; in back-vowel words made much further back.',
+    allophone: {
+      ipa: 'ɢ, ʁ',
+      note: 'г follows the vowel harmony of the word (Staroverov 2020, p. 46). In back-vowel words it is uvular [ɢ], as in гараад and газарта, and between vowels it often softens to the fricative [ʁ]; Radnaeva (2006) has [ʁ] after р in гаргаад. In front-vowel words it is [g], as in гээшэ, and sometimes softens to [ɣ], as in гүлгэ.',
+    },
   },
   {
     letter: 'к',
@@ -230,7 +235,7 @@ export const CONSONANTS: Consonant[] = [
     place: 'velar',
     manner: 'fricative',
     voiced: false,
-    how: 'Air rasps between the back of the tongue and the palate, no voice. As Russian х.',
+    how: 'Air rasps between the back of the tongue and the palate, no voice. As Russian х in front-vowel words; further back and harsher in back-vowel words.',
   },
   {
     letter: 'һ',

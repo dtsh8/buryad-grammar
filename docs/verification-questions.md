@@ -51,6 +51,11 @@ Not answerable from a news corpus: A2 meanings beyond these examples, B4 (reflex
 | Badmaeva 2011 | Бадмаева Ю. Д. О системе видовременных форм в бурятском языке (новейшая категоризация) // Филологические науки. Вопросы теории и практики. 2011. № 3 (10). С. 13–18 | Definitions of the tenses; nine-form grid of simple, continuous and completed forms; examples from fiction |
 | ТСБЯ | Сундуева и др. *Толковый словарь бурятского языка*. Улан-Батор: Нандир, 2022– (vols I–II checked) | Headwords and grammatical terms, cited as volume:page |
 | Dambueva 2020 | Дамбуева П. П. О расширении круга модальной лексики в разговорном бурятском языке: функционально-модальные слова // Монголоведение. 2020. Т. 12. № 4. С. 644–651. https://doi.org/10.22162/2500-1523-2020-4-644-651 | The class of modal words: *аргатай* is possibility; *ёһотой, хэрэгтэй, ушартай, зэргэтэй* are necessity (pp. 646–647) |
+| Radnaeva 2006 | Radnaeva L. Phonetic Research of the Sound Form of Modern Buryat Language // SPECOM 2006. P. 577–582, https://www.eurasip.org/Proceedings/Ext/SPECOM2006/papers/108.pdf | Allophonic transcription of a short text (p. 582); 4 standard speakers. Her 2003 doctoral thesis and ICPhS paper are still wanted |
+| Staroverov 2020 | Staroverov P. Buriat dorsal epenthesis is not reproduced with novel morphemes // SPiL Plus 60. P. 43–69, https://doi.org/10.5842/60-0-756 | г and х by vowel harmony (p. 46). Fieldwork on Barguzin, which he says does not differ substantially from Standard Buriat |
+| Urtegeshev 2023 | Уртегешев Н. С. Веляризация в бурятском языке // Теоретическая и прикладная лингвистика 9 (3). С. 165–181, https://doi.org/10.22250/24107190_2023_9_3_165 | MRI and acoustics from 4 speakers: consonants of hard and soft words differ in tongue position. Nothing on г or б specifically; ж is a fricative in the Alar dialect (p. 178) |
+| Minlang | Расширенная грамматика бурятского языка, https://minlang.iling-ran.ru/grammar/rasshirennaya-grammatika-buryatskogo-yazyka | Short online survey: /b g/ turn fricative between vowels and after р; /x g ŋ/ velar in soft words, uvular in hard words. No page-level sources read |
+| Poppe 1935 | Поппе Н. Н. Бурят-монгольское языкознание. Л., 1935 (dated May 1933), https://www.orientalstudies.ru/rus/images/pdf/add1/TIVAN_5_1933_poppe.pdf | His transcription table (p. 114) has separate signs for a fricative bilabial spelled b or v and a fricative g, without stating where they occur |
 | BNC | Buryat National Corpus, https://buryat.web-corpora.net/buryat_corpus/search (fiction, folklore, press, 1950s–2010s) | Frequencies and sentences of word forms (`npm run corpus:bnc`); its automatic grammar tags are often wrong for verb forms |
 
 | Q   | Finding | Status |
@@ -356,8 +361,11 @@ for each.
 - **Speaker note (2026-10-28):** the forms are hard to tell apart by ear in back-vowel verbs,
   because б between vowels there sounds like English w: *ябаба* [jaβaβa] is close to *ябаа*
   [jabaː]. In front-vowel words б stays [b], so ask with front verbs: *ерэбэ / ерээ / ерэһэн*,
-  *хэлэбэ / хэлээ / хэлэһэн*. The app shows б ~[β] on the Phonology page as unconfirmed; a
-  written source (Бураев 1959, Poppe 1960) is still wanted.
+  *хэлэбэ / хэлээ / хэлэһэн*. Written support for [β] in back-vowel words: Radnaeva 2006, p. 582
+  (*хабар, ябадаг, һабартай*). Still open: whether б stays [b] in front-vowel words. Her sample
+  has no such case, and Minlang states fricative б between vowels with no harmony condition, so
+  only the speaker's report supports [b] there. Please compare *ерэбэ, хэлэбэ, эбэр, тэбэрихэ*.
+  Бураев 1959 is the source to check; the biliq.ru PDF returned 404 on 2026-10-31.
 
 ### A2. Are the reciprocal and cooperative suffixes swapped?
 
@@ -485,7 +493,7 @@ Also: does the same rule apply to the instrumental case (*үнэнөөр*, *гэ
 | C2  | Voice names: Үйлдүүлэгшэ, Эдлүүлэгшэ, Хэлсэлэй, Хамтаршалай           | [grammar.ts:494-554](../src/data/grammar.ts#L494-L554)       | Standard Buryad terms for causative / passive / reciprocal / cooperative?            |
 | C3  | "7 cases"                                                            | [grammar.ts:836](../src/data/grammar.ts#L836)                | 7 or 8? Is the directive (-руу/-рүү) a case or a postposition?                       |
 | C4  | Vowel IPA: у [u], ү [y], ө [ø]                                       | grammar.ts, `VOWELS`                                         | Likely у [ʊ], ү [u], ө [ɵ]. Correct? The Phonology page says these symbols are under review and gives the textbook's description (p. 2). |
-| C5  | ж = [dʒ] affricate                                                   | grammar.ts, `CONSONANTS`                                     | Likely [ʒ] fricative in Buryad. Correct? The textbook (p. 1) says letters shared with Russian keep the Russian sound, but says nothing about ж itself; the Phonology page marks /dʒ/ as unconfirmed. |
+| C5  | ж = [dʒ] affricate                                                   | grammar.ts, `CONSONANTS`                                     | Likely [ʒ] fricative in Buryad. Correct? The textbook (p. 1) says letters shared with Russian keep the Russian sound, but says nothing about ж itself; the Phonology page marks /dʒ/ as unconfirmed. Radnaeva 2006 (p. 582) writes [ʒ] in *дайралдажа, тэжээдэг*, and Urtegeshev 2023 (p. 178) finds a fricative in Alar. |
 | C6  | "Habitual / Progressive" for -даг                                    | [grammar.ts:701](../src/data/grammar.ts#L701)                | Habitual only? What expresses the progressive (*ябажа байна*)?                       |
 | C7  | Speakers: 461,000                                                    | [grammar.ts:9](../src/data/grammar.ts#L9)                    | That's roughly the ethnic population. What speaker figure should we cite, from which census? |
 | C8  | "Nominative–Accusative (with ergative tendencies)"                   | [grammar.ts:15](../src/data/grammar.ts#L15)                  | Any basis for "ergative tendencies"? Otherwise remove.                               |
@@ -493,8 +501,9 @@ Also: does the same rule apply to the instrumental case (*үнэнөөр*, *гэ
 | C10 | Concessive example *Ябашьегүй үзэгдэнэ*                              | grammar.ts, `CONVERBS`                                       | Is this natural? Is the concessive *-башье* (*ябабашье*)?                            |
 | C11 | Agglutination demo: дура → дурла- → дурлалса- (reciprocal)           | [grammar.ts:904](../src/data/grammar.ts#L904)                | Depends on A2.                                                                       |
 | C12 | ы has no sound in the table; vocabulary has *Үгы* /yɡy/, *хэлыт* /xelit/, *Хүлисэгты* /xylisəɡtə/ | [grammar.ts](../src/data/grammar.ts), `vocabulary.json` | What is the IPA of ы, and is it long? These three stay as they are until answered. |
-| C14 | һ = pharyngeal fricative, voiceless at the start of a word and voiced inside one (textbook p. 2); the table had glottal, and its place is now pharyngeal | grammar.ts, `CONSONANTS` | The IPA stays /h/ here and in `vocabulary.json`. Which symbols fit: [ħ] and [ɦ], [ʕ], or something else? Is the voiced sound right for speech? |
+| C14 | һ = pharyngeal fricative, voiceless at the start of a word and voiced inside one (textbook p. 2); the table had glottal, and its place is now pharyngeal | grammar.ts, `CONSONANTS` | The IPA stays /h/ here and in `vocabulary.json`. Which symbols fit: [ħ] and [ɦ], [ʕ], or something else? Is the voiced sound right for speech? Radnaeva 2006 (p. 582) writes [ɦ] even at the start of a word (*һабартай*), against the textbook's voiceless start. |
 | C15 | "How to say it" notes on the Phonology page rest on the textbook's general statement that shared letters sound as in Russian (p. 1). Placing д, т, н at the teeth comes from its note on н (p. 3) | grammar.ts, `how` | Is any consonant noticeably unlike Russian, for example р, л or х? |
+| C16 | г varies with harmony: [ɢ], often [ʁ] between vowels, in back-vowel words; [g], sometimes [ɣ], in front-vowel words (Staroverov 2020, p. 46; Radnaeva 2006, p. 582; Minlang). х likewise: [χ] in *хабар, болохо*, [x] in *нүхэн, ехэ*. Wikipedia cites the same for г to Poppe 1960, p. 11; not checked | grammar.ts, `CONSONANTS` | Applied as a note; IPA stays /ɡ/, /x/. Does Khori speech match? Radnaeva writes final г as [kʰ] (*ябадаг*) and has [g] in *олдоогүй*. |
 | C13 | Vowel table: о [ɔ]; *ерэбэ* [jɛrɛbɛ]. Vocabulary `ipa`: о /o/ (23 entries), э /e/ (43 entries) | [grammar.ts:35-106](../src/data/grammar.ts#L35-L106) | Which symbols are right, ɔ or o, e or ɛ? Decide with C4; then change both places together. |
 
 C7–C9 also appear on the Home page, whose text now lives in the interface translations

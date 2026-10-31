@@ -1,12 +1,13 @@
 // ─── Reader: from a word in running text to its vocabulary entry ──────────
 // Curated glosses first, including every form the engines build for a headword, so хүдэлнэб
-// finds хүдэлхэ. Only words the vocabulary can't explain go to machine translation.
+// finds хүдэлхэ. Words the vocabulary can't explain are looked up online: the Burlang dictionary
+// first, then machine translation.
 
 import { PERSON_ENDINGS } from '../data/grammar';
 import type { Lexeme } from '../data/vocabulary.types';
 import { readerGloss, type Lang } from '../i18n/lang';
 import { decline } from './nounMorphology';
-import { conjugate, extractRoot, translateFromBuryad } from './verbMorphology';
+import { conjugate, extractRoot, translateFromBuryad, translateRussian } from './verbMorphology';
 
 export interface ReaderIndex {
   entries: Map<string, Lexeme[]>;
@@ -114,21 +115,58 @@ export function describe(key: string, hits: Lexeme[], lang: Lang): string {
     .join('; ');
 }
 
-const translations = new Map<string, Promise<string | null>>();
+export interface OnlineGloss {
+  text: string;
+  source: 'burlang' | 'burlangMachine' | 'machine';
+}
 
-// null when there's no translation: the service failed, or handed the word back unchanged.
-// Failures aren't kept, so hovering again retries.
-export function translateWord(key: string, target: 'en' | 'ru'): Promise<string | null> {
+const BURLANG = 'https://burlang.ru/api/v1/buryat-word/translate';
+const BURLANG_TIMEOUT = 5000; // ms
+
+// Burlang's entries can run to a paragraph of Buryad examples: keep the first sense.
+// "1. 1) спокойный, благополучный; амар тайбан…" → "спокойный, благополучный"
+export function firstSense(entry: string): string {
+  return entry
+    .replace(/^(\s*\d+[.)]?\s*)+/, '')
+    .split(';')[0]
+    .replace(/[.,:\s]+$/, '');
+}
+
+// Burlang has headwords only, in Russian, and answers 404 for a word it doesn't know.
+async function burlangGloss(key: string): Promise<string | null> {
+  const url = `${BURLANG}?q=${encodeURIComponent(key)}`;
+  const resp = await fetch(url, { signal: AbortSignal.timeout(BURLANG_TIMEOUT) });
+  if (!resp.ok) return null;
+  const data = (await resp.json()) as { translations?: Array<{ value: string }> };
+  const entry = data.translations?.[0]?.value;
+  return entry ? firstSense(entry) : null;
+}
+
+async function lookUpOnline(key: string, target: 'en' | 'ru'): Promise<OnlineGloss | null> {
+  const russian = await burlangGloss(key).catch(() => null);
+  if (russian && target === 'ru') return { text: russian, source: 'burlang' };
+  if (russian) {
+    const english = await translateRussian(russian).catch(() => null);
+    return english
+      ? { text: english, source: 'burlangMachine' }
+      : { text: russian, source: 'burlang' };
+  }
+  const text = await translateFromBuryad(key, target).catch(() => null);
+  return text && wordKey(text) !== key ? { text, source: 'machine' } : null;
+}
+
+const translations = new Map<string, Promise<OnlineGloss | null>>();
+
+// null when there's no translation: nothing found, the services failed, or machine translation
+// handed the word back unchanged. These aren't kept, so hovering again retries.
+export function translateWord(key: string, target: 'en' | 'ru'): Promise<OnlineGloss | null> {
   const id = `${target}:${key}`;
   const cached = translations.get(id);
   if (cached) return cached;
-  const result = translateFromBuryad(key, target).then(
-    text => (wordKey(text) === key ? null : text),
-    () => {
-      translations.delete(id);
-      return null;
-    }
-  );
+  const result = lookUpOnline(key, target).then(gloss => {
+    if (!gloss) translations.delete(id);
+    return gloss;
+  });
   translations.set(id, result);
   return result;
 }

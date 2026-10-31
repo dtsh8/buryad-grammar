@@ -9,6 +9,7 @@ import {
   lookup,
   tokenise,
   translateWord,
+  type OnlineGloss,
   type ReaderIndex,
   type Token,
 } from '../utils/reader';
@@ -27,16 +28,16 @@ function Word({ token, index }: { token: Token; index: ReaderIndex }) {
   const target = lang === 'ru' ? 'ru' : 'en';
   const id = `${target}:${key}`;
   const [open, setOpen] = useState(false);
-  const [machine, setMachine] = useState<{ id: string; text: string | null } | null>(null);
-  const answered = machine?.id === id;
+  const [online, setOnline] = useState<{ id: string; gloss: OnlineGloss | null } | null>(null);
+  const answered = online?.id === id;
   const needed = open && hits.length === 0 && !answered;
 
   useEffect(() => {
     if (!needed) return;
     let cancelled = false;
     const timer = setTimeout(() => {
-      void translateWord(key, target).then(text => {
-        if (!cancelled) setMachine({ id, text });
+      void translateWord(key, target).then(gloss => {
+        if (!cancelled) setOnline({ id, gloss });
       });
     }, LOOKUP_DELAY);
     return () => {
@@ -48,7 +49,9 @@ function Word({ token, index }: { token: Token; index: ReaderIndex }) {
   let text = t.reader.looking;
   if (hits.length > 0) text = describe(key, hits, lang);
   else if (answered)
-    text = machine.text ? `${machine.text} (${t.reader.machine})` : t.reader.notFound;
+    text = online.gloss
+      ? `${online.gloss.text} (${t.reader.sources[online.gloss.source]})`
+      : t.reader.notFound;
 
   return (
     <Tooltip
@@ -97,7 +100,17 @@ export default function Reader() {
             )
           )}
         </p>
-        <p className="text-xs text-stone-500">{t.reader.legend}</p>
+        <p className="text-xs text-stone-500">
+          {t.reader.legend}{' '}
+          <a
+            href="https://burlang.ru"
+            target="_blank"
+            rel="noreferrer"
+            className="text-buryat-700 underline"
+          >
+            burlang.ru
+          </a>
+        </p>
       </div>
 
       <textarea

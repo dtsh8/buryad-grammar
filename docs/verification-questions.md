@@ -301,6 +301,10 @@ Not added, because no source supports them: *программна* (BNC 0; *пр
 *хангамжа* (BNC 0, not in the checked sources; *хангаха* 38, *хангалта* 2) and the abbreviation
 *ИИ*. See B8.
 
+The Reader queries the [Burlang](https://burlang.ru) dictionary API live for words outside the
+vocabulary. Its glosses are not evidence for this file, and none are stored in the repo: the API
+states no licence, and the site is marked © Burlang (checked 2026-10-31).
+
 ## Already applied to the app: please confirm
 
 These findings are now in the app. A native speaker's ✓ or correction is still wanted

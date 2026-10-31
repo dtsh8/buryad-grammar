@@ -395,6 +395,11 @@ export function translateFromBuryad(word: string, target: 'en' | 'ru'): Promise<
   return googleTranslate('bxr', target, word);
 }
 
+// Russian to English, for glosses from the Russian-only Burlang dictionary.
+export function translateRussian(text: string): Promise<string> {
+  return googleTranslate('ru', 'en', text);
+}
+
 async function googleTranslate(from: string, to: string, query: string): Promise<string> {
   const url =
     `https://translate.googleapis.com/translate_a/single?client=gtx` +

@@ -1,5 +1,5 @@
-import { useEffect, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
+import { useEffect, useMemo, useState } from 'react';
 import Tooltip from '../components/Tooltip';
 import { useVocabulary } from '../hooks/useVocabulary';
 import { useI18n } from '../i18n/context';
@@ -15,8 +15,7 @@ import {
 
 const fade = { hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } };
 
-const SAMPLE =
-  'Амар мэндэ, би Тамир гэжэ нэрэтэйб, би программна хангамжа зохёогшоор хүдэлнэб, удангүй намайе ИИ һэлгэхэ, тиимэһээ минии олоһон бүхы дүршэл хэрэггүй болохо.';
+const SAMPLE = 'Хэлэжэ байһан үгэдэ харюусалгатай байха хэрэгтэй.';
 
 // Long enough that moving the mouse across a line doesn't send every word to the service.
 const LOOKUP_DELAY = 300; // ms

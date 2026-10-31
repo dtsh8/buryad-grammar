@@ -1,3 +1,9 @@
+## [1.22.5](https://github.com/dtsh8/buryad-grammar/compare/v1.22.4...v1.22.5) (2026-10-31)
+
+### 📚 Documentation
+
+* note that Бадагаров's series simplifies the past tense ([11dd2a3](https://github.com/dtsh8/buryad-grammar/commit/11dd2a3cd0f049ce9fcd91cd5dfd6f74588e9f2b))
+
 ## [1.22.4](https://github.com/dtsh8/buryad-grammar/compare/v1.22.3...v1.22.4) (2026-10-31)
 
 ### 🐛 Bug Fixes

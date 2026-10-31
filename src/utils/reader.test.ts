@@ -8,6 +8,7 @@ import {
   firstSense,
   lookup,
   tokenise,
+  translateText,
   translateWord,
   verbInfinitives,
 } from './reader';
@@ -234,5 +235,29 @@ describe('translateWord', () => {
     expect(await translateWord('алдаа', 'en')).toBeNull();
     vi.stubGlobal('fetch', services({ google: 'error' }));
     expect((await translateWord('алдаа', 'en'))?.text).toBe('error');
+  });
+});
+
+describe('translateText', () => {
+  afterEach(() => vi.unstubAllGlobals());
+
+  it('joins every segment of a long answer', async () => {
+    const json = () =>
+      Promise.resolve([
+        [
+          ['First. ', 'x'],
+          ['Second', 'y'],
+        ],
+      ]);
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue({ ok: true, json }));
+    expect(await translateText('нэгэ мэдүүлэл', 'en')).toBe('First. Second');
+  });
+
+  it('retries after a failure', async () => {
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue({ ok: false, status: 429 }));
+    expect(await translateText('алдаа гараба', 'en')).toBeNull();
+    const json = () => Promise.resolve([[['it failed', 'x']]]);
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue({ ok: true, json }));
+    expect(await translateText('алдаа гараба', 'en')).toBe('it failed');
   });
 });

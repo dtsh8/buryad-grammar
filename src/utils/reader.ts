@@ -223,3 +223,19 @@ export function translateWord(key: string, target: 'en' | 'ru'): Promise<OnlineG
   translations.set(id, result);
   return result;
 }
+
+const texts = new Map<string, Promise<string | null>>();
+
+// A phrase or sentence, for which machine translation is the only source. It does far better on
+// a whole sentence than on a fragment: the dictionary can't inflect, so this can't be composed.
+export function translateText(text: string, target: 'en' | 'ru'): Promise<string | null> {
+  const id = `${target}:${text}`;
+  const cached = texts.get(id);
+  if (cached) return cached;
+  const result = translateFromBuryad(text, target).catch(() => {
+    texts.delete(id);
+    return null;
+  });
+  texts.set(id, result);
+  return result;
+}

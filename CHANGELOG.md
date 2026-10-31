@@ -1,3 +1,9 @@
+## [1.22.0](https://github.com/dtsh8/buryad-grammar/compare/v1.21.0...v1.22.0) (2026-10-31)
+
+### ✨ New Features
+
+* **phonology:** show how to pronounce each sound ([f796c99](https://github.com/dtsh8/buryad-grammar/commit/f796c9959cbc0c2fa389bb0784db4915f7d8702d))
+
 ## [1.21.0](https://github.com/dtsh8/buryad-grammar/compare/v1.20.0...v1.21.0) (2026-10-31)
 
 ### ✨ New Features

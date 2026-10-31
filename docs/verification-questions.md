@@ -363,7 +363,7 @@ for each.
   because б between vowels there sounds like English w: *ябаба* [jaβaβa] is close to *ябаа*
   [jabaː]. In front-vowel words б stays [b], so ask with front verbs: *ерэбэ / ерээ / ерэһэн*,
   *хэлэбэ / хэлээ / хэлэһэн*.
-- **Бадагаров (ep. 4, 03:54–10:44) teaches -аа + person as the plain past,** "я ушёл": *ябааб*, *һуугааб*, *гүйгөөб*, *баряаб*, *эдеэб*. The textbook's -ба does not appear in that lesson. In ep. 16 (18:51) a past form in the Buryat anthem is read as "begun earlier and still going". Both bear on -аа versus -ба, and the app still follows the textbook. Ep. 13 may settle it but has no captions; forms here are rebuilt from garbled captions, so check against the audio.
+- **Бадагаров (ep. 4, 03:54–10:44) teaches -аа + person as the plain past,** "я ушёл": *ябааб*, *һуугааб*, *гүйгөөб*, *баряаб*, *эдеэб*. The textbook's -ба does not appear in that lesson. In ep. 16 (18:51) a past form in the Buryat anthem is read as "begun earlier and still going". This is not evidence against the textbook: the owner notes the TV series deliberately keeps things simple for learners, so -аа here is a teaching choice, and the app keeps following the textbook. Ep. 13 has no captions; forms here are rebuilt from garbled captions, so check against the audio.
 - **Speaker note (2026-10-31), replaces the harmony claim above:** harmony does not matter for
   б; the neighbouring sound does. *баабгай* starts with [b], and the second б, before г, is the
   lighter [β]. Written support: Radnaeva 2006, p. 582 has [β] in *хабар, ябадаг, һабартай* and

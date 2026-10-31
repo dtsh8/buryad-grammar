@@ -1,3 +1,13 @@
+## [1.15.0](https://github.com/dtsh8/buryad-grammar/compare/v1.14.1...v1.15.0) (2026-10-31)
+
+### ✨ New Features
+
+* **verbs:** add Modals page with modal words and negation ([6933aa5](https://github.com/dtsh8/buryad-grammar/commit/6933aa515fe1578030f868e4d10a42ebb2d5a446))
+
+### 📚 Documentation
+
+* **verbs:** record modal word sources and evidence ([94441e4](https://github.com/dtsh8/buryad-grammar/commit/94441e4e7d1fd3a31e9e69e7af9a332f469c4157))
+
 ## [1.14.1](https://github.com/dtsh8/buryad-grammar/compare/v1.14.0...v1.14.1) (2026-10-31)
 
 ### 📚 Documentation

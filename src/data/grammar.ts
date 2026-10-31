@@ -764,52 +764,55 @@ export interface TenseEntry {
 // Past forms per the burunen.ru corpus (docs/verification-questions.md, A1): -аа and -һан
 // dominate written Buryad, -ба is much rarer. The earlier "evidential past -лай" is gone: a
 // narrative past in -лай exists (BNC: ошолой 13, ерэлэй 11, ябалай 1, mostly Д.-Д. Дугаров)
-// but is rare and nowhere described as evidential. Glosses follow Skribnik & Darzhaeva (2020): -ба PST, -аа PC.PRS,
+// but is rare: Skribnik 2003 (p. 114) calls it obsolete, and it continues the Middle Mongol direct
+// evidential past (Skribnik & Aikhenvald 2024, p. 1024). Glosses follow Skribnik & Darzhaeva (2020): -ба PST, -аа PC.PRS,
 // -һан PC.PST, -нхай PC.RES; the textbook (p. 67) counts -аа, -нхай, -һан as past participles.
+// Buryad names and allomorphs: Khabtagaeva & Kempf 2011, pp. 68-69 (-нхай name also ТСБЯ I:127).
+// Badmaeva 2011 (pp. 13-14) defines the same forms; where the sources disagree the note says so.
 export const TENSE_ENTRIES: TenseEntry[] = [
   {
     label: 'Simple Past',
     corpusQuery: '*ба',
-    buryad: 'Үнгэрһэн сагай хэлбэри',
-    suffix: { back: '-ба', front: '-бэ' },
+    buryad: 'Богони үнгэрһэн саг',
+    suffix: { back: '-ба', front: '-бэ / -бо' },
     timeline: { kind: 'point', from: -1.8 },
     aspectuality: 'perfective',
     examples: [
       { form: 'ябаба', translation: '(he/she/I) went' },
       { form: 'бэлдэбэ', translation: '(he/she) prepared' },
     ],
-    note: 'The plain past tense: a completed event in the past. Takes person endings (уншабаб "I read", уншабад "they read"). Much rarer than -аа in news text.',
+    note: 'The plain past tense: a completed event in the past, the simple past in Skribnik (2003, p. 118). It says nothing about how the speaker knows: it continues the neutral past of Middle Mongol (Skribnik & Aikhenvald 2024, p. 1024). Badmaeva (2011, p. 14) also calls it the most neutral past, and notes it can report what has just happened (суглаан эхилэбэ "the meeting has started"). Khabtagaeva & Kempf (2011, p. 68) call it the eyewitness past, but narrative prose uses it for distant events no narrator saw. Takes person endings (уншабаб "I read", уншабад "they read"). Much rarer than -аа in news text.',
   },
   {
     label: 'Past Participle',
     corpusQuery: '*һан',
-    buryad: '—',
-    suffix: { back: '-һан', front: '-һэн' },
+    buryad: 'Үнгэрһэн сагай причасти',
+    suffix: { back: '-һан', front: '-һэн / -һон' },
     timeline: { kind: 'point', from: -1.5 },
     aspectuality: 'perfective',
     examples: [
       { form: 'ябаһан', translation: '(he/she) went; who went' },
       { form: 'бүтээһэн', translation: '(he/she) created; created (by)' },
     ],
-    note: 'Modifies nouns (ябаһан хүн "the person who went") and also closes sentences as a narrative past.',
+    note: 'The general past participle: a completed fact, distant or recent (Khabtagaeva & Kempf 2011, p. 69; Badmaeva 2011, p. 14), begun and ended in the past (textbook p. 68). Modifies nouns (ябаһан хүн "the person who went") and also closes sentences as a narrative past, often with the particle юм and with person endings (һураһанби "I studied"). Its negative is normally -аагүй (Skribnik 2003, p. 115): ерээгүй, rarely ерэһэнгүй.',
   },
   {
     label: 'Perfect',
     corpusQuery: '*аа',
-    buryad: '—',
-    suffix: { back: '-аа', front: '-ээ / -өө' },
+    buryad: 'Үнгэрһэн саг',
+    suffix: { back: '-аа', front: '-ээ / -оо / -өө' },
     timeline: { kind: 'point', from: -0.9, reachesNow: true },
     aspectuality: 'perfective',
     examples: [
       { form: 'ябаа', translation: '(he/she) went / has gone' },
       { form: 'хүдэлөө', translation: '(he/she) worked' },
     ],
-    note: 'Grammatically a participle used as a finite past: a past event relevant now. The most frequent past in the news corpus. Takes person endings (ябааб "I went", ябаабди "we went") and negates as ябаагүй.',
+    note: 'Grammatically a participle used as a finite past: a past event relevant now, the "actual past" in Skribnik (2003, p. 118). The sources differ: Khabtagaeva & Kempf (2011, p. 69) give two uses, an action that began in the past and continues now and an event in the distant past (Шандор Петёфи олон шүлэг зохёогоо "Sándor Petőfi wrote many poems"), while Badmaeva (2011, p. 14) calls it a long-ago past with practically no link to the present. That is not a general rule: Skribnik & Aikhenvald (2024, p. 1025) cite it for last night\'s news, and for the same six verbs in the Buryat National Corpus, үсэгэлдэр "yesterday" occurs with -аа in 41 sentences and with -ба in 10. The most frequent past in the news corpus. Takes person endings (ябааб "I went", ябаабди "we went") and negates as ябаагүй, also the usual negative of the other past forms (p. 70; BNC: ерээгүй 178, ерэбэгүй 44).',
   },
   {
     label: 'Resultative',
     corpusQuery: '*нхай',
-    buryad: '—',
+    buryad: 'Үни үнгэрһэн сагай причасти',
     suffix: { back: '-нхай', front: '-нхэй / -нхой' },
     timeline: { kind: 'point', from: -0.5, reachesNow: true },
     aspectuality: 'perfective',
@@ -818,13 +821,13 @@ export const TENSE_ENTRIES: TenseEntry[] = [
       { form: 'һуунхай', translation: '(he/she) has sat down, is sitting' },
       { form: 'баринхай', translation: 'holding (having taken hold)' },
     ],
-    note: 'A state perfect: the action is over and its result is in place now, like "has sat down" = "is sitting". The textbook calls it the long-ago past (p. 67: ерэнхэй "давно пришел"), but in the Buryat National Corpus it occurs with мүнөө "now" (101 sentences) and һаяхан "just recently" (15) far more than with эртэ "long ago" (9). With a past auxiliary the state is in the past: эсэгэнь үнинэй аяланхай һэн "his father had long since gone away".',
+    note: 'A state perfect: the action is over and its result is in place now, like "has sat down" = "is sitting". Badmaeva (2011, p. 14) describes it the same way: closely tied to the present, with a result that matters now. Its traditional name means "long-ago past participle" (textbook p. 67: ерэнхэй "давно пришел"; Khabtagaeva & Kempf 2011, p. 69), but the examples are current states (багша эндэ үгы байна, гэртээ ябанхай "the teacher is not here, has gone home"), the explanatory dictionary has мүнөөнэй ерэнхэйб "I have only just arrived" (ТСБЯ II:343), and in the Buryat National Corpus it occurs with мүнөө "now" (101 sentences) and һаяхан "just recently" (15) far more than with эртэ "long ago" (9). It also modifies nouns (ерэнхэй нүхэр "a friend who has arrived"). With a past auxiliary the state is in the past: эсэгэнь үнинэй аяланхай һэн "his father had long since gone away". -нхай байба often adds surprise: "as it turned out, they had already left" (Skribnik & Aikhenvald 2024, p. 1026).',
   },
   {
     label: 'Present Continuous',
     corpusQuery: '*жа',
     buryad: '—',
-    suffix: { back: '-жа байна', front: '-жэ байна' },
+    suffix: { back: '-жа байна', front: '-жэ байна / -жо байна' },
     timeline: { kind: 'point', from: 0 },
     aspectuality: 'imperfective',
     examples: [
@@ -837,27 +840,27 @@ export const TENSE_ENTRIES: TenseEntry[] = [
     label: 'Habitual',
     corpusQuery: '*даг',
     buryad: 'Заншалай хэлбэри',
-    suffix: { back: '-даг', front: '-дэг' },
+    suffix: { back: '-даг', front: '-дэг / -дог' },
     timeline: { kind: 'repeated', from: -2.2, to: 1.6 },
     aspectuality: 'habitual',
     examples: [
       { form: 'ябадаг', translation: '(he/she) habitually goes / used to go' },
       { form: 'уншадаг', translation: '(he/she) habitually reads' },
     ],
-    note: 'Recurring or characteristic action; negated as ябадаггүй. The progressive is a separate construction: -жа байна (хүдэлжэ байна "is working").',
+    note: 'Recurring or characteristic action: ерэдэг "comes each time". Grammatically a timeless participle (textbook p. 60); negated as ябадаггүй. The progressive is a separate construction: -жа байна (хүдэлжэ байна "is working"). With a past auxiliary it is a past habitual: ерэдэг байгаа "used to come" (Badmaeva 2011, p. 16).',
   },
   {
     label: 'Present',
     corpusQuery: '*на',
     buryad: 'Одоо сагай хэлбэри',
-    suffix: { back: '-на', front: '-нэ' },
+    suffix: { back: '-на', front: '-нэ / -но' },
     timeline: { kind: 'span', from: -0.5, to: 0.5 },
     aspectuality: 'imperfective',
     examples: [
       { form: 'ябана', translation: '(he/she) goes, is going' },
       { form: 'уншанаб', translation: 'I read, I am reading' },
     ],
-    note: 'The present: морин ябана "the horse is going", бэшэнэб "I write" (textbook p. 28). In the Buryat National Corpus, actions after үглөөдэр "tomorrow" or хожом "later" take -ха (Үглөөдэр … гарахаб "Tomorrow I’ll go"); -на there is the speaker’s present state (һананаб "I think", найданаб "I hope"). To stress "in progress" Buryad adds байна: ябажа байна.',
+    note: 'The present: морин ябана "the horse is going", бэшэнэб "I write" (textbook p. 28). In the Buryat National Corpus, actions after үглөөдэр "tomorrow" or хожом "later" take -ха (Үглөөдэр … гарахаб "Tomorrow I’ll go"); -на there is the speaker’s present state (һананаб "I think", найданаб "I hope"). To stress "in progress" Buryad adds байна: ябажа байна. Badmaeva (2011, pp. 13–14) adds two uses: telling a past scene in narrative prose and, rarely, a firm near-future plan (номышни ерэхэ неделидэ үгэнэ "I’ll give your book back next week").',
   },
   {
     label: 'Future',
@@ -1279,7 +1282,7 @@ export const COMPARISONS: LangComparison[] = [
   },
   {
     feature: 'Evidentiality',
-    buryad: 'Under review',
+    buryad: 'Via constructions',
     mongolian: 'Yes',
     turkish: 'Yes',
     english: 'Lexical only',

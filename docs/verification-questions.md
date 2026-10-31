@@ -40,15 +40,21 @@ Not answerable from a news corpus: A2 meanings beyond these examples, B4 (reflex
 
 | Short name | Source | Used for |
 | ---------- | ------ | -------- |
-| Textbook | *Учебник бурятского языка* (40 lessons, literary Buryad on the Khori base; Academia.edu 35182608) | Rules and paradigms; page numbers below refer to it |
+| Textbook | *Учебник бурятского языка* (40 lessons, literary Buryad on the Khori base; Academia.edu 35182608) | Rules and paradigms; page numbers below refer to it, and PDF pages equal printed pages. For the past forms: -ба is simply "прошедшее время" (p. 37); -аа gets only the gloss *ерээ* "пришел" (p. 67), so it can't settle the -аа dispute under Badmaeva 2011; -һан began and ended in the past, with auxiliaries: *ерэһэн байна* (p. 68); -даг is a timeless participle (p. 60). Burlang.Nom (https://nom.buryat-lang.ru) repeats this book's text almost word for word, so it is not an independent source. Its reference list names Дондуков & Пахутова, *Учебник бурятского языка для знающих русский язык* (Улан-Удэ, 1990), probably this book's authors (unconfirmed). It gives 3pl *тэдэ уншаба* where the book has *уншабад*; BNC supports -д: *ерэбэд* 163, *ошобод* 99, *гарабад* 95, *ябабад* 79, *хэлэбэд* 31 |
 | S&D 2020 | Скрибник Е. К., Даржаева Н. Б. Семантика обстоятельственного сложного предложения в бурятском языке и языковая картина мира // Вестник БГУ. Язык. Литература. Культура. 2020. № 4. С. 58–69 | Morpheme-by-morpheme glosses of Buryat National Corpus examples |
 | D 2019 | Даржаева Н. Б. Квазисинонимические уступительные конструкции в бурятском языке // Oriental Studies. 2019. № 4. С. 682–690 | Concessive constructions |
 | Sampilova 2003 | Сампилова С. Ц., Бальжинимаева Ц. Ц. Буряад хэлэн: 3-дахи класс. Улаан-Үдэ: Бэлиг, 2003 (school textbook, no answer key) | Question sentences in `QUESTION_EXAMPLES`, cited by printed page; the glosses and structure labels are ours |
+| K&K 2011 | Khabtagaeva B., Kempf B. *Burját nyelvkönyv*. Szeged, 2011 (Hungarian-language textbook; open on core.ac.uk) | Definitions of the past forms (pp. 68–70), past particles (p. 166); cited by printed page, which is PDF page + 3 |
+| Skribnik 2003 | Skribnik E. Buryat // Janhunen J. (ed.). *The Mongolic Languages*. London: Routledge, 2003. P. 102–128 | Names and functions of the past forms (pp. 114–115, 118–119) |
+| S&A 2024 | Skribnik E., Aikhenvald A. Y. Evidentiality in Northern Asia. De Gruyter, 2024, ch. 18, https://doi.org/10.1515/9783111378381-018 | Buryat evidentiality (pp. 1024–1027), citing unpublished Skribnik & Darzhaeva and Цыдыпов 1972 |
+| B&S 2018 | Brosig B., Skribnik E. Evidentiality in Mongolic // Aikhenvald A. Y. (ed.). *The Oxford Handbook of Evidentiality*. OUP, 2018. P. 554–579 | Only the abstract and S&A's summary read: Buryat lacks paradigmatic evidentiality. Full text not available |
+| Badmaeva 2011 | Бадмаева Ю. Д. О системе видовременных форм в бурятском языке (новейшая категоризация) // Филологические науки. Вопросы теории и практики. 2011. № 3 (10). С. 13–18 | Definitions of the tenses; nine-form grid of simple, continuous and completed forms; examples from fiction |
+| ТСБЯ | Сундуева и др. *Толковый словарь бурятского языка*. Улан-Батор: Нандир, 2022– (vols I–II checked) | Headwords and grammatical terms, cited as volume:page |
 | BNC | Buryat National Corpus, https://buryat.web-corpora.net/buryat_corpus/search (fiction, folklore, press, 1950s–2010s) | Frequencies and sentences of word forms (`npm run corpus:bnc`); its automatic grammar tags are often wrong for verb forms |
 
 | Q   | Finding | Status |
 | --- | ------- | ------ |
-| A1  | -ба is the past tense and takes person endings: *уншабаб, уншабаш, уншабабди, уншабат, уншабад* (Textbook p. 37). -аа, -нхай, -һан are "past participles" (p. 67); S&D 2020 gloss -ба PST, -аа PC.PRS, -һан PC.PST, -нхай PC.RES. -лай is in neither the textbook nor the papers; the BNC has it only as a rare literary narrative past (see the BNC row). | **Answered**, except evidentiality (see A1) |
+| A1  | -ба is the past tense and takes person endings: *уншабаб, уншабаш, уншабабди, уншабат, уншабад* (Textbook p. 37). -аа, -нхай, -һан are "past participles" (p. 67); S&D 2020 gloss -ба PST, -аа PC.PRS, -һан PC.PST, -нхай PC.RES. -лай is not in the textbook or S&D; Badmaeva 2011 (p. 14) lists it as a fifth simple past (*уншалай, хэлэй, гаралай*) but gives no definition or example sentence, and *гаралай* is also a genitive. The BNC has it only as a rare literary narrative past (see the BNC row). Skribnik 2003 and S&A 2024: the -ба/-аа/-һан/-нхай forms do not mark evidentiality, and -лай is obsolete (see "Evidentiality in specialist sources"). | **Answered** from written sources; speaker confirmation in A1 |
 | A2  | One "взаимно-совместный" voice: -лда = two parties with each other (*Дамба Дашатай барилдаба*, *хөөрэлдэбэ*); -лса = joining someone (*город ошолсобо*, *таиралсажа үгэбэ*) (p. 86). | **Answered** |
 | A3  | 1sg -б/-м, 2sg -ш, 1pl -бди/-мди, 2pl -т, **3pl -д** (*тэдэ бэшэнэд*) (p. 28); in questions the ending goes on the particle (*бэшэнэ гүш?*); also on nouns and pronouns (p. 74). Corpus 3pl: *ябанад, хүдэлнэд*. | **Answered** |
 | A4  | -мни, -шни, -нь/-иинь/-ынь, -мнай, -тнай; case before possessive (*мориндомни*); shortened in the instrumental (*мориёорни*) (pp. 47–49). | **Answered** |
@@ -147,6 +153,76 @@ past (*-нхай байба* 128 sentences, *үнинэй аяланхай һэ�
 puts -нхай just before NOW with its result reaching NOW, and the glosses say "has gone, is away".
 The textbook wording is kept as a quotation in the note.
 
+### Past forms in Khabtagaeva & Kempf 2011 (2026-10-31)
+
+| Form | K&K name and definition | Check | App |
+| ---- | ----------------------- | ----- | --- |
+| -ба (-бо, -бэ) | *богони үнгэрһэн саг*, "szemtanú múlt": completed actions the speaker witnessed (p. 68); *һая* "recently" in an example | Conflicts with narrative use: BNC *түрэбэ* has Chinggis's birth in the 1990 *Монголой нюуса тобшо*, and "хүбүү түрэбэ гэхэ" ("… they say"); *1905 … хэдэн жэл үнгэрбэ*. Own birth has -аа (*тэндэ би түрөөб*), and none of the 3 *түрэбэб* hits is a literal "I was born". | Definition attributed, **not** taught as a rule; see A1 |
+| -аа (-ээ, -оо, -өө; -яа/-еэ/-ёо after short и; -гаа after long vowels and diphthongs) | *үнгэрһэн саг*: began in the past and continues now, or remote past (p. 69). Listed as a tense, but "múlt idejű igenév" on p. 201 | Allomorphs match the engine. S&D's PC.PRS fits "continues now"; ТСБЯ II:342–343 has a *мүнөөнэй-үнгэрһэн саг* "настояще-прошедшее" without naming its suffix, possibly this form. | Note extended; still "participle", following the textbook |
+| -һан (-һэн, -һон) | *үнгэрһэн сагай причасти*, general past participle: any past action (p. 69). P. 137 instead heads it "közelmúlt" (near past), an internal inconsistency | | Note extended, "general" kept |
+| -нхай (-нхэй, -нхой) | *үни үнгэрһэн сагай причасти*, "régmúlt" (p. 69); the term is also in ТСБЯ I:127 | The name disagrees with K&K's own examples (*гэртээ ябанхай* "has gone home", with "is not here") and ТСБЯ II:343 *мүнөөнэй ерэнхэйб* "only just arrived". Confirms the state-perfect analysis above. | Note extended; attributive use added |
+| Negation | -аагүй "almost exclusively" for all pasts (p. 70) | Overstated: BNC *ерээгүй* 178 / *ерэбэгүй* 44, *ошоогүй* 131 / *ошобогүй* 11, *хэлээгүй* 232 / *хэлэбэгүй* 137. *ерэһэнгүй* 3. | -аагүй "usual"; -багүй stays |
+
+K&K also treat *һэн* and *бэлэй* as past particles with person endings (*һураа һэмби*, *ошоһон
+бэлэйб*; p. 166; ТСБЯ I:376 *бэлэй*). They are not taught in the app yet. The timeline keeps -ба
+furthest from NOW and -аа reaching it, which fits Skribnik's simple past and actual past, though
+no source gives -ба a distance.
+
+### Evidentiality in specialist sources (2026-10-31)
+
+This overrides K&K's "eyewitness past" for -ба, which rests on a textbook label. The narrative
+use above already spoke against it.
+
+| Form | Skribnik 2003 | S&A 2024 |
+| ---- | ------------- | -------- |
+| -ба | terminative, general past tense (pp. 114, 118) | continues Middle Mongol's **evidentially neutral** -bA; a "general past" (p. 1024) |
+| -аа | imperfective participle, "actual past" (p. 118); pairs with -һан in negation (p. 115) | present participle (p. 1025), but glossed PST for last night's escape in (23) |
+| -һан | perfective participle, "perfective past" (p. 118); also recent: *hayaa … yabahan* (p. 114); negative normally -аагүй (p. 115) | -һан бай- is perfect-cum-resultative with inferential and mirative readings (p. 1025; Цыдыпов 1972: 161) |
+| -нхай | resultative past, close to the perfective participle (pp. 115, 118) | -нхай бай- marks a visible result; -нхай байба is counterexpectation, -нхай байгаа "hot news" (p. 1026) |
+| -лай | "confirmative": obsolete in the standard; declarative past and a caution, *unalaish* "you can fall" (p. 114) | reflex of Middle Mongol's **direct evidential** -lUGA, reanalysed as preventive (p. 1024) |
+
+So -лай is why the app once had an "evidential past": the label was historically true of an old
+form, not of modern Buryat. BNC: *ябалайш* 2, *уналайш* 0. Modern evidential strategies are
+constructions: *гэхэ* hearsay (Skribnik p. 119), *гэлсэнэ* reportative, -һан/-нхай + *бай-*
+inference and surprise. *бэлэй* and *һэн* are past copulas; with -ха they are counterfactual
+(*суглаан болохо һэн* "there should have been a meeting", p. 119). Not taught in the app yet.
+Skribnik (p. 118) has *-даг байна* as habitual, against Badmaeva's progressive.
+
+Read through third-party copies; check page numbers against the printed book before quoting. The
+Barguzin paper on -нхай (Lomonosov 2018, finite use, non-telic verbs too) is known only from a
+search excerpt, because its link no longer resolves.
+
+### Tenses in Badmaeva 2011 (2026-10-31)
+
+Her simple past is five forms. -ба is the most neutral, a statement of fact, and can report what
+has just happened (*суглаан эхилэбэ*, p. 14). -нхай is "тесно связанное с настоящим", which
+agrees with the state-perfect analysis above. -һан is universal, far or recent past, with
+predicative *юм*. She negates -ба regularly (*уншабагүй*), which agrees with the counts above.
+
+Her -аа is a long-ago past "практически никак не связанное с настоящим моментом" (p. 14). That
+conflicts with K&K's "continues now", S&D's PC.PRS and the app's perfect label, and one of her own
+examples is "in recent years". BNC test, with the verbs *ерэ-, ошо-, хэлэ-, боло-, үнгэр-, үзэ-*
+and the adverb 1–8 words before the verb. Counts are sentences (per 1,000 tokens of those forms):
+
+| Adverb | -ба (8,618) | -аа (7,816) | -һан (7,341) | -нхай (865) |
+| ------ | ----------- | ----------- | ------------ | ----------- |
+| *үсэгэлдэр* "yesterday" | 10 (1.2) | 41 (5.2) | 32 (4.4) | 1 (1.2) |
+| *һаяхан/һая* "recently" | 47 (5.5) | 74 (9.5) | 120 (16.3) | 10 (11.6) |
+| *мүнөөдэр* "today" | 19 (2.2) | 17 (2.2) | 19 (2.6) | 3 (3.5) |
+
+-аа is well attested for yesterday's news (*үсэгэлдэр Зоригто ахаймнай бусажа ерээ*), so "long
+ago" can't be a general rule; the app keeps "relevant now" and states the disagreement. -ба also
+has real just-now uses (*мүнөөл һая дуулабаб*). The counts are unfiltered and mix genres (-ба is
+narrative, -аа common in dialogue) and include some conditional *-аа һаа*. "Remote" adverbs were
+tried and dropped: *эртэ* mostly means "early in the day" and *үни болоо* is noise.
+
+Her grid (pp. 15, 17): simple, continuous (converb + *бай-*), completed (-аад, -һан or -нхай +
+*бай-*). Adjacent pairs in the BNC: *ерэжэ* + *байба* 37, *байна* 52, *байха* 40; *ерээд* +
+*байба* 84, *байна* 169, *байха* 50 (unfiltered; *ерээд байна* "has arrived" and *болоод байха*
+"will have become" confirmed in sentences); *ерэһэн байгаа* 113; *ерэдэг байгаа* 16. Now a table on
+the Tenses tab. Her paradigm lists contain slips (*ерэхэ* as present, p. 15), so the table uses
+regular forms. She pairs *-даг байна* with progressives; the app keeps -даг as habitual.
+
 ### Declension engine (2026-10-28)
 
 `src/utils/nounMorphology.ts` builds the six oblique cases from the textbook rules (pp. 31,
@@ -169,7 +245,7 @@ Declining every noun also exposed four wrong lemmas, now fixed: *уул* → *у
 (*уулын* 258, *уулада* 58); *зүрхэ* → *зүрхэн* "heart" (*зүрхэнэй* 123); *эдеэ* → *эдеэн*
 "food" (*эдеэнэй* 227); *дура* → *дуран* "love, wish" (*дуранай* 136, *дуратай* 1,146).
 
-**Still open for the native speaker:** whether the past forms differ in evidentiality (A1);
+**Still open for the native speaker:** whether speech matches the written sources on evidentiality (A1);
 what the literary -лай past (*Тогоошо ябалай*) means and whether anyone says it (A1);
 the Buryad names of the voices (C2); IPA of у/ү/ө and ж (C4, C5); speaker numbers (C7); the
 "ergative tendencies" claim (C8); the years of the Latin script (C9); and whether the
@@ -205,13 +281,19 @@ for each.
 ### A1. How do the three past forms differ?
 
 - **App now says:** *ябаба* (-ба), *ябаа* (-аа, "perfect"), *ябаһан* (-һан, past participle)
-  all mean "went"; the difference is marked "under review". The former "evidential past
+  all mean "went"; none marks how the speaker knows (Skribnik 2003, S&A 2024). The former "evidential past
   *ябалай*" was removed, because the corpus has no such verb form.
 - **Please answer:**
   1. When would you say *Тэрэ ябаба*, *Тэрэ ябаа*, and *Тэрэ ябаһан*? Do they differ in how
      the speaker knows (saw it vs heard about it), in how recent the event is, or in style?
   2. Does *ябалай* exist at all? If so, what does it mean?
   3. Can *ябаба* take person endings (*ябабаб*?), as *ябаа* does (*ябааб*)?
+  4. Specialists call -ба neutral; K&K 2011 (p. 68) call it the eyewitness past and name it the
+     "short past". Would you say *тэрэ ерэбэ* about something you only heard? Is *Баатар Москва
+     ошоһон байна* "has gone, it turns out" natural? (Narrative prose can't answer this.)
+  5. Badmaeva 2011 (p. 14) calls -аа a long-ago past with no link to the present, yet the BNC has
+     it for yesterday's events. Is *тэрэ үсэгэлдэр ерээ* natural? How does it differ from *тэрэ
+     үсэгэлдэр ерэбэ*?
 - **Speaker note (2026-10-28):** the forms are hard to tell apart by ear in back-vowel verbs,
   because б between vowels there sounds like English w: *ябаба* [jaβaβa] is close to *ябаа*
   [jabaː]. In front-vowel words б stays [b], so ask with front verbs: *ерэбэ / ерээ / ерэһэн*,

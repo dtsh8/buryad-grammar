@@ -1,3 +1,9 @@
+## [1.16.0](https://github.com/dtsh8/buryad-grammar/compare/v1.15.0...v1.16.0) (2026-10-31)
+
+### ✨ New Features
+
+* **ui:** group grammar pages under a navbar menu ([f4642d2](https://github.com/dtsh8/buryad-grammar/commit/f4642d2177bad080169883aedc6b1c32bb783dca))
+
 ## [1.15.0](https://github.com/dtsh8/buryad-grammar/compare/v1.14.1...v1.15.0) (2026-10-31)
 
 ### ✨ New Features

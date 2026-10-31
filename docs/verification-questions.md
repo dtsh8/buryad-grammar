@@ -361,11 +361,15 @@ for each.
 - **Speaker note (2026-10-28):** the forms are hard to tell apart by ear in back-vowel verbs,
   because б between vowels there sounds like English w: *ябаба* [jaβaβa] is close to *ябаа*
   [jabaː]. In front-vowel words б stays [b], so ask with front verbs: *ерэбэ / ерээ / ерэһэн*,
-  *хэлэбэ / хэлээ / хэлэһэн*. Written support for [β] in back-vowel words: Radnaeva 2006, p. 582
-  (*хабар, ябадаг, һабартай*). Still open: whether б stays [b] in front-vowel words. Her sample
-  has no such case, and Minlang states fricative б between vowels with no harmony condition, so
-  only the speaker's report supports [b] there. Please compare *ерэбэ, хэлэбэ, эбэр, тэбэрихэ*.
-  Бураев 1959 is the source to check; the biliq.ru PDF returned 404 on 2026-10-31.
+  *хэлэбэ / хэлээ / хэлэһэн*.
+- **Speaker note (2026-10-31), replaces the harmony claim above:** harmony does not matter for
+  б; the neighbouring sound does. *баабгай* starts with [b], and the second б, before г, is the
+  lighter [β]. Written support: Radnaeva 2006, p. 582 has [β] in *хабар, ябадаг, һабартай* and
+  [p] before т in *добтолдог*; Minlang has fricative б between vowels with no harmony condition.
+  The app now says this. Still open: is б [β] in front-vowel *ерэбэ, хэлэбэ, эбэр, тэбэрихэ*, as
+  the new rule predicts? If so, front verbs don't avoid the *-ба / -аа* problem by ear. Does б
+  also lighten before л, н, р? Бураев 1959 is the source to check; the biliq.ru PDF returned 404
+  on 2026-10-31.
 
 ### A2. Are the reciprocal and cooperative suffixes swapped?
 

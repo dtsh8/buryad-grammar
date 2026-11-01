@@ -1,3 +1,9 @@
+## [1.26.0](https://github.com/dtsh8/buryad-grammar/compare/v1.25.0...v1.26.0) (2026-11-01)
+
+### ✨ New Features
+
+* **practice:** translate the page into Russian and Buryad ([882211b](https://github.com/dtsh8/buryad-grammar/commit/882211b83052fdd6066e105b5120d3d9dc3c4f79))
+
 ## [1.25.0](https://github.com/dtsh8/buryad-grammar/compare/v1.24.1...v1.25.0) (2026-11-01)
 
 ### ✨ New Features

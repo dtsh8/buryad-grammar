@@ -314,7 +314,14 @@ export interface GrammarCase {
   semanticRole: string;
   questions: string[];
   suffix: CaseSuffix;
-  examples: Array<{ stem: string; inflected: string; translation: string; note?: string }>;
+  suffixNote?: { russian: string; buryad: string }; // when `suffix` has English words
+  examples: Array<{
+    stem: string;
+    inflected: string;
+    translation: string;
+    russian: string;
+    note?: string;
+  }>;
   colorClass: string;
   analogy: string; // comparison to English or Russian
   corpusQuery?: string; // word-form pattern for the Buryat National Corpus (* = any letters)
@@ -330,9 +337,9 @@ export const CASES: GrammarCase[] = [
     questions: ['Хэн? (Who?)', 'Юун? (What?)'],
     suffix: { afterConsonant: '—', afterVowel: '—' },
     examples: [
-      { stem: 'гэр', inflected: 'гэр', translation: 'house (is)' },
-      { stem: 'нохой', inflected: 'нохой', translation: 'dog (is)' },
-      { stem: 'эхэ', inflected: 'эхэ', translation: 'mother (is)' },
+      { stem: 'гэр', inflected: 'гэр', translation: 'house (is)', russian: 'дом' },
+      { stem: 'нохой', inflected: 'нохой', translation: 'dog (is)', russian: 'собака' },
+      { stem: 'эхэ', inflected: 'эхэ', translation: 'mother (is)', russian: 'мать' },
     ],
     colorClass: 'bg-blue-50 border-blue-200 text-blue-900',
     analogy: 'Like English subject: "The house is big."',
@@ -347,9 +354,27 @@ export const CASES: GrammarCase[] = [
     questions: ['Хэнэй? (Whose?)', 'Юунэй? (Of what?)'],
     suffix: { afterConsonant: '-ай/-эй/-ой', afterVowel: '-н/-ын/-ийн' },
     examples: [
-      { stem: 'гэр', inflected: 'гэрэй', translation: 'of the house', note: 'back harmony' },
-      { stem: 'эхэ', inflected: 'эхын', translation: "mother's", note: 'front + vowel-final' },
-      { stem: 'нохой', inflected: 'нохойн', translation: "dog's", note: 'after й' },
+      {
+        stem: 'гэр',
+        inflected: 'гэрэй',
+        translation: 'of the house',
+        russian: 'дома',
+        note: 'back harmony',
+      },
+      {
+        stem: 'эхэ',
+        inflected: 'эхын',
+        translation: "mother's",
+        russian: 'матери',
+        note: 'front + vowel-final',
+      },
+      {
+        stem: 'нохой',
+        inflected: 'нохойн',
+        translation: "dog's",
+        russian: 'собаки',
+        note: 'after й',
+      },
     ],
     colorClass: 'bg-amber-50 border-amber-200 text-amber-900',
     analogy: 'Like English \'s or Russian -а/-я: "house\'s roof"',
@@ -367,12 +392,41 @@ export const CASES: GrammarCase[] = [
       afterConsonant: '-да after л, м, н, ж, з · -та after other consonants (б, г, д, р, с…)',
       afterVowel: '-да/-дэ/-до',
     },
+    suffixNote: {
+      russian:
+        '-да после л, м, н, ж, з · -та после других согласных (б, г, д, р, с…); -да/-дэ/-до после гласных',
+      buryad:
+        '-да: л, м, н, ж, з хашалгануудай һүүлдэ · -та: бусад хашалгануудай һүүлдэ (б, г, д, р, с…); -да/-дэ/-до: эгшэгэй һүүлдэ',
+    },
     examples: [
-      { stem: 'гэр', inflected: 'гэртэ', translation: 'in/to the house', note: '-тэ after р' },
-      { stem: 'ажал', inflected: 'ажалда', translation: 'at/to work', note: '-да after л, м, н' },
-      { stem: 'класс', inflected: 'класста', translation: 'in/to the class', note: '-та after с' },
-      { stem: 'Улаан-Үдэ', inflected: 'Улаан-Үдэдэ', translation: 'in Ulan-Ude' },
-      { stem: 'аха', inflected: 'ахада', translation: 'to (my) brother' },
+      {
+        stem: 'гэр',
+        inflected: 'гэртэ',
+        translation: 'in/to the house',
+        russian: 'в доме / в дом',
+        note: '-тэ after р',
+      },
+      {
+        stem: 'ажал',
+        inflected: 'ажалда',
+        translation: 'at/to work',
+        russian: 'на работе / на работу',
+        note: '-да after л, м, н',
+      },
+      {
+        stem: 'класс',
+        inflected: 'класста',
+        translation: 'in/to the class',
+        russian: 'в классе / в класс',
+        note: '-та after с',
+      },
+      {
+        stem: 'Улаан-Үдэ',
+        inflected: 'Улаан-Үдэдэ',
+        translation: 'in Ulan-Ude',
+        russian: 'в Улан-Удэ',
+      },
+      { stem: 'аха', inflected: 'ахада', translation: 'to (my) brother', russian: '(моему) брату' },
     ],
     colorClass: 'bg-green-50 border-green-200 text-green-900',
     analogy: 'Combines Russian dative (-у/-ю) AND locative (в/на + prep.) into one case',
@@ -391,22 +445,47 @@ export const CASES: GrammarCase[] = [
       afterConsonant: '-ые · -иие after stable н · -гые after back н (ан → ангые)',
       afterVowel: '-ые (short final vowel drops) · -иие after и · -е after long vowels and й',
     },
+    suffixNote: {
+      russian:
+        '-ые · -иие после устойчивого н · -гые после заднеязычного н (ан → ангые); -ые (краткий конечный гласный выпадает) · -иие после и · -е после долгих гласных и й',
+      buryad:
+        '-ые · -иие: тогтууритай н-эй һүүлдэ · -гые: хойто н-эй һүүлдэ (ан → ангые); -ые (богони эгшэг унана) · -иие: и-гэй һүүлдэ · -е: урта эгшэгүүдэй ба й-гэй һүүлдэ',
+    },
     examples: [
-      { stem: 'ном', inflected: 'номые', translation: 'the book (obj.)' },
-      { stem: 'аха', inflected: 'ахые', translation: 'the brother (obj.)' },
-      { stem: 'гэр', inflected: 'гэрые', translation: 'the house (obj.)' },
-      { stem: 'хүн', inflected: 'хүниие', translation: 'the person (obj.)', note: '-иие after н' },
-      { stem: 'ой', inflected: 'ойе', translation: 'the anniversary (obj.)', note: '-е after й' },
+      { stem: 'ном', inflected: 'номые', translation: 'the book (obj.)', russian: 'книгу' },
+      { stem: 'аха', inflected: 'ахые', translation: 'the brother (obj.)', russian: 'брата' },
+      {
+        stem: 'гэр',
+        inflected: 'гэрые',
+        translation: 'the house (obj.)',
+        russian: 'дом (вин. п.)',
+      },
+      {
+        stem: 'хүн',
+        inflected: 'хүниие',
+        translation: 'the person (obj.)',
+        russian: 'человека',
+        note: '-иие after н',
+      },
+      {
+        stem: 'ой',
+        inflected: 'ойе',
+        translation: 'the anniversary (obj.)',
+        russian: 'юбилей',
+        note: '-е after й',
+      },
       {
         stem: 'шанаа',
         inflected: 'шанаае',
         translation: 'the cheekbone (obj.)',
+        russian: 'скулу',
         note: '-е after a long vowel',
       },
       {
         stem: 'ан',
         inflected: 'ангые',
         translation: 'the wild animal (obj.)',
+        russian: 'зверя',
         note: '-гые after back н',
       },
     ],
@@ -429,10 +508,21 @@ export const CASES: GrammarCase[] = [
       afterVowel:
         '-аар (short vowel drops) · -яар/-еэр/-ёор after и · -гаар/-гээр/-гоор after long vowels and й',
     },
+    suffixNote: {
+      russian:
+        '-аар/-ээр/-оор/-өөр; -аар (краткий гласный выпадает) · -яар/-еэр/-ёор после и · -гаар/-гээр/-гоор после долгих гласных и й',
+      buryad:
+        '-аар/-ээр/-оор/-өөр; -аар (богони эгшэг унана) · -яар/-еэр/-ёор: и-гэй һүүлдэ · -гаар/-гээр/-гоор: урта эгшэгүүдэй ба й-гэй һүүлдэ',
+    },
     examples: [
-      { stem: 'гар', inflected: 'гараар', translation: 'by hand' },
-      { stem: 'галта тэргэ', inflected: 'галта тэргээр', translation: 'by train' },
-      { stem: 'зам', inflected: 'замаар', translation: 'along the road' },
+      { stem: 'гар', inflected: 'гараар', translation: 'by hand', russian: 'рукой' },
+      {
+        stem: 'галта тэргэ',
+        inflected: 'галта тэргээр',
+        translation: 'by train',
+        russian: 'поездом',
+      },
+      { stem: 'зам', inflected: 'замаар', translation: 'along the road', russian: 'по дороге' },
     ],
     colorClass: 'bg-orange-50 border-orange-200 text-orange-900',
     analogy: 'Like Russian творительный (писать ручкой) or English "by/with"',
@@ -447,9 +537,19 @@ export const CASES: GrammarCase[] = [
     questions: ['Хэнтэй? (With whom?)', 'Юунтэй? (With what?)'],
     suffix: { afterConsonant: '-тай/-тэй/-той', afterVowel: '-тай/-тэй/-той' },
     examples: [
-      { stem: 'аха', inflected: 'ахатай', translation: 'with (my) brother' },
-      { stem: 'нохой', inflected: 'нохойтой', translation: 'with a dog' },
-      { stem: 'мүнгэн', inflected: 'мүнгэтэй', translation: 'with money / having money' },
+      {
+        stem: 'аха',
+        inflected: 'ахатай',
+        translation: 'with (my) brother',
+        russian: 'с (моим) братом',
+      },
+      { stem: 'нохой', inflected: 'нохойтой', translation: 'with a dog', russian: 'с собакой' },
+      {
+        stem: 'мүнгэн',
+        inflected: 'мүнгэтэй',
+        translation: 'with money / having money',
+        russian: 'с деньгами / имеющий деньги',
+      },
     ],
     colorClass: 'bg-pink-50 border-pink-200 text-pink-900',
     analogy: 'Like "together with"; also expresses possession: "man with a car" = "car-having man"',
@@ -464,9 +564,14 @@ export const CASES: GrammarCase[] = [
     questions: ['Хэнһээ? (From whom?)', 'Хаанаһаа? (From where?)'],
     suffix: { afterConsonant: '-һаа/-һээ/-һоо/-һөө', afterVowel: '-һаа/-һээ/-һоо/-һөө' },
     examples: [
-      { stem: 'гэр', inflected: 'гэрһээ', translation: 'from the house' },
-      { stem: 'Москва', inflected: 'Москваһаа', translation: 'from Moscow' },
-      { stem: 'аха', inflected: 'ахаһаа', translation: 'from (my) brother; than my brother' },
+      { stem: 'гэр', inflected: 'гэрһээ', translation: 'from the house', russian: 'из дома' },
+      { stem: 'Москва', inflected: 'Москваһаа', translation: 'from Moscow', russian: 'из Москвы' },
+      {
+        stem: 'аха',
+        inflected: 'ахаһаа',
+        translation: 'from (my) brother; than my brother',
+        russian: 'от (моего) брата; чем (мой) брат',
+      },
     ],
     colorClass: 'bg-teal-50 border-teal-200 text-teal-900',
     analogy:
@@ -1029,8 +1134,10 @@ export const TENSE_ENTRIES: TenseEntry[] = [
 // burunen.ru corpus (docs/verification-questions.md, A3/A4); the endings and the -ба
 // paradigm follow the textbook (pp. 28, 37).
 
+export type Person = '1sg' | '2sg' | '3sg' | '1pl' | '2pl / polite' | '3pl';
+
 export interface PersonEnding {
-  person: string;
+  person: Person;
   pronoun: string;
   suffix: string;
   present: string; // ябана + ending

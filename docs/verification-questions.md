@@ -538,6 +538,7 @@ through and correct anything unnatural, in particular:
 | D7  | Phonology guide: хоёр уруулай, шүдэнэй, таглайн, хойто таглайн, хоолойн (bilabial … pharyngeal). BNC: уруул 3, таглай 1, хоолой 403, шүдэн 40 | Standard terms for the places of articulation? Do уруул and таглай mean lip and palate here? Please also read the guide's sentences in `phonology.guide` and `phonology.vowelGuide`. |
 | D8  | Vowel diagram: хэлэн, уруул бүмбэгэр, ам үргэн / нарин (`phonology.vowelGuide.diagram`) | Natural wording for rounded lips and a wide or narrow mouth? |
 | D9  | Reader, participle explanation: дополнени, үйлэ хэгшэ, тодорхойлогдохо нэрэ (`reader.ties`) | Natural terms for object, doer and the noun a participle describes? Does the explanation read naturally? |
+| D10 | Practice page (`practice`, `say`, `attest`; `suffixNote` in `grammar.ts`): Дүн (score), Дараалан (streak), Удаадахи (next), Зүб бэшэ, Дүтэ, Мүнөө / Үнгэрэгшэ / Ерээдүй саг, 1-дэхи нюур, ганса тоо (textbook p. 49), хүндэлэл (polite), тогтууритай н, хойто н, хүнэй залгалта. BNC: удаадахи 102, дүн 70, дараалан 19, тогтууритай 11, хүндэлэл 18, зохилдуулан 8, болгогты 21 | Natural words for score and streak? Is *Удаадахи* right on a Next button? Do the prompts and suffix rules read naturally? Is there a Buryad term for the perfect? |
 | D6  | Imperatives: үргэлжэлүүлыт, эхилыт, шэлэгты, бүтээгыт         | Right polite imperative endings?                                               |
 
 Only the app shell, the Home page, page titles and tabs, and the Vocabulary page are translated.

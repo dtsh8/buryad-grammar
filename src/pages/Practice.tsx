@@ -9,6 +9,7 @@ import { saveLastPractice } from '../utils/lastPractice';
 import Tabs from '../components/Tabs';
 import { tabPanelProps, useTab, type TabDef } from '../hooks/useTab';
 import { useI18n } from '../i18n/context';
+import { gloss } from '../i18n/lang';
 import { useVocabulary } from '../hooks/useVocabulary';
 import type { Lexeme } from '../data/vocabulary.types';
 import {
@@ -23,6 +24,7 @@ import {
   type ConjugationQuestion,
   type Verdict,
 } from '../utils/practice';
+import { caseName } from '../utils/wordClasses';
 
 type Tab = 'conjugation' | 'cases';
 
@@ -56,31 +58,28 @@ function useScore(): [Score, (ok: boolean) => void] {
 }
 
 function ScoreBar({ score }: { score: Score }) {
+  const { t } = useI18n();
   return (
     <div className="flex gap-4 text-sm text-stone-500" aria-live="polite">
       <span>
-        Score{' '}
+        {t.practice.score}{' '}
         <strong className="text-stone-800">
           {score.right} / {score.total}
         </strong>
       </span>
       <span>
-        Streak <strong className="text-stone-800">{score.streak}</strong>
+        {t.practice.streak} <strong className="text-stone-800">{score.streak}</strong>
       </span>
     </div>
   );
 }
 
 function VerdictBanner({ verdict, answer }: { verdict: Verdict; answer: string }) {
+  const { t } = useI18n();
   const style = {
     correct: 'bg-green-50 border-green-200 text-green-900',
     almost: 'bg-buryat-50 border-buryat-200 text-buryat-900',
     wrong: 'bg-red-50 border-red-200 text-red-900',
-  }[verdict];
-  const title = {
-    correct: 'Correct',
-    almost: 'Almost: mind the Buryad letters',
-    wrong: 'Not quite',
   }[verdict];
   return (
     <div role="status" className={`rounded-xl border p-3 flex items-center gap-2 ${style}`}>
@@ -89,7 +88,7 @@ function VerdictBanner({ verdict, answer }: { verdict: Verdict; answer: string }
       ) : (
         <Check size={18} aria-hidden="true" />
       )}
-      <span className="font-semibold">{title}</span>
+      <span className="font-semibold">{t.practice.verdict[verdict]}</span>
       <span className="text-sm">
         ·{' '}
         <span lang="bua" className="font-buryat font-bold text-base">
@@ -112,6 +111,7 @@ function AnswerForm({
   onCheck: (value: string) => void;
   onNext: () => void;
 }) {
+  const { t } = useI18n();
   const [value, setValue] = useState('');
   const input = useRef<HTMLInputElement>(null);
   const next = useRef<HTMLButtonElement>(null);
@@ -143,7 +143,7 @@ function AnswerForm({
     <form onSubmit={submit} className="space-y-3">
       <div className="flex flex-col sm:flex-row gap-2">
         <label htmlFor="practice-answer" className="sr-only">
-          Your answer
+          {t.practice.yourAnswer}
         </label>
         <input
           id="practice-answer"
@@ -155,7 +155,7 @@ function AnswerForm({
           autoComplete="off"
           autoCapitalize="off"
           spellCheck={false}
-          placeholder="Type the form…"
+          placeholder={t.practice.placeholder}
           className="flex-1 min-w-0 rounded-xl border-2 sm:border border-stone-300 bg-white px-4 py-3 sm:py-2.5 font-buryat text-2xl sm:text-lg read-only:bg-stone-50"
         />
         <div className="grid grid-cols-3 sm:flex gap-2">
@@ -165,7 +165,7 @@ function AnswerForm({
               type="button"
               onClick={() => insert(l)}
               disabled={answered}
-              aria-label={`Insert ${l}`}
+              aria-label={t.practice.insert(l)}
               className="min-h-12 sm:min-h-0 sm:w-11 rounded-xl border border-stone-300 bg-white font-buryat text-2xl sm:text-lg hover:bg-stone-100 disabled:opacity-40"
             >
               {l}
@@ -179,10 +179,10 @@ function AnswerForm({
         >
           {answered ? (
             <>
-              Next <ArrowRight size={16} aria-hidden="true" />
+              {t.practice.next} <ArrowRight size={16} aria-hidden="true" />
             </>
           ) : (
-            'Check'
+            t.practice.check
           )}
         </button>
       </div>
@@ -193,20 +193,24 @@ function AnswerForm({
 // ─── Conjugation drill ────────────────────────────────────────────────────
 
 function ConjugationDrill({ verbs }: { verbs: Lexeme[] }) {
+  const { t, lang } = useI18n();
   const [q, setQ] = useState<ConjugationQuestion>(() => conjugationQuestion(verbs, rng));
   const [verdict, setVerdict] = useState<Verdict | null>(null);
   const [score, record] = useScore();
+  const tense = t.practice.tenses[q.tense];
 
   return (
     <div className="card space-y-5">
       <div className="flex flex-wrap items-center justify-between gap-2">
-        <span className="badge-amber">{q.tense.label}</span>
+        <span className="badge-amber">{tense}</span>
         <ScoreBar score={score} />
       </div>
 
       <div>
         <p className="text-sm text-stone-500">
-          Conjugate <span className="text-stone-700">“to {q.meaning}”</span> for the subject:
+          {t.practice.conjugate.before}{' '}
+          <span className="text-stone-700">{t.practice.verbMeaning(gloss(q.meaning, lang))}</span>{' '}
+          {t.practice.conjugate.after}
         </p>
         <p className="mt-2 text-2xl">
           <span lang="bua" className="font-buryat font-bold text-stone-800">
@@ -215,7 +219,7 @@ function ConjugationDrill({ verbs }: { verbs: Lexeme[] }) {
           <span lang="bua" className="cyrillic">
             {q.infinitive}
           </span>
-          <span className="ml-2 text-sm text-stone-500">({q.person})</span>
+          <span className="ml-2 text-sm text-stone-500">({t.practice.persons[q.person]})</span>
         </p>
       </div>
 
@@ -241,26 +245,26 @@ function ConjugationDrill({ verbs }: { verbs: Lexeme[] }) {
             <span lang="bua" className="font-buryat">
               {q.root}
             </span>
-            → {q.tense.label.toLowerCase()}{' '}
+            → {tense.toLowerCase()}{' '}
             <span lang="bua" className="font-buryat font-semibold">
               {q.stem}
             </span>
             {q.ending ? (
               <>
-                + person ending{' '}
+                + {t.practice.personEnding}{' '}
                 <span lang="bua" className="font-buryat font-semibold">
                   -{q.ending}
                 </span>
               </>
             ) : (
-              <>with no ending for 3sg</>
+              <>{t.practice.noEnding}</>
             )}
             .{' '}
             <Link
               to="/verbs?tab=person"
               className="text-buryat-700 hover:underline underline-offset-2"
             >
-              Person endings
+              {t.practice.personEndings}
             </Link>
           </p>
         </div>
@@ -274,11 +278,14 @@ function ConjugationDrill({ verbs }: { verbs: Lexeme[] }) {
 const CURATED = caseItems();
 
 function CaseDrill({ items }: { items: CaseItem[] }) {
+  const { t, lang } = useI18n();
   const [q, setQ] = useState<CaseQuestion>(() => caseQuestion(items, rng));
   const [verdict, setVerdict] = useState<Verdict | null>(null);
   const [chosen, setChosen] = useState<string | null>(null);
   const [score, record] = useScore();
   const { item } = q;
+  const itemCase = caseName(item.caseId, lang);
+  const meaning = gloss(item.translation, lang);
 
   function next() {
     setQ(caseQuestion(items, rng));
@@ -290,7 +297,7 @@ function CaseDrill({ items }: { items: CaseItem[] }) {
     <div className="card space-y-5">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <span className="badge-blue">
-          {q.kind === 'produce' ? 'Form the case' : 'Name the case'}
+          {q.kind === 'produce' ? t.practice.formCase : t.practice.nameCase}
         </span>
         <ScoreBar score={score} />
       </div>
@@ -299,8 +306,9 @@ function CaseDrill({ items }: { items: CaseItem[] }) {
         <>
           <div>
             <p className="text-sm text-stone-500">
-              Put this noun into the <strong className="text-stone-700">{item.caseName}</strong>{' '}
-              case, meaning “{item.translation}”:
+              {t.practice.putInto.before}{' '}
+              <strong className="text-stone-700">{itemCase.toLowerCase()}</strong>{' '}
+              {t.practice.putInto.after(meaning)}
             </p>
             <p lang="bua" className="mt-2 text-2xl font-buryat font-bold text-stone-800">
               {item.stem}
@@ -321,40 +329,40 @@ function CaseDrill({ items }: { items: CaseItem[] }) {
         <>
           <div>
             <p className="text-sm text-stone-500">
-              Which case is this form of{' '}
+              {t.practice.whichCase.before}{' '}
               <span lang="bua" className="font-buryat text-stone-700">
                 {item.stem}
               </span>
-              ?
+              {t.practice.whichCase.after}
             </p>
             <p lang="bua" className="mt-2 text-2xl font-buryat font-bold text-stone-800">
               {item.form} <SayButton word={item.form} />
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-            {q.options.map(name => {
-              const isAnswer = name === item.caseName;
+            {q.options.map(id => {
+              const isAnswer = id === item.caseId;
               const state =
                 verdict === null
                   ? 'bg-white border-stone-300 hover:bg-stone-50'
                   : isAnswer
                     ? 'bg-green-50 border-green-300 text-green-900'
-                    : name === chosen
+                    : id === chosen
                       ? 'bg-red-50 border-red-300 text-red-900'
                       : 'bg-white border-stone-200 text-stone-500';
               return (
                 <button
-                  key={name}
+                  key={id}
                   type="button"
                   disabled={verdict !== null}
                   onClick={() => {
-                    setChosen(name);
+                    setChosen(id);
                     setVerdict(isAnswer ? 'correct' : 'wrong');
                     record(isAnswer);
                   }}
                   className={`rounded-xl border px-4 py-2.5 text-left font-medium transition-colors ${state}`}
                 >
-                  {name}
+                  {caseName(id, lang)}
                 </button>
               );
             })}
@@ -366,7 +374,7 @@ function CaseDrill({ items }: { items: CaseItem[] }) {
               autoFocus
               className="inline-flex items-center gap-1.5 rounded-xl bg-buryat-600 px-4 py-2.5 font-medium text-white hover:bg-buryat-700"
             >
-              Next <ArrowRight size={16} aria-hidden="true" />
+              {t.practice.next} <ArrowRight size={16} aria-hidden="true" />
             </button>
           )}
         </>
@@ -376,24 +384,24 @@ function CaseDrill({ items }: { items: CaseItem[] }) {
         <div className="space-y-2">
           {q.kind === 'produce' && <VerdictBanner verdict={verdict} answer={item.form} />}
           <p className="text-sm text-stone-600">
-            <Suffixed base={item.stem} form={item.form} className="font-semibold" /> ={' '}
-            {item.caseName}, “{item.translation}”.{item.generated && ' Built by rule.'}
+            <Suffixed base={item.stem} form={item.form} className="font-semibold" /> = {itemCase},{' '}
+            {t.practice.quoted(meaning)}.{item.generated && ` ${t.practice.builtByRule}`}
             {item.nStem === 'unstable' && !item.form.startsWith(item.stem) && (
               <>
                 {' '}
                 <span lang="bua" className="font-buryat">
                   {item.stem}
                 </span>{' '}
-                drops its <span className="font-buryat">н</span> in this case.
+                {t.practice.dropsN}
               </>
             )}{' '}
-            Suffix:{' '}
+            {t.practice.suffix}{' '}
             <span lang="bua" className="font-buryat">
-              {item.rule}
+              {item.rule[lang]}
             </span>
             .{' '}
             <Link to="/cases" className="text-buryat-700 hover:underline underline-offset-2">
-              Cases
+              {t.sections.cases.label}
             </Link>
           </p>
         </div>

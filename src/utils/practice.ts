@@ -4,14 +4,17 @@
 // PERSON_ENDINGS suffixes, case forms only from the curated CASES examples and the
 // гэр paradigm. Nothing here invents a form.
 
-import { CASES, PERSON_ENDINGS } from '../data/grammar';
+import { CASES, PERSON_ENDINGS, type Person } from '../data/grammar';
 import { PARADIGM_FORMS, PARADIGM_NOUN } from '../data/caseParadigm';
 import type { Lexeme } from '../data/vocabulary.types';
+import type { Lang } from '../i18n/lang';
 import { conjugate, extractRoot } from './verbMorphology';
 import { decline, type CaseId } from './nounMorphology';
-import { isInfinitive, primarySense } from './verbLexicon';
+import { isInfinitive, primaryRussianSense, primarySense } from './verbLexicon';
 
 export type Rng = () => number;
+
+type Meaning = Pick<Lexeme, 'english' | 'russian'>; // for gloss()
 
 export function pick<T>(items: readonly T[], rng: Rng): T {
   return items[Math.floor(rng() * items.length)];
@@ -52,25 +55,18 @@ export function checkAnswer(input: string, expected: string): Verdict {
 
 // ─── Conjugation drill ────────────────────────────────────────────────────
 
-export interface ConjugationTense {
-  id: 'prs' | 'pst' | 'perf' | 'inf';
-  label: string;
-}
+export type ConjugationTense = 'prs' | 'pst' | 'perf' | 'inf';
 
-// The finite forms that take person endings (Verbs page, "Person" tab).
-export const CONJUGATION_TENSES: ConjugationTense[] = [
-  { id: 'prs', label: 'Present' },
-  { id: 'pst', label: 'Simple Past' },
-  { id: 'perf', label: 'Perfect' },
-  { id: 'inf', label: 'Future' }, // ябаха + ending: ябахаб 'I will go'
-];
+// The finite forms that take person endings (Verbs page, "Person" tab). Their names are in
+// `practice.tenses`; `inf` is the future: ябаха + ending, ябахаб 'I will go'.
+export const CONJUGATION_TENSES: ConjugationTense[] = ['prs', 'pst', 'perf', 'inf'];
 
 export interface ConjugationQuestion {
   infinitive: string;
-  meaning: string;
+  meaning: Meaning;
   root: string;
   tense: ConjugationTense;
-  person: string;
+  person: Person;
   pronoun: string;
   stem: string; // the tense form before the person ending
   ending: string; // '' for 3sg
@@ -88,15 +84,15 @@ export function conjugationQuestion(verbs: Lexeme[], rng: Rng): ConjugationQuest
   // future have no 3pl. The future 3sg is the bare infinitive, already in the question.
   const column = { prs: 'present', pst: 'past', perf: 'perfect', inf: 'future' } as const;
   const persons = PERSON_ENDINGS.filter(
-    p => p[column[tense.id]] !== undefined && !(tense.id === 'inf' && p.suffix === '∅')
+    p => p[column[tense]] !== undefined && !(tense === 'inf' && p.suffix === '∅')
   );
   const p = pick(persons, rng);
   const root = extractRoot(verb.buryad);
-  const stem = conjugate(root)[tense.id];
+  const stem = conjugate(root)[tense];
   const ending = p.suffix === '∅' ? '' : p.suffix.replace(/^-/, '');
   return {
     infinitive: verb.buryad,
-    meaning: primarySense(verb),
+    meaning: { english: primarySense(verb), russian: primaryRussianSense(verb) },
     root,
     tense,
     person: p.person,
@@ -110,21 +106,21 @@ export function conjugationQuestion(verbs: Lexeme[], rng: Rng): ConjugationQuest
 // ─── Case drill ───────────────────────────────────────────────────────────
 
 export interface CaseItem {
-  caseId: string;
-  caseName: string;
+  caseId: CaseId;
   stem: string;
   form: string;
-  translation: string;
-  rule: string; // the case's suffix summary, shown after an answer
+  translation: Meaning;
+  rule: Record<Lang, string>; // the case's suffix summary, shown after an answer
   generated?: boolean; // built by the declension engine, not a curated example
   nStem?: Lexeme['nStem']; // so feedback can explain a dropped н
 }
 
-function caseRule(c: (typeof CASES)[number]): string {
-  return [c.suffix.afterConsonant, c.suffix.afterVowel]
+function caseRule(c: (typeof CASES)[number]): Record<Lang, string> {
+  const en = [c.suffix.afterConsonant, c.suffix.afterVowel]
     .filter(Boolean)
     .filter((r, i, all) => all.indexOf(r) === i)
     .join('; ');
+  return { en, ru: c.suffixNote?.russian ?? en, bua: c.suffixNote?.buryad ?? en };
 }
 
 // Every case form of every vocabulary noun, from the declension engine (its output for
@@ -133,15 +129,17 @@ export function generatedCaseItems(lexicon: Lexeme[]): CaseItem[] {
   const items: CaseItem[] = [];
   for (const n of lexicon.filter(l => l.category === 'noun')) {
     const forms = decline(n.buryad, n.nStem);
-    const meaning = n.english.split('/')[0].trim();
+    const translation = {
+      english: n.english.split('/')[0].trim(),
+      russian: n.russian?.split('/')[0].trim(),
+    };
     for (const c of CASES) {
       if (c.id === 'nominative') continue;
       items.push({
-        caseId: c.id,
-        caseName: c.english,
+        caseId: c.id as CaseId,
         stem: n.buryad,
         form: forms[c.id as CaseId],
-        translation: `${meaning} (${c.english.toLowerCase()})`,
+        translation,
         rule: caseRule(c),
         generated: true,
         nStem: n.nStem,
@@ -166,22 +164,20 @@ export function caseItems(): CaseItem[] {
     const rule = caseRule(c);
     for (const ex of c.examples) {
       add({
-        caseId: c.id,
-        caseName: c.english,
+        caseId: c.id as CaseId,
         stem: ex.stem,
         form: ex.inflected,
-        translation: ex.translation,
+        translation: { english: ex.translation, russian: ex.russian },
         rule,
       });
     }
     const paradigm = PARADIGM_FORMS.find(f => f.case_ === c.english);
     if (paradigm) {
       add({
-        caseId: c.id,
-        caseName: c.english,
+        caseId: c.id as CaseId,
         stem: PARADIGM_NOUN.root,
         form: paradigm.form,
-        translation: `${PARADIGM_NOUN.meaning} (${c.english.toLowerCase()})`,
+        translation: { english: PARADIGM_NOUN.meaning, russian: PARADIGM_NOUN.russian },
         rule,
       });
     }
@@ -190,7 +186,7 @@ export function caseItems(): CaseItem[] {
 }
 
 export type CaseQuestion =
-  { kind: 'produce'; item: CaseItem } | { kind: 'identify'; item: CaseItem; options: string[] };
+  { kind: 'produce'; item: CaseItem } | { kind: 'identify'; item: CaseItem; options: CaseId[] };
 
 // Alternates between typing the form and naming the case of a given form. "Name the case"
 // uses curated items only, where each form belongs to exactly one case (see the tests).
@@ -198,10 +194,10 @@ export function caseQuestion(items: CaseItem[], rng: Rng): CaseQuestion {
   if (rng() < 0.5) return { kind: 'produce', item: pick(items, rng) };
   const curated = items.filter(i => !i.generated);
   const item = pick(curated, rng);
-  const names = [...new Set(curated.map(i => i.caseName))];
+  const ids = [...new Set(curated.map(i => i.caseId))];
   const others = shuffle(
-    names.filter(n => n !== item.caseName),
+    ids.filter(id => id !== item.caseId),
     rng
   ).slice(0, 3);
-  return { kind: 'identify', item, options: shuffle([item.caseName, ...others], rng) };
+  return { kind: 'identify', item, options: shuffle([item.caseId, ...others], rng) };
 }

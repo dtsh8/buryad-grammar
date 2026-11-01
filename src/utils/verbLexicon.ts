@@ -55,3 +55,7 @@ export function findVerb(query: string, lexicon: Lexeme[]): Lexeme | undefined {
 export function primarySense(lexeme: Lexeme): string {
   return senses(lexeme.english)[0] ?? lexeme.english;
 }
+
+export function primaryRussianSense(lexeme: Lexeme): string | undefined {
+  return lexeme.russian ? (senses(lexeme.russian)[0] ?? lexeme.russian) : undefined;
+}

@@ -1,3 +1,9 @@
+## [1.23.0](https://github.com/dtsh8/buryad-grammar/compare/v1.22.5...v1.23.0) (2026-11-01)
+
+### ✨ New Features
+
+* **phonology:** add a tongue and lip diagram for vowels ([7c96de9](https://github.com/dtsh8/buryad-grammar/commit/7c96de9374a1cf15cb905fecb52b98c35caeb6e5))
+
 ## [1.22.5](https://github.com/dtsh8/buryad-grammar/compare/v1.22.4...v1.22.5) (2026-10-31)
 
 ### 📚 Documentation

@@ -1,10 +1,11 @@
 import { motion } from 'framer-motion';
 import { useEffect, useMemo, useState, type ReactNode } from 'react';
+import ParticipleTies from '../components/ParticipleTies';
 import Tooltip from '../components/Tooltip';
 import { useVocabulary } from '../hooks/useVocabulary';
 import { useI18n } from '../i18n/context';
 import type { Messages } from '../i18n/en';
-import { findPhrases, splitSentences } from '../utils/phrases';
+import { findPhrases, splitSentences, type ParticipleTie } from '../utils/phrases';
 import {
   buildIndex,
   describe,
@@ -103,11 +104,20 @@ function Word({
 
 // A sentence with its translation beside it, hidden so the reader can work it out first. Nothing
 // is sent to the translation service until they ask.
-function SentenceRow({ sentence, children }: { sentence: string; children: ReactNode }) {
+function SentenceRow({
+  sentence,
+  ties,
+  children,
+}: {
+  sentence: string;
+  ties: ParticipleTie[];
+  children: ReactNode;
+}) {
   const { lang, t } = useI18n();
   const target = lang === 'ru' ? 'ru' : 'en';
   const id = `${target}:${sentence}`;
   const [shown, setShown] = useState(false);
+  const [explained, setExplained] = useState(false);
   const [result, setResult] = useState<{ id: string; text: string | null } | null>(null);
   const answer = result?.id === id ? result : null;
   const needed = shown && !answer;
@@ -139,20 +149,33 @@ function SentenceRow({ sentence, children }: { sentence: string; children: React
         {children}
       </p>
       <div className="text-sm space-y-1 md:pt-2">
-        <button
-          type="button"
-          aria-expanded={shown}
-          onClick={toggle}
-          className="font-medium text-buryat-700 underline underline-offset-2"
-        >
-          {shown ? t.reader.hideTranslation : t.reader.showTranslation}
-        </button>
+        <div className="flex flex-wrap gap-x-4 gap-y-1">
+          <button
+            type="button"
+            aria-expanded={shown}
+            onClick={toggle}
+            className="font-medium text-buryat-700 underline underline-offset-2"
+          >
+            {shown ? t.reader.hideTranslation : t.reader.showTranslation}
+          </button>
+          {ties.length > 0 && (
+            <button
+              type="button"
+              aria-expanded={explained}
+              onClick={() => setExplained(e => !e)}
+              className="font-medium text-buryat-700 underline underline-offset-2"
+            >
+              {explained ? t.reader.ties.hide : t.reader.ties.show}
+            </button>
+          )}
+        </div>
         {shown && (
           <p aria-live="polite" className="text-stone-700">
             {translation}
           </p>
         )}
       </div>
+      {explained && <ParticipleTies ties={ties} />}
     </div>
   );
 }
@@ -164,14 +187,15 @@ export default function Reader() {
   const index = useMemo(() => buildIndex(data), [data]);
   const tokens = useMemo(() => tokenise(text, index), [text, index]);
   const sentences = useMemo(() => splitSentences(tokens), [tokens]);
+  const phrases = useMemo(() => findPhrases(tokens, index), [tokens, index]);
   const phraseAt = useMemo(() => {
     const at = new Map<number, { text: string; tone: string }>();
-    findPhrases(tokens, index).forEach(({ start, end, text }, n) => {
+    phrases.forEach(({ start, end, text }, n) => {
       const tone = PHRASE_TONES[n % PHRASE_TONES.length];
       for (let i = start; i <= end; i++) at.set(i, { text, tone });
     });
     return at;
-  }, [tokens, index]);
+  }, [phrases]);
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-10 space-y-8">
@@ -189,7 +213,13 @@ export default function Reader() {
       <div className="card space-y-4">
         <div data-testid="reader-text" className="min-h-16">
           {sentences.map(({ start, end, text: sentence }) => (
-            <SentenceRow key={`${start}:${sentence}`} sentence={sentence}>
+            <SentenceRow
+              key={`${start}:${sentence}`}
+              sentence={sentence}
+              ties={phrases.flatMap(p =>
+                p.tie && p.start >= start && p.end <= end ? [p.tie] : []
+              )}
+            >
               {tokens.slice(start, end + 1).map((token, offset) => {
                 const i = start + offset;
                 const phrase = phraseAt.get(i);

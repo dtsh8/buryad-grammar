@@ -22,6 +22,16 @@ describe('findPhrases', () => {
     expect(phrases('Тэрэ хэлые үзэжэ байһан хүн ерэбэ.')).toEqual(['хэлые үзэжэ байһан хүн']);
   });
 
+  it('takes an object with no ending, unless the word names a person', () => {
+    expect(phrases('Ном уншадаг хүн')).toEqual(['Ном уншадаг хүн']); // WordOrder page
+    expect(phrases('Хүн уншадаг ном')).toEqual(['уншадаг ном']); // textbook p. 34
+  });
+
+  it('takes a genitive doer', () => {
+    expect(phrases('Минии хэлэһэн үгэ')).toEqual(['Минии хэлэһэн үгэ']);
+    expect(phrases('Доржын хэлэһэн үгэ')).toEqual(['Доржын хэлэһэн үгэ']);
+  });
+
   it('binds an infinitive to a modal without taking the word before it', () => {
     expect(phrases('Би ябаха хэрэгтэй')).toEqual(['ябаха хэрэгтэй']);
     expect(phrases('Намда ябаха хэрэггүй')).toEqual(['ябаха хэрэггүй']);
@@ -30,6 +40,12 @@ describe('findPhrases', () => {
   it('leaves a participle without a noun after it alone', () => {
     expect(phrases('Би ном уншаһан')).toEqual([]);
     expect(phrases('уншаһан ябаба')).toEqual([]);
+  });
+
+  it('takes no particle or adjective for the noun', () => {
+    expect(phrases('Багша ерэһэн юм')).toEqual([]); // textbook p. 68
+    expect(phrases('Тэрэ ерэһэн һэн')).toEqual([]);
+    expect(phrases('Уншаһан сагаан ном')).toEqual([]);
   });
 
   it('stops at punctuation', () => {
@@ -45,6 +61,46 @@ describe('findPhrases', () => {
         .map(t => t.text)
         .join('')
     ).toBe('уншаһан ном');
+  });
+});
+
+describe('participle ties', () => {
+  function tie(text: string) {
+    return findPhrases(tokenise(text, index), index)[0].tie;
+  }
+
+  it('leaves the role of the noun open when nothing is marked, and gives its case', () => {
+    expect(tie('Хэлэжэ байһан үгэдэ харюусалгатай байха хэрэгтэй.')).toEqual({
+      kind: 'open',
+      partner: undefined,
+      participle: 'Хэлэжэ байһан',
+      noun: 'үгэдэ',
+      nounCase: 'dative',
+    });
+  });
+
+  it('names the object', () => {
+    expect(tie('Тэрэ хэлые үзэжэ байһан хүн ерэбэ.')).toMatchObject({
+      kind: 'object',
+      partner: 'хэлые',
+      participle: 'үзэжэ байһан',
+      noun: 'хүн',
+      nounCase: 'nominative',
+    });
+    expect(tie('Ном уншадаг хүн')).toMatchObject({ kind: 'bareObject', partner: 'Ном' });
+  });
+
+  it('names the doer', () => {
+    expect(tie('Минии хэлэһэн үгэ')).toMatchObject({ kind: 'doer', partner: 'Минии' });
+    expect(tie('Хүнэй хэлэһэн үгэ')).toMatchObject({ kind: 'doer', partner: 'Хүнэй' });
+  });
+
+  it('gives no case for a noun the vocabulary lacks', () => {
+    expect(tie('Уншаһан саарһа')?.nounCase).toBeUndefined();
+  });
+
+  it('leaves modal phrases without a tie', () => {
+    expect(tie('Би ябаха хэрэгтэй')).toBeUndefined();
   });
 });
 

@@ -1,3 +1,9 @@
+## [1.24.0](https://github.com/dtsh8/buryad-grammar/compare/v1.23.0...v1.24.0) (2026-11-01)
+
+### ✨ New Features
+
+* **reader:** explain how a participle ties to its object and noun ([e65c1ce](https://github.com/dtsh8/buryad-grammar/commit/e65c1ceef7bb2106e0a413d1bebe957c099eddbf))
+
 ## [1.23.0](https://github.com/dtsh8/buryad-grammar/compare/v1.22.5...v1.23.0) (2026-11-01)
 
 ### ✨ New Features

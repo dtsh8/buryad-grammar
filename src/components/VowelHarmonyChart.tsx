@@ -11,7 +11,12 @@ const HARMONY_COLOR: Record<string, string> = {
   neutral: 'bg-stone-100 border-stone-300 text-stone-700',
 };
 
-export default function VowelHarmonyChart() {
+interface Props {
+  selected: string;
+  onSelect: (letter: string) => void;
+}
+
+export default function VowelHarmonyChart({ selected, onSelect }: Props) {
   const { t } = useI18n();
   const guide = t.phonology.vowelGuide;
   const back = VOWELS.filter(v => v.harmony === 'back');
@@ -99,7 +104,9 @@ export default function VowelHarmonyChart() {
                       <td colSpan={5} className="py-1" />
                     </tr>
                   )}
-                  <tr className="border-t border-stone-100">
+                  <tr
+                    className={`border-t border-stone-100 ${v.letter === selected ? 'bg-stone-50' : ''}`}
+                  >
                     <td className="pt-2 pr-4 align-top" rowSpan={2}>
                       {prevGroup !== v.harmony || i === 0 ? (
                         <span
@@ -116,11 +123,16 @@ export default function VowelHarmonyChart() {
                       ) : null}
                     </td>
                     <td className="pt-2 px-3 text-center">
-                      <span
-                        className={`inline-flex w-10 h-10 items-center justify-center rounded-lg border text-xl font-buryat font-bold ${HARMONY_COLOR[v.harmony]}`}
+                      <button
+                        type="button"
+                        onClick={() => onSelect(v.letter)}
+                        aria-pressed={v.letter === selected}
+                        className={`inline-flex w-10 h-10 items-center justify-center rounded-lg border text-xl font-buryat font-bold ${HARMONY_COLOR[v.harmony]} ${
+                          v.letter === selected ? 'ring-2 ring-stone-400' : ''
+                        }`}
                       >
                         {v.letter}
-                      </span>
+                      </button>
                     </td>
                     <td className="pt-2 px-3 text-center">
                       <span className="font-buryat text-stone-600">{v.long}</span>
@@ -134,7 +146,7 @@ export default function VowelHarmonyChart() {
                       <span className="text-stone-500 ml-2">'{v.example.meaning}'</span>
                     </td>
                   </tr>
-                  <tr>
+                  <tr className={v.letter === selected ? 'bg-stone-50' : undefined}>
                     <td colSpan={4} className="pb-2 pt-1 px-3 text-xs text-stone-600">
                       {v.how}
                     </td>

@@ -154,6 +154,18 @@ export const en = {
       },
     },
     vowelGuide: {
+      diagram: {
+        title: 'How to shape the vowels',
+        intro: 'Choose a vowel to see the tongue and lips.',
+        label: 'Side view of the mouth',
+        vowelsLabel: 'Vowels',
+        wide: 'Mouth wide',
+        narrow: 'Mouth narrow',
+        rounded: 'lips rounded',
+        unrounded: 'lips unrounded',
+        schematic:
+          'A schematic drawing based on written descriptions, not a measurement. The dot marks the highest part of the tongue.',
+      },
       title: 'What the vowel groups mean',
       groups:
         'Back or male (эрэ), front or female (эмэ) and neutral (эрсэ) are traditional names. They tell you which suffixes a word takes, and are a poor guide to the tongue: ү, a front vowel, sounds close to Russian у. Learn each vowel from its own note below.',

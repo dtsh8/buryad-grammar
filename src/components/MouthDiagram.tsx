@@ -1,40 +1,16 @@
 import { motion } from 'framer-motion';
-import type { ConsonantPlace } from '../data/grammar';
-
-// Side view of the head, facing left. Each place has its own tongue shape; all shapes share the
-// same path commands so framer-motion can morph between them.
-const TONGUE: Record<ConsonantPlace, string> = {
-  bilabial: 'M195 250 C200 200 185 172 150 172 C125 172 105 182 92 198 C100 212 130 225 170 230 Z',
-  alveolar: 'M195 250 C200 205 185 195 150 192 C125 190 105 182 93 169 C96 195 130 225 170 230 Z',
-  postalveolar:
-    'M195 250 C200 205 185 190 150 178 C132 171 122 162 108 155 C100 190 130 225 170 230 Z',
-  palatal: 'M195 250 C200 200 190 150 150 145 C128 142 124 192 92 200 C100 212 130 225 170 230 Z',
-  velar: 'M195 250 C205 185 203 152 178 150 C154 148 136 200 92 202 C100 212 130 225 170 230 Z',
-  pharyngeal:
-    'M214 252 C226 222 214 178 160 178 C130 178 105 186 92 200 C100 212 130 225 170 230 Z',
-};
-
-// Where the sound is made, marked on the diagram.
-const SPOT: Record<ConsonantPlace, [number, number]> = {
-  bilabial: [66, 186],
-  alveolar: [93, 165],
-  postalveolar: [108, 151],
-  palatal: [150, 141],
-  velar: [180, 146],
-  pharyngeal: [218, 215],
-};
+import type { MouthPose } from '../data/mouthPoses';
 
 const transition = { duration: 0.35, ease: 'easeInOut' } as const;
 
 interface Props {
-  place: ConsonantPlace;
+  pose: MouthPose;
   color: string;
   label: string;
 }
 
-export default function MouthDiagram({ place, color, label }: Props) {
-  const closed = place === 'bilabial';
-  const [cx, cy] = SPOT[place];
+export default function MouthDiagram({ pose, color, label }: Props) {
+  const [cx, cy] = pose.spot;
 
   return (
     <svg viewBox="30 10 240 280" className="w-full max-w-xs mx-auto" role="img" aria-label={label}>
@@ -56,9 +32,9 @@ export default function MouthDiagram({ place, color, label }: Props) {
       <path d="M82 174 L88 164 L92 176 L86 182 Z" className="fill-stone-300" />
       <path d="M82 208 L90 212 L92 200 L85 196 Z" className="fill-stone-300" />
       <motion.path
-        d={TONGUE[place]}
+        d={pose.tongue}
         initial={false}
-        animate={{ d: TONGUE[place] }}
+        animate={{ d: pose.tongue }}
         transition={transition}
         className="fill-rose-300 stroke-rose-500"
         strokeWidth="1.5"
@@ -66,20 +42,18 @@ export default function MouthDiagram({ place, color, label }: Props) {
       />
       {/* Lips */}
       <motion.ellipse
-        cx="64"
         rx="10"
         ry="6"
         initial={false}
-        animate={{ cy: closed ? 180 : 175 }}
+        animate={{ cx: pose.lipX, cy: pose.upperLip }}
         transition={transition}
         className="fill-rose-400"
       />
       <motion.ellipse
-        cx="64"
         rx="10"
         ry="6"
         initial={false}
-        animate={{ cy: closed ? 191 : 202 }}
+        animate={{ cx: pose.lipX, cy: pose.lowerLip }}
         transition={transition}
         className="fill-rose-400"
       />

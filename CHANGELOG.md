@@ -1,3 +1,9 @@
+## [1.25.0](https://github.com/dtsh8/buryad-grammar/compare/v1.24.1...v1.25.0) (2026-11-01)
+
+### ✨ New Features
+
+* **reader:** show the word's category in its tooltip ([b05b988](https://github.com/dtsh8/buryad-grammar/commit/b05b988a244c95c66535c65ac5839ab9d2709603))
+
 ## [1.24.1](https://github.com/dtsh8/buryad-grammar/compare/v1.24.0...v1.24.1) (2026-11-01)
 
 ### 🐛 Bug Fixes

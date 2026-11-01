@@ -1,5 +1,6 @@
 import { forwardRef } from 'react';
 import { CONSONANTS, type ConsonantPlace } from '../data/grammar';
+import { CONSONANT_POSES } from '../data/mouthPoses';
 import { useI18n } from '../i18n/context';
 import MouthDiagram from './MouthDiagram';
 
@@ -42,7 +43,7 @@ const ArticulationGuide = forwardRef<HTMLDivElement, Props>(function Articulatio
         <p className="text-sm text-stone-500 mt-1">{guide.intro}</p>
       </div>
       <MouthDiagram
-        place={place}
+        pose={CONSONANT_POSES[place]}
         color={PLACE_COLORS[place]}
         label={`${guide.diagramLabel}: ${guide.places[place].name}`}
       />

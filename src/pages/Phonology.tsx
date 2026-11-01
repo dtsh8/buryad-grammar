@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
 import { Fragment, useRef, useState } from 'react';
-import { CONSONANTS, type ConsonantPlace } from '../data/grammar';
+import { CONSONANTS, VOWELS, type ConsonantPlace } from '../data/grammar';
 import ArticulationGuide, { PLACE_COLORS } from '../components/ArticulationGuide';
+import VowelGuide from '../components/VowelGuide';
 import VowelHarmonyChart from '../components/VowelHarmonyChart';
 import Tabs from '../components/Tabs';
 import HintTooltip from '../components/Tooltip';
@@ -26,12 +27,19 @@ export default function Phonology() {
   const TABS = TAB_IDS.map(d => ({ ...d, label: t.phonology.tabs[d.id] }));
   const [tab, setTab] = useTab(TABS);
   const [place, setPlace] = useState<ConsonantPlace>('bilabial');
+  const [vowel, setVowel] = useState(VOWELS[0].letter);
   const guideRef = useRef<HTMLDivElement>(null);
+  const vowelGuideRef = useRef<HTMLDivElement>(null);
 
-  // Below lg the guide sits above the table, so bring it back into view.
+  // Below lg each guide sits above its table, so bring it back into view.
   function showPlace(next: ConsonantPlace) {
     setPlace(next);
     guideRef.current?.scrollIntoView({ block: 'nearest' });
+  }
+
+  function showVowel(next: string) {
+    setVowel(next);
+    vowelGuideRef.current?.scrollIntoView({ block: 'nearest' });
   }
 
   return (
@@ -53,9 +61,17 @@ export default function Phonology() {
           className="space-y-6"
           {...tabPanelProps(tab)}
         >
-          <div className="card">
-            <h2 className="text-lg font-semibold text-stone-800 mb-4">Vowel Inventory & Harmony</h2>
-            <VowelHarmonyChart />
+          <div className="grid lg:grid-cols-[minmax(0,1fr)_20rem] gap-6 items-start">
+            <div className="lg:order-2 lg:sticky lg:top-20">
+              <VowelGuide ref={vowelGuideRef} letter={vowel} onSelect={setVowel} />
+            </div>
+
+            <div className="card lg:order-1 min-w-0">
+              <h2 className="text-lg font-semibold text-stone-800 mb-4">
+                Vowel Inventory & Harmony
+              </h2>
+              <VowelHarmonyChart selected={vowel} onSelect={showVowel} />
+            </div>
           </div>
 
           {/* Harmony in suffixes demo */}

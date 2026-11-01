@@ -315,10 +315,12 @@ export const en = {
       "Paste Buryad text and try to work out each sentence. Hover over a word (or tap it) for a hint, and show the translation when you're ready.",
     inputLabel: 'Buryad text',
     legend:
-      "Words with a solid underline are in the checked vocabulary, so inflected forms are traced back to their headword. Dotted words are looked up online and are not checked: first in the Burlang dictionary, then with Google Translate. Burlang gives Russian, which Google puts into English. Shaded words form a phrase, translated by Google on hover. Sentence translations are also Google's, sent only when you show them. Whatever is translated this way is sent to those services.",
+      'Words with a solid underline are in the checked vocabulary, so inflected forms are traced back to their headword. Dotted words are looked up online and are not checked: first in the Burlang dictionary, then with Google Translate. Burlang gives Russian, which Google puts into English. Shaded words form a phrase, translated by Google on hover. Sentence translations are also Google\'s, sent only when you show them. Whatever is translated this way is sent to those services. Word types come from the vocabulary and the explanatory dictionary (А–Р only); "probably" is a guess from the ending.',
     looking: 'Translating…',
     phrase: 'Phrase',
     showTranslation: 'Show translation',
+    probably: (label: string) => `probably ${label}`,
+    kinds: { participle: 'participle', converb: 'converb' },
     hideTranslation: 'Hide translation',
     ties: {
       show: 'Explain the participle',

@@ -88,7 +88,7 @@ function canBeHead(key: string, index: ReaderIndex): boolean {
   return verbInfinitives(key).length === 0;
 }
 
-function caseOf(key: string, index: ReaderIndex): CaseId | undefined {
+export function caseOf(key: string, index: ReaderIndex): CaseId | undefined {
   for (const l of lookup(key, index)) {
     if (l.category !== 'noun') continue;
     const forms = Object.entries(decline(l.buryad, l.nStem));

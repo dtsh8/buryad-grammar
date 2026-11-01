@@ -1,16 +1,7 @@
-import { CASES } from '../data/grammar';
 import { useI18n } from '../i18n/context';
-import type { Lang } from '../i18n/lang';
 import type { Messages } from '../i18n/en';
-import type { CaseId } from '../utils/nounMorphology';
 import type { ParticipleTie } from '../utils/phrases';
-
-function caseName(id: CaseId, lang: Lang): string {
-  const found = CASES.find(c => c.id === id);
-  if (!found) return id;
-  if (lang === 'ru') return found.russian;
-  return lang === 'bua' ? found.buryad : found.english;
-}
+import { caseName } from '../utils/wordClasses';
 
 function explanation(tie: ParticipleTie, copy: Messages['reader']['ties']): string {
   const { kind, partner = '', participle, noun } = tie;

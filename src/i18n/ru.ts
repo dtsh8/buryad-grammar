@@ -30,6 +30,15 @@ export const ru: Messages = {
     practice: { label: 'Практика', desc: 'Упражнения на спряжение и падежи' },
   },
 
+  say: { listen: 'Слушать', play: (word: string) => `Прослушать произношение: ${word}` },
+  attest: {
+    found: (count: string) => `В Бурятском национальном корпусе вхождений: ${count}.`,
+    notFound:
+      'Не найдено в Бурятском национальном корпусе. Образовано по правилу: форма может быть редкой или неупотребительной.',
+    foundLabel: 'Найдено в корпусе:',
+    notFoundBadge: 'не найдено',
+  },
+
   footer: {
     sources: 'Источники',
     corpus: 'Бурятский национальный корпус',
@@ -363,5 +372,42 @@ export const ru: Messages = {
     tabsLabel: 'Упражнения',
     tabs: { conjugation: 'Спряжение', cases: 'Падежи' },
     loadingVerbs: 'Загрузка глаголов…',
+    score: 'Счёт',
+    streak: 'Серия',
+    verdict: {
+      correct: 'Верно',
+      almost: 'Почти: проверьте бурятские буквы',
+      wrong: 'Не совсем',
+    },
+    yourAnswer: 'Ваш ответ',
+    placeholder: 'Введите форму…',
+    insert: (letter: string) => `Вставить ${letter}`,
+    check: 'Проверить',
+    next: 'Дальше',
+    tenses: { prs: 'Настоящее', pst: 'Простое прошедшее', perf: 'Перфект', inf: 'Будущее' },
+    persons: {
+      '1sg': '1 л. ед. ч.',
+      '2sg': '2 л. ед. ч.',
+      '3sg': '3 л. ед. ч.',
+      '1pl': '1 л. мн. ч.',
+      '2pl / polite': '2 л. мн. ч. / вежливая форма',
+      '3pl': '3 л. мн. ч.',
+    },
+    conjugate: { before: 'Проспрягайте', after: 'для этого подлежащего:' },
+    verbMeaning: (meaning: string) => `«${meaning}»`,
+    personEnding: 'личное окончание',
+    noEnding: 'без окончания в 3 л. ед. ч.',
+    personEndings: 'Личные окончания',
+    formCase: 'Образуйте падеж',
+    nameCase: 'Назовите падеж',
+    putInto: {
+      before: 'Поставьте существительное в',
+      after: (meaning: string) => `падеж (значение: «${meaning}»):`,
+    },
+    whichCase: { before: 'Какой падеж у этой формы слова', after: '?' },
+    quoted: (text: string) => `«${text}»`,
+    builtByRule: 'Образовано по правилу.',
+    dropsN: 'теряет н в этом падеже.',
+    suffix: 'Окончание:',
   },
 };

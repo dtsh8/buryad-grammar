@@ -34,6 +34,15 @@ export const bua: Messages = {
     practice: { label: 'Дасхал', desc: 'Үйлэ үгэ хубилгалга, падежнүүд' },
   },
 
+  say: { listen: 'Шагнаха', play: (word: string) => `${word}: шагнаха` },
+  attest: {
+    found: (count: string) => `Буряад хэлэнэй үндэһэтэнэй корпус соо олдоһон тоо: ${count}.`,
+    notFound:
+      'Буряад хэлэнэй үндэһэтэнэй корпус соо олдоогүй. Дүрмөөр бүтээгдэһэн: ховор байжа болоно.',
+    foundLabel: 'Корпус соо олдоһон тоо:',
+    notFoundBadge: 'олдоогүй',
+  },
+
   footer: {
     sources: 'Эхэ сурбалжа',
     corpus: 'Буряад хэлэнэй үндэһэтэнэй корпус',
@@ -346,5 +355,42 @@ export const bua: Messages = {
     tabsLabel: 'Дасхалнууд',
     tabs: { conjugation: 'Хубилгалга', cases: 'Падежнүүд' },
     loadingVerbs: 'Үйлэ үгэнүүдые ашаалжа байна…',
+    score: 'Дүн',
+    streak: 'Дараалан',
+    verdict: {
+      correct: 'Зүб',
+      almost: 'Дүтэ: буряад үзэгүүдые шалгагты',
+      wrong: 'Зүб бэшэ',
+    },
+    yourAnswer: 'Таанадай харюу',
+    placeholder: 'Хэлбэриие бэшэгты…',
+    insert: (letter: string) => `${letter} оруулаха`,
+    check: 'Шалгаха',
+    next: 'Удаадахи',
+    tenses: { prs: 'Мүнөө саг', pst: 'Үнгэрэгшэ саг', perf: 'Перфект', inf: 'Ерээдүй саг' },
+    persons: {
+      '1sg': '1-дэхи нюур, ганса тоо',
+      '2sg': '2-дохи нюур, ганса тоо',
+      '3sg': '3-дахи нюур, ганса тоо',
+      '1pl': '1-дэхи нюур, олон тоо',
+      '2pl / polite': '2-дохи нюур, олон тоо / хүндэлэл',
+      '3pl': '3-дахи нюур, олон тоо',
+    },
+    conjugate: { before: 'Энэ нэрлэгшэтэй зохилдуулан', after: 'гэһэн үйлэ үгые бэшэгты:' },
+    verbMeaning: (meaning: string) => `«${meaning}»`,
+    personEnding: 'хүнэй залгалта',
+    noEnding: '3-дахи нюурай ганса тоодо залгалтагүй',
+    personEndings: 'Хүнэй залгалтанууд',
+    formCase: 'Падежэй хэлбэри бүтээгыт',
+    nameCase: 'Падежые нэрлэгты',
+    putInto: {
+      before: 'Энэ нэрэ үгые',
+      after: (meaning: string) => `болгогты, удхань «${meaning}»:`,
+    },
+    whichCase: { before: 'Энэ хэлбэри', after: ' гэһэн үгын ямар падеж бэ?' },
+    quoted: (text: string) => `«${text}»`,
+    builtByRule: 'Дүрмөөр бүтээгдэһэн.',
+    dropsN: 'энэ падежта н үзэгөө алдана.',
+    suffix: 'Залгалта:',
   },
 };

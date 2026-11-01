@@ -107,7 +107,33 @@ describe('case drill', () => {
       if (q.kind !== 'identify') continue;
       expect(q.options).toHaveLength(4);
       expect(new Set(q.options).size).toBe(4);
-      expect(q.options).toContain(q.item.caseName);
+      expect(q.options).toContain(q.item.caseId);
+    }
+  });
+});
+
+describe('drill text in other languages', () => {
+  const allItems = [...caseItems(), ...generatedCaseItems(lexicon)];
+
+  it('gives every verb and case form a Russian meaning', () => {
+    const rng = seeded(5);
+    const verbs = drillVerbs(lexicon);
+    for (let i = 0; i < 200; i++) {
+      const { russian } = conjugationQuestion(verbs, rng).meaning;
+      expect(russian).toMatch(/[а-яё]/);
+    }
+    for (const item of allItems) expect(item.translation.russian).toMatch(/[а-яё]/);
+  });
+
+  it('keeps the first Russian sense of a verb', () => {
+    const yaba = drillVerbs(lexicon).filter(v => v.buryad === 'ябаха');
+    expect(conjugationQuestion(yaba, seeded(6)).meaning.russian).toBe('идти');
+  });
+
+  it('leaves no English in the suffix rules', () => {
+    for (const item of allItems) {
+      expect(item.rule.ru).not.toMatch(/[a-z]/i);
+      expect(item.rule.bua).not.toMatch(/[a-z]/i);
     }
   });
 });

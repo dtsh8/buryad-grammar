@@ -28,6 +28,14 @@ export const en = {
     practice: { label: 'Practice', desc: 'Conjugation and case drills' },
   },
 
+  say: { listen: 'Listen', play: (word: string) => `Play pronunciation of ${word}` },
+  attest: {
+    found: (count: string) => `Found ${count} times in the Buryat National Corpus.`,
+    notFound: 'Not found in the Buryat National Corpus. Built by rule: it may be rare or unused.',
+    foundLabel: 'Found in the corpus:',
+    notFoundBadge: 'not found',
+  },
+
   footer: {
     sources: 'Sources',
     corpus: 'Buryat National Corpus',
@@ -358,6 +366,43 @@ export const en = {
     tabsLabel: 'Practice drills',
     tabs: { conjugation: 'Conjugation', cases: 'Cases' },
     loadingVerbs: 'Loading verbs…',
+    score: 'Score',
+    streak: 'Streak',
+    verdict: {
+      correct: 'Correct',
+      almost: 'Almost: mind the Buryad letters',
+      wrong: 'Not quite',
+    },
+    yourAnswer: 'Your answer',
+    placeholder: 'Type the form…',
+    insert: (letter: string) => `Insert ${letter}`,
+    check: 'Check',
+    next: 'Next',
+    tenses: { prs: 'Present', pst: 'Simple Past', perf: 'Perfect', inf: 'Future' },
+    persons: {
+      '1sg': '1sg',
+      '2sg': '2sg',
+      '3sg': '3sg',
+      '1pl': '1pl',
+      '2pl / polite': '2pl / polite',
+      '3pl': '3pl',
+    },
+    conjugate: { before: 'Conjugate', after: 'for the subject:' },
+    verbMeaning: (meaning: string) => `“to ${meaning}”`,
+    personEnding: 'person ending',
+    noEnding: 'with no ending for 3sg',
+    personEndings: 'Person endings',
+    formCase: 'Form the case',
+    nameCase: 'Name the case',
+    putInto: {
+      before: 'Put this noun into the',
+      after: (meaning: string) => `case, meaning “${meaning}”:`,
+    },
+    whichCase: { before: 'Which case is this form of', after: '?' },
+    quoted: (text: string) => `“${text}”`,
+    builtByRule: 'Built by rule.',
+    dropsN: 'drops its н in this case.',
+    suffix: 'Suffix:',
   },
 };
 

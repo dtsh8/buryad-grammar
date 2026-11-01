@@ -1,3 +1,9 @@
+## [1.24.1](https://github.com/dtsh8/buryad-grammar/compare/v1.24.0...v1.24.1) (2026-11-01)
+
+### 🐛 Bug Fixes
+
+* **reader:** try every verb guess before machine translation ([551fa7c](https://github.com/dtsh8/buryad-grammar/commit/551fa7cc3dae3c158d4b0fba2d98a2c20a68baf3))
+
 ## [1.24.0](https://github.com/dtsh8/buryad-grammar/compare/v1.23.0...v1.24.0) (2026-11-01)
 
 ### ✨ New Features

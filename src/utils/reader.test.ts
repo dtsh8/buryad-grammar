@@ -105,6 +105,7 @@ describe('verbInfinitives', () => {
     ['хангадаггүй', 'хангаха'],
     ['хүдэлнэб', 'хүдэлхэ'], // present + person ending
     ['оронхой', 'орохо'], // -нхай participle
+    ['үлөөгөө', 'үлөөхэ'], // -гаа perfect after a long vowel; Burlang: үлөөхэ, BNC: үлөөгөө 13
   ];
 
   it.each(GOLD)('%s comes from %s', (form, infinitive) => {
@@ -200,6 +201,23 @@ describe('translateWord', () => {
       text: 'обеспечивать',
       source: 'burlang',
       lemma: 'хангаха',
+    });
+  });
+
+  it('reaches the last verb guess before falling back to machine translation', async () => {
+    const fetchMock = vi.fn((url: string) =>
+      url.includes(encodeURIComponent('үлөөхэ'))
+        ? Promise.resolve({
+            ok: true,
+            json: () => Promise.resolve({ translations: [{ value: 'оставлять.' }] }),
+          })
+        : Promise.resolve({ ok: false, status: 404 })
+    );
+    vi.stubGlobal('fetch', fetchMock);
+    expect(await translateWord('үлөөгөө', 'ru')).toEqual({
+      text: 'оставлять',
+      source: 'burlang',
+      lemma: 'үлөөхэ',
     });
   });
 

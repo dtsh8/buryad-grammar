@@ -161,7 +161,9 @@ export function verbInfinitives(word: string): string[] {
 
 const BURLANG = 'https://burlang.ru/api/v1/buryat-word/translate';
 const BURLANG_TIMEOUT = 5000; // ms
-const MAX_VERB_GUESSES = 3; // requests per word, on top of the word itself
+// Requests per word, on top of the word itself. The longest list for a vocabulary verb is 4, and
+// the likeliest guess isn't always first: үлөөгөө gives үлөөхэ last.
+const MAX_VERB_GUESSES = 6;
 
 // Burlang's entries can run to a paragraph of Buryad examples: keep the first sense.
 // "1. 1) спокойный, благополучный; амар тайбан…" → "спокойный, благополучный"

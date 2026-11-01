@@ -11,6 +11,7 @@ import {
   conjugate,
   extractRoot,
   getSufClass,
+  type Conjugation,
   sufC,
   translateFromBuryad,
   translateRussian,
@@ -130,20 +131,43 @@ export interface OnlineGloss {
 
 // The verb forms a word can be. The engine has no conditional, so it's added here (textbook
 // converb table in grammar.ts; BNC: ябабал, хүдэлбэл).
-function verbForms(root: string): string[] {
+function verbForms(root: string): Array<[keyof Conjugation | 'conditional', string]> {
   const conditional = root + sufC(getSufClass(root), 'бал', 'бол', 'бэл');
-  return [...Object.values(conjugate(root)), conditional];
+  const forms = Object.entries(conjugate(root)) as Array<[keyof Conjugation, string]>;
+  return [...forms, ['conditional', conditional]];
+}
+
+export type VerbKind = 'participle' | 'converb'; // textbook pp. 60, 62, 67
+
+const VERB_KINDS: Partial<Record<keyof Conjugation | 'conditional', VerbKind>> = {
+  pstPtcp: 'participle',
+  res: 'participle',
+  hab: 'participle',
+  neg: 'participle',
+  simConv: 'converb',
+  seqConv: 'converb',
+  conditional: 'converb',
+};
+
+// Endings too common outside verbs to name a verb by shape: of the 8,608 ТСБЯ nouns and
+// adjectives, 470 look like a jussive (аймаг, айраг) and 447 like a perfect (алалдаа).
+const COMMON_SHAPES = new Set<string>(['jussive', 'perf']);
+
+export interface VerbReading {
+  infinitive: string;
+  kind?: VerbKind;
+  distinctive: boolean; // false when the shape alone says little
 }
 
 const LONGEST_SUFFIX = 6; // letters: -даггүй
 
-// The infinitives a word could come from: хэлэжэ → хэлэхэ, хүдэлнэб → хүдэлхэ. Each cut of the
-// word's end gives a possible root, kept only if the engine builds the word from it again, so
-// the verb rules live in one place. Whether the verb exists is for the dictionary to say.
-export function verbInfinitives(word: string): string[] {
+// The verb forms a word could be: хэлэжэ → хэлэхэ, хүдэлнэб → хүдэлхэ. Each cut of the word's
+// end gives a possible root, kept only if the engine builds the word from it again, so the verb
+// rules live in one place. Whether the verb exists is for the dictionary to say.
+export function verbReadings(word: string): VerbReading[] {
   const endings = ENDINGS.filter(ending => ending && word.endsWith(ending));
   const bases = [word, ...endings.map(ending => word.slice(0, -ending.length))];
-  const found = new Set<string>();
+  const found: VerbReading[] = [];
   for (const base of bases) {
     for (let cut = 1; cut <= LONGEST_SUFFIX; cut++) {
       const stem = base.slice(0, -cut);
@@ -151,12 +175,21 @@ export function verbInfinitives(word: string): string[] {
       // A short final vowel is lost before -аад and -аа; it agrees with the stem, or is и.
       for (const vowel of ['', getSufClass(stem), 'и']) {
         const root = stem + vowel;
-        if (verbForms(root).includes(base)) found.add(conjugate(root).inf);
+        const infinitive = conjugate(root).inf;
+        if (infinitive === word) continue;
+        for (const [form, spelled] of verbForms(root)) {
+          if (spelled !== base) continue;
+          const distinctive = !COMMON_SHAPES.has(form);
+          found.push({ infinitive, kind: VERB_KINDS[form], distinctive });
+        }
       }
     }
   }
-  found.delete(word);
-  return [...found];
+  return found;
+}
+
+export function verbInfinitives(word: string): string[] {
+  return [...new Set(verbReadings(word).map(r => r.infinitive))];
 }
 
 const BURLANG = 'https://burlang.ru/api/v1/buryat-word/translate';

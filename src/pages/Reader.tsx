@@ -3,8 +3,10 @@ import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import ParticipleTies from '../components/ParticipleTies';
 import Tooltip from '../components/Tooltip';
 import { useVocabulary } from '../hooks/useVocabulary';
+import { useWordClasses } from '../hooks/useWordClasses';
 import { useI18n } from '../i18n/context';
 import type { Messages } from '../i18n/en';
+import type { Lang } from '../i18n/lang';
 import { findPhrases, splitSentences, type ParticipleTie } from '../utils/phrases';
 import {
   buildIndex,
@@ -17,6 +19,7 @@ import {
   type ReaderIndex,
   type Token,
 } from '../utils/reader';
+import { caseName, wordLabels, type ClassIndex, type WordLabel } from '../utils/wordClasses';
 
 const fade = { hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } };
 
@@ -34,6 +37,15 @@ function onlineText(gloss: OnlineGloss, sources: Messages['reader']['sources']):
   return `${gloss.text} (${gloss.lemma ? `${gloss.lemma}, ${source}` : source})`;
 }
 
+// "verb · converb", "noun · dative", "probably verb · participle"
+function labelText(label: WordLabel, lang: Lang, t: Messages): string {
+  const category = t.vocabulary.categories[label.category];
+  const noun = label.nounCase && caseName(label.nounCase, lang).toLowerCase();
+  const detail = label.kind ? t.reader.kinds[label.kind] : noun;
+  const text = detail ? `${category} · ${detail}` : category;
+  return label.unsure ? t.reader.probably(text) : text;
+}
+
 interface Found {
   id: string;
   word: OnlineGloss | null;
@@ -43,11 +55,13 @@ interface Found {
 function Word({
   token,
   index,
+  classes,
   phrase,
   tone,
 }: {
   token: Token;
   index: ReaderIndex;
+  classes: ClassIndex;
   phrase?: string;
   tone: string;
 }) {
@@ -79,7 +93,9 @@ function Word({
     };
   }, [needed, known, key, target, phrase, id]);
 
+  const labels = wordLabels(key, index, classes, answer?.word?.lemma);
   const lines: string[] = [];
+  if (labels.length > 0) lines.push(labels.map(l => labelText(l, lang, t)).join('; '));
   if (known) lines.push(describe(key, hits, lang));
   else if (answer)
     lines.push(answer.word ? onlineText(answer.word, t.reader.sources) : t.reader.notFound);
@@ -183,6 +199,7 @@ function SentenceRow({
 export default function Reader() {
   const { t } = useI18n();
   const { data, error } = useVocabulary();
+  const classes = useWordClasses();
   const [text, setText] = useState(SAMPLE);
   const index = useMemo(() => buildIndex(data), [data]);
   const tokens = useMemo(() => tokenise(text, index), [text, index]);
@@ -228,6 +245,7 @@ export default function Reader() {
                     key={`${i}:${token.key}`}
                     token={token}
                     index={index}
+                    classes={classes}
                     // A phrase that is the whole sentence would give the answer away.
                     phrase={
                       phrase?.text !== sentence.replace(/[.!?…]+$/, '') ? phrase?.text : undefined

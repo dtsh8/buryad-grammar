@@ -320,6 +320,27 @@ export const en = {
     phrase: 'Phrase',
     showTranslation: 'Show translation',
     hideTranslation: 'Hide translation',
+    ties: {
+      show: 'Explain the participle',
+      hide: 'Hide the explanation',
+      roles: {
+        object: 'object',
+        maybeObject: 'object?',
+        doer: 'doer',
+        participle: 'participle',
+        noun: 'noun it describes',
+      },
+      object: (object: string, participle: string, noun: string) =>
+        `${object} is the object of ${participle}: the action is done to it, and the accusative ending shows that. With the object in place, ${noun} is not what the action is done to. It names who does it, or sometimes where or when it happens.`,
+      bareObject: (object: string, participle: string, noun: string) =>
+        `${object} has no case ending, but it can still be the object of ${participle}: Buryad often leaves objects unmarked. If it is, ${noun} names who does the action, or where or when it happens.`,
+      doer: (doer: string, participle: string, noun: string) =>
+        `${doer} is genitive. Before ${participle} that usually names who does the action, so ${noun} is usually what it is done to: the object, with no accusative ending of its own. The genitive can also just say whose ${noun} it is.`,
+      open: (noun: string) =>
+        `Nothing here is marked as the object, so ${noun} itself may be it. Try both readings: it does the action, as in ерэһэн багша "the teacher who came", or the action is done to it, as in хэлэһэн үгэ "the word that was said".`,
+      nounCase: (noun: string, name: string) =>
+        `Case of ${noun}: ${name}. This ending ties the whole phrase to the rest of the sentence. It says nothing about how ${noun} relates to the participle.`,
+    },
     sources: {
       burlang: 'Burlang dictionary',
       burlangMachine: 'Burlang, machine-translated',

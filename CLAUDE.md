@@ -15,6 +15,9 @@ GitHub Pages: no backend, and it should stay that way.
 - `src/pages/`: one file per route; `src/sections.ts` lists them
 - `src/data/grammar.ts`: grammar content; `public/data/vocabulary.json`: the lexicon
 - `public/data/word-classes.json`: Reader word labels, built from ТСБЯ by `scripts/word_classes.py`
+- `public/data/script-templates.json`: letter shapes for the Script page's handwriting tab, built
+  from the Noto Sans Mongolian font by `scripts/script_templates.py`; rebuild it after changing
+  `src/data/scriptWords.ts`
 - `src/utils/`: verb and noun engines, with `*.test.ts` gold rows
 - `src/i18n/`: interface strings
 - `docs/verification-questions.md`: open questions and written sources

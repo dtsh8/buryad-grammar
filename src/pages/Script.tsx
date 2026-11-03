@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useMemo, useState } from 'react';
+import Handwriting from '../components/Handwriting';
 import ScriptLine from '../components/ScriptLine';
 import ScriptRules from '../components/ScriptRules';
 import SpellingGame from '../components/SpellingGame';
@@ -15,10 +16,14 @@ const fade = { hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } };
 
 const SAMPLE = 'mongγol bičig';
 
-type Tab = 'write' | 'rules';
+type Tab = 'write' | 'rules' | 'hand';
 
 // Labels come from the i18n messages under `script.tabs`.
-const TAB_IDS: ReadonlyArray<Omit<TabDef<Tab>, 'label'>> = [{ id: 'write' }, { id: 'rules' }];
+const TAB_IDS: ReadonlyArray<Omit<TabDef<Tab>, 'label'>> = [
+  { id: 'write' },
+  { id: 'rules' },
+  { id: 'hand' },
+];
 
 function Writer() {
   const { t } = useI18n();
@@ -199,6 +204,12 @@ export default function Script() {
           </section>
 
           <SpokenWritten />
+        </div>
+      )}
+
+      {tab === 'hand' && (
+        <div {...tabPanelProps(tab)}>
+          <Handwriting />
         </div>
       )}
 

@@ -397,7 +397,7 @@ export const en = {
     fontNote:
       'The letters use the Noto Sans Mongolian font. If they look like separate boxes, the font did not load.',
     tabsLabel: 'Script sections',
-    tabs: { write: 'Write and read', rules: 'Rules and game' },
+    tabs: { write: 'Write and read', rules: 'Rules and game', hand: 'Handwriting' },
     rulesIntro:
       'The main rules of the script, after Poppe. Hover over any letter in the examples to see what it writes.',
     rules: {
@@ -463,6 +463,40 @@ export const en = {
       label: 'Letter part',
       replay: 'Write it again',
       note: 'Redrawn from Skorodumova’s handwritten table (pp. 4–5). The dot marks where the pen starts; colours show the strokes in order.',
+    },
+    hand: {
+      intro:
+        'Write with a finger, a pen or the mouse, top to bottom. Nothing you draw leaves your device.',
+      modesLabel: 'Handwriting mode',
+      modes: { recognise: 'Write letters', trace: 'Trace' },
+      canvasLabel: 'Writing area',
+      undo: 'Undo stroke',
+      clear: 'Clear',
+      recognise: 'Recognise',
+      recogniseIntro:
+        'Write one letter at a time, in the shape it has in its place in the word, then press Recognise and pick its sound. A shape the script uses for several sounds offers them all.',
+      loading: 'Loading the letter shapes…',
+      loadError: 'Could not load the letter shapes.',
+      matches: 'Closest shapes',
+      noMatch: 'Draw a letter first.',
+      word: 'Your word',
+      emptyWord: 'Pick a sound to start a word.',
+      deleteLast: 'Delete last',
+      clearWord: 'Clear word',
+      traceIntro:
+        'Trace over the grey shape. The score is how closely your lines follow it. For a letter part, start at the dot and keep the stroke order.',
+      targetLabel: 'What to trace',
+      targets: { word: 'A word', part: 'A letter part' },
+      newWord: 'New word',
+      check: 'Check',
+      order: {
+        right: (n: number) => `Stroke ${n}: right`,
+        reversed: (n: number) => `Stroke ${n}: drawn the other way`,
+        missing: (n: number) => `Stroke ${n}: missing`,
+        extra: (n: number) => `${n} stroke(s) more than the part has`,
+      },
+      fontNote:
+        'Shapes are compared with those of the Noto Sans Mongolian font, the one this page uses, so clear, print-like letters are recognised best.',
     },
     game: {
       title: 'Spelling game',

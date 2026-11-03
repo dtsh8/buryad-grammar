@@ -1,3 +1,13 @@
+## [1.28.0](https://github.com/dtsh8/buryad-grammar/compare/v1.27.0...v1.28.0) (2026-11-03)
+
+### ✨ New Features
+
+* **script:** add a rules tab with a spelling game ([ae96b9f](https://github.com/dtsh8/buryad-grammar/commit/ae96b9f34db514188149abc6a774ffdd859aa5a2))
+
+### 🐛 Bug Fixes
+
+* **script:** spell 'yellow' šira, as Poppe writes it (p. 36) ([ce951b0](https://github.com/dtsh8/buryad-grammar/commit/ce951b0eac326724783f118f526e6a328aa68f04))
+
 ## [1.27.0](https://github.com/dtsh8/buryad-grammar/compare/v1.26.0...v1.27.0) (2026-11-03)
 
 ### ✨ New Features

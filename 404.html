@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <script>
+      // SPA fallback for GitHub Pages: redirect 404s back to index.html
+      // preserving the path as a query param, then the app restores it.
+      const path = window.location.pathname.replace('/buryad-grammar', '')
+      const search = window.location.search
+      const hash = window.location.hash
+      window.location.replace(
+        '/buryad-grammar/?p=' + encodeURIComponent(path + search) + hash
+      )
+    </script>
+  </head>
+  <body></body>
+</html>

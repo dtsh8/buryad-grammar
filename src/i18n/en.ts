@@ -409,6 +409,10 @@ export const en = {
         title: 'A letter changes with its place',
         body: 'Most letters have an initial, a medial and a final shape, and initial vowels get an extra stroke at the top (§ 60). Pick a letter below to see its shapes.',
       },
+      parts: {
+        title: 'Parts of letters',
+        body: 'Letters are built from parts that have names of their own: the crown, the tooth, the spine that runs through a word, shins, bellies, horns and ears. Two of them are the two ways a word can end in a or e: сүүл "tail", joined to the word, and орхиц, written apart (p. 6). Pick a part to see it written stroke by stroke.',
+      },
       harmony: {
         title: 'Back and front words',
         body: 'A word has either back vowels (a, o, u) or front vowels (e, ö, ü); i goes with both (§ 32). q and γ occur only in back-vowel words, k and g in front-vowel ones, so the vowels tell you how to read the consonants (§ 99).',
@@ -441,6 +445,24 @@ export const en = {
     explorer: {
       label: 'Letter',
       note: 'Each shape is drawn from the letter alone. Inside a word its neighbours can change it further.',
+    },
+    pairs: {
+      title: 'Joined or apart?',
+      intro:
+        'Sometimes the only difference between two words is whether the final a or e is joined (сүүл) or written apart (орхиц). What does this word mean?',
+      apart: 'written apart',
+      joined: 'joined',
+      right: 'Right!',
+      wrong: (answer: string) => `Not this time: it means “${answer}”.`,
+      another: 'Another word',
+      score: (right: number, total: number) => `${right} of ${total} right`,
+      conflict:
+        'Poppe prints “black” joined (qara, p. 21). Skorodumova writes it apart and reads the joined form as “to look”; the quiz follows her.',
+    },
+    strokes: {
+      label: 'Letter part',
+      replay: 'Write it again',
+      note: 'Redrawn from Skorodumova’s handwritten table (pp. 4–5). The dot marks where the pen starts; colours show the strokes in order.',
     },
     game: {
       title: 'Spelling game',

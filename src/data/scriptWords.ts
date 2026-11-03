@@ -14,7 +14,6 @@ export const SCRIPT_WORDS: ScriptWordEntry[] = [
   { latin: 'tende', en: 'there', ru: 'там', page: 21 },
   { latin: 'naran', en: 'sun', ru: 'солнце', page: 21 },
   { latin: 'öndür', en: 'high', ru: 'высокий', page: 21 },
-  { latin: 'qara', en: 'black', ru: 'чёрный', page: 21 },
   { latin: 'qalaγun', en: 'hot', ru: 'горячий', page: 21 },
   { latin: 'qaγan', en: 'khan, emperor', ru: 'хан, император', page: 21 },
   { latin: 'qaγalγ-a', en: 'gate', ru: 'ворота', page: 21 },

@@ -1,5 +1,7 @@
 import { useState } from 'react';
+import ApartQuiz from './ApartQuiz';
 import ScriptLine from './ScriptLine';
+import StrokeParts from './StrokeParts';
 import { SCRIPT_RULES, type ScriptRule } from '../data/scriptRules';
 import { useI18n } from '../i18n/context';
 import { letterChar, type Position, type Translit } from '../utils/mongolScript';
@@ -95,7 +97,7 @@ function RuleCard({ rule, number }: { rule: ScriptRule; number: number }) {
           {text.title}
         </h3>
         <p className="text-stone-700">{text.body}</p>
-        <p className="text-xs text-stone-400">Poppe 1974, {rule.poppe}</p>
+        <p className="text-xs text-stone-400">{rule.source}</p>
       </div>
       {rule.examples.length > 0 && (
         <ul className="flex flex-wrap gap-4">
@@ -123,7 +125,9 @@ function RuleCard({ rule, number }: { rule: ScriptRule; number: number }) {
           ))}
         </ul>
       )}
+      {rule.pairs && <ApartQuiz pairs={rule.pairs} />}
       {rule.id === 'positions' && <ShapeExplorer />}
+      {rule.id === 'parts' && <StrokeParts />}
     </article>
   );
 }

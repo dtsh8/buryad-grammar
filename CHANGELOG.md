@@ -1,3 +1,9 @@
+## [1.27.0](https://github.com/dtsh8/buryad-grammar/compare/v1.26.0...v1.27.0) (2026-11-03)
+
+### ✨ New Features
+
+* **script:** add an Old Mongolian script page ([426f822](https://github.com/dtsh8/buryad-grammar/commit/426f822b19b8e88cf1979691f5bd6e290a25c7c7))
+
 ## [1.26.0](https://github.com/dtsh8/buryad-grammar/compare/v1.25.0...v1.26.0) (2026-11-01)
 
 ### ✨ New Features

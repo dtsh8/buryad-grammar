@@ -1,3 +1,9 @@
+## [1.30.0](https://github.com/dtsh8/buryad-grammar/compare/v1.29.0...v1.30.0) (2026-11-03)
+
+### ✨ New Features
+
+* **script:** add a handwriting tab that reads and traces letters ([36bf38d](https://github.com/dtsh8/buryad-grammar/commit/36bf38db291ad05bfc93bfd173c3d9599d2ed08e))
+
 ## [1.29.0](https://github.com/dtsh8/buryad-grammar/compare/v1.28.0...v1.29.0) (2026-11-03)
 
 ### ✨ New Features

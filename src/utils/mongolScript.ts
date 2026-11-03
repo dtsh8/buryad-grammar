@@ -306,6 +306,9 @@ function parsePeek(part: string | undefined): Translit | undefined {
   return part ? parseLatin(part)?.[0] : undefined;
 }
 
+// The Unicode letter for a sound.
+export const letterChar = (sound: Translit) => CHAR[sound];
+
 // Unicode text of a word, ready for a Mongolian font.
 export function wordText(word: ScriptWord): string {
   return word.pieces.map(p => ('letter' in p ? p.letter.char : p.joiner)).join('');

@@ -396,6 +396,88 @@ export const en = {
     source: 'Source: N. Poppe, Grammar of Written Mongolian (Wiesbaden, 1974), §§ 60–102.',
     fontNote:
       'The letters use the Noto Sans Mongolian font. If they look like separate boxes, the font did not load.',
+    tabsLabel: 'Script sections',
+    tabs: { write: 'Write and read', rules: 'Rules and game' },
+    rulesIntro:
+      'The main rules of the script, after Poppe. Hover over any letter in the examples to see what it writes.',
+    rules: {
+      direction: {
+        title: 'Direction',
+        body: 'The script runs top to bottom, and the columns follow each other from left to right (§ 58). ᠂ is a comma and ᠃ a full stop.',
+      },
+      positions: {
+        title: 'A letter changes with its place',
+        body: 'Most letters have an initial, a medial and a final shape, and initial vowels get an extra stroke at the top (§ 60). Pick a letter below to see its shapes.',
+      },
+      harmony: {
+        title: 'Back and front words',
+        body: 'A word has either back vowels (a, o, u) or front vowels (e, ö, ü); i goes with both (§ 32). q and γ occur only in back-vowel words, k and g in front-vowel ones, so the vowels tell you how to read the consonants (§ 99).',
+      },
+      shared: {
+        title: 'One shape, two sounds',
+        body: 'Some sounds are never told apart: o and u, ö and ü, t and d, and y and ǰ at the start of a word; k and g share one letter (§§ 73, 75, 76). Only knowing the word tells you which is meant (§ 101), so the game accepts either.',
+      },
+      firstSyllable: {
+        title: 'ö and ü after the first syllable',
+        body: 'ö and ü have an extra tooth only in the first syllable. After it they look just like o and u (§ 98).',
+      },
+      dots: {
+        title: 'Dots',
+        body: 'n has a dot before a vowel. γ has two dots between vowels, but none before a consonant or at the end of a word (§ 68).',
+      },
+      apart: {
+        title: 'Written apart',
+        body: 'After q, γ, s, l, m or r a final a or e is usually written apart from the word (§ 87). Case endings are always written apart (§ 88). The transliteration marks both with a hyphen.',
+      },
+      long: {
+        title: 'Long vowels and diphthongs',
+        body: 'Long ū, ü and ī are written with doubled letters (§ 89). Inside a word the diphthongs ai, ei, oi, ui are written ayi, eyi, oyi, uyi (§ 92).',
+      },
+      spoken: {
+        title: 'Written is not spoken',
+        body: 'The script keeps old spellings, and readers pronounce them their own way (§ 102): groups like aγa became long vowels, an i in the first syllable took on the next vowel, and a final n is often dropped.',
+      },
+    },
+    explorer: {
+      label: 'Letter',
+      note: 'Each shape is drawn from the letter alone. Inside a word its neighbours can change it further.',
+    },
+    game: {
+      title: 'Spelling game',
+      intro:
+        'Ten words from Poppe. Spell each in the old script with the letter keys or by typing the transliteration. Your score is the share of letters you get right.',
+      modes: { write: 'Write the word', read: 'Read the script' },
+      modesLabel: 'Game mode',
+      writePrompt: 'Write in the old script:',
+      readPrompt: 'Read this word and spell its letters:',
+      answerLabel: 'Your spelling (transliteration)',
+      keysLabel: 'Script letters',
+      apart: 'apart',
+      backspace: 'Delete',
+      check: 'Check',
+      next: 'Next word',
+      finish: 'See the result',
+      again: 'Play again',
+      progress: (n: number, total: number) => `Word ${n} of ${total}`,
+      average: 'Average',
+      verdict: (percent: number): string =>
+        percent === 100
+          ? 'Perfect!'
+          : percent >= 80
+            ? 'Very close'
+            : percent >= 50
+              ? 'Halfway there'
+              : 'Keep practising',
+      answer: 'Written form',
+      marks: {
+        right: 'right',
+        sameShape: 'other sound, same shape: counts as right',
+        wrong: 'wrong letter',
+        missing: 'missing',
+        extra: 'extra',
+      },
+      done: (percent: number) => `Round over: ${percent}% on average.`,
+    },
   },
 
   practice: {

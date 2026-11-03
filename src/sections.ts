@@ -8,6 +8,7 @@ import {
   Dumbbell,
   Scale,
   Languages,
+  ScrollText,
   type LucideIcon,
 } from 'lucide-react';
 import type { Messages } from './i18n/en';
@@ -27,6 +28,7 @@ export const SECTIONS: Array<{
   { to: '/verbs', key: 'verbs', icon: Code2, grammar: true },
   { to: '/modals', key: 'modals', icon: Scale, grammar: true },
   { to: '/word-order', key: 'wordOrder', icon: GitBranch, grammar: true },
+  { to: '/script', key: 'script', icon: ScrollText, grammar: true },
   { to: '/vocabulary', key: 'vocabulary', icon: LayoutList },
   { to: '/reader', key: 'reader', icon: Languages },
   { to: '/practice', key: 'practice', icon: Dumbbell },

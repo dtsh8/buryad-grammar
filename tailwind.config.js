@@ -8,6 +8,7 @@ export default {
         sans: ['"Inter"', 'system-ui', 'sans-serif'],
         // Noto Sans Mono has һ ү ө; system monospace fonts (Consolas, Menlo) mostly don't,
         // which garbled suffixes such as -һан in code-styled text.
+        mongol: ['"Noto Sans Mongolian"', '"Mongolian Baiti"', 'sans-serif'],
         mono: ['"Noto Sans Mono"', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Consolas', 'monospace'],
       },
       colors: {

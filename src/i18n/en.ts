@@ -25,6 +25,7 @@ export const en = {
     wordOrder: { label: 'Word Order', desc: 'SOV, postpositions, modifiers' },
     vocabulary: { label: 'Vocabulary', desc: 'Core words, phrases and numerals' },
     reader: { label: 'Reader', desc: 'Hover over Buryad words to translate them' },
+    script: { label: 'Old Script', desc: 'The vertical Mongolian script: write and read' },
     practice: { label: 'Practice', desc: 'Conjugation and case drills' },
   },
 
@@ -357,6 +358,44 @@ export const en = {
       machine: 'machine translation',
     },
     notFound: 'No translation found',
+  },
+
+  script: {
+    title: 'Old Mongolian Script',
+    intro:
+      'Until 1931 Buryads wrote in the vertical Mongolian script (Poppe 1974, § 7). It runs top to bottom in columns from left to right, and a letter changes shape with its place in the word, so one shape can stand for several sounds. Hover over a letter (or tap it) to see which sound it writes there.',
+    writeTitle: 'Write a word',
+    inputLabel: 'Transliteration or Buryad Cyrillic',
+    inputHint:
+      'Transliteration: a e i o u ö ü, n ng, b p, q γ (gh), k g, m l, s š (sh), t d, č (ch), ǰ (j), y r w. A hyphen writes a suffix apart: kümün-ü, suruγ-a.',
+    readAs: 'Read as',
+    cyrillicNote:
+      'Cyrillic is converted by sound, so apart from the words in the table below it is only a first guess: the script keeps older spellings, and хүн is written kümün. Edit the transliteration to correct it.',
+    editLatin: 'Edit the transliteration',
+    letters: 'Letter by letter',
+    positions: {
+      isolated: 'alone',
+      initial: 'initial',
+      medial: 'medial',
+      final: 'final',
+    },
+    sound: (latin: string, cyrillic: string) => `Sound: ${latin} (≈ ${cyrillic})`,
+    position: (position: string) => `Position: ${position}`,
+    detached: 'written apart from the word',
+    alsoReads: (sounds: string) => `In this position the same shape can also be ${sounds}.`,
+    unique: 'In this position no other sound has this shape.',
+    spokenTitle: 'Spoken and written',
+    spokenIntro:
+      'The script keeps the spelling of older Mongolian, so a Buryad word is often written quite differently from how it sounds.',
+    columns: { buryad: 'Buryad', written: 'Written', script: 'Script', source: 'Poppe' },
+    readingTitle: 'Reading',
+    readingIntro:
+      "Sentences from Poppe's Grammar of Written Mongolian (pp. 125–126). Read each column first, then check yourself.",
+    showReading: 'Show the transliteration and translation',
+    hideReading: 'Hide',
+    source: 'Source: N. Poppe, Grammar of Written Mongolian (Wiesbaden, 1974), §§ 60–102.',
+    fontNote:
+      'The letters use the Noto Sans Mongolian font. If they look like separate boxes, the font did not load.',
   },
 
   practice: {

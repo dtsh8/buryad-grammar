@@ -20,14 +20,18 @@ export default function Tooltip({
   children,
   className = '',
   onOpenChange,
+  inline = false,
 }: {
   text: string;
   children: ReactNode;
   className?: string; // classes for the trigger (the badge itself)
   onOpenChange?: (open: boolean) => void;
+  // A focusable span instead of a button, for a trigger inside a word: a button is an
+  // inline-block, which would break the joins of cursive (Mongolian) letters around it.
+  inline?: boolean;
 }) {
   const id = useId();
-  const trigger = useRef<HTMLButtonElement>(null);
+  const trigger = useRef<HTMLButtonElement & HTMLSpanElement>(null);
   const bubble = useRef<HTMLDivElement>(null);
   const pointer = useRef<string>(''); // type of the last pointer press: mouse, touch or pen
   const [open, setOpen] = useState(false);
@@ -63,11 +67,13 @@ export default function Tooltip({
     if (e.key === 'Escape') setOpen(false);
   }
 
+  const Trigger = inline ? 'span' : 'button';
+
   return (
     <>
-      <button
+      <Trigger
         ref={trigger}
-        type="button"
+        {...(inline ? { tabIndex: 0, role: 'button' } : { type: 'button' as const })}
         aria-describedby={open ? id : undefined}
         // A tap fires (emulated) hover, focus and click in a row, so each input opens it its own
         // way: the mouse by hovering, the keyboard by focusing, touch by toggling on tap.
@@ -84,7 +90,7 @@ export default function Tooltip({
         className={`cursor-help ${className}`}
       >
         {children}
-      </button>
+      </Trigger>
       {open &&
         createPortal(
           <div

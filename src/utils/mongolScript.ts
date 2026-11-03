@@ -306,6 +306,9 @@ function parsePeek(part: string | undefined): Translit | undefined {
   return part ? parseLatin(part)?.[0] : undefined;
 }
 
+// The Unicode letter for a sound.
+export const letterChar = (sound: Translit) => CHAR[sound];
+
 // Unicode text of a word, ready for a Mongolian font.
 export function wordText(word: ScriptWord): string {
   return word.pieces.map(p => ('letter' in p ? p.letter.char : p.joiner)).join('');
@@ -379,7 +382,7 @@ export const KNOWN_SPELLINGS: Array<{ buryad: string; latin: string; poppe: stri
   { buryad: 'хүн', latin: 'kümün', poppe: '§ 443' },
   { buryad: 'һара', latin: 'sara', poppe: '§ 71' },
   { buryad: 'уһан', latin: 'usun', poppe: '§ 71' },
-  { buryad: 'шара', latin: 'sira', poppe: '§ 102' },
+  { buryad: 'шара', latin: 'šira', poppe: '§ 102' },
   { buryad: 'уула', latin: 'aγula', poppe: '§ 102' },
   { buryad: 'сагаан', latin: 'čaγan', poppe: '§ 42' },
   { buryad: 'модон', latin: 'modun', poppe: '§ 102' },

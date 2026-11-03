@@ -1,82 +1,24 @@
 import { motion } from 'framer-motion';
-import { useMemo, useState, type Dispatch, type SetStateAction } from 'react';
+import { useMemo, useState } from 'react';
+import ScriptLine from '../components/ScriptLine';
+import ScriptRules from '../components/ScriptRules';
+import SpellingGame from '../components/SpellingGame';
+import Tabs from '../components/Tabs';
 import Tooltip from '../components/Tooltip';
+import { tabPanelProps, useTab, type TabDef } from '../hooks/useTab';
 import { SCRIPT_READING, type ReadingSentence } from '../data/scriptReading';
 import { useI18n } from '../i18n/context';
-import type { Messages } from '../i18n/en';
-import {
-  CYRILLIC_HINT,
-  KNOWN_SPELLINGS,
-  cyrillicToLatin,
-  hasCyrillic,
-  scriptTokens,
-  type Letter,
-} from '../utils/mongolScript';
+import { KNOWN_SPELLINGS, cyrillicToLatin, hasCyrillic, scriptTokens } from '../utils/mongolScript';
+import { letterHint } from '../utils/scriptHints';
 
 const fade = { hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } };
 
 const SAMPLE = 'mongγol bičig';
 
-// Top to bottom, columns left to right.
-const VERTICAL = 'font-mongol [writing-mode:vertical-lr]';
+type Tab = 'write' | 'rules';
 
-function letterHint(letter: Letter, t: Messages): string {
-  const s = t.script;
-  const position = s.positions[letter.position];
-  const lines = [
-    s.sound(letter.sound, CYRILLIC_HINT[letter.sound]),
-    s.position(letter.detached ? `${position}, ${s.detached}` : position),
-    letter.alsoReads.length > 0 ? s.alsoReads(letter.alsoReads.join(', ')) : s.unique,
-  ];
-  return lines.join('\n');
-}
-
-// A line of script. Every letter is its own hover target, but they stay inline spans in one run
-// of text, so the font still joins them and picks each one's positional shape.
-function ScriptLine({
-  latin,
-  className = '',
-  active,
-  onActive,
-}: {
-  latin: string;
-  className?: string;
-  active?: number | null;
-  onActive?: Dispatch<SetStateAction<number | null>>;
-}) {
-  const { t } = useI18n();
-  const tokens = useMemo(() => scriptTokens(latin), [latin]);
-  let n = 0;
-  return (
-    <p lang="mn-Mong" className={`${VERTICAL} ${className}`}>
-      {tokens.map((token, i) =>
-        'text' in token ? (
-          <span key={i}>{token.text}</span>
-        ) : (
-          <span key={i}>
-            {token.word.pieces.map((piece, j) => {
-              if ('joiner' in piece) return <span key={j}>{piece.joiner}</span>;
-              const index = n++;
-              return (
-                <Tooltip
-                  key={j}
-                  inline
-                  text={letterHint(piece.letter, t)}
-                  onOpenChange={open => onActive?.(a => (open ? index : a === index ? null : a))}
-                  className={`rounded-sm outline-none hover:text-buryat-700 focus-visible:text-buryat-700 ${
-                    active === index ? 'text-buryat-700' : ''
-                  }`}
-                >
-                  {piece.letter.char}
-                </Tooltip>
-              );
-            })}
-          </span>
-        )
-      )}
-    </p>
-  );
-}
+// Labels come from the i18n messages under `script.tabs`.
+const TAB_IDS: ReadonlyArray<Omit<TabDef<Tab>, 'label'>> = [{ id: 'write' }, { id: 'rules' }];
 
 function Writer() {
   const { t } = useI18n();
@@ -229,6 +171,8 @@ function ReadingCard({ sentence, number }: { sentence: ReadingSentence; number: 
 
 export default function Script() {
   const { t } = useI18n();
+  const TABS = TAB_IDS.map(d => ({ ...d, label: t.script.tabs[d.id] }));
+  const [tab, setTab] = useTab(TABS);
   return (
     <div className="max-w-5xl mx-auto px-4 py-10 space-y-8">
       <motion.div variants={fade} initial="hidden" animate="show" transition={{ duration: 0.4 }}>
@@ -236,21 +180,34 @@ export default function Script() {
         <p className="text-stone-500 mt-1">{t.script.intro}</p>
       </motion.div>
 
-      <Writer />
+      <Tabs tabs={TABS} active={tab} onChange={setTab} label={t.script.tabsLabel} />
 
-      <section className="space-y-4">
-        <div>
-          <h2 className="text-xl font-semibold text-stone-900">{t.script.readingTitle}</h2>
-          <p className="text-sm text-stone-500 mt-1">{t.script.readingIntro}</p>
+      {tab === 'write' && (
+        <div {...tabPanelProps(tab)} className="space-y-8">
+          <Writer />
+
+          <section className="space-y-4">
+            <div>
+              <h2 className="text-xl font-semibold text-stone-900">{t.script.readingTitle}</h2>
+              <p className="text-sm text-stone-500 mt-1">{t.script.readingIntro}</p>
+            </div>
+            <ol className="grid md:grid-cols-2 gap-4">
+              {SCRIPT_READING.map((sentence, i) => (
+                <ReadingCard key={sentence.latin} sentence={sentence} number={i + 1} />
+              ))}
+            </ol>
+          </section>
+
+          <SpokenWritten />
         </div>
-        <ol className="grid md:grid-cols-2 gap-4">
-          {SCRIPT_READING.map((sentence, i) => (
-            <ReadingCard key={sentence.latin} sentence={sentence} number={i + 1} />
-          ))}
-        </ol>
-      </section>
+      )}
 
-      <SpokenWritten />
+      {tab === 'rules' && (
+        <div {...tabPanelProps(tab)} className="space-y-8">
+          <ScriptRules />
+          <SpellingGame />
+        </div>
+      )}
 
       <p className="text-xs text-stone-500">
         {t.script.source} {t.script.fontNote}

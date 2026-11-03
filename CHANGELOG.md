@@ -1,3 +1,9 @@
+## [1.29.0](https://github.com/dtsh8/buryad-grammar/compare/v1.28.0...v1.29.0) (2026-11-03)
+
+### ✨ New Features
+
+* **script:** add letter parts and a joined-or-apart quiz ([eb5c69b](https://github.com/dtsh8/buryad-grammar/commit/eb5c69b9d031dd98e051ee0d7088c08210c6d5af))
+
 ## [1.28.0](https://github.com/dtsh8/buryad-grammar/compare/v1.27.0...v1.28.0) (2026-11-03)
 
 ### ✨ New Features

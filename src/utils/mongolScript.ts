@@ -379,7 +379,7 @@ export const KNOWN_SPELLINGS: Array<{ buryad: string; latin: string; poppe: stri
   { buryad: 'хүн', latin: 'kümün', poppe: '§ 443' },
   { buryad: 'һара', latin: 'sara', poppe: '§ 71' },
   { buryad: 'уһан', latin: 'usun', poppe: '§ 71' },
-  { buryad: 'шара', latin: 'sira', poppe: '§ 102' },
+  { buryad: 'шара', latin: 'šira', poppe: '§ 102' },
   { buryad: 'уула', latin: 'aγula', poppe: '§ 102' },
   { buryad: 'сагаан', latin: 'čaγan', poppe: '§ 42' },
   { buryad: 'модон', latin: 'modun', poppe: '§ 102' },
